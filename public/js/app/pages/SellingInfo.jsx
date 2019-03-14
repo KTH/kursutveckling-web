@@ -88,7 +88,7 @@ class SellingInfo extends Component {
         isError: false
       })
       this.props.history.push({
-        pathname: `/admin/kurser/kurs/${courseCode}?l=${adminStore.courseAdminData.lang}`,
+        pathname: `/kursutveckling/${courseCode}?l=${adminStore.courseAdminData.lang}`,
         data: 'success'
       })
     }).catch(err => {
@@ -217,7 +217,7 @@ class SellingInfo extends Component {
             </span>
             <p>{sellingTextLabels.changed_by} {this.state.sellingTextAuthor}</p>
             <span className='button_group' key='controlButtons'>
-              <Link to={`/admin/kurser/kurs/${courseCode}?l=${courseAdminData.lang}`} className='btn btn-secondary' alt={sellingTextLabels.altLabel.button_cancel}>
+              <Link to={`/kursutveckling/${courseCode}?l=${courseAdminData.lang}`} className='btn btn-secondary' alt={sellingTextLabels.altLabel.button_cancel}>
                 {sellingTextLabels.sellingTextButtons.button_cancel}
               </Link>
               <Button onClick={this.doPreview} color='primary' alt={sellingTextLabels.altLabel.button_preview} disabled={this.state.isError}>{sellingTextLabels.sellingTextButtons.button_preview}</Button>
@@ -242,7 +242,7 @@ class SellingInfo extends Component {
                 </Col>
               </Row>
               <Row className='button_group'>
-                <Link to={`/admin/kurser/kurs/${courseCode}?l=${courseAdminData.lang}`} className='btn btn-secondary'>
+                <Link to={`/kursutveckling/${courseCode}?l=${courseAdminData.lang}`} className='btn btn-secondary'>
                   {sellingTextLabels.sellingTextButtons.button_cancel}
                 </Link>
                 <Button onClick={this.doChangeText} color='primary' alt={sellingTextLabels.altLabel.button_cancel}>{sellingTextLabels.sellingTextButtons.button_change}</Button>

@@ -47,7 +47,7 @@ class AdminStartPage extends Component {
                 <CardText>{startCards.sellingText_desc}</CardText>
               </CardBody>
               <CardFooter className='text-right'>
-                <a href={`/admin/kurser/kurs/edit/${courseCode}?l=${courseAdminData.lang}`} alt={startCards.sellingText_btn} className='btn btn-primary'>{startCards.sellingText_btn}</a>
+                <a href={`/kursutveckling/edit/${courseCode}?l=${courseAdminData.lang}`} alt={startCards.sellingText_btn} className='btn btn-primary'>{startCards.sellingText_btn}</a>
                 {/* <Link to={{ pathname: `/admin/kurser/kurs/edit/${courseCode}?l=${courseAdminData.lang}`,
                 data: 'hello'
                 }} className='btn btn-primary' onClick={this.doStartSellingText}>{translation.startCards.sellingText_btn}</Link> */}
@@ -75,7 +75,7 @@ class AdminStartPage extends Component {
           </span>
         </div>
         <span className='Header--Link'>
-          <a href={`/admin/kurser/kurs/${courseCode}/my`} class='link-back' alt='Översikt av mina kurser'>Översikt av mina kurser</a>
+          <a href={`/kursutveckling/${courseCode}/my`} class='link-back' alt='Översikt av mina kurser'>Översikt av mina kurser</a>
         </span>
       </div>
     )

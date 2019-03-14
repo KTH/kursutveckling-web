@@ -130,7 +130,7 @@ class AdminStore {
   }
 
   @action doUpsertItem (text, courseCode) {
-    return axios.post(`/admin/kurser/kurs/api/${courseCode}`, {sellingText: text, user: this.user}, this._getOptions())
+    return axios.post(`/kursutveckling/api/${courseCode}`, {sellingText: text, user: this.user}, this._getOptions())
     .then(res => {
       let msg = null
       if (safeGet(() => res.data.body.message)) {
