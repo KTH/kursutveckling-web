@@ -1,7 +1,6 @@
 'use strict'
 const gulp = require('gulp')
 const mergeStream = require('merge-stream')
-const ckGulp = require('@kth/kth-ckeditor-build/gulpfile')
 
 const globals = {
   dirname: __dirname
@@ -53,10 +52,7 @@ const infernoServerTask = require('kth-node-inferno/gulpTasks/infernoServerTask'
  */
 
 // *** JavaScript helper tasks ***
-const ckEditorBuild = ckGulp.buildTask(gulp, './node_modules/@kth/kth-ckeditor-build', './dist/js/ckeditor')
-
 gulp.task('vendor', function () {
-  ckEditorBuild()
   vendor()
 })
 
@@ -66,7 +62,6 @@ gulp.task('moveResources', ['moveHandlebarPages'], function () {
   return mergeStream(
     moveResources.moveKthStyle(),
     moveResources.moveBootstrap(),
-    moveResources.moveFontAwesome()
   )
 })
 

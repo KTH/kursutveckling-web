@@ -18,7 +18,7 @@ module.exports = {
     /**
      * Message keys
      */
-    service_name: 'Kursinfo-admin-web',
+    service_name: 'Kursutveckling-web',
 
     example_message_key: 'Här är en svensk översättning på en label',
 
