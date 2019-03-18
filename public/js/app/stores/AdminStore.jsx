@@ -129,28 +129,6 @@ class AdminStore {
     })
   }
 
-  @action doUpsertItem (text, courseCode) {
-    return axios.post(`/kursutveckling/api/${courseCode}`, {sellingText: text, user: this.user}, this._getOptions())
-    .then(res => {
-      let msg = null
-      if (safeGet(() => res.data.body.message)) {
-        console.log('We got error from api', res.data.body.message)
-        msg = res.data.body.message
-        throw new Error(res.data.body.message)
-      } else {
-        this.sellingText = text
-        this.sellingTextAuthor = this.user
-      }
-      return msg
-    })
-    .catch(err => {
-      if (err.response) {
-        throw new Error(err.message, err.response.data)
-      }
-      throw err
-    })
-  }
-
   @action getLdapUserByUsername (params) {
     return axios.get(this.buildApiUrl(this.paths.api.searchLdapUser.uri, params), this._getOptions())
     .then((res) => {
@@ -214,7 +192,7 @@ class AdminStore {
 
     if (typeof window !== 'undefined' && window.__initialState__ && window.__initialState__[storeName]) {
       /* TODO:
-      const util = globalRegistry.getUtility(IDeserialize, 'kursinfo-admin-web')
+      const util = globalRegistry.getUtility(IDeserialize, 'kursutveckling-web')
       const importData = JSON.parse(decodeURIComponent(window.__initialState__[storeName]))
       console.log("importData",importData, "util",util)
       for (let key in importData) {

@@ -89,8 +89,6 @@ function setCustomCacheControl (res, path) {
 server.use(config.proxyPrefixPath.uri + '/static/js/components', express.static('./dist/js/components', { setHeaders: setCustomCacheControl }))
 // Expose browser configurations
 server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
-// Map Bootstrap.
-// server.use(config.proxyPrefixPath.uri + '/static/bootstrap', express.static('./node_modules/bootstrap/dist'))
 // Map kth-style.
 server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
 // Map static content like images, css and js.
@@ -185,7 +183,7 @@ server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedire
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, SellingInfo, AdminPagesCtrl } = require('./controllers')
+const { System, SellingInfo } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -198,10 +196,7 @@ server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('course.myCourses', config.proxyPrefixPath.uri + '/:courseCode/my', getServerGatewayLogin(), SellingInfo.myCourses)
-appRoute.get('course.getAdminStart', config.proxyPrefixPath.uri + '/:courseCode', serverLogin, requireRole('isCourseResponsible', 'isExaminator'), AdminPagesCtrl.getAdminStart)
-appRoute.get('course.editAdminStart', config.proxyPrefixPath.uri + '/edit/:courseCode', serverLogin, requireRole('isCourseResponsible', 'isExaminator'), SellingInfo.getDescription)
-appRoute.post('course.updateDescription', config.proxyPrefixPath.uri + '/api/:courseCode/', getServerGatewayLogin(), requireRole('isCourseResponsible', 'isExaminator'), SellingInfo.updateDescription)
+appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', serverLogin, requireRole('isCourseResponsible', 'isExaminator'), SellingInfo.getDescription)
 appRoute.get('system.gateway', config.proxyPrefixPath.uri + '/gateway', getServerGatewayLogin('/'), /* requireRole('isCourseResponsible', 'isExaminator'),*/ SellingInfo.getDescription)
 server.use('/', appRoute.getRouter())
 

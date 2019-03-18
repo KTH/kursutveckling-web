@@ -16,7 +16,6 @@ import i18n from '../../../i18n'
 
 import AdminStore from './stores/AdminStore.jsx'
 import SellingInfo from './pages/SellingInfo.jsx'
-import AdminStartPage from './pages/AdminStartPage.jsx'
 
 
 function appFactory () {
@@ -40,8 +39,7 @@ function appFactory () {
     <Provider adminStore={adminStore} >
       <ProgressLayer>
         <Switch>
-          <Route path='/kursutveckling/edit' component={SellingInfo} />
-          <Route path='/kursutveckling/' component={AdminStartPage} />
+          <Route path='/kursutveckling' component={SellingInfo} />
         </Switch>
       </ProgressLayer>
     </Provider>
