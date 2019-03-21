@@ -15,8 +15,7 @@ import { IMobxStore } from './interfaces/utils'
 import i18n from '../../../i18n'
 
 import AdminStore from './stores/AdminStore.jsx'
-import SellingInfo from './pages/SellingInfo.jsx'
-
+import StudentViewCourseDev from './pages/StudentViewCourseDev.jsx'
 
 function appFactory () {
   if (process.env['NODE_ENV'] !== 'production') {
@@ -39,7 +38,7 @@ function appFactory () {
     <Provider adminStore={adminStore} >
       <ProgressLayer>
         <Switch>
-          <Route path='/kursutveckling' component={SellingInfo} />
+          <Route path='/kursutveckling' component={StudentViewCourseDev} />
         </Switch>
       </ProgressLayer>
     </Provider>

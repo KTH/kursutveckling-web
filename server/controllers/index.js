@@ -7,5 +7,5 @@
 
 module.exports = {
   System: require('./systemCtrl'),
-  SellingInfo: require('./sellingInfoCtrl')
+  CourseDevCtrl: require('./CourseDevCtrl')
 }
