@@ -95,7 +95,7 @@ server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./n
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
 server.use(config.proxyPrefixPath.uri + '/static', function (req, res, next) {
-  var error = new Error('File not found: ' + req.originalUrl)
+  const error = new Error('File not found: ' + req.originalUrl)
   error.statusCode = 404
   next(error)
 })
@@ -140,7 +140,7 @@ const { authLoginHandler, authCheckHandler, logoutHandler, pgtCallbackHandler, s
   casLoginUri: config.proxyPrefixPath.uri + '/login',
   casGatewayUri: config.proxyPrefixPath.uri + '/loginGateway',
   proxyPrefixPath: config.proxyPrefixPath.uri,
-  server: server
+  server
 })
 const { redirectAuthenticatedUserHandler } = require('./authentication')
 server.use(passport.initialize())

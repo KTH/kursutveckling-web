@@ -1,5 +1,5 @@
 function _addParamToPath (path, param, value) {
-  var paramToReplace = ':' + param
+  const paramToReplace = ':' + param
   return path.replace(paramToReplace, value)
 }
 

@@ -8,12 +8,10 @@ const version = require('../../config/version')
 const config = require('../configuration').server
 const packageFile = require('../../package.json')
 const ldapClient = require('../adldapClient')
-const getPaths = require('kth-node-express-routing').getPaths
+const { getPaths } = require('kth-node-express-routing')
 const language = require('kth-node-web-common/lib/language')
 const i18n = require('../../i18n')
 const api = require('../api')
-const co = require('co')
-const Promise = require('bluebird')
 const registry = require('component-registry').globalRegistry
 const { IHealthCheck } = require('kth-node-monitor').interfaces
 
@@ -24,7 +22,7 @@ const { IHealthCheck } = require('kth-node-monitor').interfaces
  */
 
 module.exports = {
-  monitor: co.wrap(_monitor),
+  monitor: _monitor,
   about: _about,
   robotsTxt: _robotsTxt,
   paths: _paths,
@@ -114,7 +112,7 @@ function _monitor (req, res) {
   const apiConfig = config.nodeApi
 
   // Check APIs
-  const subSystems = Object.keys(api).map((apiKey) => {
+  const subSystems = Object.keys(api).map(apiKey => {
     const apiHealthUtil = registry.getUtility(IHealthCheck, 'kth-node-api')
     return apiHealthUtil.status(api[apiKey], { required: apiConfig[apiKey].required })
   })
