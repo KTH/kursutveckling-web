@@ -1,18 +1,10 @@
-import { Component } from 'inferno'
-import { inject, observer } from 'inferno-mobx'
+import React, { Component } from 'react'
+import { inject, observer} from 'mobx-react'
+import { Button, Alert, Card, CardText, CardBody,
+  CardTitle, CardFooter} from 'reactstrap'
 import i18n from '../../../../i18n'
 
 import CourseTitle from '../components/CourseTitle.jsx'
-import Button from 'inferno-bootstrap/lib/Button'
-import Alert from 'inferno-bootstrap/lib/Alert'
-import {Link} from 'inferno-router'
-import Row from 'inferno-bootstrap/dist/Row'
-import Col from 'inferno-bootstrap/dist/Col'
-import Card from 'inferno-bootstrap/lib/Card/Card'
-import CardBody from 'inferno-bootstrap/lib/Card/CardBody'
-import CardTitle from 'inferno-bootstrap/lib/Card/CardTitle'
-import CardText from 'inferno-bootstrap/lib/Card/CardText'
-import CardFooter from 'inferno-bootstrap/lib/Card/CardFooter'
 
 function GraphBlock ({text}) {
   return (
@@ -72,13 +64,11 @@ class StudentViewCourseDev extends Component {
     })
   }
 
-  render ({adminStore}) {
-    const courseAdminData = adminStore['courseAdminData']
+  render () {
+    const { courseAdminData } = this.props.adminStore
     const lang = courseAdminData.lang === 'en' ? 0 : 1
     const courseCode = courseAdminData.courseTitleData.course_code
-    const translation = i18n.messages[lang]
-    const pageTitles = translation.pageTitles
-    const courseDevLabels = translation.courseDevLabels
+    const { pageTitles, courseDevLabels } = i18n.messages[lang]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
@@ -95,8 +85,8 @@ class StudentViewCourseDev extends Component {
         <div className='TextEditor--SellingInfo col'>
           {/* ---TEXT Editors for each language--- */}
           <p>{courseDevLabels.label_course_dev_info}</p>
-          <span class='row_name'><h3>SF1624 VT 2019 </h3><p>Published: 2019-05-30 | Kursanalys: 2019-05-25 | Last changed: 2019-06-01</p></span>
-          <span class='Editors--Area' key='editorsArea' role='tablist'>
+          <span className='row_name'><h3>SF1624 VT 2019 </h3><p>Published: 2019-05-30 | Kursanalys: 2019-05-25 | Last changed: 2019-06-01</p></span>
+          <span className='Editors--Area' key='editorsArea' role='tablist'>
             <span className='left' key='leftEditorForSwedish'>
               <Card className='KursInfo--Dev'>
                 <CardBody>
@@ -151,8 +141,8 @@ class StudentViewCourseDev extends Component {
               </Card>
             </span>
           </span>
-          <span class='row_name'><h3>SF1624 HT 2018</h3> <p>Published: 2018-12-30 | Kursanalys: 2018-12-25 | Last changed: 2019-01-01</p></span>
-          <span class='Editors--Area' key='editorsArea' role='tablist'>
+          <span className='row_name'><h3>SF1624 HT 2018</h3> <p>Published: 2018-12-30 | Kursanalys: 2018-12-25 | Last changed: 2019-01-01</p></span>
+          <span className='Editors--Area' key='editorsArea' role='tablist'>
             <span className='left' key='leftEditorForSwedish'>
               <Card className='KursInfo--Dev'>
                 <CardBody>

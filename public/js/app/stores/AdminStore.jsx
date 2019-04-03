@@ -1,11 +1,11 @@
 'use strict'
-import { globalRegistry } from 'component-registry'
+// import { globalRegistry } from 'component-registry'
 import { observable, action } from 'mobx'
 import axios from 'axios'
 import { safeGet } from 'safe-utils'
 import { EMPTY } from '../util/constants'
 
-import { IDeserialize } from '../interfaces/utils'
+// import { IDeserialize } from '../interfaces/utils'
 
 const paramRegex = /\/(:[^\/\s]*)/g
 
@@ -158,7 +158,7 @@ class AdminStore {
 
   @action __SSR__setCookieHeader (cookieHeader) {
     if (typeof window === 'undefined') {
-      this.cookieHeader = cookieHeader
+      this.cookieHeader = cookieHeader || ''
     }
   }
 
