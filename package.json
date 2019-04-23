@@ -48,20 +48,20 @@
     "kth-node-server": "^3.1.1",
     "kth-node-session": "^1.0.3",
     "kth-node-web-common": "^3.0.2",
-    "kth-style": "^3.2.4",
+    "kth-style": "^3.2.5",
     "locale": "^0.1.0",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "passport": "^0.4.0",
     "popper.js": "^1.14.5",
     "prop-types": "^15.7.2",
+    "query-string": "^6.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "reactstrap": "^7.1.0",
-    "safe-utils": "^0.2.1",
-    "query-string": "^6.2.0"
+    "safe-utils": "^0.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
