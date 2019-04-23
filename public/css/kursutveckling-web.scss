@@ -9,6 +9,34 @@
 @import "node_modules/kth-style/public/sass/bootstrap/variables";
 @import "node_modules/bootstrap/scss/mixins";*/
 
+// @keyframes rotateDown {
+//     100% {
+//       transform: rotate(90deg);
+//       transform-origin: 22% 40%;
+//     }
+//   }
+
+//   @keyframes rotateUp {
+//     0% {
+//       transform: rotate(90deg);
+//       transform-origin: 22% 40%;
+//     }
+//   }
+// a {
+//     &[aria-expanded~='false'][load~='false'] {
+//     &:before {
+//       animation: rotateUp .3s ease-in-out forwards;
+//     }
+//   }
+
+
+//   &[aria-expanded~='true'][load~='false'] {
+//     &:before {
+//       animation: rotateDown .3s ease-in-out forwards;
+//     }
+//   }
+// }
+
 .kursinfo-main-page {    
     padding-bottom: 3em;
     padding-top: 2em;
@@ -25,112 +53,34 @@
         //width: 50em;
     }
 }
-.courseIntroText {
-    padding-top:10px;
-    padding-bottom:10px;
-    &.row {
-        margin-right: -19px;
-        margin-left: -18px;
-    }
-    .sellingText {
-        padding-right: 12px
-    }
-    img {
-        float: left;
-        margin: 8px 20px 10px 0;
-        width:100%;
-        max-width: 400px;
-    }
-} 
-
-.Header--Link {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 1em;
-    margin-bottom: .5em;
-}
-
-.Editors--Area {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1em;
-    margin-bottom: .5em;
-    min-height: 30em;
-    .badge {
-        margin-left: .5em;
-    } 
-    span.left {
-        width: 50%;
-        margin-right: .5em; 
-    }
-    span.right {
-        width: 100%;
-        margin-left: .5em;
-    }
-    .card {
-        .card-body {
-            height: 100%;
-        }
-    }
-    .courseInfoDevCollapse {   
-        a.collapse-header  {
-            text-decoration: none;
-        }
-    }   
-}
 
 .alert {
     max-width: 100em;
     margin: 15px;
 }
 
-.button_group {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 2em;
-    .btn {
-        border: 1px solid;
-        margin: 2em .3em;
-
-        &.btn-primary {
-            border-color: #007fae;
-        }
-        &.btn-success {
-            border-color: #62922e;
-        }
-    }
+.right-links {
+  float: right;
+  text-align: right;
+  margin: 1em;
+  a {
+      margin-left: 2em;
+  }
+}
+p.underlined {
+  border-bottom: 1px solid #000;
 }
 
 
-.row_name {
+.table-title {
     display: flex;
     justify-content: space-between;
-    p {
-        text-align: justify;
-    }
 }
 
-.TextEditor--SellingInfo {
+.tables-list {
     margin: 2em 0;
     & > * {
         margin-top: 1.5em;
     }
 }
-// .Description--TextBlock {
-//     margin: 2em 0;
-
-//     .alert-success, .alert-warning {
-//         margin-bottom: 1.5em;
-//     }
-// }
-
-.AdminPage--ShowDescription { //TODO: remove .AdminPage--ShowDescription,
-    display: flex;
-    justify-content: space-between;
-    .card {
-        max-width: 21em;
-        min-width: 18em;
-        margin-top: 1em;
-
-    }
-}
+//REDEFINING COLLAPSES
