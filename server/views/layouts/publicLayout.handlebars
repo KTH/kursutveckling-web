@@ -12,8 +12,7 @@
       <link rel='preload' href="{{canonicalUrl}}" rel="canonical">
     {{/if}}
     {{prefixStyle '/static/kth-style/css/kth-bootstrap.min.css' 'styles' 'screen'}}
-    {{prefixStyle '/static/css/kursutveckling-web.css' 'styles' 'screen'}}
-    {{prefixStyle '/static/css/app.css' 'styles' 'screen'}}
+    {{prefixStyle '/static/app.css' 'styles' 'screen'}}
 
     {{{render 'styles'}}}
 
@@ -35,7 +34,7 @@
   <body>
       {{> kthHeader }}
       <div class="container main">
-        <div>
+        <div class="row">
           {{{body}}}
         </div>
       </div>
