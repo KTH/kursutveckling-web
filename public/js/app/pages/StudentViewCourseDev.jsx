@@ -6,6 +6,33 @@ import i18n from '../../../../i18n'
 
 import CourseTitle from '../components/CourseTitle.jsx'
 
+const GrayMiniMeny = () => {
+  return (
+    <span>
+      <Table className="kip-menu">
+        <tbody>
+          <tr>
+            <td colSpan="2"> 
+            <h4>Om kursen</h4>
+            <p>
+              <a href="#">Kursinformation</a>
+            </p>
+            <p>
+              Kursens utveckling och historik
+            </p>
+                              
+            </td>
+            <td colSpan="2" className="link-to"> 
+                <p><a href="#">Administrera --></a></p>     
+            </td>
+          </tr>
+        </tbody>
+      </Table>  
+    </span>
+  )
+}
+
+
 const GrayTextBlock = ({header, text}) => {
   return (
     <span>
@@ -35,11 +62,11 @@ class ProgramCollapse extends Component {
     const label = this.props.label
     return (
         <div className='card collapsible programs-list white' >
-          <span className='card-header' role='tab'  tabIndex='0' onClick={this.toggleHeader}>
-              <a className='collapse-header' id={'programHeading' + label} data-toggle='collapse' href={'#collapsePrograms' + label} aria-controls={'collapsePrograms' + label}>{this.props.header}</a>
+          <span className='card-header program-rubrik' role='tab'  tabIndex='0' onClick={this.toggleHeader}>
+              <a className='collapse-header title' id={'programHeading' + label} aria-expanded={this.state.collapseProgram} load='false' data-toggle='collapse' href={'#collapsePrograms' + label} aria-controls={'collapsePrograms' + label}>{this.props.header}</a>
           </span>
-          <Collapse isOpen={this.state.collapseProgram} toggler={'#programHeading' + label}>
-            <div className='card-body  col'>
+          <Collapse  color="white" isOpen={this.state.collapseProgram} toggler={'#programHeading' + label}>
+            <div className='card-body col'>
               <span className='textBlock' dangerouslySetInnerHTML={{__html: this.props.text}}></span> 
             </div>
           </Collapse>
@@ -61,22 +88,25 @@ class TableForCourse extends Component {
 
   render () {    
     return(
-      <div className='card collapsible blue'>
+      <div className='card collapsible white blue'>
         <span className='table-title card-header'  role="tab" tabIndex='0' onClick={this.toggleRound}>
-            <a id={this.props.togglerId}  aria-expanded={this.state.collapse}>Kursomgång: {this.props.courseRound}</a> 
+            <a id={this.props.togglerId}  aria-expanded={this.state.collapse} load='false'>Kursomgång: {this.props.courseRound}</a> 
         </span>
         {/*  */}
         <Collapse isOpen={this.state.collapse} toggler={'#'+this.props.togglerId}>
-          <ProgramCollapse header="Obligatorisk inom program" text="CDATE2, DCADF1 FSDF3" label={this.props.togglerId}/>
+          <ProgramCollapse header="Obligatorisk inom program" text="CDATE2, DCADF1, FSDF3" label={this.props.togglerId}/>
+          <ProgramCollapse header="Kurstillfällen som ingår" text="HT 2018 CMEDT1, HT 2018 CDEPR1 m.fl., HT 2018 CMATD1 m.fl." label={this.props.togglerId}/>
           <span className="right-links" >
-            <a href='#' >KursPM: 2019-05-20</a> <a href='#' >Kursanalys: 2019-05-25</a>
+            <a href='#' >Kursplan: 2019-05-20</a>
+            <a href='#'>Kurs-PM: 2019-05-20</a> 
+            <a href='#' >Kursanalys: 2019-05-25</a>
           </span>
           <Table responsive>
             <thead>
                 <tr>
                     <th>Kursansvarig, Examinator</th>
                     <th>Antal reg. studenter</th>
-                    <th>Form av examination och när den utförs</th>
+                    <th>Form av examination</th>
                     <th>Kommentar till examination</th>
                     <th alt='; i % av aktiva (totalt) vid första ex-tillfället'>Examinationsgrad</th>
                 </tr>
@@ -91,22 +121,22 @@ class TableForCourse extends Component {
                     </td>
                     <td>72</td>
                     <td>
-                        <p>Assignments (3hp) </p><p> 2016-06-07</p>
-                        <p>Project (3HP) </p><p> 2016-06-07</p>
+                        <p>Assignments (3hp) </p>
+                        <p>Project (3HP) </p>
                     </td>
                     <td> 
                         <p>It consists of several ABCD tests</p>
                     </td>
                     <td>
-                        <p>84% (ÖVN1)</p>
-                        <p>46% (ÖVN2)</p>
+                        <p>84%</p>
+                      
                     </td>
                 </tr>
             </tbody>
           </Table> 
           <GrayTextBlock header="Förändringar som införs i årets kurs (exempel fr kursanalys)" text="<p>Mer mekanismmodellering och toleranssättning	</p><p>Mer materil och labs	</p><p>Mer mekanismmodellering och toleranssättning	</p><p>Mer materil och labs	</p>"/>
           <GrayTextBlock header="Kommentar till ändringar" text="<p>Laddat upp kursanalys</p>"/>
-          <p className="underlined">Senaste ändring: 2019-05-25 20:54</p>
+          <p className="underlined">Senaste ändring: 2019-05-25</p>
         </Collapse>
       </div>          
     )}
@@ -134,14 +164,19 @@ class StudentViewCourseDev extends Component {
           pageTitle={this.state.enteredEditMode ? pageTitles.mainPage : pageTitles.mainPage}
           language={courseAdminData.lang}
           />
+          <GrayMiniMeny />
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
 
-        {/* ---IF in edit mode or preview mode--- */}
         <div className='tables-list col'>
+          <h3>2019</h3>
+          <p>Kursutveckling saknas</p>
           <h3>2018</h3>
-          <TableForCourse courseRound="HT 2018" togglerId="toggler1"/>
+          <TableForCourse courseRound="HT 2018 CMEDT1, HT 2018 CDEPR1 m.fl., HT 2018 CMATD1 m.fl." togglerId="toggler1"/>
           <TableForCourse courseRound="VT 2018" togglerId="toggler2"/>
+          <h3>2017</h3>
+          <TableForCourse courseRound="HT 2017" togglerId="toggler3"/>
+          <TableForCourse courseRound="VT 2017" togglerId="toggler4"/>
         </div>
       </div>
     )
