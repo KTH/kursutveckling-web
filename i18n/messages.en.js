@@ -39,7 +39,7 @@ module.exports = {
     page_course_programme: 'COURSE AND PROGRAMME DIRECTORY'
   },
   pageTitles: {
-    mainPage: 'Course development information',
+    mainPage: 'Course development and history',
     alertMessages: {
       success: 'New version of course development has been published.',
       over_text_limit: 'The text can consist of no more than 1 500 chars',

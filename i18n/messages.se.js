@@ -39,7 +39,7 @@ module.exports = {
     page_course_programme: 'KURS- OCH PROGRAMKATALOGEN'
   },
   pageTitles: {
-    mainPage: 'Kursutvecklingsinformation',
+    mainPage: 'Kursens utveckling och historik',
     alertMessages: {
       success: 'Ny version av kursutvecklingsinformation har publicerats på kursinformationssidan',
       over_text_limit: 'Texten får bara bestå av 1 500 tecken',
