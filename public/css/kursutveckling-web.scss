@@ -1,41 +1,4 @@
-// Less code goes here...!
-
-//@import "kth-style/public/sass/variables/sizes";
-//@import "kth-style/public/sass/variables/colors";
-
-// Bootstrap source
-/*@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/kth-style/public/sass/bootstrap/variables";
-@import "node_modules/bootstrap/scss/mixins";*/
-
-// @keyframes rotateDown {
-//     100% {
-//       transform: rotate(90deg);
-//       transform-origin: 22% 40%;
-//     }
-//   }
-
-//   @keyframes rotateUp {
-//     0% {
-//       transform: rotate(90deg);
-//       transform-origin: 22% 40%;
-//     }
-//   }
-// a {
-//     &[aria-expanded~='false'][load~='false'] {
-//     &:before {
-//       animation: rotateUp .3s ease-in-out forwards;
-//     }
-//   }
-
-
-//   &[aria-expanded~='true'][load~='false'] {
-//     &:before {
-//       animation: rotateDown .3s ease-in-out forwards;
-//     }
-//   }
-// }
+// @import "kth-style/public/sass/variables/sizes";
 
 .kursinfo-main-page {    
     padding-bottom: 3em;
@@ -50,7 +13,6 @@
     }
     .alert {
         margin-left: 0;
-        //width: 50em;
     }
 }
 
@@ -83,4 +45,41 @@ p.underlined {
         margin-top: 1.5em;
     }
 }
-//REDEFINING COLLAPSES
+
+.kip-menu {
+    max-width: 30em;
+    margin-left: 1em;
+    // .link-to {
+    //     float: right;
+    // }
+}
+//REDEFINING COLLAPSE Style, TODO: check it in kth-style
+$black: #000000;
+
+// White
+$white: #ffffff;
+.card.collapsible.blue {
+    .table-title > a::before{
+        margin-left: .5em;
+
+    }
+}
+.card.collapsible.white.programs-list {
+  .card-body.col.summary {
+    padding: .3em 0;
+  }
+  &> .card-header.program-rubrik {
+    background-color: $white;
+
+    a.collapse-header.title{
+        color: $black;
+        margin-left: -1em;
+
+        &:before {
+            //margin-left: -1em;
+            background: url(https://intra-r.referens.sys.kth.se/img/kth-style/icons/arrow-black-right.svg) no-repeat;
+            background-size: .9em .9em;
+        }
+    }}
+}
+
