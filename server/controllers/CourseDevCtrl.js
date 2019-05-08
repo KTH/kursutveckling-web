@@ -46,7 +46,7 @@ async function _getCourseDevInfo (req, res, next) {
     // Render inferno app
     const context = {}
     const renderProps = _staticRender(context, req.url)
-    renderProps.props.children.props.adminStore.setUser(userKthId)
+    // renderProps.props.children.props.adminStore.setUser(userKthId)
     await renderProps.props.children.props.adminStore.getCourseRequirementFromKopps(courseCode, lang)
     // renderProps.props.children.props.adminStore.addSellingTextAndImage(respSellDesc.body)
     // renderProps.props.children.props.adminStore.addChangedByLastTime(respSellDesc.body)
