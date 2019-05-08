@@ -42,7 +42,7 @@ async function _getCourseDevInfo (req, res, next) {
   try {
     const paths = api.kursinfoApi.paths
     // const respSellDesc = await _getSellingTextFromKursinfoApi(courseCode)
-    const userKthId = req.session.authUser.ugKthid || ''
+    // const userKthId = req.session.authUser.ugKthid || ''
     // Render inferno app
     const context = {}
     const renderProps = _staticRender(context, req.url)
