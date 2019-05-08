@@ -10,18 +10,6 @@ const browserConfig = require('../configuration').browser
 const serverConfig = require('../configuration').server
 module.exports = {getCourseDevInfo: co.wrap(_getCourseDevInfo)}
 
-async function _getSellingTextFromKursinfoApi (courseCode) {
-  try {
-    const client = api.kursinfoApi.client
-    const paths = api.kursinfoApi.paths
-    return await client.getAsync(client.resolve(paths.getSellingTextByCourseCode.uri, { courseCode }), { useCache: true })
-  } catch (error) {
-    const apiError = new Error('Redigering av säljande texten är inte tillgänlig för nu, försöker senare')
-    apiError.status = 503
-    log.error('Error in _getSellingTextFromKursinfoApi', {error})
-    throw apiError
-  }
-}
 
 function hydrateStores (renderProps) {
   // This assumes that all stores are specified in a root element called Provider
@@ -53,15 +41,15 @@ async function _getCourseDevInfo (req, res, next) {
 
   try {
     const paths = api.kursinfoApi.paths
-    const respSellDesc = await _getSellingTextFromKursinfoApi(courseCode)
+    // const respSellDesc = await _getSellingTextFromKursinfoApi(courseCode)
     const userKthId = req.session.authUser.ugKthid
     // Render inferno app
     const context = {}
     const renderProps = _staticRender(context, req.url)
     renderProps.props.children.props.adminStore.setUser(userKthId)
     await renderProps.props.children.props.adminStore.getCourseRequirementFromKopps(courseCode, lang)
-    renderProps.props.children.props.adminStore.addSellingTextAndImage(respSellDesc.body)
-    renderProps.props.children.props.adminStore.addChangedByLastTime(respSellDesc.body)
+    // renderProps.props.children.props.adminStore.addSellingTextAndImage(respSellDesc.body)
+    // renderProps.props.children.props.adminStore.addChangedByLastTime(respSellDesc.body)
     renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
     // await doAllAsyncBefore({
