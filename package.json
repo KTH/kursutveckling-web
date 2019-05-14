@@ -2,7 +2,7 @@
   "//": "JSHint configuration - http://jshint.com/docs/options/",
   "name": "kursutveckling-web",
   "version": "2.0.0",
-  "description": "Template project for a node express web server",
+  "description": "Public pages for course development information per course and its course rounds",
   "main": "app.js",
   "private": true,
   "license": "MIT",
@@ -17,7 +17,7 @@
     "codecheck": "standard",
     "docker": "npm install --development && npm run build && npm prune --production",
     "build": "NODE_ENV=production gulp build && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
-    "build-dev": "cross-env NODE_ENV=development gulp build && rm -rf dist && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
+    "build-dev": "cross-env NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
   },
