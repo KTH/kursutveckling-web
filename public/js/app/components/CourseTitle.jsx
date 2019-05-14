@@ -28,13 +28,6 @@ class CourseTitle extends Component {
             </span>
           </h4>
         }
-{/*
-        <h4><span property='aiiso:code'>{title.course_code}</span>
-            <span property='teach:courseTitle'> {title.course_title}Calculus in Several Variable 7,5</span>
-            <span content={title.course_credits} datatype='xsd:decimal' property='teach:ects'>
-              &nbsp;{this.props.language === 'en' ? title.course_credits : title.course_credits.toString().replace('.', ',')}&nbsp;{this.props.language === 'en' ? 'credits' : 'hp'}
-            </span>
-          </h4> */}
       </div>
     )
   }
