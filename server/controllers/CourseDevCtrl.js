@@ -56,7 +56,6 @@ async function _getCourseDevInfo (req, res, next) {
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
     await renderProps.props.children.props.adminStore.getCourseRequirementFromKopps(courseCode, lang)
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
-    console.log("adminStore.analysisData in courseDevCtrl",renderProps.props.children.props.adminStore.analysisData )
     // await doAllAsyncBefore({
     //   pathname: req.originalUrl,
     //   query: (req.originalUrl === undefined || req.originalUrl.indexOf('?') === -1) ? undefined : req.originalUrl.substring(req.originalUrl.indexOf('?'), req.originalUrl.length),
