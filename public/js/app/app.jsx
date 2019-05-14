@@ -4,7 +4,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
 }
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom' //matchPath
+import { BrowserRouter, Route, Switch } from 'react-router-dom' // matchPath
 import { inject, Provider } from 'mobx-react'
 import { StaticRouter } from 'react-router'
 
@@ -13,7 +13,7 @@ import queryString from 'query-string'
 
 import AdminStore from './stores/AdminStore'
 import StudentViewCourseDev from './pages/StudentViewCourseDev'
-import TeacherViewCourseDev from './pages/TeacherViewCourseDev'
+import StudentViewStatic from './pages/StudentViewStatic'
 
 import '../../css/kursutveckling-web.scss'
 
@@ -37,7 +37,7 @@ function appFactory () {
     <Provider adminStore={adminStore} >
       {/* <ProgressLayer> */}
         <Switch>
-          <Route path='/kursutveckling/admin' component={TeacherViewCourseDev} />
+          <Route path='/kursutveckling/stat' component={StudentViewStatic} />
           <Route path='/kursutveckling' component={StudentViewCourseDev} />
         </Switch>
       {/* </ProgressLayer> */}
@@ -139,7 +139,7 @@ function doAllAsyncBefore ({
 //   }
 // }
 
-function staticRender(context, location) {
+function staticRender (context, location) {
   return (
     <StaticRouter location={location} context={context}>
       {appFactory()}
