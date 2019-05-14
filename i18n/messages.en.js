@@ -38,6 +38,25 @@ module.exports = {
     page_teacher: 'TEACHER AT KTH COURSE DEVELOPMENT INFORMATION',
     page_course_programme: 'COURSE AND PROGRAMME DIRECTORY'
   },
+  tableHeaders: {
+    date_fisrt_published: 'Published first time',
+    date_last_change: 'Last changed',
+    date_pdf_analys: 'Date for the published course analys',
+    header_programs: 'Obligatory for a list of programs',
+    header_rounds: 'Course rounds which are included in...',
+    header_examiners: 'Examinator',
+    header_examination: 'Form of examination',
+    header_examination_comment: 'Comments to examination',
+    header_examination_grade: 'Result',
+    header_responsibles: 'Course responsible',
+    header_registrated: 'Students',
+    header_course_changes_comment: 'Changes introduced ...',
+    header_analysis_edit_comment: 'Comments to done changes',
+    link_syllabus: 'Course plan',
+    link_analysis: 'Course analys',
+    link_pm: 'Course-PM',
+    no_date_last_changed: 'no changes since first publishing'
+  },
   pageTitles: {
     mainPage: 'Course development and history',
     alertMessages: {

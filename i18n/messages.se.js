@@ -38,6 +38,26 @@ module.exports = {
     page_teacher: 'LÄRARE PÅ KURSUTVECKLING',
     page_course_programme: 'KURS- OCH PROGRAMKATALOGEN'
   },
+  tableHeaders: {
+    date_fisrt_published: 'Publicerad första gången',
+    date_last_change: 'Senaste ändrad',
+    date_pdf_analys: 'Datum för publicerad kursanalys',
+    header_programs: 'Obligatorisk inom program',
+    header_rounds: 'Kurstillfällen som ingår i kursomgång',
+    header_examiners: 'Examinator',
+    header_examination: 'Form av examination',
+    header_examination_comment: 'Kommentar till examination',
+    header_examination_grade: 'Resultat',
+    header_responsibles: 'Kursansvarig',
+    header_registrated: 'Studenter',
+    header_course_changes_comment: 'Förändringar som införts i kursomgång',
+    header_analysis_edit_comment: 'Kommentar till gjorda ändringar',
+    link_syllabus: 'Kursplan',
+    link_analysis: 'Kursanalys',
+    link_pm: 'Kurs-PM',
+    no_date_last_changed: 'ej ändrad efter publicering',
+    no_course_analys: 'Kursutveckling saknas'
+  },
   pageTitles: {
     mainPage: 'Kursens utveckling och historik',
     alertMessages: {

@@ -20,7 +20,7 @@ const KipLinkNav = ({courseCode, trans, lang}) => { // courseCode, lang, startCa
                 <b>Kursens utveckling och historik</b>
               </p>
               <p>
-                <a href={kursAdmin} alt='Tillbaka till Kursens utveckling och historik vy'>Administrera</a>
+                <a href={kursAdmin} className='link-to' alt='Tillbaka till Kursens utveckling och historik vy'>Administrera</a>
               </p>
             </td>
           </tr>

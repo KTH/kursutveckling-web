@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Table, Collapse } from 'reactstrap'
 
 import CollapseExtraInfo from './CollapseExtraInfo'
-
 class TableForCourseRound extends Component {
   constructor (props) {
     super(props)
@@ -16,6 +15,7 @@ class TableForCourseRound extends Component {
 
   render () {
     const courseRoundData = this.props.courseRoundObj
+    const translate = this.props.translate
     return (
       <div className='card collapsible blue'>
         <span className='table-title card-header' role='tab' tabIndex='0' onClick={this.toggleRound}>
@@ -26,7 +26,7 @@ class TableForCourseRound extends Component {
           <span className='right-links' >
             <a href='#' >Kursplan: 2019-05-20</a>
             <a href='#'>Kurs-PM: 2019-05-20</a>
-            <a href='#' >Kursanalys: 2019-05-25</a>
+            <a href='#' >Kursanalys: {courseRoundData.pdfAnalysisDate}</a>
           </span>
           <Table responsive>
             <thead>
@@ -62,7 +62,9 @@ class TableForCourseRound extends Component {
           </Table>
           {/* <GrayTextBlock header="Förändringar som införs i årets kurs (exempel fr kursanalys)" text="<p>Mer mekanismmodellering och toleranssättning	</p><p>Mer materil och labs	</p><p>Mer mekanismmodellering och toleranssättning	</p><p>Mer materil och labs	</p>"/> */}
           {/* <GrayTextBlock header="Kommentar till ändringar" text="<p>Laddat upp kursanalys</p>"/> */}
-          <CollapseExtraInfo header='Mer infromation' label={this.props.togglerId} />
+          <CollapseExtraInfo header='Mer infromation' courseRoundData={courseRoundData}
+            label={this.props.togglerId} translate={translate}
+          />
         </Collapse>
       </div>
       ) }

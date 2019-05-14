@@ -7,6 +7,8 @@ import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
 import CourseDevAllYears from '../components/CourseDevList'
 
+// const userLang = i18n.isSwedish() ? 1 : 0
+
 @inject(['adminStore']) @observer
 class StudentViewCourseDev extends Component {
   constructor (props) {
@@ -21,7 +23,7 @@ class StudentViewCourseDev extends Component {
     const { analysisData } = this.props.adminStore
     const lang = courseAdminData.lang === 'en' ? 0 : 1
     const courseCode = courseAdminData.courseTitleData.course_code
-    const { pageTitles, courseDevLabels, startCards} = i18n.messages[lang]
+    const { pageTitles, tableHeaders, startCards} = i18n.messages[lang]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
@@ -34,7 +36,7 @@ class StudentViewCourseDev extends Component {
         <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} trans={startCards} />
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
-        <CourseDevAllYears allYearsObj={analysisData}/>
+        <CourseDevAllYears allYearsObj={analysisData} translate={tableHeaders}/>
 {/* 
         <div className='tables-list col'>
           <h3>2019</h3>
