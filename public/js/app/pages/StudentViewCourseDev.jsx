@@ -5,38 +5,7 @@ import { Collapse, Button, Alert, Card, CardText, CardBody,
 import i18n from '../../../../i18n'
 
 import CourseTitle from '../components/CourseTitle.jsx'
-
-const GrayMiniMeny = () => {
-  return (
-    <span>
-      <Table className="kip-menu">
-        <tbody>
-          <tr>
-            <td colSpan="2"> 
-            <h4>Om kursen</h4>
-            <p>
-              {/*<a href="http://localhost:3003/student/kurser/kurs/SF1626?l=sv">Kursinformation</a>*/}
-              <a href="/student/kurser/kurs/SF1626?l=sv">Kursinformation</a>
-            </p>
-            <p>
-              <b>Kursens utveckling och historik</b>
-            </p>
-            <p>
-              <a href="/admin/kurser/kurs/SF1626?l=sv">Administrera --></a>   
-            </p>
-                              
-            </td>
-            <td colSpan="2" className="link-to"> 
-                {/*<p><a href="http://localhost:3005/admin/kurser/kurs/SF1626?l=sv">Administrera --></a></p>     
- */}
-            </td>
-          </tr>
-        </tbody>
-      </Table>  
-    </span>
-  )
-}
-
+import KipLinkNav from '../components/KipNav.jsx'
 
 const GrayTextBlock = ({header, text}) => {
   return (
@@ -93,7 +62,7 @@ class TableForCourse extends Component {
   }
 
   render () {    
-    return(
+    return (
       <div className='card collapsible white blue'>
         <span className='table-title card-header'  role="tab" tabIndex='0' onClick={this.toggleRound}>
             <a id={this.props.togglerId}  aria-expanded={this.state.collapse} load='false'>Kursomgång: {this.props.courseRound}</a> 
@@ -149,6 +118,37 @@ class TableForCourse extends Component {
       </div>          
     )}
 }
+
+const CourseDevByPerYear = ({allYearsObj}) => {
+  const yearsDescending = Object.keys(allYearsObj).reverse()
+  return (
+    <div className='tables-list col'>
+    { 
+      yearsDescending.map(year => <CourseDevPerRound arrOfRoundsObj={allYearsObj[year]} year={year}/>)
+    }
+    </div>
+  )
+}
+
+const CourseDevPerRound({arrOfRoundsObj, year}) => {
+  return (
+    <span>
+      <h3>{year}</h3>
+      {
+        arrOfRoundsObj.length === 0 ?
+          <p>Kursutveckling saknas</p>
+        :
+        arrOfRoundsObj.map(roundObj => 
+          <TableForCourse courseRound={roundObj.analysisName} togglerId="toggler1"/>
+        )
+
+      }
+    </span>
+  )
+}
+
+
+
 @inject(['adminStore']) @observer
 class StudentViewCourseDev extends Component {
   constructor (props) {
@@ -160,9 +160,11 @@ class StudentViewCourseDev extends Component {
 
   render () {
     const { courseAdminData } = this.props.adminStore
+    const { analysisData } = this.props.adminStore
     const lang = courseAdminData.lang === 'en' ? 0 : 1
     const courseCode = courseAdminData.courseTitleData.course_code
-    const { pageTitles, courseDevLabels } = i18n.messages[lang]
+    const { pageTitles, courseDevLabels, startCards} = i18n.messages[lang]
+    console.log("asdewranalysisData", analysisData)
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
@@ -172,10 +174,11 @@ class StudentViewCourseDev extends Component {
           pageTitle={this.state.enteredEditMode ? pageTitles.mainPage : pageTitles.mainPage}
           language={courseAdminData.lang}
           />
-          <GrayMiniMeny />
+        <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} trans={startCards} />
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
-
+        <CourseDevByPerYear allYearsObj={analysisData}/>
+{/* 
         <div className='tables-list col'>
           <h3>2019</h3>
           <p>Kursutveckling saknas</p>
@@ -185,7 +188,7 @@ class StudentViewCourseDev extends Component {
           <h3>2017</h3>
           <TableForCourse courseRound="HT 2017" togglerId="toggler3"/>
           <TableForCourse courseRound="VT 2017" togglerId="toggler4"/>
-        </div>
+        </div> */}
       </div>
     )
   }
