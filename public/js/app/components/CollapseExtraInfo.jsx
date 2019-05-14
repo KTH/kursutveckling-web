@@ -12,6 +12,7 @@ class CollapseExtraInfo extends Component {
   }
   render () {
     const label = this.props.label
+    const courseRoundData = this.props.courseRoundData
     return (
       <div className='card collapsible programs-list white' >
         <span className='card-header program-rubrik' role='tab' tabIndex='0' onClick={this.toggleHeader}>
@@ -20,16 +21,25 @@ class CollapseExtraInfo extends Component {
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
           <div className='card-body col summary'>
             <h4>Kommentar till examination</h4>
-            <span className='textBlock' dangerouslySetInnerHTML={{__html: this.props.text}}></span>
+            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.commentExam}}></p>
             <h4>Obligatorisk inom program</h4>
-            <span className='textBlock' dangerouslySetInnerHTML={{__html: this.props.text}}></span>
+            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.programmeCodes}}></p>
             <h4>Kurstillfällen som ingår</h4>
-            <span className='textBlock' dangerouslySetInnerHTML={{__html: this.props.text}}></span>
+            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.analysisName}}></p>
             <h4>Datum för publicerad kursanalys</h4>
-            <span className='textBlock' dangerouslySetInnerHTML={{__html: this.props.text}}></span>
-            <p>Publicerad första gången: 2019-05-23</p>
-            <p>Senaste ändrad: <i>ej ändrad efter publicering</i></p>
-            <p>Kommentar tillgjorda ändringar: -</p>
+            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.pdfAnalysisDate}}></p>
+            {/* TODO: THERE IS NO SUCH FUNCTIONALITY FOR FORSTA GÅNGEN YET*/}
+            <p>Publicerad första gången: {courseRoundData.publishedDate}</p>
+            <p>Senaste ändrad:
+                {/* TODO: THERE IS NO SUCH FUNCTIONALITY YET*/}
+                <i>ej ändrad efter publicering</i>
+            </p>
+            <p>Kommentar till gjorda ändringar:
+                {courseRoundData.commentChange === ''
+                ? '  -  '
+                : courseRoundData.commentChange
+                }
+            </p>
           </div>
         </Collapse>
       </div>
