@@ -15,7 +15,7 @@ const { safeGet } = require('safe-utils')
 const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
-const devKursinfoApi = devDefaults('http://localhost:3001/api/kursinfo?defaultTimeout=10000') // required=true&
+const devKursutvecklingApi = devDefaults('http://localhost:3001/api/kursutveckling?defaultTimeout=10000') // required=true&
 const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000') // required=true&
 const devSessionKey = devDefaults('kursutveckling-web.sid')
 const devSessionUseRedis = devDefaults(true)
@@ -58,12 +58,12 @@ module.exports = {
 
   // API keys
   apiKey: {
-    kursinfoApi: getEnv('API_KEY', devDefaults('1234'))
+    kursutvecklingApi: getEnv('API_KEY', devDefaults('1234'))
   },
 
   // Authentication
   auth: {
-    adminGroup: 'app.node.admin',
+    adminGroup: 'app.node.admin', // TODO: FIX AUTH FOR ADMIN GROUP
     responsibleGroup: 'edu.courses.SF.SF1624.20152.2.courseresponsible'
   },
   cas: {
@@ -74,7 +74,7 @@ module.exports = {
 
   // Service API's
   nodeApi: {
-    kursinfoApi: unpackNodeApiConfig('API_URI', devKursinfoApi)
+    kursutvecklingApi: unpackNodeApiConfig('API_URI', devKursutvecklingApi)
   },
 
   redisOptions: unpackRedisConfig('REDIS_URI', devRedis), // TODO, CHECK IF IT IS NEEDED
