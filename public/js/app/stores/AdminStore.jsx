@@ -24,12 +24,8 @@ function _webUsesSSL (url) {
 class AdminStore {
   // This won't work because primitives can't be ovserved https://mobx.js.org/best/pitfalls.html#dereference-values-as-late-as-possible
   @observable courseAdminData = undefined
-  // @observable sellingText = undefined
-  @observable sellingText = {
-    en: undefined,
-    sv: undefined
-  }
-  @observable sellingTextAuthor = ''
+  analysisData = undefined
+
   @observable user = ''
   @observable hasDoneSubmit = false
   @observable image = '#'
@@ -89,8 +85,11 @@ class AdminStore {
   isValidData (dataObject, language = 0) {
     return !dataObject ? EMPTY : dataObject
   }
+
   @action getCourseRequirementFromKopps (courseCode, lang = 'sv') {
-    return axios.get(`https://api-r.referens.sys.kth.se/api/kopps/v2/course/${courseCode}`).then(res => {
+    return axios.get(this.buildApiUrl(this.paths.api.koppsCourseData.uri, {courseCode}), this._getOptions())
+    .then(res => {
+      console.log("HOIOIEFAIE")
       const course = res.data
       const courseTitleData = {
         course_code: this.isValidData(course.code),
@@ -98,20 +97,11 @@ class AdminStore {
         course_credits: this.isValidData(course.credits),
         apiError: false
       }
-      const koppsCourseDesc = { // kopps recruitmentText
-        sv: this.isValidData(course.info.sv),
-        en: this.isValidData(course.info.en)
-      }
-
       this.courseAdminData = {
-        koppsCourseDesc,
         courseTitleData,
         lang
       }
     }).catch(err => {
-      if (err.response) {
-        // throw new Error(err.message, err.response.data)
-      }
       const courseTitleData = {
         course_code: courseCode.toUpperCase(),
         apiError: true
@@ -125,7 +115,6 @@ class AdminStore {
         koppsCourseDesc,
         lang
       }
-      // throw err
     })
   }
 
