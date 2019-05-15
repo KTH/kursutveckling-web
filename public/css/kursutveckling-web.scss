@@ -25,6 +25,12 @@
     max-width: 30em;
     margin-left: 1em;
     .link-to::after{
+      content: '';
+      height: 1.5em;
+      width: 1.5em;
+      display: inline-block;
+      margin: -.6em 0 .3em .3em;
+      vertical-align: middle;
       background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/pill-back.svg) no-repeat;
       transform: rotate(180deg);
     }
@@ -51,26 +57,25 @@ $black: #000000;
 
 // White
 $white: #ffffff;
- .collapse > a.pdf-link{
-     color:red;
-    //margin-left: 2em;
-    font-size: 16px;
-    background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/arrow-black-right.svg) no-repeat;
-    background-size: .9em .9em;    
-    z-index:99;          
-        //   &:before {
-        //     background-color: aqua;
-        // //   font-size: 16px;
-        // //   background: url(https://app.kth.see/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
-        // //   background-size: .9em .9em;
-        // //   z-index: 999;
-        // }
-    }
+ 
 .card.collapsible.blue {
     .table-title > a::before{
         margin-left: .5em;
     }
 }
+a.pdf-link{
+    margin: 0 1.5em 0 1em;
+    &:before {
+        content: '';
+        height: 1.3em;
+        width: 1.3em;
+        display: inline-block;
+        margin: .5em .4em .6em .4em;
+        vertical-align: middle;
+        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
+    }
+}
+
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
   margin-bottom: 1em;
