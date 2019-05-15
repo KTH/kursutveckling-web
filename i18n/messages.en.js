@@ -42,6 +42,7 @@ module.exports = {
     date_fisrt_published: 'Published first time',
     date_last_change: 'Last changed',
     date_pdf_analys: 'Date for the published course analys',
+    header_course_round: 'Course round',
     header_programs: 'Obligatory for a list of programs',
     header_rounds: 'Course rounds which are included in...',
     header_examiners: 'Examinator',
@@ -52,13 +53,21 @@ module.exports = {
     header_registrated: 'Students',
     header_course_changes_comment: 'Changes introduced ...',
     header_analysis_edit_comment: 'Comments to done changes',
+    header_more_info: 'More information',
     link_syllabus: 'Course plan',
     link_analysis: 'Course analys',
     link_pm: 'Course-PM',
-    no_date_last_changed: 'no changes since first publishing'
+    no_date_last_changed: 'no changes since first publishing',
+    no_course_analys: 'Course analys has not been filled in yet'
   },
   pageTitles: {
-    mainPage: 'Course development and history',
+    course_dev_title: 'Course development and history',
+    course_info_title: 'Course information',
+    course_admin_title: 'Administrate',
+    about_course: 'About course',
+    info_text: 'På denna ... ....',
+    info_admin_text: 'Ansvariga .......',
+    link_to_course_dev: 'publish course data and course analys.',
     alertMessages: {
       success: 'New version of course development has been published.',
       over_text_limit: 'The text can consist of no more than 1 500 chars',

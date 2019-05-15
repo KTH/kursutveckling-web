@@ -42,6 +42,7 @@ module.exports = {
     date_fisrt_published: 'Publicerad första gången',
     date_last_change: 'Senaste ändrad',
     date_pdf_analys: 'Datum för publicerad kursanalys',
+    header_course_round: 'Kursomgång',
     header_programs: 'Obligatorisk inom program',
     header_rounds: 'Kurstillfällen som ingår i kursomgång',
     header_examiners: 'Examinator',
@@ -52,6 +53,7 @@ module.exports = {
     header_registrated: 'Studenter',
     header_course_changes_comment: 'Förändringar som införts i kursomgång',
     header_analysis_edit_comment: 'Kommentar till gjorda ändringar',
+    header_more_info: 'Mer information',
     link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
@@ -59,7 +61,13 @@ module.exports = {
     no_course_analys: 'Kursutveckling saknas'
   },
   pageTitles: {
-    mainPage: 'Kursens utveckling och historik',
+    course_dev_title: 'Kursens utveckling och historik',
+    course_info_title: 'Kursinformation',
+    course_admin_title: 'Administrera',
+    about_course: 'Om kursen',
+    info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
+    info_admin_text: 'Ansvariga för kursen kan få en överblick över kursens utveckling och ansvarar för att',
+    link_to_course_dev: 'publicera kursdata och kursanalys.',
     alertMessages: {
       success: 'Ny version av kursutvecklingsinformation har publicerats på kursinformationssidan',
       over_text_limit: 'Texten får bara bestå av 1 500 tecken',
