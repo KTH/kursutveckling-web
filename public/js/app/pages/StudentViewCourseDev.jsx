@@ -7,8 +7,6 @@ import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
 import CourseDevAllYears from '../components/CourseDevList'
 
-// const userLang = i18n.isSwedish() ? 1 : 0
-
 @inject(['adminStore']) @observer
 class StudentViewCourseDev extends Component {
   constructor (props) {
@@ -23,17 +21,24 @@ class StudentViewCourseDev extends Component {
     const { analysisData } = this.props.adminStore
     const lang = courseAdminData.lang === 'en' ? 0 : 1
     const courseCode = courseAdminData.courseTitleData.course_code
-    const { pageTitles, tableHeaders, startCards} = i18n.messages[lang]
+    const { pageTitles, tableHeaders} = i18n.messages[lang]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
         {/* ---COURSE TITEL--- */}
         <CourseTitle key='title'
           courseTitleData={courseAdminData.courseTitleData}
-          pageTitle={this.state.enteredEditMode ? pageTitles.mainPage : pageTitles.mainPage}
+          pageTitle={this.state.enteredEditMode ? pageTitles.course_dev_title : pageTitles.course_dev_title}
           language={courseAdminData.lang}
           />
-        <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} trans={startCards} />
+        <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} translate={pageTitles} />
+
+        <span className="intro-text">
+          <p>{pageTitles.info_text}</p>
+          <p> {pageTitles.info_admin_text}
+            <a href={`/admin/kursutveckling/${courseCode}?l=${lang}`}>{pageTitles.link_to_course_dev}</a>
+          </p>
+        </span>
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
         <CourseDevAllYears allYearsObj={analysisData} translate={tableHeaders}/>
