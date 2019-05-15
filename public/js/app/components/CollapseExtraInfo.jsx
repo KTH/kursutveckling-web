@@ -15,8 +15,8 @@ class CollapseExtraInfo extends Component {
     const courseRoundData = this.props.courseRoundData
     const translate = this.props.translate
     return (
-      <div className='card collapsible programs-list white' >
-        <span className='card-header program-rubrik' role='tab' tabIndex='0' onClick={this.toggleHeader}>
+      <div className='card collapsible rubric-list white' >
+        <span className='card-header info-rubric' role='tab' tabIndex='0' onClick={this.toggleHeader}>
           <a className='collapse-header title' id={label} aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'>{this.props.header}</a>
         </span>
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
@@ -35,12 +35,12 @@ class CollapseExtraInfo extends Component {
                 {/* TODO: THERE IS NO SUCH FUNCTIONALITY YET*/}
                 <i>{translate.no_date_last_changed}</i>
             </p>
-            <p>{translate.header_analysis_edit_comment}:
-                {courseRoundData.commentChange === ''
+            <p>{translate.header_analysis_edit_comment}:</p>
+            <p>{courseRoundData.commentChange === ''
                 ? '  -  '
                 : courseRoundData.commentChange
                 }
-            </p>
+              </p>
           </div>
         </Collapse>
       </div>
