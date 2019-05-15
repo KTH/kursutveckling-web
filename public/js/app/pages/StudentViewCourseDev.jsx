@@ -33,9 +33,9 @@ class StudentViewCourseDev extends Component {
           />
         <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} translate={pageTitles} />
 
-        <span className="intro-text">
-          <p>{pageTitles.info_text}</p>
-          <p> {pageTitles.info_admin_text}
+        <span >
+          <p className="intro-text">{pageTitles.info_text}</p>
+          <p className="intro-text"> {pageTitles.info_admin_text}
             <a href={`/admin/kursutveckling/${courseCode}?l=${lang}`}>{pageTitles.link_to_course_dev}</a>
           </p>
         </span>
