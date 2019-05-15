@@ -67,7 +67,7 @@ module.exports = {
     about_course: 'Om kursen',
     info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
     info_admin_text: 'Ansvariga för kursen kan få en överblick över kursens utveckling och ansvarar för att',
-    link_to_course_dev: 'publicera kursdata och kursanalys.',
+    link_to_course_dev: ' publicera kursdata och kursanalys.',
     alertMessages: {
       success: 'Ny version av kursutvecklingsinformation har publicerats på kursinformationssidan',
       over_text_limit: 'Texten får bara bestå av 1 500 tecken',

@@ -67,7 +67,7 @@ module.exports = {
     about_course: 'About course',
     info_text: 'På denna ... ....',
     info_admin_text: 'Ansvariga .......',
-    link_to_course_dev: 'publish course data and course analys.',
+    link_to_course_dev: ' publish course data and course analys.',
     alertMessages: {
       success: 'New version of course development has been published.',
       over_text_limit: 'The text can consist of no more than 1 500 chars',
