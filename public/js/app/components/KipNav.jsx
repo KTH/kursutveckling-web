@@ -1,8 +1,7 @@
 import {Table} from 'reactstrap'
 import React from 'react'
 
-
-const KipLinkNav = ({courseCode, trans, lang}) => { // courseCode, lang, startCards
+const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, startCards
   const kursOmLink = `/student/kurser/kurs/${courseCode}?l=${lang}`
   const kursAdmin = `/admin/kurser/kurs/${courseCode}?l=${lang}`
   return (
@@ -11,16 +10,16 @@ const KipLinkNav = ({courseCode, trans, lang}) => { // courseCode, lang, startCa
         <tbody>
           <tr>
             <td colSpan='2'>
-              <h4>Om kursen</h4>
+              <h4>{translate.about_course}</h4>
               <p>
                 {/* <a href={`/admin/kurser/kurs/edit/${courseCode}?l=${lang}`} alt={startCards.sellingText_btn} className='btn btn-primary'>{startCards.sellingText_btn}</a> */}
-                <a href={kursOmLink} alt='Tillbaka till Kursinformation vy'>Kursinformation</a>
+                <a href={kursOmLink} alt='Tillbaka till Kursinformation vy'>{translate.course_info_title}</a>
               </p>
               <p>
-                <b>Kursens utveckling och historik</b>
+                <b>{translate.course_dev_title}</b>
               </p>
               <p>
-                <a href={kursAdmin} className='link-to' alt='Tillbaka till Kursens utveckling och historik vy'>Administrera</a>
+                <a href={kursAdmin} className='link-to' alt='Tillbaka till Kursens utveckling och historik vy'>{translate.course_admin_title}</a>
               </p>
             </td>
           </tr>
