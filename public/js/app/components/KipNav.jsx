@@ -18,6 +18,8 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
               <p>
                 <b>{translate.course_dev_title}</b>
               </p>
+            </td>
+            <td className='admin-link'>
               <p>
                 <a href={kursAdmin} className='link-to' alt='Tillbaka till Kursens utveckling och historik vy'>{translate.course_admin_title}</a>
               </p>
