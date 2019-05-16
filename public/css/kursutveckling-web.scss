@@ -33,6 +33,9 @@
       background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/pill-back.svg) no-repeat;
       transform: rotate(180deg);
     }
+    td.admin-link {
+        margin-top: .2rem;
+    }
 }
 
 .intro-text {
@@ -62,11 +65,24 @@ $white: #ffffff;
     .table-title > a::before{
         margin-left: .5em;
     }
+    table.table > thead > th {
+        &:after {
+            content: '';
+            height: 1.3em;
+            width: 1.3em;
+            display: inline-block;
+            margin: .5em .4em .6em .4em;
+            vertical-align: middle;
+            background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
+            //background: url(../img/table-modal.svg) no-repeat;    
+        }
+    }
 }
 span.right-links {
     float: right;
     text-align: right;
 }
+
 .teacher-cell {
     min-width: 3em;
     max-width: 6em;
