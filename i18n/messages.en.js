@@ -61,7 +61,7 @@ module.exports = {
     no_course_analys: 'Course analys has not been filled in yet'
   },
   pageTitles: {
-    course_dev_title: 'Course development and history',
+    course_dev_title: 'Course progress and history',
     course_info_title: 'Course information',
     course_admin_title: 'Administrate',
     about_course: 'About course',
@@ -69,7 +69,7 @@ module.exports = {
     info_admin_text: 'Ansvariga .......',
     link_to_course_dev: ' publish course data and course analys.',
     alertMessages: {
-      success: 'New version of course development has been published.',
+      success: 'New version of course analys and data has been published.',
       over_text_limit: 'The text can consist of no more than 1 500 chars',
       over_html_limit: 'HTML texten should be less than 10 000 chars',
       api_error: 'Failed to save text due to technical issues. Copy text and try again later',
