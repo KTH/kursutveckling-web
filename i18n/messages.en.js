@@ -46,7 +46,7 @@ module.exports = {
     header_programs: 'Obligatory for a list of programs',
     header_rounds: 'Course rounds which are included in...',
     header_examiners: 'Examinator',
-    header_examination: 'Form of examination',
+    header_examination: 'Examination',
     header_examination_comment: 'Comments to examination',
     header_examination_grade: 'Result',
     header_responsibles: 'Course responsible',
