@@ -183,7 +183,7 @@ server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedire
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, CourseDevCtrl, ApiCtrl } = require('./controllers')
+const { System, CourseDevCtrl } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -199,8 +199,6 @@ const appRoute = AppRouter()
 appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
 appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/stat/:courseCode', CourseDevCtrl.getCourseStaticDevInfo)
 appRoute.get('system.gateway', config.proxyPrefixPath.uri + '/gateway', getServerGatewayLogin('/'), /* requireRole('isCourseResponsible', 'isExaminator'),*/ CourseDevCtrl.getCourseDevInfo)
-// API
-appRoute.get('api.koppsCourseData', config.proxyPrefixPath.uri + '/getKoppsCourseDataByCourse/:courseCode/', ApiCtrl.getKoppsCourseData)
 
 server.use('/', appRoute.getRouter())
 

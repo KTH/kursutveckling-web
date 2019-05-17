@@ -7,6 +7,5 @@
 
 module.exports = {
   System: require('./systemCtrl'),
-  CourseDevCtrl: require('./CourseDevCtrl'),
-  ApiCtrl: require('./ApiCtrl')
+  CourseDevCtrl: require('./CourseDevCtrl')
 }
