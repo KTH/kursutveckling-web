@@ -33,11 +33,11 @@ class TableForCourseRound extends Component {
           <Table responsive>
             <thead>
               <tr>
-                <th className='teacher-cell'>{translate.header_responsibles}</th>
-                <th className='teacher-cell'>{translate.header_examiners}</th>
-                <th className='students-cell' alt='Antal reg studenter'>{translate.header_registrated}</th>
-                <th className='exam-cell'>{translate.header_examination}</th>
-                <th className='result-cell' alt='; i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'>{translate.header_examination_grade}</th>
+                <th>{translate.header_responsibles}</th>
+                <th>{translate.header_examiners}</th>
+                <th alt='Antal reg studenter'>{translate.header_registrated}</th>
+                <th >{translate.header_examination}</th>
+                <th alt='; i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'>{translate.header_examination_grade}</th>
                 <th>{translate.header_course_changes_comment}</th>
               </tr>
             </thead>
