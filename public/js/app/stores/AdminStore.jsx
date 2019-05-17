@@ -82,42 +82,6 @@ class AdminStore {
     this.image = '/student/kurser/kurs/static/img/courses/' + safeGet(() => data.imageInfo, '#')
   }
 
-  isValidData (dataObject, language = 0) {
-    return !dataObject ? EMPTY : dataObject
-  }
-
-  @action getCourseRequirementFromKopps (courseCode, lang = 'sv') {
-    return axios.get(this.buildApiUrl(this.paths.api.koppsCourseData.uri, {courseCode}), this._getOptions())
-    .then(res => {
-      console.log("HOIOIEFAIE")
-      const course = res.data
-      const courseTitleData = {
-        course_code: this.isValidData(course.code),
-        course_title: this.isValidData(course.title[lang]),
-        course_credits: this.isValidData(course.credits),
-        apiError: false
-      }
-      this.courseAdminData = {
-        courseTitleData,
-        lang
-      }
-    }).catch(err => {
-      const courseTitleData = {
-        course_code: courseCode.toUpperCase(),
-        apiError: true
-      }
-      const koppsCourseDesc = { // kopps recruitmentText
-        sv: EMPTY,
-        en: EMPTY
-      }
-      this.courseAdminData = {
-        courseTitleData,
-        koppsCourseDesc,
-        lang
-      }
-    })
-  }
-
   @action getLdapUserByUsername (params) {
     return axios.get(this.buildApiUrl(this.paths.api.searchLdapUser.uri, params), this._getOptions())
     .then((res) => {
