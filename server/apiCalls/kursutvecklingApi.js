@@ -24,7 +24,7 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
     let objYear
     let sortedByYear = {}
     let i=0
-    while (i <= 10) {//initialize for 10 years f.e. 2009-2019
+    while (i <= 5) {//initialize for 10 years f.e. 2009-2019
             sortedByYear[thisYear-i] = []
             i++
         }
@@ -50,5 +50,5 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
 
     // 2019
     // 2018
-    // latest
+    // ....
     // earliestYear in kursutvAPi

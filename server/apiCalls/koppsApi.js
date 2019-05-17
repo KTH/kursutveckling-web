@@ -1,23 +1,61 @@
+'use strict'
 const { BasicAPI } = require('kth-node-api-call')
-const { server } = require('../configuration')
+const { server } = require('../configuration.js')
 const log = require('kth-node-log')
+const redis = require('kth-node-redis')
+
 
 const koppsApi = new BasicAPI({
   hostname: server.kopps.host,
   basePath: server.kopps.basePath,
-  https: server.kopps.https,
+  https: true, //server.kopps.https,
   json: true,
-  defaultTimeout: server.kopps.defaultTimeout
+  defaultTimeout: 5000, //server.kopps.defaultTimeout
+  redis: {
+    client: redis,
+    prefix: 'server-kopps',
+    expire: 20000
+  }
 })
 
 const koppsCourseData = async (courseCode) => {
   try {
     const course = await koppsApi.getAsync({ uri: `course/${encodeURIComponent(courseCode)}`, useCache: true })
     return course.body
-  } catch (err) {
-    log.error('Exception calling from koppsAPI in koppsApi.koppsCourseData', { error: err })
-    throw err
+  } catch (error) {
+    log.error('Exception calling from koppsAPI in koppsApi.koppsCourseData', { error })
+    throw error
   }
 }
 
-module.exports = {koppsApi, koppsCourseData}
+function isValidData (dataObject, language = 0) {
+  return !dataObject ? EMPTY : dataObject
+}
+
+const filteredKoppsData = async (courseCode, lang) => {
+  try {
+    const course = await koppsCourseData(courseCode)
+    const courseTitleData = {
+      course_code: isValidData(course.code),
+      course_title: isValidData(course.title[lang]),
+      course_credits: isValidData(course.credits),
+      apiError: false
+    }
+    return {
+      courseTitleData,
+      lang
+    }
+  } catch(error) {
+    log.error("Error while trying to filter data from KOPPS", {error})
+    const courseTitleData = {
+      course_code: courseCode.toUpperCase(),
+      apiError: true
+    }
+    return {
+      courseTitleData,
+      lang
+    }
+  }
+}
+
+module.exports = {filteredKoppsData}
