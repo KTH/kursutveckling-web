@@ -8,6 +8,8 @@ const { toJS } = require('mobx')
 const browserConfig = require('../configuration').browser
 const serverConfig = require('../configuration').server
 const {sortedKursutveckligApiInfo} = require('../apiCalls/kursutvecklingApi')
+const { filteredKoppsData } = require('../apiCalls/koppsApi')
+
 
 
 module.exports = {
@@ -50,11 +52,12 @@ async function _getCourseDevInfo (req, res, next) {
 
   try {
     // Render inferno app
+
     // const context = {}
     const renderProps = _staticRender()
     renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
-    await renderProps.props.children.props.adminStore.getCourseRequirementFromKopps(courseCode, lang)
+    renderProps.props.children.props.adminStore.courseAdminData = await filteredKoppsData(courseCode, lang)
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
     // await doAllAsyncBefore({
     //   pathname: req.originalUrl,
