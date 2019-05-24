@@ -5,7 +5,7 @@ import CollapseExtraInfo from './CollapseExtraInfo'
 
 const PopoverItem = ({header, textArr, id}) => {
   return (
-    <UncontrolledPopover trigger='click' placement='left' target={id}>
+    <UncontrolledPopover trigger='click' placement='left-end' target={id}>
       <PopoverHeader>{header}</PopoverHeader>
       <PopoverBody>
         {textArr.map((textStr) => {
