@@ -91,6 +91,7 @@ class TableForCourseRound extends Component {
                   {shortExamsString.map((examStr) => {
                     return <p>{examStr}</p>
                   })}
+                  <p><i>Mer...</i></p>
                 </td>
                 <td className='result-cell'>
                   <p>{courseRoundData.examinationGrade} %</p>
