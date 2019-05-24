@@ -57,7 +57,7 @@ async function _getCourseDevInfo (req, res, next) {
     const renderProps = _staticRender()
     renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
-    renderProps.props.children.props.adminStore.courseAdminData = await filteredKoppsData(courseCode, lang)
+    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
     // await doAllAsyncBefore({
     //   pathname: req.originalUrl,
@@ -69,7 +69,7 @@ async function _getCourseDevInfo (req, res, next) {
     res.render('course/index', {
       debug: 'debug' in req.query,
       html,
-      title: 'TODO',
+      title: courseCode,
       initialState: JSON.stringify(hydrateStores(renderProps))
     })
   } catch (err) {

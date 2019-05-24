@@ -23,8 +23,8 @@ function _webUsesSSL (url) {
 }
 class AdminStore {
   // This won't work because primitives can't be ovserved https://mobx.js.org/best/pitfalls.html#dereference-values-as-late-as-possible
-  @observable courseAdminData = undefined
-  analysisData = undefined
+  @observable courseKoppsData = undefined //kopps
+  analysisData = undefined //kurutveckling-api
 
   @observable user = ''
   @observable hasDoneSubmit = false

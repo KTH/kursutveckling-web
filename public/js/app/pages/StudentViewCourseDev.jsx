@@ -17,21 +17,21 @@ class StudentViewCourseDev extends Component {
   }
 
   render () {
-    const { courseAdminData } = this.props.adminStore
+    const { courseKoppsData } = this.props.adminStore
     const { analysisData } = this.props.adminStore
-    const lang = courseAdminData.lang === 'en' ? 0 : 1
-    const courseCode = courseAdminData.courseTitleData.course_code
+    const lang = courseKoppsData.lang === 'en' ? 0 : 1
+    const courseCode = courseKoppsData.courseTitleData.course_code
     const { pageTitles, tableHeaders} = i18n.messages[lang]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
         {/* ---COURSE TITEL--- */}
         <CourseTitle key='title'
-          courseTitleData={courseAdminData.courseTitleData}
+          courseTitleData={courseKoppsData.courseTitleData}
           pageTitle={this.state.enteredEditMode ? pageTitles.course_dev_title : pageTitles.course_dev_title}
-          language={courseAdminData.lang}
+          language={courseKoppsData.lang}
           />
-        <KipLinkNav courseCode={courseCode} lang={courseAdminData.lang} translate={pageTitles} />
+        <KipLinkNav courseCode={courseCode} lang={courseKoppsData.lang} translate={pageTitles} />
 
         <span >
           <p className="intro-text">{pageTitles.info_text}</p>

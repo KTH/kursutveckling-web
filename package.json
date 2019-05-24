@@ -16,8 +16,8 @@
     "test": "mocha test/unit/*.js",
     "codecheck": "standard",
     "docker": "npm install --development && npm run build && npm prune --production",
-    "build": "NODE_ENV=production gulp build && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
-    "build-dev": "cross-env NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
+    "build": "NODE_ENV=production gulp build && parcel build ./public/img/* && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
+    "build-dev": "cross-env NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/img/* && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
   },
