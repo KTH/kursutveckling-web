@@ -1,11 +1,12 @@
-import {Table} from 'reactstrap'
 import React from 'react'
+import {Table} from 'reactstrap'
+import CoursePlansCollapsibleList from './CollapsibleList'
 
 const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, startCards
   const kursOmLink = `/student/kurser/kurs/${courseCode}?l=${lang}`
-  const kursAdmin = `/admin/kurser/kurs/${courseCode}?l=${lang}`
+  const kursAdmin = `/kursinfoadmin/kurser/kurs/${courseCode}?l=${lang}`
   return (
-    <span>
+    <span className='navigation row'>
       <Table className='kip-menu'>
         <tbody>
           <tr>
@@ -27,6 +28,9 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
           </tr>
         </tbody>
       </Table>
+      <span className='right_intro col'>
+        <CoursePlansCollapsibleList />
+      </span>
     </span>
     )
 }

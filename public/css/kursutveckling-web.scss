@@ -19,10 +19,20 @@
     max-width: 100em;
     margin: 15px;
 }
+span.navigation {
+    margin-right: 0;
+    display: flex;
+    justify-content: space-between;
+
+    span.right_intro {
+        margin-left: 3em;
+        max-width: 50em;
+    }
+}
 
 .kip-menu {
     max-width: 30em;
-    margin-left: 1em;
+    margin-left: 2em;
     .link-to::after{
       content: '';
       height: 1.5em;
@@ -34,8 +44,12 @@
       transform: rotate(180deg);
     }
     td.admin-link {
-        margin-top: .2rem;
+        margin-top: .2em;
     }
+}
+.card.collapsible.blue.course-plans {
+    margin-top: 0 !important;
+    margin-left: 8em;
 }
 
 .intro-text {
@@ -45,6 +59,10 @@
 
 p.popOver {
     margin: .2em 0 .2em 0;
+}
+
+h3.popover-header {
+    margin-top: 0 !important;
 }
 
 .tables-list {

@@ -120,6 +120,6 @@ module.exports = {
 
   // APPLICATION INSIGHTS IN AZURE
   appInsights: {
-    instrumentationKey: getEnv('APPINSIGHTS_INSTRUMENTATIONKEY')
+    instrumentationKey: getEnv('APPINSIGHTS_INSTRUMENTATIONKEY', '')
   }
 }
