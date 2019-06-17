@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Collapse, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap'
 import CollapseExtraInfo from './CollapseExtraInfo'
+import { inject, observer} from 'mobx-react'
 
 function getShortAndLongStrForEachExam (examinationRoundsArr) {
   let shortAndLongExamStrArr = []
@@ -26,6 +27,7 @@ const PopoverItem = ({header, shortAndLongExamStrArr, id}) => {
   )
 }
 
+@inject(['adminStore']) @observer
 class TableForCourseRound extends Component {
   constructor (props) {
     super(props)
@@ -41,6 +43,7 @@ class TableForCourseRound extends Component {
     const courseRoundData = this.props.courseRoundObj
     const translate = this.props.translate
     const popOverId = 'exam' + this.props.courseAnalysDataId // Examination expandera
+    const analysisLink = this.props.adminStore.browserConfig.storageUri + courseRoundData.analysisFileName
     const shortAndLongExamStrArr = getShortAndLongStrForEachExam(courseRoundData.examinationRounds)
 
     return (
@@ -52,8 +55,8 @@ class TableForCourseRound extends Component {
         <Collapse isOpen={this.state.collapse} toggler={'#' + this.props.courseAnalysDataId}>
           <span className='right-links' >
             <a href='#' className='pdf-link'>{translate.link_syllabus}: 2019-05-20</a>
-            <a href='#' className='pdf-link'>{translate.link_pm}: 2019-05-20</a>
-            <a href='#' className='pdf-link'>{translate.link_analysis}: {courseRoundData.pdfAnalysisDate}</a>
+            <a key='pmLink' id='pmLink' href='https://kth.box.com/s/i9xu34n5conqdoj7re81bmcto20wavib' target='_blank' className='pdf-link'>{translate.link_pm}: 2019-05-20</a>
+            <a key='analysisLink' href={analysisLink} className='pdf-link' target='_blank'>{translate.link_analysis}: {courseRoundData.pdfAnalysisDate}</a>
           </span>
           <Table responsive>
             <thead>
