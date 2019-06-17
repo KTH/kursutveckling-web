@@ -30,7 +30,7 @@ class CollapseExtraInfo extends Component {
             <h4>{translate.date_pdf_analys}</h4>
             <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.pdfAnalysisDate}}></p>
             {/* TODO: THERE IS NO SUCH FUNCTIONALITY FOR FORSTA GÅNGEN YET*/}
-            <p>{translate.date_fisrt_published}: {courseRoundData.publishedDate}</p>
+            <p>{translate.date_first_published}: {courseRoundData.publishedDate}</p>
             <p>{translate.date_last_change}:
                 {/* TODO: THERE IS NO SUCH FUNCTIONALITY YET*/}
                 <i>{translate.no_date_last_changed}</i>
