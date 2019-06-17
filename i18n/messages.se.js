@@ -39,7 +39,9 @@ module.exports = {
     page_course_programme: 'KURS- OCH PROGRAMKATALOGEN'
   },
   tableHeaders: {
-    date_fisrt_published: 'Publicerad första gången',
+    header_main_edit: 'Ändra',
+    header_main_publish_new: 'Publicera ny kursanalys och kursdata',
+    date_first_published: 'Publicerad första gången',
     date_last_change: 'Senaste ändrad',
     date_pdf_analys: 'Datum för publicerad kursanalys',
     header_course_round: 'Kursomgång',
@@ -58,22 +60,30 @@ module.exports = {
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
     no_date_last_changed: 'ej ändrad efter publicering',
-    no_course_analys: 'Kursutveckling saknas'
+    no_course_analys: 'Kursutveckling saknas',
+    popover_more: 'Mer...'
   },
   pageTitles: {
+    about_course: 'Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
     course_info_title: 'Kursinformation',
     course_admin_title: 'Administrera',
-    about_course: 'Om kursen',
+    header_syllabuses: 'Samtliga kursplaner',
     info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
     info_admin_text: 'Ansvariga för kursen kan få en överblick över kursens utveckling och ansvarar för att',
+    label_syllabus_link: 'Kursplan',
     link_to_course_dev: ' publicera kursdata och kursanalys.',
+    no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
       success: 'Ny version av kursutvecklingsinformation har publicerats på kursinformationssidan',
       over_text_limit: 'Texten får bara bestå av 1 500 tecken',
       over_html_limit: 'HTML texten får bara bestå av 10 000 tecken',
       api_error: 'Det gick inte att spara texten på grund av teknisk fel. Kopiera texten och försök igen senare',
       kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas'
+    },
+    course_short_semester: {
+      1: 'VT ',
+      2: 'HT '
     }
   },
   sellingTextLabels: {

@@ -39,10 +39,12 @@ module.exports = {
     page_course_programme: 'COURSE AND PROGRAMME DIRECTORY'
   },
   tableHeaders: {
-    date_fisrt_published: 'Published first time',
+    date_first_published: 'Published first time',
     date_last_change: 'Last changed',
     date_pdf_analys: 'Date for the published course analys',
     header_course_round: 'Course round',
+    header_main_edit: 'Change',
+    header_main_publish_new: 'Publicera ny kursanalys och kursdata',
     header_programs: 'Obligatory for a list of programs',
     header_rounds: 'Course rounds which are included in...',
     header_examiners: 'Examinator',
@@ -58,22 +60,30 @@ module.exports = {
     link_analysis: 'Course analys',
     link_pm: 'Course-PM',
     no_date_last_changed: 'no changes since first publishing',
-    no_course_analys: 'Course analys has not been filled in yet'
+    no_course_analys: 'Course analys has not been filled in yet',
+    popover_more: 'More...'
   },
   pageTitles: {
+    about_course: 'About course',
     course_dev_title: 'Course progress and history',
     course_info_title: 'Course information',
     course_admin_title: 'Administrate',
-    about_course: 'About course',
+    header_syllabuses: 'All course syllabuses',
     info_text: 'På denna ... ....',
     info_admin_text: 'Ansvariga .......',
+    label_syllabus_link: 'Course syllabus',
     link_to_course_dev: ' publish course data and course analys.',
+    no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
       success: 'New version of course analys and data has been published.',
       over_text_limit: 'The text can consist of no more than 1 500 chars',
       over_html_limit: 'HTML texten should be less than 10 000 chars',
       api_error: 'Failed to save text due to technical issues. Copy text and try again later',
       kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'
+    },
+    course_short_semester: {
+      1: 'Spring ',
+      2: 'Autumn '
     }
   },
   courseDevLabels: {
