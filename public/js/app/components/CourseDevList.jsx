@@ -7,13 +7,13 @@ const CourseDevAllRoundsForEachYear = ({arrOfRoundObj, lang, courseCode, year, t
     <span>
       <span className='navigation'>
         <h3>{year}</h3>
-        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}`}>{translate.header_main_publish_new}</a>
+        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}&status=n&serv=kutv`}>{translate.header_main_publish_new}</a>
       </span>
       {arrOfRoundObj.length === 0
       ? <p>{translate.no_course_analys}</p>
       : arrOfRoundObj.map((roundObj, index) =>
         <span className='table-for-year' key={index}>
-          <p className='right-link'><a href={`${KUTV_ADMIN_URL}${roundObj._id}?l=${lang}`}>{translate.header_main_edit}</a></p>
+          <p className='right-link'><a href={`${KUTV_ADMIN_URL}${roundObj._id}?l=${lang}&serv=kutv`}>{translate.header_main_edit}</a></p>
           <TableForCourseRound courseRoundObj={roundObj} courseAnalysDataId={roundObj._id} translate={translate} />
         </span>
       )
