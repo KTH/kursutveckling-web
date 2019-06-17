@@ -1,3 +1,5 @@
-export const PROGRAMME_URL = "https://www.kth.se/student/kurser/program"
-export const EMPTY = "--no information--"
-export const FORSKARUTB_URL = "https://www.kth.se/utbildning/forskarutbildning/kurser/org"
+export const PROGRAMME_URL = 'https://www.kth.se/student/kurser/program'
+export const EMPTY = '--no information--'
+export const FORSKARUTB_URL = 'https://www.kth.se/utbildning/forskarutbildning/kurser/org'
+export const SYLLABUS_URL = '/student/kurser/kurs/kursplan/'
+export const KUTV_ADMIN_URL = '/kursinfoadmin/kursutveckling/'
