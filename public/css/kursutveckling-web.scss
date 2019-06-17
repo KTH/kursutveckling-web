@@ -47,10 +47,6 @@ span.navigation {
         margin-top: .2em;
     }
 }
-.card.collapsible.blue.course-plans {
-    margin-top: 0 !important;
-    margin-left: 8em;
-}
 
 .intro-text {
     width: 100%;
@@ -71,10 +67,6 @@ h3.popover-header {
         margin-top: 1.5em;
     }
 }
-.table-title {
-    display: flex;
-    justify-content: space-between;
-}
 
 //REDEFINING COLLAPSE Style, TODO: check it in kth-style
 $black: #000000;
@@ -86,6 +78,10 @@ $white: #ffffff;
     margin-top: 1em;
     .table-title > a::before{
         margin-left: .5em;
+    }
+    .table-title {
+        display: flex;
+        justify-content: space-between;
     }
     table.table > thead > th {
         &:after {
@@ -100,7 +96,16 @@ $white: #ffffff;
         }
     }
 }
-span.right-links {
+
+.card.collapsible.blue.course-plans {
+    margin-top: 0 !important;
+    margin-left: 8em;
+    max-width: 30em;
+}
+.card.collapsible.blue.table-for-round {
+    width: 100%;
+}
+span.right-links, p.right-link {
     float: right;
     text-align: right;
 }
