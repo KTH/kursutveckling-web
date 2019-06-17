@@ -68,19 +68,6 @@ class AdminStore {
     }
     return options
   }
-  @action setUser (userKthId) {
-    this.user = userKthId
-  }
-  @action addChangedByLastTime (data) {
-    this.sellingTextAuthor = safeGet(() => data.sellingTextAuthor, '')
-  }
-  @action addSellingTextAndImage (data) {
-    this.sellingText = {
-      en: safeGet(() => data.sellingText.en, ''),
-      sv: safeGet(() => data.sellingText.sv, '')
-    }
-    this.image = '/student/kurser/kurs/static/img/courses/' + safeGet(() => data.imageInfo, '#')
-  }
 
   @action getLdapUserByUsername (params) {
     return axios.get(this.buildApiUrl(this.paths.api.searchLdapUser.uri, params), this._getOptions())
