@@ -7,6 +7,8 @@ import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
 import CourseDevAllYears from '../components/CourseDevList'
 
+import { KUTV_ADMIN_URL } from '../util/constants'
+
 @inject(['adminStore']) @observer
 class StudentViewCourseDev extends Component {
   constructor (props) {
@@ -36,12 +38,12 @@ class StudentViewCourseDev extends Component {
         <span >
           <p className="intro-text">{pageTitles.info_text}</p>
           <p className="intro-text"> {pageTitles.info_admin_text}
-            <a href={`/admin/kursutveckling/${courseCode}?l=${lang}`}>{pageTitles.link_to_course_dev}</a>
+            <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}`}>{pageTitles.link_to_course_dev}</a>
           </p>
         </span>
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
-        <CourseDevAllYears allYearsObj={analysisData} translate={tableHeaders}/>
+        <CourseDevAllYears courseCode={courseCode} lang={courseKoppsData.lang} allYearsObj={analysisData} translate={tableHeaders}/>
 {/* 
         <div className='tables-list col'>
           <h3>2019</h3>
