@@ -1,6 +1,6 @@
 import React from 'react'
 import {Table} from 'reactstrap'
-import CoursePlansCollapsibleList from './CollapsibleList'
+import CoursePlansCollapsibleList from './CoursePlansCollapsibleList'
 
 const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, startCards
   const kursOmLink = `/student/kurser/kurs/${courseCode}?l=${lang}`
@@ -29,7 +29,7 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
         </tbody>
       </Table>
       <span className='right_intro col'>
-        <CoursePlansCollapsibleList />
+        <CoursePlansCollapsibleList translate={translate} lang={lang} />
       </span>
     </span>
     )
