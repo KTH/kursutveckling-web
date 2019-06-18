@@ -79,9 +79,7 @@ class TableForCourseRound extends Component {
                 </td>
                 <td className='students-cell'>{courseRoundData.registeredStudents}</td>
                 <td className='exam-cell' id={popOverId}>
-                  {shortAndLongExamStrArr.map((shortAndLongTextStr, index) => {
-                    return <p key={index}>{shortAndLongTextStr[0]}</p>
-                  })}
+                  {shortAndLongExamStrArr.map((shortAndLongTextStr, index) => <p key={index}>{shortAndLongTextStr[0]}</p>)}
                   <p><i>{translate.popover_more}</i></p>
                 </td>
                 <td className='result-cell'>
