@@ -18,8 +18,8 @@ async function _getKursutvecklingApiInfo (courseCode) {
 
 async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
   try {
-    const kurstuvApiResponse = await _getKursutvecklingApiInfo(courseCode)
-    const arrOfObj = kurstuvApiResponse.body
+    const kursutvApiResponse = await _getKursutvecklingApiInfo(courseCode)
+    const arrOfNonFilteredObj = kursutvApiResponse.body
     const thisYear = new Date().getFullYear()
     let objYear
     let sortedByYear = {}
@@ -28,11 +28,11 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
             sortedByYear[thisYear-i] = []
             i++
         }
-    for (obj of arrOfObj) {
+    for (obj of arrOfNonFilteredObj) {
         objYear = obj.semester.substr(0,4)
-        if (sortedByYear[objYear])
+        if (sortedByYear[objYear] && obj.isPublished === true)
             sortedByYear[objYear].push(obj)
-        else { //TODO: Maybe it is better to move it to a separate function typ sortedOlderThan10YearsAgo
+        else if (obj.isPublished === true) { //TODO: Maybe it is better to move it to a separate function typ sortedOlderThan10YearsAgo
             //Let's check it there is course development for more than 10 years ago, f.e. 2007
             sortedByYear[objYear] = [obj] 
         }
