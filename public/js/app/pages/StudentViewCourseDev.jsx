@@ -43,7 +43,7 @@ class StudentViewCourseDev extends Component {
         </span>
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
-        <CourseDevAllYears courseCode={courseCode} lang={courseKoppsData.lang} allYearsObj={analysisData} translate={tableHeaders}/>
+        <CourseDevAllYears courseCode={courseCode} koppsData={courseKoppsData} allYearsObj={analysisData} translate={tableHeaders}/>
 {/* 
         <div className='tables-list col'>
           <h3>2019</h3>
