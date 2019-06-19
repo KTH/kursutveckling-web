@@ -13,7 +13,7 @@ const CourseDevAllRoundsForEachYear = ({arrOfRoundObj, koppsData, courseCode, ye
       ? <p>{translate.no_course_analys}</p>
       : arrOfRoundObj.map((roundObj, index) =>
         <span className='table-for-year' key={index}>
-          <p className='right-link'><a href={`${KUTV_ADMIN_URL}${roundObj._id}?l=${koppsData.lang}&serv=kutv&status=p&titel=&title=${koppsData.courseTitleData.course_title}_${koppsData.courseTitleData.course_credits}`}>{translate.header_main_edit}</a></p>
+          <p className='right-link'><a href={`${KUTV_ADMIN_URL}${roundObj._id}?l=${koppsData.lang}&serv=kutv&status=p&title=${koppsData.course_title}_${koppsData.course_credits}`}>{translate.header_main_edit}</a></p>
           <TableForCourseRound courseRoundObj={roundObj} courseAnalysDataId={roundObj._id} translate={translate} />
         </span>
       )
