@@ -13,7 +13,6 @@ import queryString from 'query-string'
 
 import AdminStore from './stores/AdminStore'
 import StudentViewCourseDev from './pages/StudentViewCourseDev'
-import StudentViewStatic from './pages/StudentViewStatic'
 
 import '../../css/kursutveckling-web.scss'
 
@@ -37,7 +36,6 @@ function appFactory () {
     <Provider adminStore={adminStore} >
       {/* <ProgressLayer> */}
         <Switch>
-          <Route path='/kursutveckling/stat' component={StudentViewStatic} />
           <Route path='/kursutveckling' component={StudentViewCourseDev} />
         </Switch>
       {/* </ProgressLayer> */}
