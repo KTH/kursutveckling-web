@@ -22,14 +22,14 @@ class StudentViewCourseDev extends Component {
     const { courseKoppsData } = this.props.adminStore
     const { analysisData } = this.props.adminStore
     const lang = courseKoppsData.lang === 'en' ? 0 : 1
-    const courseCode = courseKoppsData.courseTitleData.course_code
+    const courseCode = courseKoppsData.course_code
     const { pageTitles, tableHeaders} = i18n.messages[lang]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
         {/* ---COURSE TITEL--- */}
         <CourseTitle key='title'
-          courseTitleData={courseKoppsData.courseTitleData}
+          courseKoppsData={courseKoppsData}
           pageTitle={this.state.enteredEditMode ? pageTitles.course_dev_title : pageTitles.course_dev_title}
           language={courseKoppsData.lang}
           />
@@ -38,23 +38,12 @@ class StudentViewCourseDev extends Component {
         <span >
           <p className="intro-text">{pageTitles.info_text}</p>
           <p className="intro-text"> {pageTitles.info_admin_text}
-            <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}`}>{pageTitles.link_to_course_dev}</a>
+            <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${courseKoppsData.lang}&serv=kutv`}>{pageTitles.link_to_course_dev}</a>
           </p>
         </span>
 
         {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
         <CourseDevAllYears courseCode={courseCode} koppsData={courseKoppsData} allYearsObj={analysisData} translate={tableHeaders}/>
-{/* 
-        <div className='tables-list col'>
-          <h3>2019</h3>
-          <p>Kursutveckling saknas</p>
-          <h3>2018</h3>
-          <TableForCourse courseRound="HT 2018 CMEDT1, HT 2018 CDEPR1 m.fl., HT 2018 CMATD1 m.fl." togglerId="toggler1"/>
-          <TableForCourse courseRound="VT 2018" togglerId="toggler2"/>
-          <h3>2017</h3>
-          <TableForCourse courseRound="HT 2017" togglerId="toggler3"/>
-          <TableForCourse courseRound="VT 2017" togglerId="toggler4"/>
-        </div> */}
       </div>
     )
   }
