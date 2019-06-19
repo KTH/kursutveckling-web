@@ -61,7 +61,11 @@ module.exports = {
     link_pm: 'Course-PM',
     no_date_last_changed: 'no changes since first publishing',
     no_course_analys: 'Course analys has not been filled in yet',
-    popover_more: 'More...'
+    popover_more: 'More...',
+    course_short_semester: {
+      1: 'Spring ',
+      2: 'Autumn '
+    }
   },
   pageTitles: {
     about_course: 'About course',

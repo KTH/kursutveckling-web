@@ -61,12 +61,18 @@ module.exports = {
     link_pm: 'Kurs-PM',
     no_date_last_changed: 'ej ändrad efter publicering',
     no_course_analys: 'Kursutveckling saknas',
-    popover_more: 'Mer...'
+    popover_more: 'Mer...',
+    course_short_semester: {
+      1: 'VT ',
+      2: 'HT '
+    }
   },
   pageTitles: {
     about_course: 'Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
+    course_dev_title_alt: 'Till Kursens utveckling och historik vy',
     course_info_title: 'Kursinformation',
+    course_info_title_alt: 'Till Kursinformation vy',
     course_admin_title: 'Administrera',
     header_syllabuses: 'Samtliga kursplaner',
     info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
