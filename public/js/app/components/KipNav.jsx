@@ -14,7 +14,7 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
               <h4>{translate.about_course}</h4>
               <p>
                 {/* <a href={`/admin/kurser/kurs/edit/${courseCode}?l=${lang}`} alt={startCards.sellingText_btn} className='btn btn-primary'>{startCards.sellingText_btn}</a> */}
-                <a href={kursOmLink} alt='Tillbaka till Kursinformation vy'>{translate.course_info_title}</a>
+                <a href={kursOmLink} alt={translate.course_info_title_alt}>{translate.course_info_title}</a>
               </p>
               <p>
                 <b>{translate.course_dev_title}</b>
@@ -22,7 +22,7 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
             </td>
             <td className='admin-link'>
               <p>
-                <a href={kursAdmin} className='link-to' alt='Tillbaka till Kursens utveckling och historik vy'>{translate.course_admin_title}</a>
+                <a href={kursAdmin} className='link-to' alt={translate.course_admin_title_alt}>{translate.course_admin_title}</a>
               </p>
             </td>
           </tr>

@@ -6,7 +6,7 @@ import i18n from '../../../../i18n'
 class CourseTitle extends Component {
 
   render () {
-    const title = this.props.courseTitleData
+    const title = this.props.courseKoppsData
     const pageTitle = this.props.pageTitle
     const langIndex = this.props.language === 'en' ? 0 : 1
     title.course_credits = title.apiError ? '' : title.course_credits !== EMPTY && title.course_credits.toString().indexOf('.') < 0 ? title.course_credits + '.0' : title.course_credits
