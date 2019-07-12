@@ -58,7 +58,9 @@ async function _getCourseDevInfo (req, res, next) {
     renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
     renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    console.log('filteredKoppsData', renderProps.props.children.props.adminStore.courseKoppsData )
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    console.log('analysisData', renderProps.props.children.props.adminStore.analysisData )
     // await doAllAsyncBefore({
     //   pathname: req.originalUrl,
     //   query: (req.originalUrl === undefined || req.originalUrl.indexOf('?') === -1) ? undefined : req.originalUrl.substring(req.originalUrl.indexOf('?'), req.originalUrl.length),
@@ -68,6 +70,7 @@ async function _getCourseDevInfo (req, res, next) {
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
       debug: 'debug' in req.query,
+      instrumentationKey: serverConfig.appInsights.instrumentationKey,
       html,
       title: courseCode,
       initialState: JSON.stringify(hydrateStores(renderProps))
