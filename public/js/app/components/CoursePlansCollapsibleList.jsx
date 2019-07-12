@@ -17,10 +17,11 @@ class CoursePlansCollapsibleList extends Component {
   }
 
   render () {
-    const translate = this.props.translate
     const lang = this.props.lang
-    const syllabusSemesterList = this.props.adminStore.courseKoppsData.course_syllabus_valid_years
-    const courseCode = this.props.adminStore.courseKoppsData.course_code
+    const translate = this.props.translate
+    const courseKoppsData = this.props.adminStore.courseKoppsData
+    const syllabusSemesterList = courseKoppsData.course_syllabus_valid_years
+    const courseCode = courseKoppsData.course_code
     console.log("syllabusSemesterList", syllabusSemesterList)
     return (
       <div className='card collapsible blue course-plans'>
