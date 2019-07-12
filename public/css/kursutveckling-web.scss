@@ -22,15 +22,28 @@
     max-width: 100em;
     margin: 15px;
 }
+
 span.navigation {
     margin-right: 0;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    span.right_intro {
+        min-width: 30em;
+    }
     @media (min-width: 768px) {
         display: flex;
         justify-content: space-between;    
+        span.right_intro {
+            margin-left: 3em;
+            max-width: 50em;
+        }
     }
-    span.right_intro {
-        margin-left: 3em;
-        max-width: 50em;
+}
+
+.tables-list {
+    margin: 4em 0;
+    span.navigation {
+        margin-top: 1.5em; 
     }
 }
 
@@ -52,9 +65,11 @@ span.navigation {
     }
 }
 
-.intro-text {
+span.intro-text {
     width: 100%;
-    margin-left: 1em;
+    p {
+        margin-left: 1em;
+    }
 }
 
 p.popOver {
@@ -63,13 +78,6 @@ p.popOver {
 
 h3.popover-header {
     margin-top: 0 !important;
-}
-
-.tables-list {
-    margin: 2em 0;
-    & > * {
-        margin-top: 1.5em;
-    }
 }
 
 //REDEFINING COLLAPSE Style, TODO: check it in kth-style
@@ -110,7 +118,6 @@ $white: #ffffff;
     div.kursplan-bordered-list {
         border: 1px solid #d4d4d4;
         border-radius: 0.25rem;
-        margin-bottom: 1.5em;
         padding-top: 1em;
         padding-bottom: 1em;
         p {
