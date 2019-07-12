@@ -1,8 +1,11 @@
 // @import "kth-style/public/sass/variables/sizes";
-
+#kth-kursinfo{
+    width:100%;
+}
 .kursinfo-main-page {    
     padding-bottom: 3em;
     padding-top: 2em;
+    width: 100%;
 }
 .courseTitle {
     margin: 0;
@@ -98,12 +101,26 @@ $white: #ffffff;
 }
 
 .card.collapsible.blue.course-plans {
+    margin-left: 10em;
     margin-top: 0 !important;
-    margin-left: 8em;
-    max-width: 30em;
+    div.kursplan-bordered-list {
+        border: 1px solid #d4d4d4;
+        border-radius: 0.25rem;
+        margin-bottom: 1.3em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    // max-width: 30em;
 }
 .card.collapsible.blue.table-for-round {
     width: 100%;
+    div.bordered-table {
+        border: 1px solid #d4d4d4;
+        border-radius: 0.25rem;
+    }
 }
 span.right-links, p.right-link {
     float: right;

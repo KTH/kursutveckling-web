@@ -29,7 +29,7 @@ class CoursePlansCollapsibleList extends Component {
           <a id='kursplan-list' aria-expanded={this.state.collapse} load='false' data-toggle='collapse'>{translate.header_syllabuses}</a>
         </span>
         <Collapse isOpen={this.state.collapse} toggler='#kursplan-list'>
-            <div>
+            <div className='kursplan-bordered-list'>
               {/* --- ALL SYLLABUS LINKS--- */}
               {syllabusSemesterList.length > 0
                 ? syllabusSemesterList.map((tillSemester, index, semesterArr) => {
