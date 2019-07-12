@@ -19,22 +19,27 @@ const ActiveOrDisavledLink = ({href, linkTitle, validFrom}) => {
   let isDisabled
   href === '#' ? isDisabled = true : isDisabled = false
   return (
-    <a href={href} className='pdf-link' key={linkTitle} target='_blank'>
-      {linkTitle}: {validFrom}
-    </a>
+      isDisabled 
+      ?     
+      <a className='pdf-link' key={linkTitle} target='_blank'>
+        {linkTitle}: -
+      </a>
+      : <a href={href} className='pdf-link' key={linkTitle} target='_blank'>
+        {linkTitle}: {validFrom}
+      </a>
   )
 }
 
 const CourseSyllabusPmAnalysLinks = ({translate, courseRoundData, storageUri, koppsData}) => {
   const analysisLink = courseRoundData.analysisFileName !== '' ? storageUri + courseRoundData.analysisFileName : '#'
   const analysisPublishedDate = courseRoundData.pdfAnalysisDate
-  const syllabusRawValidFrom = koppsData.course_term_with_course_syllabus[courseRoundData.semester] 
-  const syllabusLink = syllabusRawValidFrom ? `${SYLLABUS_URL}${koppsData.course_code}-${syllabusRawValidFrom}` : '#'
-  const syllabusValidFrom =  `${translate.course_short_semester[syllabusRawValidFrom.toString().substring(4, 5)]} ${syllabusRawValidFrom.toString().substring(0, 4)}`
+  const syllabusRawStartTerm = courseRoundData.syllabusStartTerm
+  const syllabusHref = syllabusRawStartTerm ? `${SYLLABUS_URL}${koppsData.course_code}-${syllabusRawStartTerm}` : '#'
+  const syllabusPublishedDate = syllabusRawStartTerm ? `${translate.course_short_semester[syllabusRawStartTerm.toString().substring(4, 5)]} ${syllabusRawStartTerm.toString().substring(0, 4)}` : ''
 
   return (
     <span className='right-links' >
-      <ActiveOrDisavledLink href={syllabusLink} linkTitle={translate.link_syllabus} validFrom={syllabusValidFrom} />
+      <ActiveOrDisavledLink href={syllabusHref} linkTitle={translate.link_syllabus} validFrom={syllabusPublishedDate} />
       <ActiveOrDisavledLink href='https://kth.box.com/s/i9xu34n5conqdoj7re81bmcto20wavib' linkTitle={translate.link_pm} validFrom='2019-05-20' />
       <ActiveOrDisavledLink href={analysisLink} linkTitle={translate.link_analysis} validFrom={analysisPublishedDate} />
     </span>
