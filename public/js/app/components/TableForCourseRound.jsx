@@ -21,7 +21,7 @@ const ActiveOrDisavledLink = ({href, linkTitle, validFrom}) => {
   return (
       isDisabled 
       ?     
-      <a className='pdf-link' key={linkTitle} target='_blank'>
+      <a className='pdf-link' key={linkTitle}>
         {linkTitle}: -
       </a>
       : <a href={href} className='pdf-link' key={linkTitle} target='_blank'>
