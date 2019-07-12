@@ -41,7 +41,7 @@ module.exports = {
   tableHeaders: {
     date_first_published: 'Published first time',
     date_last_change: 'Last changed',
-    date_pdf_analys: 'Date for the published course analys',
+    header_publishing_dates: 'Published date',
     header_course_round: 'Course round',
     header_main_edit: 'Change',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata',

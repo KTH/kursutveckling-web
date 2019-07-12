@@ -32,7 +32,7 @@ span.navigation {
     }
     @media (min-width: 768px) {
         display: flex;
-        justify-content: space-between;    
+        justify-content: space-between;
         span.right_intro {
             margin-left: 3em;
             max-width: 50em;
@@ -85,7 +85,9 @@ $black: #000000;
 
 // White
 $white: #ffffff;
- 
+
+$light-grey: #d4d4d4;
+
 .card.collapsible.blue {
     margin-top: 1em;
     .table-title > a::before{
@@ -116,8 +118,9 @@ $white: #ffffff;
         margin-left: 10em;
     }
     div.kursplan-bordered-list {
-        border: 1px solid #d4d4d4;
+        border: 1px solid $light-grey;
         border-radius: 0.25rem;
+        border-top: 0;
         padding-top: 1em;
         padding-bottom: 1em;
         p {
@@ -128,24 +131,27 @@ $white: #ffffff;
 .card.collapsible.blue.table-for-round {
     width: 100%;
     div.bordered-table {
-        border: 1px solid #d4d4d4;
+        border: 1px solid $light-grey;
         border-radius: 0.25rem;
+        border-top: 0;
         margin-bottom: 1.5em;
         padding: 0 .5em .5em .7em;
     }
 }
-span.right-links, p.right-link {
+
+p.right-link, span.right-links{
     float: right;
     text-align: right;
 }
 
-@media (min-width: 768px) {
-    span.right-links
-    {
+span.right-links {
+    p { margin-bottom: 0; }
+    @media (min-width: 768px) {
         display: flex;
         justify-content: flex-end; 
     }
 }
+
 
 .teacher-cell {
     min-width: 3em;
@@ -178,8 +184,16 @@ a.pdf-link{
 
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
-  .card-body.col.summary {
+  .card-body.col.extra-info {
     padding: .3em 0;
+    @media (min-width: 768px) {
+        display: flex;
+        justify-items: first baseline; 
+        span:first-of-type {
+            width: 60%;
+            margin-right: 3em;
+        }
+    }
   }
   &> .card-header.info-rubric {
     background-color: $white;

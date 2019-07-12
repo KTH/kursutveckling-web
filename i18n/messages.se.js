@@ -43,7 +43,7 @@ module.exports = {
     header_main_publish_new: 'Publicera ny kursanalys och kursdata',
     date_first_published: 'Publicerad första gången',
     date_last_change: 'Senaste ändrad',
-    date_pdf_analys: 'Datum för publicerad kursanalys',
+    header_publishing_dates: 'Datum för publicering',
     header_course_round: 'Kursomgång',
     header_programs: 'Obligatorisk inom program',
     header_rounds: 'Kurstillfällen som ingår i kursomgång',
