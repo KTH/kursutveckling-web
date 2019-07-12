@@ -1,6 +1,38 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 
+const ExtraKoppsInfo = ({translate, courseRoundData}) => {
+  return (
+    <span>
+      <p><b>{translate.header_examination_comment}</b></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.commentExam}}></p>
+      <p><b>{translate.header_programs}</b></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.programmeCodes}}></p>
+      <p><b>{translate.header_rounds}</b></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.analysisName}}></p>
+    </span>
+  )
+}
+const ExtraDatesAndComment = ({translate, courseRoundData}) => {
+  return (
+    <span>
+      <p><b>{translate.header_publishing_dates}</b></p>
+      <p>{translate.date_first_published}:&nbsp;{courseRoundData.publishedDate}</p>
+      <p>{translate.date_last_change}:&nbsp;
+      {courseRoundData.changedAfterPublishedDate && courseRoundData.changedAfterPublishedDate !== ''
+        ? courseRoundData.changedAfterPublishedDate
+        : <i>{translate.no_date_last_changed}</i>
+      }
+      </p>
+      <p>{translate.header_analysis_edit_comment}:</p>
+      <p>{courseRoundData.commentChange === ''
+          ? '  -  '
+          : courseRoundData.commentChange
+          }
+      </p>
+    </span>
+  )
+}
 class CollapseExtraInfo extends Component {
   constructor (props) {
     super(props)
@@ -20,27 +52,9 @@ class CollapseExtraInfo extends Component {
           <a className='collapse-header title' id={label} aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'>{this.props.header}</a>
         </span>
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
-          <div className='card-body col summary'>
-            <h4>{translate.header_examination_comment}</h4>
-            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.commentExam}}></p>
-            <h4>{translate.header_programs}</h4>
-            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.programmeCodes}}></p>
-            <h4>{translate.header_rounds}</h4>
-            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.analysisName}}></p>
-            <h4>{translate.date_pdf_analys}</h4>
-            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.pdfAnalysisDate}}></p>
-            {/* TODO: THERE IS NO SUCH FUNCTIONALITY FOR FORSTA GÅNGEN YET*/}
-            <p>{translate.date_first_published}: {courseRoundData.publishedDate}</p>
-            <p>{translate.date_last_change}:
-                {/* TODO: THERE IS NO SUCH FUNCTIONALITY YET*/}
-                <i>{translate.no_date_last_changed}</i>
-            </p>
-            <p>{translate.header_analysis_edit_comment}:</p>
-            <p>{courseRoundData.commentChange === ''
-                ? '  -  '
-                : courseRoundData.commentChange
-                }
-              </p>
+          <div className='card-body col extra-info'>
+            <ExtraKoppsInfo translate={translate} courseRoundData={courseRoundData} />
+            <ExtraDatesAndComment translate={translate} courseRoundData={courseRoundData} />
           </div>
         </Collapse>
       </div>
