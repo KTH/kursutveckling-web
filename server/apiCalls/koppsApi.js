@@ -19,7 +19,6 @@ const koppsApi = new BasicAPI({
 
 const koppsCourseData = async (courseCode) => {
   try {
-    //const course = await koppsApi.getAsync({ uri: `course/${encodeURIComponent(courseCode)}/detailedinformation`, useCache: true })
     const course = await koppsApi.getAsync({ uri: `course/${encodeURIComponent(courseCode)}/courseroundterms?fromTerm=20071`, useCache: true })
     return course.body
   } catch (error) {
@@ -32,29 +31,6 @@ function isValidData (dataObject) {
   return !dataObject ? ' ' : dataObject
 }
 
-// function getCoursePlanYears (publicSyllabusVersionsArr) {
-//   let coursePlanYearsArr = []
-//   if (publicSyllabusVersionsArr.length > 0) {  
-//     for (let publicSyllabus of publicSyllabusVersionsArr) {
-//       coursePlanYearsArr.push(publicSyllabus.validFromTerm.term)
-//     }
-//   }
-//   let coursePlansPeriodFromToYearsArr = coursePlanYearsArr.sort().reverse()
-//   if (coursePlansPeriodFromToYearsArr.length > 0) coursePlansPeriodFromToYearsArr.unshift('')
-//   return coursePlansPeriodFromToYearsArr //[ '', 20182, 20082, 20082, 20081 ]
-// }
-
-function getCourseTermWithValidCourseSyllabus(allRoundsArrOfObjs) {
-  let roundAndCourseSyllabusYearObj = {}
-  if (allRoundsArrOfObjs.length > 0) {
-    for (let termObj of allRoundsArrOfObjs) {
-      roundAndCourseSyllabusYearObj[termObj.term] = termObj.courseSyllabus.validFromTerm
-      //what to do with undefined course syllabuses?
-    }
-  }
-  console.log("roundAndCourseSyllabusYearObj", roundAndCourseSyllabusYearObj)
-  return roundAndCourseSyllabusYearObj
-}
 function getListOfCoursePlanValidYearsPeriods (allRoundsArrOfObjs) {
   let allValidStartYearsArr = []
   let thisCourseSyllabusTerm, prev = 0
@@ -75,24 +51,16 @@ function getListOfCoursePlanValidYearsPeriods (allRoundsArrOfObjs) {
 const filteredKoppsData = async (courseCode, lang) => {
   try {
     const courseObj = await koppsCourseData(courseCode)
-    console.log('courseObj',courseObj)
-    // const courseTitleData = {
-
-    // }
     return {
       course_code: courseCode.toUpperCase(),
       course_title: isValidData(courseObj.course.title[lang]),
       course_syllabus_valid_years: getListOfCoursePlanValidYearsPeriods(courseObj.termsWithCourseRounds),
-      course_term_with_course_syllabus: getCourseTermWithValidCourseSyllabus(courseObj.termsWithCourseRounds),
       course_credits: isValidData(courseObj.course.credits),
       apiError: false,
       lang
     }
   } catch(error) {
     log.error("Error while trying to filter data from KOPPS", {error})
-    // const courseTitleData = {
-
-    // }
     return {
       course_code: courseCode.toUpperCase(),
       apiError: true,
