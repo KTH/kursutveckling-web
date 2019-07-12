@@ -19,14 +19,16 @@ const ActiveOrDisavledLink = ({href, linkTitle, validFrom}) => {
   let isDisabled
   href === '#' ? isDisabled = true : isDisabled = false
   return (
-      isDisabled 
+    <p>
+     { isDisabled 
       ?     
-      <a className='pdf-link' key={linkTitle}>
+     <a className='pdf-link' key={linkTitle}>
         {linkTitle}: -
       </a>
       : <a href={href} className='pdf-link' key={linkTitle} target='_blank'>
         {linkTitle}: {validFrom}
-      </a>
+      </a>}
+    </p>
   )
 }
 
@@ -86,7 +88,7 @@ class TableForCourseRound extends Component {
           <a id={this.props.courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundData.analysisName}</a>
         </span>
         {/*  */}
-        <Collapse isOpen={this.state.collapse} toggler={'#' + this.props.courseAnalysDataId}>
+        <Collapse className='bordered-table' isOpen={this.state.collapse} toggler={'#' + this.props.courseAnalysDataId}>
           <CourseSyllabusPmAnalysLinks translate={translate} courseRoundData={courseRoundData} storageUri={this.props.adminStore.browserConfig.storageUri} koppsData={this.props.adminStore.courseKoppsData}/>
           <Table responsive>
             <thead>

@@ -24,9 +24,10 @@
 }
 span.navigation {
     margin-right: 0;
-    display: flex;
-    justify-content: space-between;
-
+    @media (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;    
+    }
     span.right_intro {
         margin-left: 3em;
         max-width: 50em;
@@ -101,30 +102,42 @@ $white: #ffffff;
 }
 
 .card.collapsible.blue.course-plans {
-    margin-left: 10em;
     margin-top: 0 !important;
+    margin-bottom: 1.5em;
+    @media (min-width: 768px){
+        margin-left: 10em;
+    }
     div.kursplan-bordered-list {
         border: 1px solid #d4d4d4;
         border-radius: 0.25rem;
-        margin-bottom: 1.3em;
+        margin-bottom: 1.5em;
         padding-top: 1em;
         padding-bottom: 1em;
         p {
             margin-bottom: 0;
         }
     }
-    // max-width: 30em;
 }
 .card.collapsible.blue.table-for-round {
     width: 100%;
     div.bordered-table {
         border: 1px solid #d4d4d4;
         border-radius: 0.25rem;
+        margin-bottom: 1.5em;
+        padding: 0 .5em .5em .7em;
     }
 }
 span.right-links, p.right-link {
     float: right;
     text-align: right;
+}
+
+@media (min-width: 768px) {
+    span.right-links
+    {
+        display: flex;
+        justify-content: flex-end; 
+    }
 }
 
 .teacher-cell {
@@ -166,13 +179,8 @@ a.pdf-link{
 
     a.collapse-header.title{
         color: $black;
-        // margin-left: -1em;
-        font-size: 1.25rem;
-        font-weight: 400;
-        line-height: 1.375;
-
         &:before {
-          margin-left: 1em;
+          margin-left: -.7em;
           font-size: 16px;
           background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/arrow-black-right.svg) no-repeat;
           background-size: .9em .9em;
