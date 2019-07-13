@@ -114,18 +114,18 @@ h3.popover-header {
         display: flex;
         justify-content: space-between;
     }
-    table.table > thead > th {
-        &:after {
-            content: '';
-            height: 1.3em;
-            width: 1.3em;
-            display: inline-block;
-            margin: .5em .4em .6em .4em;
-            vertical-align: middle;
-            background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
-            //background: url(../img/table-modal.svg) no-repeat;    
-        }
-    }
+    // table.table > thead > th {
+    //     &:after {
+    //         content: '';
+    //         height: 1.3em;
+    //         width: 1.3em;
+    //         display: inline-block;
+    //         margin: .5em .4em .6em .4em;
+    //         vertical-align: middle;
+    //         background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
+    //         //background: url(../img/table-modal.svg) no-repeat;    
+    //     }
+    // }
 }
 
 .card.collapsible.blue.course-plans {
@@ -164,23 +164,25 @@ span.right-links {
     }
 }
 
+@media (min-width: 768px) {
+    .teacher-cell {
+        min-width: 3em;
+        max-width: 6em;
+    }
+    .exam-cell {
+        min-width: 3em;
+        max-width: 5em;
+    }
+    .students-cell {
+        min-width: 2em;
+        max-width: 4em;
+    }
+    .result-cell {
+        min-width: 2em;
+        max-width: 3.5em;
+    }
+}
 
-.teacher-cell {
-    min-width: 3em;
-    max-width: 6em;
-}
-.exam-cell {
-    min-width: 3em;
-    max-width: 5em;
-}
-.students-cell {
-    min-width: 2em;
-    max-width: 4em;
-}
-.result-cell {
-    min-width: 2em;
-    max-width: 3.5em;
-}
 a.pdf-link{
     margin: 0 1.5em 0 1em;
     &:before {
@@ -219,5 +221,56 @@ a.pdf-link{
           background-size: .9em .9em;
         }
     }}
+}
+
+/*Mobile View for Tables*/
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 767px) {
+
+	/* Force table to not be like tables anymore */
+	.table table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.table thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.table tr { border: 1px solid #fff; }
+	
+	.table td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #fff; 
+		position: relative;
+        padding-top: 2.5em;
+        &:last-of-type {
+            padding-top: 3.2em;
+        }
+	}
+	
+	.table td:before { 
+        /* Now like a table header */
+        content: attr(data-label);
+        position: absolute;
+        // color: #fff;
+        // background-color: #65656c;
+        font-weight: 500;
+        // border-bottom: 1px solid #65656c; 
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 100%; 
+        padding-right: 1em; 
+        margin-right: 1em;
+		white-space: normal;
+	}
 }
 
