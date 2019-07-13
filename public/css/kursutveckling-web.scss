@@ -43,7 +43,7 @@ span.navigation {
     margin-top: 1em;
     margin-bottom: 1.5em;
     span.right_intro {
-        min-width: 30em;
+        width: 100%;
     }
     @media (min-width: 768px) {
         display: flex;
