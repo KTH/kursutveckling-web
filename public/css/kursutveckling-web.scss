@@ -1,4 +1,19 @@
 // @import "kth-style/public/sass/variables/sizes";
+$black: #000000;
+
+// White
+$white: #ffffff;
+
+$light-grey: #d4d4d4;
+
+%bordered-area {
+    border: 1px solid $light-grey;
+    border-radius: 0.25rem;
+    border-top: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
 #kth-kursinfo{
     width:100%;
 }
@@ -42,14 +57,22 @@ span.navigation {
 
 .tables-list {
     margin: 4em 0;
-    span.navigation {
+    span.header-with-link {
         margin-top: 1.5em; 
+        @media (min-width: 768px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
     }
 }
 
 .kip-menu {
-    max-width: 30em;
     margin-left: 2em;
+    margin-right: 1em;
+    @media (min-width: 768px) {
+        max-width: 30em;
+    }
     .link-to::after{
       content: '';
       height: 1.5em;
@@ -81,12 +104,6 @@ h3.popover-header {
 }
 
 //REDEFINING COLLAPSE Style, TODO: check it in kth-style
-$black: #000000;
-
-// White
-$white: #ffffff;
-
-$light-grey: #d4d4d4;
 
 .card.collapsible.blue {
     margin-top: 1em;
@@ -114,15 +131,12 @@ $light-grey: #d4d4d4;
 .card.collapsible.blue.course-plans {
     margin-top: 0 !important;
     margin-bottom: 1.5em;
+    margin-left: 1em;
     @media (min-width: 768px){
         margin-left: 10em;
     }
     div.kursplan-bordered-list {
-        border: 1px solid $light-grey;
-        border-radius: 0.25rem;
-        border-top: 0;
-        padding-top: 1em;
-        padding-bottom: 1em;
+        @extend %bordered-area;
         p {
             margin-bottom: 0;
         }
@@ -131,9 +145,7 @@ $light-grey: #d4d4d4;
 .card.collapsible.blue.table-for-round {
     width: 100%;
     div.bordered-table {
-        border: 1px solid $light-grey;
-        border-radius: 0.25rem;
-        border-top: 0;
+        @extend %bordered-area;
         margin-bottom: 1.5em;
         padding: 0 .5em .5em .7em;
     }
