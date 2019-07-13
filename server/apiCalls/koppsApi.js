@@ -63,6 +63,9 @@ const filteredKoppsData = async (courseCode, lang) => {
     log.error("Error while trying to filter data from KOPPS", {error})
     return {
       course_code: courseCode.toUpperCase(),
+      course_title: '',
+      course_syllabus_valid_years: [],
+      course_credits: '',
       apiError: true,
       lang
     }
