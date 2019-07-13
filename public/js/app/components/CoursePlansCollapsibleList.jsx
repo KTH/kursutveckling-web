@@ -17,9 +17,8 @@ class CoursePlansCollapsibleList extends Component {
   }
 
   render () {
-    const lang = this.props.lang
-    const translate = this.props.translate
-    const courseKoppsData = this.props.adminStore.courseKoppsData
+    const { lang, translate } = this.props
+    const { courseKoppsData } = this.props.adminStore
     const syllabusSemesterList = courseKoppsData.course_syllabus_valid_years
     const courseCode = courseKoppsData.course_code
     console.log("syllabusSemesterList", syllabusSemesterList)

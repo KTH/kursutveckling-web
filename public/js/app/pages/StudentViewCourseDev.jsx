@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { inject, observer} from 'mobx-react'
-import { Alert } from 'reactstrap'
 import i18n from '../../../../i18n'
 
 import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
-import CourseDevAllYears from '../components/CourseDevList'
+import CourseDevAllYears from '../components/CourseDevAllYears'
 
 import { KUTV_ADMIN_URL } from '../util/constants'
 
