@@ -12,7 +12,7 @@ const PopoverExamItem = ({header, shortAndLongExamStrArr, id}) => {
   )
 }
 
-const TableWithCourseData = ({translate, courseRoundData, popOverId}) => {
+const TableWithCourseData = ({translate, courseRoundData, examPopOverId}) => {
   function getShortAndLongStrForEachExam (examinationRoundsArr) {
     let shortAndLongExamStrArr = []
     if (examinationRoundsArr && examinationRoundsArr.length > 0) {
@@ -51,7 +51,7 @@ const TableWithCourseData = ({translate, courseRoundData, popOverId}) => {
             <td className='students-cell' data-label={translate.header_registrated}>
               {courseRoundData.registeredStudents}
             </td>
-            <td className='exam-cell' id={popOverId} data-label={translate.header_examination}>
+            <td className='exam-cell' id={examPopOverId} data-label={translate.header_examination}>
               {shortAndLongExamStrArr.map((shortAndLongTextStr, index) => <p key={index}>{shortAndLongTextStr[0]}</p>)}
               <p><i>{translate.popover_more}</i></p>
             </td>
@@ -64,7 +64,7 @@ const TableWithCourseData = ({translate, courseRoundData, popOverId}) => {
           </tr>
         </tbody>
       </Table>
-      <PopoverExamItem header={translate.header_examination} shortAndLongExamStrArr={shortAndLongExamStrArr} id={popOverId} />
+      <PopoverExamItem header={translate.header_examination} shortAndLongExamStrArr={shortAndLongExamStrArr} id={examPopOverId} />
     </span>
   )
 }

@@ -21,7 +21,7 @@ class CourseDevelopmentForEachCourseRound extends Component {
     const courseRoundData = this.props.courseRoundObj
     console.log('courseRoundData', courseRoundData)
     const { translate, courseAnalysDataId } = this.props
-    const popOverId = 'exam' + courseAnalysDataId // Examination expandera
+    const examPopOverId = 'exam' + courseAnalysDataId // Examination expandera
 
     return (
       <div className='card collapsible blue table-for-round'>
@@ -38,7 +38,7 @@ class CourseDevelopmentForEachCourseRound extends Component {
             
           <TableWithCourseData translate={translate} 
             courseRoundData={courseRoundData}
-            popOverId={popOverId}
+            examPopOverId={examPopOverId}
           />
 
           <CollapseExtraInfo translate={translate}
