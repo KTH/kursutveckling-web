@@ -9,41 +9,42 @@ import CourseDevAllYears from '../components/CourseDevList'
 
 import { KUTV_ADMIN_URL } from '../util/constants'
 
+const IntroText = ({translate, courseCode, lang}) => {
+  return (
+    <span className="intro-text">
+      <p>{translate.info_text}</p>
+      <p> {translate.info_admin_text}
+        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}&serv=kutv`}>{translate.link_to_course_dev}</a>
+      </p>
+    </span>
+  )
+}
+
 @inject(['adminStore']) @observer
 class StudentViewCourseDev extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      errMsg: ''
     }
   }
 
   render () {
-    const { courseKoppsData } = this.props.adminStore
-    const { analysisData } = this.props.adminStore
-    const lang = courseKoppsData.lang === 'en' ? 0 : 1
+    const { courseKoppsData, analysisData } = this.props.adminStore
+    const courseKoppsDataLang = courseKoppsData.lang
     const courseCode = courseKoppsData.course_code
-    const { pageTitles, tableHeaders} = i18n.messages[lang]
+    const { pageTitles, tableHeaders} = i18n.messages[courseKoppsDataLang === 'en' ? 0 : 1]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
         {/* ---COURSE TITEL--- */}
         <CourseTitle key='title'
           courseKoppsData={courseKoppsData}
-          pageTitle={this.state.enteredEditMode ? pageTitles.course_dev_title : pageTitles.course_dev_title}
-          language={courseKoppsData.lang}
+          pageTitle={pageTitles.course_dev_title}
+          language={courseKoppsDataLang}
           />
-        <KipLinkNav courseCode={courseCode} lang={courseKoppsData.lang} translate={pageTitles} />
-
-        <span className="intro-text">
-          <p>{pageTitles.info_text}</p>
-          <p> {pageTitles.info_admin_text}
-            <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${courseKoppsData.lang}&serv=kutv`}>{pageTitles.link_to_course_dev}</a>
-          </p>
-        </span>
-
-        {this.state.errMsg ? <Alert color='info'><p>{this.state.errMsg}</p></Alert> : ''}
-        <CourseDevAllYears courseCode={courseCode} koppsData={courseKoppsData} allYearsObj={analysisData} translate={tableHeaders}/>
+        <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={courseKoppsDataLang} translate={pageTitles} />
+        <IntroText  key='intro-text' courseCode={courseCode} lang={courseKoppsDataLang} translate={pageTitles}/>
+        <CourseDevAllYears key='list-of-course-data-for-several-years' koppsData={courseKoppsData} allYearsAnalysisDataObj={analysisData} translate={tableHeaders}/>
       </div>
     )
   }
