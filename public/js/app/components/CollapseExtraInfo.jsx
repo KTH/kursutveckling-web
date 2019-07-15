@@ -1,33 +1,41 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 
-const ExtraKoppsInfo = ({translate, courseRoundData}) => {
+const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
   return (
     <span>
-      <p><b>{translate.header_examination_comment}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.commentExam}}></p>
+      {
+        ['commentExam', 'programmeCodes', 'analysisName'].map((apiName, index) =>
+          <span key={index}>
+            <p><b>{translate[apiName].header}</b></p>
+            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj[apiName]}}></p>
+          </span>
+        )
+      }
+      {/* <p><b>{translate.header_examination_comment}</b></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.commentExam}}></p>
       <p><b>{translate.header_programs}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.programmeCodes}}></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.programmeCodes}}></p>
       <p><b>{translate.header_rounds}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundData.analysisName}}></p>
+      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.analysisName}}></p> */}
     </span>
   )
 }
-const ExtraDatesAndComment = ({translate, courseRoundData}) => {
+const ExtraDatesAndComment = ({translate, courseRoundObj}) => {
   return (
     <span>
       <p><b>{translate.header_publishing_dates}</b></p>
-      <p>{translate.date_first_published}:&nbsp;{courseRoundData.publishedDate}</p>
-      <p>{translate.date_last_change}:&nbsp;
-      {courseRoundData.changedAfterPublishedDate && courseRoundData.changedAfterPublishedDate !== ''
-        ? courseRoundData.changedAfterPublishedDate
+      <p>{translate.date_first_published}:&nbsp;{courseRoundObj.publishedDate}</p>
+      <p>{translate.changedAfterPublishedDate}:&nbsp;
+      {courseRoundObj.changedAfterPublishedDate && courseRoundObj.changedAfterPublishedDate !== ''
+        ? courseRoundObj.changedAfterPublishedDate
         : <i>{translate.no_date_last_changed}</i>
       }
       </p>
-      <p>{translate.header_analysis_edit_comment}:</p>
-      <p>{courseRoundData.commentChange === ''
+      <p>{translate.commentChange}:</p>
+      <p>{courseRoundObj.commentChange === ''
           ? '  -  '
-          : courseRoundData.commentChange
+          : courseRoundObj.commentChange
           }
       </p>
     </span>
@@ -43,9 +51,7 @@ class CollapseExtraInfo extends Component {
     this.setState(state => ({collapseExtraInfo: !state.collapseExtraInfo}))
   }
   render () {
-    const label = this.props.label
-    const courseRoundData = this.props.courseRoundData
-    const translate = this.props.translate
+    const { courseRoundObj, label, translate } = this.props
     return (
       <div className='card collapsible rubric-list white' >
         <span className='card-header info-rubric' role='tab' tabIndex='0' onClick={this.toggleHeader}>
@@ -53,8 +59,8 @@ class CollapseExtraInfo extends Component {
         </span>
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
           <div className='card-body col extra-info'>
-            <ExtraKoppsInfo translate={translate} courseRoundData={courseRoundData} />
-            <ExtraDatesAndComment translate={translate} courseRoundData={courseRoundData} />
+            <ExtraKoppsInfo translate={translate.extra_kopps_info} courseRoundObj={courseRoundObj} />
+            <ExtraDatesAndComment translate={translate.extra_dates_and_comments} courseRoundObj={courseRoundObj} />
           </div>
         </Collapse>
       </div>
