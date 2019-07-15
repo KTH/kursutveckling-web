@@ -18,31 +18,29 @@ class CourseDevelopmentForEachCourseRound extends Component {
   }
 
   render () {
-    const courseRoundData = this.props.courseRoundObj
-    console.log('courseRoundData', courseRoundData)
-    const { translate, courseAnalysDataId } = this.props
-    const examPopOverId = 'exam' + courseAnalysDataId // Examination expandera
+    const { courseRoundObj, translate } = this.props
+    const courseAnalysDataId = courseRoundObj._id
+    console.log('courseRoundData', courseRoundObj)
 
     return (
-      <div className='card collapsible blue table-for-round'>
-        <span className='table-title card-header' role='tab' tabIndex='0' onClick={this.toggleRound}>
-          <a id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundData.analysisName}</a>
+      <div className='card collapsible blue course-data-for-round'>
+        <span className='course-data-title card-header' role='tab' tabIndex='0' onClick={this.toggleRound}>
+          <a id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundObj.analysisName}</a>
         </span>
         {/*  */}
         <Collapse className='bordered-table' isOpen={this.state.collapse} toggler={'#' + courseAnalysDataId}>
           <SyllabusPmAnalysLinks translate={translate} 
-            courseRoundData={courseRoundData} 
+            courseRoundObj={courseRoundObj} 
             storageUri={this.props.adminStore.browserConfig.storageUri} 
             koppsData={this.props.adminStore.courseKoppsData}
           />
             
-          <TableWithCourseData translate={translate} 
-            courseRoundData={courseRoundData}
-            examPopOverId={examPopOverId}
+          <TableWithCourseData translate={translate.table_headers_with_popup} 
+            courseRoundObj={courseRoundObj}
           />
 
           <CollapseExtraInfo translate={translate}
-            courseRoundData={courseRoundData}
+            courseRoundObj={courseRoundObj}
             label={courseAnalysDataId} 
           />
         </Collapse>

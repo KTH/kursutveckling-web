@@ -22,7 +22,7 @@ const CourseDevAllRoundsForEachYear = ({oneYearAnalysisDataArrOfObj, koppsData, 
               {translate.header_main_edit}
             </a>
           </p>
-          <CourseDevelopmentForEachCourseRound courseRoundObj={eachRoundObj} courseAnalysDataId={eachRoundObj._id} translate={translate} />
+          <CourseDevelopmentForEachCourseRound courseRoundObj={eachRoundObj} translate={translate} />
         </span>
       )
     }
