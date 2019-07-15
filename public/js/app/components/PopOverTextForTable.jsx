@@ -13,12 +13,9 @@ export const PopoverExamItem = ({examShortAndLongStrArr, id}) => {
 
 export const PopOverTextForTableHeaders = ({translate, columnsArr, popOverId}) => {
   return columnsArr.map((colName, index) =>
-    <UncontrolledPopover trigger='click' placement='top' target={popOverId + index} key={index}>
-      {console.log('translate[colName].header', translate[colName].header)}
+    <UncontrolledPopover trigger='click' placement='top' target={popOverId + index} key={index} className='header-popup'>
       <PopoverHeader>{translate[colName].header}</PopoverHeader>
       <PopoverBody>
-      {console.log('translate[colName].popoverText', translate[colName].popoverText)}
-
         {translate[colName].popoverText}
       </PopoverBody>
     </UncontrolledPopover>
