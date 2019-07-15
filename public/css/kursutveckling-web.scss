@@ -6,6 +6,8 @@ $white: #ffffff;
 
 $light-grey: #d4d4d4;
 
+$dark-grey: #65656c;
+
 %bordered-area {
     border: 1px solid $light-grey;
     border-radius: 0.25rem;
@@ -105,22 +107,22 @@ h3.popover-header {
 
 //Icon for table headers
 span.table-for-each-round > table.table > thead > tr {
-    th {
-        &:after {
-            content: '';
-            height: 1.3em;
-            width: 1.3em;
-            display: inline-block;
-            margin: .5em .4em .6em .4em;
-            vertical-align: middle;
-            //@at-rootbackground: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
-            // background: url(../img/table-modal.svg) no-repeat;    
-            // background: url('./table-modal.svg') no-repeat;
-            // background: url('../../dist/table-modal.svg') no-repeat;
-
-        }
+    th:after {
+        content: '';
+        border: solid .8px $white;
+        border-radius: 0.6em;
+        margin-left: .2em;
+        height: 1.2em; 
+        width: 1.2em;
+        display: inline-block;
+        vertical-align: middle;
+        background: center / 1.1em auto no-repeat url(https://app.kth.se/style/kth-style/img/kth-style/icons/modal-info.svg);
+        filter: grayscale(1) brightness(88%) contrast(2);
     }
+}
 
+.header-popup {
+    border: solid 1px $dark-grey;
 }
 
 //REDEFINING COLLAPSE Style, TODO: check it in kth-style
@@ -134,20 +136,6 @@ span.table-for-each-round > table.table > thead > tr {
         display: flex;
         justify-content: space-between;
     }
-    // table.table > thead > th {
-    //     &:after {
-    //         content: '';
-    //         height: 1.3em;
-    //         width: 1.3em;
-    //         display: inline-block;
-    //         margin: .5em .4em .6em .4em;
-    //         vertical-align: middle;
-    //         background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
-    //         //background: url(../img/table-modal.svg) no-repeat;    
-              //  background: url('../../dist/table-modal.svg') no-repeat;
-
-    //     }
-    // }
 }
 
 .card.collapsible.blue.course-plans {
@@ -189,33 +177,33 @@ span.right-links {
 /* ['responsibles', 'examiners', 'registeredStudents', 'examShortAndLongStrArr', 'examinationGrade', 'alterationText']*/
 @media (min-width: 768px) {
     .responsibles, .examiners {
-        min-width: 3em;
-        max-width: 6em;
+        min-width: 9em;
+        max-width: 12em;
     }
     .examShortAndLongStrArr {
-        min-width: 3em;
-        max-width: 5em;
+        min-width: 9em;
+        max-width: 9em;
     }
     .registeredStudents {
-        min-width: 2em;
-        max-width: 4em;
+        min-width: 8em;
+        max-width: 8em;
     }
     .examinationGrade {
-        min-width: 2em;
-        max-width: 3.5em;
+        min-width: 7em;
+        max-width: .5em;
     }
 }
 
 a.pdf-link{
     margin: 0 1.5em 0 1em;
     &:before {
+        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
         content: '';
+        display: inline-block;
         height: 1.3em;
         width: 1.3em;
-        display: inline-block;
         margin: .5em .4em .6em .4em;
         vertical-align: middle;
-        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
     }
 }
 
@@ -284,9 +272,9 @@ and also iPads specifically.
         content: attr(data-label);
         position: absolute;
         // color: #fff;
-        // background-color: #65656c;
+        // background-color: $dark-grey;
         font-weight: 500;
-        // border-bottom: 1px solid #65656c; 
+        // border-bottom: 1px solid $dark-grey; 
 		/* Top/left values mimic padding */
 		top: 6px;
 		left: 6px;
@@ -296,4 +284,3 @@ and also iPads specifically.
 		white-space: normal;
 	}
 }
-

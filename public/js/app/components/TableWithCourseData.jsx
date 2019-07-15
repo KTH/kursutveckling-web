@@ -33,7 +33,7 @@ const TableWithCourseData = ({translate, courseRoundObj}) => {
         <thead>
           <tr>
             {orderedColumns.map((apiColName, index) =>
-              <th id={popOverId + index} key={index}>
+              <th id={popOverId + index} key={index} className={apiColName}>
                 {translate[apiColName].header}
               </th>
             )}
