@@ -39,29 +39,36 @@ module.exports = {
     page_course_programme: 'COURSE AND PROGRAMME DIRECTORY'
   },
   tableHeaders: {
-    date_first_published: 'Published first time',
-    date_last_change: 'Last changed',
-    header_publishing_dates: 'Published date',
     header_course_round: 'Course round',
     header_main_edit: 'Change',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata',
-    header_programs: 'Obligatory for a list of programs',
-    header_rounds: 'Course rounds which are included in...',
-    header_examiners: 'Examinator',
-    header_examination: 'Examination',
-    header_examination_comment: 'Comments to examination',
-    header_examination_grade: 'Result',
-    header_responsibles: 'Course responsible',
-    header_registrated: 'Students',
-    header_course_changes_comment: 'Changes introduced ...',
-    header_analysis_edit_comment: 'Comments to done changes',
+    table_headers_with_popup: {
+      examiners: {header: 'Examinator', popoverText: ''},
+      examShortAndLongStrArr: {header: 'Examination', popoverText: ''},
+      alterationText: {header: 'Changes introduced ...', popoverText: ''},
+      examinationGrade: {header: 'Result', popoverText: 'Resultat i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'},
+      responsibles: {header: 'Course responsible', popoverText: ''},
+      registeredStudents: {header: 'Students', popoverText: 'Antal reg. studenter'},
+      popover_more: 'More...'
+    },
+    extra_kopps_info: {
+      commentExam: {header: 'Comments to examination', popoverText: ''},
+      programmeCodes: {header: 'Obligatory for a list of programs', popoverText: ''},
+      analysisName: {header: 'Course rounds which are included in...', popoverText: ''}
+    },
+    extra_dates_and_comments: {
+      header_publishing_dates: 'Published date',
+      publishedDate: 'Published first time',
+      changedAfterPublishedDate: 'Last changed',
+      commentChange: 'Comments to done changes',
+      no_date_last_changed: 'no changes since first publishing'
+    },
     header_more_info: 'More information',
     link_syllabus: 'Course plan',
     link_analysis: 'Course analys',
     link_pm: 'Course-PM',
-    no_date_last_changed: 'no changes since first publishing',
     no_course_analys: 'Course analys has not been filled in yet',
-    popover_more: 'More...',
+    popover_more_info: 'More information',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
@@ -79,32 +86,15 @@ module.exports = {
     link_to_course_dev: ' publish course data and course analys.',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
-      success: 'New version of course analys and data has been published.',
-      over_text_limit: 'The text can consist of no more than 1 500 chars',
-      over_html_limit: 'HTML texten should be less than 10 000 chars',
-      api_error: 'Failed to save text due to technical issues. Copy text and try again later',
       kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'
     },
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
-    }
-  },
-  courseDevLabels: {
-    label_course_dev_info: 'You can look at the development of course...',
-    label_max_number_letters: 'The maximum amount of signs is 1500.',
-    label_left_number_letters: 'Left to use:',
-    label_en: 'English text',
-    label_sv: 'Swedish text',
-    changed_by: 'Last changed by user with kthId:',
-    graph: 'Graphs for course development',
+    },
     altLabel: {
       start_link_back: 'To course information page',
       button_cancel: 'Cancel and go back to admin start page'
     }
-  },
-  courseRoundInformation: {
-    round_teacher: 'Teacher',
-    round_tutoring_language: 'Language of instruction'
   }
 }

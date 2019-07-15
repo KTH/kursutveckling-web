@@ -41,27 +41,33 @@ module.exports = {
   tableHeaders: {
     header_main_edit: 'Ändra',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata',
-    date_first_published: 'Publicerad första gången',
-    date_last_change: 'Senaste ändrad',
-    header_publishing_dates: 'Datum för publicering',
     header_course_round: 'Kursomgång',
-    header_programs: 'Obligatorisk inom program',
-    header_rounds: 'Kurstillfällen som ingår i kursomgång',
-    header_examiners: 'Examinator',
-    header_examination: 'Examination',
-    header_examination_comment: 'Kommentar till examination',
-    header_examination_grade: 'Resultat',
-    header_responsibles: 'Kursansvarig',
-    header_registrated: 'Studenter',
-    header_course_changes_comment: 'Förändringar som har införts till den här kursomgången',
-    header_analysis_edit_comment: 'Kommentar till gjorda ändringar',
+    table_headers_with_popup: {
+      examiners: {header: 'Examinator', popoverText: ''},
+      examShortAndLongStrArr: {header: 'Examination', popoverText: ''},
+      alterationText: {header: 'Förändringar som har införts till den här kursomgången', popoverText: ''},
+      examinationGrade: {header: 'Resultat', popoverText: 'Resultat i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'},
+      responsibles: {header: 'Kursansvarig', popoverText: ''},
+      registeredStudents: {header: 'Studenter', popoverText: 'Antal reg. studenter'},
+      popover_more: 'Mer...'
+    },
+    extra_kopps_info: {
+      commentExam: {header: 'Kommentar till examination', popoverText: ''},
+      programmeCodes: {header: 'Obligatorisk inom program', popoverText: ''},
+      analysisName: {header: 'Kurstillfällen som ingår i kursomgång', popoverText: ''}
+    },
+    extra_dates_and_comments: {
+      header_publishing_dates: 'Datum för publicering',
+      publishedDate: 'Publicerad första gången',
+      changedAfterPublishedDate: 'Senaste ändrad',
+      commentChange: 'Kommentar till gjorda ändringar',
+      no_date_last_changed: 'ej ändrad efter publicering'
+    },
     header_more_info: 'Mer information',
     link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
-    no_date_last_changed: 'ej ändrad efter publicering',
     no_course_analys: 'Kursutveckling saknas',
-    popover_more: 'Mer...',
     course_short_semester: {
       1: 'VT ',
       2: 'HT '
@@ -81,32 +87,15 @@ module.exports = {
     link_to_course_dev: ' publicera kursdata och kursanalys.',
     no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
-      success: 'Ny version av kursutvecklingsinformation har publicerats på kursinformationssidan',
-      over_text_limit: 'Texten får bara bestå av 1 500 tecken',
-      over_html_limit: 'HTML texten får bara bestå av 10 000 tecken',
-      api_error: 'Det gick inte att spara texten på grund av teknisk fel. Kopiera texten och försök igen senare',
       kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas'
     },
     course_short_semester: {
       1: 'VT ',
       2: 'HT '
-    }
-  },
-  sellingTextLabels: {
-    label_course_dev_info: 'Du kan här analysera kursutveckling av kursen...',
-    label_max_number_letters: 'Maximalt antal tecken är 1500.',
-    label_left_number_letters: 'Antal tecken kvar att använda:',
-    label_en: 'Engelsk text',
-    label_sv: 'Svensk text',
-    changed_by: 'Senast ändrad av:',
-    graph: 'Grapher för kursutveckling',
+    },
     altLabel: {
       start_link_back: 'Till kursinformationssida',
       button_cancel: 'Avbryt och gå till admin startsida'
     }
-  },
-  courseRoundInformation: {
-    round_teacher: 'Lärare',
-    round_tutoring_language: 'Undervisningsspråk'
   }
 }
