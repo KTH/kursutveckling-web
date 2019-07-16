@@ -42,6 +42,11 @@ module.exports = {
     header_main_edit: 'Ändra',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata',
     header_course_round: 'Kursomgång',
+    alt_header_main_publish_new: 'Gå till adminsida för att Publicera ny kursanalys och kursdata',
+    alt_header_main_edit: 'Gå till adminsida för att andra den kursanalysen och kursdata edit this course analysis with course data',
+    alt_link_syllabus: 'Till gällande Kursplan',
+    alt_link_analysis: 'Till gällande Kursanalys',
+    alt_link_pm: 'Till gällande Kurs-PM',
     table_headers_with_popup: {
       examiners: {header: 'Examinator', popoverText: ''},
       examShortAndLongStrArr: {header: 'Examination', popoverText: ''},
@@ -75,6 +80,8 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'Om kursen',
+    alt_label_syllabus_link: 'Visa den kursplans pdf:en som gäller för den perioden',
+    alt_link_to_course_dev: 'Gå till adminsida för att Publicera ny kursanalys och kursdata',
     course_dev_title: 'Kursens utveckling och historik',
     course_dev_title_alt: 'Till Kursens utveckling och historik vy',
     course_info_title: 'Kursinformation',

@@ -41,7 +41,12 @@ module.exports = {
   tableHeaders: {
     header_course_round: 'Course round',
     header_main_edit: 'Change',
-    header_main_publish_new: 'Publicera ny kursanalys och kursdata',
+    header_main_publish_new: 'Publish new course analysis with kursdata',
+    alt_header_main_publish_new: 'Go to the admin page to Publicera ny kursanalys och kursdata',
+    alt_header_main_edit: 'Go to the admin page to edit this course analysis with course data',
+    alt_link_syllabus: 'Open a new tab to show the valid Course plans pdf',
+    alt_link_analysis: 'Open a new tab to show the valid Course analys pdf',
+    alt_link_pm: 'Open a new tab to show the valid Course-PM pdf',
     table_headers_with_popup: {
       examiners: {header: 'Examinator', popoverText: ''},
       examShortAndLongStrArr: {header: 'Examination', popoverText: ''},
@@ -76,6 +81,8 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
+    alt_label_syllabus_link: 'Show a course plan which is valid for this period',
+    alt_link_to_course_dev: 'To admin page to publish new course data and course analys.',
     course_dev_title: 'Course progress and history',
     course_info_title: 'Course information',
     course_admin_title: 'Administrate',
