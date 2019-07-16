@@ -25,7 +25,7 @@ const ExtraDatesAndComment = ({translate, courseRoundObj}) => {
   return (
     <span>
       <p><b>{translate.header_publishing_dates}</b></p>
-      <p>{translate.date_first_published}:&nbsp;{courseRoundObj.publishedDate}</p>
+      <p>{translate.publishedDate}:&nbsp;{courseRoundObj.publishedDate}</p>
       <p>{translate.changedAfterPublishedDate}:&nbsp;
       {courseRoundObj.changedAfterPublishedDate && courseRoundObj.changedAfterPublishedDate !== ''
         ? courseRoundObj.changedAfterPublishedDate

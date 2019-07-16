@@ -23,9 +23,9 @@ const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, koppsData
 
   return (
     <span className='right-links' >
-      <ActiveOrDisavledLink href={syllabusHref} linkTitle={translate.link_syllabus} validFrom={syllabusPublishedDate} />
-      <ActiveOrDisavledLink href='https://kth.box.com/s/i9xu34n5conqdoj7re81bmcto20wavib' linkTitle={translate.link_pm} validFrom='2019-05-20' />
-      <ActiveOrDisavledLink href={analysisLink} linkTitle={translate.link_analysis} validFrom={pdfAnalysisDate} />
+      <ActiveOrDisavledLink href={syllabusHref} linkTitle={translate.link_syllabus} alt={translate.alt_link_syllabus} validFrom={syllabusPublishedDate} />
+      <ActiveOrDisavledLink href='https://kth.box.com/s/i9xu34n5conqdoj7re81bmcto20wavib' linkTitle={translate.link_pm} alt={translate.alt_link_pm} validFrom='2019-05-20' />
+      <ActiveOrDisavledLink href={analysisLink} linkTitle={translate.link_analysis} alt={translate.alt_link_analysis} validFrom={pdfAnalysisDate} />
     </span>
     )
 }

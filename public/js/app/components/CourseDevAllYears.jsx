@@ -11,14 +11,15 @@ const CourseDevAllRoundsForEachYear = ({oneYearAnalysisDataArrOfObj, koppsData, 
     <span>
       <span className='header-with-link'>
         <h3>{year}</h3>
-        <a href={linkToCreateNew}>{translate.header_main_publish_new}</a>
+        <a href={linkToCreateNew} alt={translate.alt_header_main_publish_new}>{translate.header_main_publish_new}</a>
       </span>
       {oneYearAnalysisDataArrOfObj.length === 0
       ? <p>{translate.no_course_analys}</p>
       : oneYearAnalysisDataArrOfObj.map((eachRoundObj, index) =>
         <span className='table-for-year' key={index}>
           <p className='right-link'>
-            <a href={`${KUTV_ADMIN_URL}${eachRoundObj._id}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}>
+            <a href={`${KUTV_ADMIN_URL}${eachRoundObj._id}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
+              alt={translate.alt_header_main_edit}>
               {translate.header_main_edit}
             </a>
           </p>

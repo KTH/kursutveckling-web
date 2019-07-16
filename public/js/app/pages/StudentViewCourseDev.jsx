@@ -13,7 +13,7 @@ const IntroText = ({translate, courseCode, lang}) => {
     <span className="intro-text">
       <p>{translate.info_text}</p>
       <p> {translate.info_admin_text}
-        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}&serv=kutv`}>{translate.link_to_course_dev}</a>
+        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}&serv=kutv`} alt={translate.alt_link_to_course_dev}>{translate.link_to_course_dev}</a>
       </p>
     </span>
   )

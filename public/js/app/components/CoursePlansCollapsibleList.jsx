@@ -36,7 +36,7 @@ class CoursePlansCollapsibleList extends Component {
                       const fromSemester = semesterArr[index+1]
                       return (
                         <p key={index}>
-                          <a
+                          <a alt={translate.alt_label_syllabus_link}
                           href={`${SYLLABUS_URL}${courseCode}-${fromSemester}.pdf?lang=${lang}`}
                           key={index}
                           id={fromSemester}
