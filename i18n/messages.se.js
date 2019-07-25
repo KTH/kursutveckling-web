@@ -87,6 +87,7 @@ module.exports = {
     course_info_title: 'Kursinformation',
     course_info_title_alt: 'Till Kursinformation vy',
     course_admin_title: 'Administrera',
+    course_admin_title_alt: 'Administrera "Om kursen"',
     header_syllabuses: 'Samtliga kursplaner',
     info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
     info_admin_text: 'Ansvariga för kursen kan få en överblick över kursens utveckling och ansvarar för att',
