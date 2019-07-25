@@ -12,12 +12,6 @@ const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
           </span>
         )
       }
-      {/* <p><b>{translate.header_examination_comment}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.commentExam}}></p>
-      <p><b>{translate.header_programs}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.programmeCodes}}></p>
-      <p><b>{translate.header_rounds}</b></p>
-      <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj.analysisName}}></p> */}
     </span>
   )
 }
