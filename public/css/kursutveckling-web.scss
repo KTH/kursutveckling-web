@@ -75,6 +75,9 @@ span.navigation {
     @media (min-width: 768px) {
         max-width: 30em;
     }
+    h4 {
+        margin-top: 0;
+    }
     .link-to::after{
       content: '';
       height: 1.5em;
