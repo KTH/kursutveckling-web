@@ -29,6 +29,7 @@ $dark-grey: #65656c;
     margin-top: 20px;
     h1 {
         margin-bottom: 0;
+        margin-left: -.095em;
     }
     .alert {
         margin-left: 0;
@@ -70,7 +71,7 @@ span.navigation {
 }
 
 .kip-menu {
-    margin-left: 2em;
+    margin-left: 1.95em;
     margin-right: 1em;
     @media (min-width: 768px) {
         max-width: 30em;
@@ -89,7 +90,7 @@ span.navigation {
       transform: rotate(180deg);
     }
     td.admin-link {
-        margin-top: .2em;
+        padding-top: 1em;
     }
 }
 
