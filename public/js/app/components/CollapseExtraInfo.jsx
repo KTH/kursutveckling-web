@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
+import { PopOverTextForTableHeaders } from './PopOverTextForTable'
+
 
 const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
+  const popOverId = courseRoundObj._id
+  const orderedColumns = ['commentExam', 'programmeCodes', 'analysisName']
   return (
-    <span>
+    <span className='extra-kopps-info-from-kutv-api'>
       {
-        ['commentExam', 'programmeCodes', 'analysisName'].map((apiName, index) =>
-          <span key={index}>
-            <p><b>{translate[apiName].header}</b></p>
+        orderedColumns.map((apiName, index) =>
+          <span key={index} className={apiName}>
+            <p id={popOverId + index} key={'header-for-' + apiName}><b>{translate[apiName].header}</b></p>
             <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj[apiName]}}></p>
           </span>
         )

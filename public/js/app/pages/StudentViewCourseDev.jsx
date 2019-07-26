@@ -6,15 +6,11 @@ import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
 import CourseDevAllYears from '../components/CourseDevAllYears'
 
-import { KUTV_ADMIN_URL } from '../util/constants'
-
-const IntroText = ({translate, courseCode, lang}) => {
+const IntroText = ({translate}) => {
   return (
     <span className="intro-text">
       <p>{translate.info_text}</p>
-      <p> {translate.info_admin_text}
-        <a href={`${KUTV_ADMIN_URL}${courseCode}?l=${lang}&serv=kutv`} alt={translate.alt_link_to_course_dev}>{translate.link_to_course_dev}</a>
-      </p>
+      <p> {translate.info_admin_text}</p>
     </span>
   )
 }
@@ -42,7 +38,7 @@ class StudentViewCourseDev extends Component {
           language={courseKoppsDataLang}
           />
         <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={courseKoppsDataLang} translate={pageTitles} />
-        <IntroText  key='intro-text' courseCode={courseCode} lang={courseKoppsDataLang} translate={pageTitles}/>
+        <IntroText  key='intro-text' translate={pageTitles}/>
         <CourseDevAllYears key='list-of-course-data-for-several-years' koppsData={courseKoppsData} allYearsAnalysisDataObj={analysisData} translate={tableHeaders}/>
       </div>
     )
