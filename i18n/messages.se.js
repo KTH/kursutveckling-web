@@ -71,7 +71,7 @@ module.exports = {
     link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
-    no_course_analys: 'Kursutveckling saknas',
+    no_course_analys: 'Det finns inga publicerade kursanalyser och kursdata',
     course_short_semester: {
       1: 'VT ',
       2: 'HT '

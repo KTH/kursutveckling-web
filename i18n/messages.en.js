@@ -71,7 +71,7 @@ module.exports = {
     link_syllabus: 'Course plan',
     link_analysis: 'Course analys',
     link_pm: 'Course-PM',
-    no_course_analys: 'Course analys has not been filled in yet',
+    no_course_analys: 'Course analyses with course data is not available yet',
     popover_more_info: 'More information',
     course_short_semester: {
       1: 'Spring ',
