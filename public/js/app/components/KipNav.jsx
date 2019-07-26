@@ -13,7 +13,6 @@ const KipLinkNav = ({courseCode, translate, lang}) => { // courseCode, lang, sta
             <td colSpan='2'>
               <h4>{translate.about_course}</h4>
               <p>
-                {/* <a href={`/admin/kurser/kurs/edit/${courseCode}?l=${lang}`} alt={startCards.sellingText_btn} className='btn btn-primary'>{startCards.sellingText_btn}</a> */}
                 <a href={kursOmLink} alt={translate.course_info_title_alt}>{translate.course_info_title}</a>
               </p>
               <p>
