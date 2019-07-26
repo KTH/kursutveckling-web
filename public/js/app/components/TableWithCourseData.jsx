@@ -41,21 +41,20 @@ const TableWithCourseData = ({translate, courseRoundObj}) => {
         </thead>
         <tbody>
           <tr>
-            <TableStandardCells columnsArr={orderedColumns.slice(0,3)}
+            <TableStandardCells columnsArr={orderedColumns.slice(0, 3)}
               tableTitlesTranslation={translate}
               popOverId={popOverId} courseRoundData={courseRoundObj} />
-            <td className='examShortAndLongStrArr' id={'examShortAndLongStrArr'+popOverId} data-label={translate.examShortAndLongStrArr.header}>
+            <td className='examShortAndLongStrArr' id={'examShortAndLongStrArr' + popOverId} data-label={translate.examShortAndLongStrArr.header}>
               {examShortAndLongStrArr.map((shortAndLongTextStr, index) => <p key={index}>{shortAndLongTextStr[0]}</p>)}
-              <p><i>{translate.popover_more}</i></p>
             </td>
-            <TableStandardCells columnsArr={orderedColumns.slice(4,)}
+            <TableStandardCells columnsArr={orderedColumns.slice(4)}
               tableTitlesTranslation={translate}
-              popOverId={popOverId} courseRoundData={courseRoundObj} />  
+              popOverId={popOverId} courseRoundData={courseRoundObj} />
           </tr>
         </tbody>
       </Table>
-      <PopOverTextForTableHeaders columnsArr={orderedColumns} translate={translate} popOverId={popOverId}/>
-      <PopoverExamItem examShortAndLongStrArr={examShortAndLongStrArr} id={'examShortAndLongStrArr'+popOverId} />
+      <PopOverTextForTableHeaders columnsArr={orderedColumns} translate={translate} popOverId={popOverId} />
+      <PopoverExamItem examShortAndLongStrArr={examShortAndLongStrArr} id={'examShortAndLongStrArr' + popOverId} />
     </span>
   )
 }

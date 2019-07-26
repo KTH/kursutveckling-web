@@ -53,8 +53,7 @@ module.exports = {
       alterationText: {header: 'Changes introduced ...', popoverText: ''},
       examinationGrade: {header: 'Result', popoverText: 'Resultat i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'},
       responsibles: {header: 'Course responsible', popoverText: ''},
-      registeredStudents: {header: 'Students', popoverText: 'Antal reg. studenter'},
-      popover_more: 'More...'
+      registeredStudents: {header: 'Students', popoverText: 'Antal reg. studenter'}
     },
     extra_kopps_info: {
       commentExam: {header: 'Comments to examination', popoverText: ''},
