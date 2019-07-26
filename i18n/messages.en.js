@@ -41,37 +41,39 @@ module.exports = {
   tableHeaders: {
     header_course_round: 'Course round',
     header_main_edit: 'Change',
-    header_main_publish_new: 'Publish new course analysis with kursdata',
-    alt_header_main_publish_new: 'Go to the admin page to Publicera ny kursanalys och kursdata',
-    alt_header_main_edit: 'Go to the admin page to edit this course analysis with course data',
-    alt_link_syllabus: 'Open a new tab to show the valid Course plans pdf',
-    alt_link_analysis: 'Open a new tab to show the valid Course analys pdf',
-    alt_link_pm: 'Open a new tab to show the valid Course-PM pdf',
+    header_main_publish_new: 'Publish new course analysis with course data',
+    alt_header_main_publish_new: 'Go to the admin page to Publish new course analysis with kursdata',
+    alt_header_main_edit: 'Go to the admin page to Change published course analysis and course data',
+    alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
+    alt_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
+    alt_link_pm: 'Open a new tab to show the valid Course-memo pdf',
     table_headers_with_popup: {
-      examiners: {header: 'Examinator', popoverText: ''},
-      examShortAndLongStrArr: {header: 'Examination', popoverText: ''},
-      alterationText: {header: 'Changes introduced ...', popoverText: ''},
-      examinationGrade: {header: 'Result', popoverText: 'Resultat i % av aktiva (totalt) vid första ex-tillfället Examinationsgrad'},
-      responsibles: {header: 'Course responsible', popoverText: ''},
-      registeredStudents: {header: 'Students', popoverText: 'Antal reg. studenter'}
+      examiners: {header: 'Examiners', popoverText: 'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'},
+      examShortAndLongStrArr: {header: 'Examination', popoverText: 'Form of examinataion for the course offering.'},
+      alterationText: {header: 'Changes of the course before this course offering', popoverText: 'Summarized changes made to the course before this particular course offering.'},
+      examinationGrade: {header: 'Result', popoverText: 'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination. Graduation rate is calculated based on information fetched from Ladok.'},
+      responsibles: {header: 'Responsible', popoverText: 'All the course responsibles for the all the administrative course instances that are included in the course offering. Course responsibles are administrated in Kopps.'},
+      registeredStudents: {header: 'Students', popoverText: 'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering. Admitted students that have not been registered shall not be counted. Neither shall registered students that have been re-registered from a previous administrative course instance counted. Number of registered students is calculated based on information fetched from Ladok.'}
     },
     extra_kopps_info: {
-      commentExam: {header: 'Comments to examination', popoverText: ''},
-      programmeCodes: {header: 'Obligatory for a list of programs', popoverText: ''},
-      analysisName: {header: 'Course rounds which are included in...', popoverText: ''}
+      commentExam: {header: 'Examination comments', popoverText: 'Examination comments for the course offering examination.'},
+      programmeCodes: {header: 'Compulsory within programme', popoverText: ''},
+      analysisName: {header: 'Administrative course instances included in the course offering', popoverText: 'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'}
     },
     extra_dates_and_comments: {
       header_publishing_dates: 'Published date',
+      // alt_alla: 'It is possible to upload new versions of course analysis and course memos and rewrite changes to this course offering. Look at comments about the purpose of the new versions in this field',
       publishedDate: 'Published first time',
-      changedAfterPublishedDate: 'Last changed',
-      commentChange: 'Comments to done changes',
-      no_date_last_changed: 'no changes since first publishing'
+      changedAfterPublishedDate: 'Last time changed',
+      commentChange: 'Comments to changes in course data or course analysis after publishing',
+      no_date_last_changed: 'No changes since first published.'
     },
     header_more_info: 'More information',
     link_syllabus: 'Course plan',
     link_analysis: 'Course analys',
-    link_pm: 'Course-PM',
-    no_course_analys: 'Course analyses with course data is not available yet',
+    link_pm: 'Course memo',
+    no_course_analys: 'Course analyses with course data is not available yet.',
+    // no_pdf_document: 'not found',
     popover_more_info: 'More information',
     course_short_semester: {
       1: 'Spring ',
@@ -81,7 +83,6 @@ module.exports = {
   pageTitles: {
     about_course: 'About course',
     alt_label_syllabus_link: 'Show a course plan which is valid for this period',
-    alt_link_to_course_dev: 'To admin page to publish new course data and course analys.',
     course_dev_title: 'Course development and history',
     course_dev_title_alt: 'To Course development and history',
     course_info_title: 'Course information',
@@ -89,10 +90,9 @@ module.exports = {
     course_admin_title: 'Administrate',
     course_admin_title_alt: 'Administrate "About course"',
     header_syllabuses: 'All course syllabuses',
-    info_text: 'På denna ... ....',
-    info_admin_text: 'Ansvariga .......',
+    info_text: 'On this page, current and prospective students can access course data and course analyzes for previous rounds of the course to help to choose a course.',
+    info_admin_text: 'Course responsibles can get an overwiew over course development and are responsible to publish information about course development with course data',
     label_syllabus_link: 'Course syllabus',
-    link_to_course_dev: ' publish course data and course analys.',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'
