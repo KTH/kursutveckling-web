@@ -11,13 +11,15 @@
     "uri": "git+https://github.com/KTH/kursutveckling-web.git"
   },
   "scripts": {
-    "babel": "babel public/js/app -d dist/js ",
+    "babel-not-used": "babel public/js/app -d dist/js ",
     "vendor": "parcel build ./public/js/vendor.js",
     "test": "mocha test/unit/*.js",
     "codecheck": "standard",
     "docker": "npm install --development && npm run build && npm prune --production",
     "build": "NODE_ENV=production parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
-    "build-dev": "cross-env NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/img/* && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
+    "build-dev-no-minify": "NODE_ENV=development rm -rf dist && parcel build --no-minify ./public/js/app/app.jsx && npm run vendor && parcel watch ./public/js/app/app.jsx",
+    "build-dev": "NODE_ENV=development rm -rf ./dist && parcel build ./public/js/app/app.jsx && npm run vendor && parcel watch ./public/js/app/app.jsx",
+    "build-dev-old-gulp": "NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/img/* && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
   },
@@ -84,8 +86,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "kth-node-build-commons": "^3.0.3",
     "husky": "^1.3.1",
+    "kth-node-build-commons": "^3.0.3",
     "merge-stream": "^1.0.1",
     "mocha": "5.2.0",
     "mockery": "^2.1.0",
