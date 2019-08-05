@@ -90,6 +90,7 @@ module.exports = {
     header_syllabuses: 'Samtliga kursplaner',
     info_text: 'På denna sida kan nuvarande och presumtiva studenter ta del av kursdata och kursanalyser för tidigare kursomgångar för kursen för att hjälpa till vid kursval.',
     info_admin_text: 'Ansvariga för kursen kan få en överblick över kursens utveckling och ansvarar för att publicera kursdata och kursanalys.',
+    label_syllabus_link: 'Kursplan ',
     no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
       kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas.'

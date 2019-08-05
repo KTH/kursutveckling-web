@@ -92,7 +92,7 @@ module.exports = {
     header_syllabuses: 'All course syllabuses',
     info_text: 'On this page, current and prospective students can access course data and course analyzes for previous rounds of the course to help to choose a course.',
     info_admin_text: 'Course responsibles can get an overwiew over course development and are responsible to publish information about course development with course data',
-    label_syllabus_link: 'Course syllabus',
+    label_syllabus_link: 'Course syllabus ',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'
