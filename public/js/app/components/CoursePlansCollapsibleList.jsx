@@ -18,10 +18,7 @@ class CoursePlansCollapsibleList extends Component {
 
   render () {
     const { lang, translate } = this.props
-    const { courseKoppsData } = this.props.adminStore
-    const syllabusSemesterList = courseKoppsData.course_syllabus_valid_years
-    const courseCode = courseKoppsData.course_code
-    console.log("syllabusSemesterList", syllabusSemesterList)
+    const { courseCode, syllabusSemesterList } = this.props.adminStore.courseKoppsData
     return (
       <div className='card collapsible blue course-plans'>
         <span className='card-header' role='tab' tabIndex='0' onClick={this.toggleHeader}>

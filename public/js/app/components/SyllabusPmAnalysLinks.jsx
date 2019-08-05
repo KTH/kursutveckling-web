@@ -18,7 +18,7 @@ const ActiveOrDisavledLink = ({href, linkTitle, validFrom}) => {
 const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, koppsData}) => {
   const { pdfAnalysisDate, syllabusStartTerm, analysisFileName } = courseRoundObj
   const analysisLink = analysisFileName !== '' ? storageUri + analysisFileName : '#'
-  const syllabusHref = syllabusStartTerm ? `${SYLLABUS_URL}${koppsData.course_code}-${syllabusStartTerm}` : '#'
+  const syllabusHref = syllabusStartTerm ? `${SYLLABUS_URL}${koppsData.courseCode}-${syllabusStartTerm}` : '#'
   const syllabusPublishedDate = syllabusStartTerm ? `${translate.course_short_semester[syllabusStartTerm.toString().substring(4, 5)]} ${syllabusStartTerm.toString().substring(0, 4)}` : ''
 
   return (

@@ -3,10 +3,8 @@ import React from 'react'
 import { KUTV_ADMIN_URL } from '../util/constants'
 
 const CourseDevAllRoundsForEachYear = ({oneYearAnalysisDataArrOfObj, koppsData, year, translate}) => {
-  const koppsDataLang = koppsData.lang
-  const courseTitle = koppsData.courseTitle
-  const courseCredits = koppsData.courseCredits
-  const linkToCreateNew = `${KUTV_ADMIN_URL}${koppsData.courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
+  const { courseCode, courseTitle, courseCredits, koppsDataLang } = koppsData
+  const linkToCreateNew = `${KUTV_ADMIN_URL}${courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
   return (
     <span>
       <span className='header-with-link'>

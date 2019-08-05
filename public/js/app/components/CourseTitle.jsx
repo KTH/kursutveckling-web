@@ -8,23 +8,23 @@ class CourseTitle extends Component {
   render () {
     const title = this.props.courseKoppsData
     const pageTitle = this.props.pageTitle
-    const langIndex = this.props.language === 'en' ? 0 : 1
-    title.course_credits = title.apiError ? '' : title.course_credits !== EMPTY && title.course_credits.toString().indexOf('.') < 0 ? title.course_credits + '.0' : title.course_credits
+    const { koppsLangIndex, koppsDataLang } = title
+    title.courseCredits = title.apiError ? '' : title.courseCredits !== EMPTY && title.courseCredits.toString().indexOf('.') < 0 ? title.courseCredits + '.0' : title.courseCredits
     return (
       <div id='course-title' className='courseTitle col'>
         <h1>{pageTitle}</h1>
         {title.apiError
-          ? <h4><span property='aiiso:code'>{title.course_code}</span>
+          ? <h4><span property='aiiso:code'>{title.courseCode}</span>
             <span property='teach:courseTitle'>
               <Alert color='info' aria-live='polite'>
-                {i18n.messages[langIndex].pageTitles.alertMessages.kopps_api_down}
+                {i18n.messages[koppsLangIndex].pageTitles.alertMessages.kopps_api_down}
               </Alert>
             </span>
           </h4>
-          : <h4><span property='aiiso:code'>{title.course_code}</span>
-            <span property='teach:courseTitle'> {title.course_title}</span>
-            <span content={title.course_credits} datatype='xsd:decimal' property='teach:ects'>
-              &nbsp;{this.props.language === 'en' ? title.course_credits : title.course_credits.toString().replace('.', ',')}&nbsp;{this.props.language === 'en' ? 'credits' : 'hp'}
+          : <h4><span property='aiiso:code'>{title.courseCode}</span>
+            <span property='teach:courseTitle'> {title.courseTitle}</span>
+            <span content={title.courseCredits} datatype='xsd:decimal' property='teach:ects'>
+              &nbsp;{koppsDataLang === 'en' ? title.courseCredits : title.courseCredits.toString().replace('.', ',')}&nbsp;{koppsDataLang === 'en' ? 'credits' : 'hp'}
             </span>
           </h4>
         }

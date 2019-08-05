@@ -25,9 +25,8 @@ class StudentViewCourseDev extends Component {
 
   render () {
     const { courseKoppsData, analysisData } = this.props.adminStore
-    const courseKoppsDataLang = courseKoppsData.lang
-    const courseCode = courseKoppsData.course_code
-    const { pageTitles, tableHeaders} = i18n.messages[courseKoppsDataLang === 'en' ? 0 : 1]
+    const { courseCode, koppsDataLang } = courseKoppsData
+    const { pageTitles, tableHeaders} = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
 
     return (
       <div key='kursinfo-container' className='kursinfo-main-page col' >
@@ -35,9 +34,8 @@ class StudentViewCourseDev extends Component {
         <CourseTitle key='title'
           courseKoppsData={courseKoppsData}
           pageTitle={pageTitles.course_dev_title}
-          language={courseKoppsDataLang}
           />
-        <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={courseKoppsDataLang} translate={pageTitles} />
+        <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={koppsDataLang} translate={pageTitles} />
         <IntroText  key='intro-text' translate={pageTitles}/>
         <CourseDevAllYears key='list-of-course-data-for-several-years' koppsData={courseKoppsData} allYearsAnalysisDataObj={analysisData} translate={tableHeaders}/>
       </div>

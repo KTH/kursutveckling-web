@@ -45,7 +45,7 @@ function _staticRender(context, location) {
 
 async function _getCourseDevInfo (req, res, next) {
 
-  const courseCode = req.params.courseCode
+  const { courseCode } = req.params
   // const ldapUser = req.session.authUser ? req.session.authUser.username : 'null'
   const lang = language.getLanguage(res) || 'sv'
 
