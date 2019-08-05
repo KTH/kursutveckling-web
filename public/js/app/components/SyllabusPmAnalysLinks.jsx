@@ -15,13 +15,15 @@ const ActiveOrDisavledLink = ({ fileName, storageUri, linkTitle, alt, validFrom 
     )
 }
 
-const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri}) => {
+const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, lang}) => {
   const { courseCode, syllabusStartTerm,
     analysisFileName, pdfAnalysisDate,
     pmFileName, pdfPMDate } = courseRoundObj
   console.log('courseRoundObj', courseRoundObj) // TODO: REMOVE
-  const syllabusFileName = syllabusStartTerm ? `${courseCode}-${syllabusStartTerm}` : ''
-  const syllabusPublishedDate = syllabusStartTerm ? `${translate.course_short_semester[syllabusStartTerm.toString().substring(4, 5)]} ${syllabusStartTerm.toString().substring(0, 4)}` : ''
+  const syllabusFileName = syllabusStartTerm
+        ? `${courseCode}-${syllabusStartTerm}.pdf?lang=${lang}` : ''
+  const syllabusPublishedDate = syllabusStartTerm
+        ? `${translate.course_short_semester[syllabusStartTerm.toString().substring(4, 5)]} ${syllabusStartTerm.toString().substring(0, 4)}` : ''
 
   return (
     <span className='right-links' >

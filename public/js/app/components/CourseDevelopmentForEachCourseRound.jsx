@@ -19,6 +19,8 @@ class CourseDevelopmentForEachCourseRound extends Component {
 
   render () {
     const { courseRoundObj, translate } = this.props
+    const { koppsDataLang } = this.props.adminStore.courseKoppsData
+
     const courseAnalysDataId = courseRoundObj._id
     console.log('courseRoundData', courseRoundObj)
 
@@ -32,6 +34,7 @@ class CourseDevelopmentForEachCourseRound extends Component {
           <SyllabusPmAnalysLinks translate={translate} 
             courseRoundObj={courseRoundObj} 
             storageUri={this.props.adminStore.browserConfig.storageUri} 
+            lang={koppsDataLang}
           />
             
           <TableWithCourseData translate={translate.table_headers_with_popup} 
