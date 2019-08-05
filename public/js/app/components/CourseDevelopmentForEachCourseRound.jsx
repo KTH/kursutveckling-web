@@ -32,7 +32,6 @@ class CourseDevelopmentForEachCourseRound extends Component {
           <SyllabusPmAnalysLinks translate={translate} 
             courseRoundObj={courseRoundObj} 
             storageUri={this.props.adminStore.browserConfig.storageUri} 
-            koppsData={this.props.adminStore.courseKoppsData}
           />
             
           <TableWithCourseData translate={translate.table_headers_with_popup} 
