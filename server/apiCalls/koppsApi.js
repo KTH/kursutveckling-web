@@ -52,22 +52,24 @@ const filteredKoppsData = async (courseCode, lang) => {
   try {
     const courseObj = await koppsCourseData(courseCode)
     return {
-      course_code: courseCode.toUpperCase(),
-      course_title: isValidData(courseObj.course.title[lang]),
-      course_syllabus_valid_years: getListOfCoursePlanValidYearsPeriods(courseObj.termsWithCourseRounds),
-      course_credits: isValidData(courseObj.course.credits),
+      courseCode: courseCode.toUpperCase(),
+      courseTitle: isValidData(courseObj.course.title[lang]),
+      syllabusSemesterList: getListOfCoursePlanValidYearsPeriods(courseObj.termsWithCourseRounds),
+      courseCredits: isValidData(courseObj.course.credits),
       apiError: false,
-      lang
+      koppsDataLang: lang,
+      koppsLangIndex: lang === 'en' ? 0 : 1
     }
   } catch(error) {
     log.error("Error while trying to filter data from KOPPS", {error})
     return {
-      course_code: courseCode.toUpperCase(),
-      course_title: '',
-      course_syllabus_valid_years: [],
-      course_credits: '',
+      courseCode: courseCode.toUpperCase(),
+      courseTitle: '',
+      syllabusSemesterList: [],
+      courseCredits: '',
       apiError: true,
-      lang
+      koppsDataLang: lang,
+      koppsLangIndex: lang === 'en' ? 0 : 1
     }
   }
 }
