@@ -20,7 +20,7 @@ const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri}) => {
     analysisFileName, pdfAnalysisDate,
     pmFileName, pdfPMDate } = courseRoundObj
   console.log('courseRoundObj', courseRoundObj) // TODO: REMOVE
-  const syllabusFileName = syllabusStartTerm ? `${SYLLABUS_URL}${courseCode}-${syllabusStartTerm}` : ''
+  const syllabusFileName = syllabusStartTerm ? `${courseCode}-${syllabusStartTerm}` : ''
   const syllabusPublishedDate = syllabusStartTerm ? `${translate.course_short_semester[syllabusStartTerm.toString().substring(4, 5)]} ${syllabusStartTerm.toString().substring(0, 4)}` : ''
 
   return (
