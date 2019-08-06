@@ -198,7 +198,6 @@ a.pdf-link{
         // align-items: flex-start;
         display: flex;
         flex-direction: row;
-        // justify-content: space-between; 
         span.extra-kopps-info-from-kutv-api {
             align-self: flex-start;
             flex-basis: 60%;
@@ -207,6 +206,10 @@ a.pdf-link{
             align-self: flex-start;
             height: 100%;
             margin-left: 3em;
+            span {
+                margin: 0;
+                padding: 0;
+            }
         }
 
     }

@@ -26,18 +26,18 @@ const ExtraDatesAndComment = ({translate, courseRoundObj}) => {
     <span>
       <p><b>{translate.header_publishing_dates}</b></p>
       <p>{translate.publishedDate}:&nbsp;{courseRoundObj.publishedDate}</p>
-      <p>{translate.changedAfterPublishedDate}:&nbsp;
       {courseRoundObj.changedAfterPublishedDate && courseRoundObj.changedAfterPublishedDate !== ''
-        ? courseRoundObj.changedAfterPublishedDate
-        : <i>{translate.no_date_last_changed}</i>
+        ? <span>
+          <p>{translate.changedAfterPublishedDate}:&nbsp;{courseRoundObj.changedAfterPublishedDate}</p>
+          <p>{translate.commentChange}:</p>
+          <p>{courseRoundObj.commentChange === ''
+              ? <i>{translate.no_added}</i>
+              : courseRoundObj.commentChange
+              }
+          </p>
+        </span>
+        : <p>{translate.changedAfterPublishedDate}:&nbsp;<i>{translate.no_date_last_changed}</i></p>
       }
-      </p>
-      <p>{translate.commentChange}:</p>
-      <p>{courseRoundObj.commentChange === ''
-          ? '  -  '
-          : courseRoundObj.commentChange
-          }
-      </p>
     </span>
   )
 }
