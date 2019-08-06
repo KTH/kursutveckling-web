@@ -201,6 +201,9 @@ a.pdf-link{
         span.extra-kopps-info-from-kutv-api {
             align-self: flex-start;
             flex-basis: 60%;
+            span {
+                margin: 0;
+            }
         }
         span:last-of-type {
             align-self: flex-start;
