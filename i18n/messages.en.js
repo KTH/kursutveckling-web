@@ -40,10 +40,10 @@ module.exports = {
   },
   tableHeaders: {
     header_course_round: 'Course round',
-    header_main_edit: 'Change',
+    header_main_edit: 'Edit',
     header_main_publish_new: 'Publish new course analysis with course data',
     alt_header_main_publish_new: 'Go to the admin page to Publish new course analysis with kursdata',
-    alt_header_main_edit: 'Go to the admin page to Change published course analysis and course data',
+    alt_header_main_edit: 'Go to the admin page to Edit published course analysis and course data',
     alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
     alt_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
     alt_link_pm: 'Open a new tab to show the valid Course-memo pdf',
@@ -69,10 +69,10 @@ module.exports = {
       no_date_last_changed: 'No changes since first published.'
     },
     header_more_info: 'More information',
-    link_syllabus: 'Course plan',
+    link_syllabus: 'Course syllabus',
     link_analysis: 'Course analys',
     link_pm: 'Course memo',
-    no_course_analys: 'Course analyses with course data is not available yet.',
+    no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
     popover_more_info: 'More information',
     course_short_semester: {
@@ -82,7 +82,7 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    alt_label_syllabus_link: 'Show a course plan which is valid for this period',
+    alt_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
     course_dev_title: 'Course development and history',
     course_dev_title_alt: 'To Course development and history',
     course_info_title: 'Course information',
@@ -90,9 +90,8 @@ module.exports = {
     course_admin_title: 'Administrate',
     course_admin_title_alt: 'Administrate "About course"',
     header_syllabuses: 'All course syllabuses',
-    info_text: 'On this page, current and prospective students can access course data and course analyzes for previous rounds of the course to help to choose a course.',
-    info_admin_text: 'Course responsibles can get an overwiew over course development and are responsible to publish information about course development with course data',
-    label_syllabus_link: 'Course syllabus ',
+    info_text: 'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
+    label_syllabus_link: 'Course syllabus',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'

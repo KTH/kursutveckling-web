@@ -193,14 +193,22 @@ a.pdf-link{
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
   .card-body.col.extra-info {
-    padding: .3em 0;
+    padding: 1em 0;
     @media (min-width: 768px) {
+        // align-items: flex-start;
         display: flex;
-        justify-items: first baseline; 
-        span:first-of-type {
-            width: 60%;
-            margin-right: 3em;
+        flex-direction: row;
+        // justify-content: space-between; 
+        span.extra-kopps-info-from-kutv-api {
+            align-self: flex-start;
+            flex-basis: 60%;
         }
+        span:last-of-type {
+            align-self: flex-start;
+            height: 100%;
+            margin-left: 3em;
+        }
+
     }
   }
   &> .card-header.info-rubric {
