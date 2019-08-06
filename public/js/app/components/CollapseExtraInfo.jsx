@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
-import { PopOverTextForTableHeaders } from './PopOverTextForTable'
 
 
 const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
@@ -12,7 +11,10 @@ const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
         orderedColumns.map((apiName, index) =>
           <span key={index} className={apiName}>
             <p id={popOverId + index} key={'header-for-' + apiName}><b>{translate[apiName].header}</b></p>
-            <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj[apiName]}}></p>
+            {courseRoundObj[apiName] === ''
+              ? <p className='textBlock'> <i>{translate.no_added}</i></p>
+              : <p className='textBlock' dangerouslySetInnerHTML={{__html: courseRoundObj[apiName]}}></p>
+            }
           </span>
         )
       }
