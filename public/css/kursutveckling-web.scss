@@ -1,11 +1,7 @@
 // @import "kth-style/public/sass/variables/sizes";
 $black: #000000;
-
-// White
 $white: #ffffff;
-
 $light-grey: #d4d4d4;
-
 $dark-grey: #65656c;
 
 %bordered-area {
@@ -14,6 +10,17 @@ $dark-grey: #65656c;
     border-top: 0;
     padding-top: 1em;
     padding-bottom: 1em;
+}
+
+%table-info-icon-for-popup {
+    height: 1.2em; 
+    width: 1.2em;
+    border: solid .8px $white;
+    filter: grayscale(1) brightness(88%) contrast(2);
+    &:focus, :hover {
+        outline: 0; 
+        filter: grayscale(1) brightness(90%) contrast(2);
+    }
 }
 
 #kth-kursinfo{
@@ -93,7 +100,7 @@ span.navigation {
         padding-top: 1em;
     }
 }
-
+//INTRODUCTION TEXT
 span.intro-text {
     width: 100%;
     p {
@@ -101,30 +108,16 @@ span.intro-text {
     }
 }
 
+//POPOVERS
 p.popOver {
     margin: .2em 0 .2em 0;
 }
-
+.popover-body {
+    font-family: "Open Sans",Arial,"Helvetica Neue",helvetica,sans-serif;
+}
 h3.popover-header {
     margin-top: 0 !important;
 }
-
-//Icon for table headers
-span.table-for-each-round > table.table > thead > tr {
-    th:after {
-        content: '';
-        border: solid .8px $white;
-        border-radius: 0.6em;
-        margin-left: .2em;
-        height: 1.2em; 
-        width: 1.2em;
-        display: inline-block;
-        vertical-align: middle;
-        background: center / 1.1em auto no-repeat url(https://app.kth.se/style/kth-style/img/kth-style/icons/modal-info.svg);
-        filter: grayscale(1) brightness(88%) contrast(2);
-    }
-}
-
 .header-popup {
     border: solid 1px $dark-grey;
 }
@@ -171,33 +164,18 @@ p.right-link, span.right-links{
 }
 
 span.right-links {
+    float: left;
+    text-align: left;
     p { margin-bottom: 0; }
     @media (min-width: 768px) {
         display: flex;
         justify-content: flex-end; 
-    }
-}
-/*Table cells try to give it more stable width*/
-/* ['responsibles', 'examiners', 'registeredStudents', 'examShortAndLongStrArr', 'examinationGrade', 'alterationText']*/
-@media (min-width: 768px) {
-    .responsibles, .examiners {
-        min-width: 9em;
-        max-width: 9em;
-    }
-    .examShortAndLongStrArr {
-        min-width: 9em;
-        max-width: 9em;
-    }
-    .registeredStudents {
-        min-width: 8em;
-        max-width: 8em;
-    }
-    .examinationGrade {
-        min-width: 7em;
-        max-width: 7em;
+        float: right;
+        text-align: right;
     }
 }
 
+//Kursplan, kurspm, kursanalys links
 a.pdf-link{
     margin: 0 1.5em 0 1em;
     &:before {
@@ -211,6 +189,7 @@ a.pdf-link{
     }
 }
 
+//More information collapsible
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
   .card-body.col.extra-info {
@@ -238,6 +217,40 @@ a.pdf-link{
     }}
 }
 
+//===TABLE===
+button.desktop.btn-info-modal, button.mobile.btn-info-modal {
+    @extend %table-info-icon-for-popup;
+}
+//Table elments  visibility for desktop
+.table td { 
+    .mobile-header-popovers{
+        display: none; 
+    }
+}
+button.desktop.btn-info-modal {
+    visibility: visible;
+}
+/*Table cells try to give it more stable width*/
+/* ['responsibles', 'examiners', 'registeredStudents', 'examShortAndLongStrArr', 'examinationGrade', 'alterationText']*/
+@media (min-width: 768px) {
+    .responsibles, .examiners {
+        min-width: 9em;
+        max-width: 9em;
+    }
+    .examShortAndLongStrArr {
+        min-width: 9em;
+        max-width: 9em;
+    }
+    .registeredStudents {
+        min-width: 8em;
+        max-width: 8em;
+    }
+    .examinationGrade {
+        min-width: 7em;
+        max-width: 7em;
+    }
+}
+
 /*Mobile View for Tables*/
 /* 
 Max width before this PARTICULAR table gets nasty
@@ -245,7 +258,6 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 @media only screen and (max-width: 767px) {
-
 	/* Force table to not be like tables anymore */
 	.table table, thead, tbody, th, td, tr { 
 		display: block; 
@@ -255,7 +267,7 @@ and also iPads specifically.
 	.table thead tr { 
 		position: absolute;
 		top: -9999px;
-		left: -9999px;
+        left: -9999px;
 	}
 	
 	.table tr { border: 1px solid #fff; }
@@ -265,26 +277,30 @@ and also iPads specifically.
 		border: none;
 		border-bottom: 1px solid #fff; 
 		position: relative;
-        padding-top: 2.5em;
-        &:last-of-type {
-            padding-top: 3.2em;
-        }
-	}
-	
-	.table td:before { 
-        /* Now like a table header */
-        content: attr(data-label);
-        position: absolute;
-        // color: #fff;
-        // background-color: $dark-grey;
-        font-weight: 500;
-        // border-bottom: 1px solid $dark-grey; 
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 100%; 
-        padding-right: 1em; 
-        margin-right: 1em;
-		white-space: normal;
+        display: flex;
+        flex-direction: column;
+        // &:last-of-type {
+        //     padding-top: 3.2em;
+        // }
+        .mobile-header-popovers {
+            background: $dark-grey;
+            color: $white;
+            display: flex;
+            flex-direction: row;
+            font-size: 1rem;
+            justify-content: flex-start;
+            margin: -.7em -2.5em .3em -.7em;
+            padding: .5em;
+            vertical-align: bottom;
+            width: 100%; 
+            label {
+                font-weight: 500;
+                margin-right: .5em;
+                white-space: normal;
+            }
+            button {
+                align-self: flex-end;
+            }
+        }      
 	}
 }
