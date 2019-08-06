@@ -7,7 +7,7 @@ const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
 const browserConfig = require('../configuration').browser
 const serverConfig = require('../configuration').server
-const {sortedKursutveckligApiInfo} = require('../apiCalls/kursutvecklingApi')
+const { sortedKursutveckligApiInfo } = require('../apiCalls/kursutvecklingApi')
 const { filteredKoppsData } = require('../apiCalls/koppsApi')
 
 
