@@ -10,7 +10,6 @@ const IntroText = ({translate}) => {
   return (
     <span className="intro-text">
       <p>{translate.info_text}</p>
-      <p> {translate.info_admin_text}</p>
     </span>
   )
 }
