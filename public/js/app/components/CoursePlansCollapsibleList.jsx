@@ -40,7 +40,7 @@ class CoursePlansCollapsibleList extends Component {
                           target='_blank'
                           className='pdf-link'
                           >
-                          {translate.label_syllabus_link}
+                          {translate.label_syllabus_link} {' '}
                           ( {translate.course_short_semester[fromSemester.toString().substring(4, 5)]}
                           {fromSemester.toString().substring(0, 4)} -  &nbsp;
                           {translate.course_short_semester[tillSemester.toString().substring(4, 5)]}
