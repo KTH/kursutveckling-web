@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'reactstrap'
 
-const AlertMsg = ({props, courseCode, translate, lang}) => {
+const AlertMsg = ({props, translate, lang}) => {
   const params = props.location.search.substring(1).split('&')
         .map(param => param.split('='))
         .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
