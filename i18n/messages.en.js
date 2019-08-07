@@ -96,7 +96,16 @@ module.exports = {
     label_syllabus_link: 'Course syllabus',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
-      kopps_api_down: 'Failed to get data from KOPPS for now therefore some information is missing'
+      kopps_api_down: 'Failed to get data from KOPPS or course code has been entered incorrectly',
+      kutv: {
+        save: 'Draft for course development has been saved',
+        s_msg: 'You can find saved drafts under Course analysis and course data / Publish new',
+        pub: 'Course development and course data have been published',
+        delete: 'Draft for course development has been removed'
+      },
+      see_more: 'Look at',
+      term: 'Term',
+      course_round: 'Course round'
     },
     course_short_semester: {
       1: 'Spring ',

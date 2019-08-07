@@ -95,7 +95,16 @@ module.exports = {
     label_syllabus_link: 'Kursplan',
     no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
-      kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas.'
+      kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas. Eller kurskoden är felstavade',
+      kutv: {
+        save: 'Utkast för kursutveckling har sparats',
+        s_msg: 'Du hittar det sparade utkastet under Kursanalys och kursdata/ Publicera ny',
+        pub: 'Kursutveckling har publicerats',
+        delete: 'Utkast för kursutveckling har raderats'
+      },
+      see_more: 'Se',
+      term: 'Termin',
+      course_round: 'Kursomgång'
     },
     course_short_semester: {
       1: 'VT ',
