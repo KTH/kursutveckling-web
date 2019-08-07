@@ -5,6 +5,7 @@ import i18n from '../../../../i18n'
 import CourseTitle from '../components/CourseTitle'
 import KipLinkNav from '../components/KipNav'
 import CourseDevAllYears from '../components/CourseDevAllYears'
+import AlertMsg from '../components/AlertMsg'
 
 const IntroText = ({translate}) => {
   return (
@@ -35,6 +36,7 @@ class StudentViewCourseDev extends Component {
           pageTitle={pageTitles.course_dev_title}
           />
         <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={koppsDataLang} translate={pageTitles} />
+        <AlertMsg props={this.props} lang={koppsDataLang} translate={pageTitles} />
         <IntroText  key='intro-text' translate={pageTitles}/>
         <CourseDevAllYears key='list-of-course-data-for-several-years' koppsData={courseKoppsData} allYearsAnalysisDataObj={analysisData} translate={tableHeaders}/>
       </div>
