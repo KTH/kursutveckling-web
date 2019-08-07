@@ -78,7 +78,8 @@ module.exports = {
     course_short_semester: {
       1: 'VT ',
       2: 'HT '
-    }
+    },
+    page_lang: 'sv'
   },
   pageTitles: {
     about_course: 'Om kursen',

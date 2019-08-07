@@ -76,7 +76,7 @@ module.exports = {
     link_pm: 'Course memo',
     no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
-    popover_more_info: 'More information',
+    page_lang: 'en',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
