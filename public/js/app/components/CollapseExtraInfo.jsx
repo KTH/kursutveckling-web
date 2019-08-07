@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
-
+import { getDateFormat } from '../util/helpers'
 
 const ExtraKoppsInfo = ({translate, courseRoundObj}) => {
   const popOverId = courseRoundObj._id
@@ -25,10 +25,12 @@ const ExtraDatesAndComment = ({translate, courseRoundObj}) => {
   return (
     <span>
       <p><b>{translate.header_publishing_dates}</b></p>
-      <p>{translate.publishedDate}:&nbsp;{courseRoundObj.publishedDate}</p>
+      <p>{translate.publishedDate}:&nbsp;
+          {getDateFormat(courseRoundObj.publishedDate, translate.page_lang)}</p>
       {courseRoundObj.changedAfterPublishedDate && courseRoundObj.changedAfterPublishedDate !== ''
         ? <span>
-          <p>{translate.changedAfterPublishedDate}:&nbsp;{courseRoundObj.changedAfterPublishedDate}</p>
+          <p>{translate.changedAfterPublishedDate}:&nbsp;
+              {getDateFormat(courseRoundObj.changedAfterPublishedDate, translate.page_lang)}</p>
           <p>{translate.commentChange}:</p>
           <p>{courseRoundObj.commentChange === ''
               ? <i>{translate.no_added}</i>

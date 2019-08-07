@@ -1,5 +1,6 @@
 import React from 'react'
 import { SYLLABUS_URL } from '../util/constants'
+import { getDateFormat } from '../util/helpers'
 
 const ActiveOrDisavledLink = ({ fileName, storageUri, linkTitle, alt, validFrom }) => {
   return (
@@ -16,8 +17,7 @@ const ActiveOrDisavledLink = ({ fileName, storageUri, linkTitle, alt, validFrom 
 }
 
 const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, lang}) => {
-  const { courseCode, syllabusStartTerm,
-    analysisFileName, pdfAnalysisDate,
+  const { courseCode, syllabusStartTerm, analysisFileName, pdfAnalysisDate,
     pmFileName, pdfPMDate } = courseRoundObj
   console.log('courseRoundObj', courseRoundObj) // TODO: REMOVE
   const syllabusFileName = syllabusStartTerm
@@ -35,12 +35,12 @@ const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, lang}) =>
       <ActiveOrDisavledLink fileName={pmFileName}
         storageUri={storageUri}
         linkTitle={translate.link_pm} alt={translate.alt_link_pm}
-        validFrom={pdfPMDate}
+        validFrom={getDateFormat(pdfPMDate, lang)}
         />
       <ActiveOrDisavledLink fileName={analysisFileName}
         storageUri={storageUri}
         linkTitle={translate.link_analysis} alt={translate.alt_link_analysis}
-        validFrom={pdfAnalysisDate}
+        validFrom={getDateFormat(pdfAnalysisDate, lang)}
         />
     </span>
     )
