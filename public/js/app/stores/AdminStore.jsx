@@ -25,12 +25,9 @@ class AdminStore {
   // This won't work because primitives can't be ovserved https://mobx.js.org/best/pitfalls.html#dereference-values-as-late-as-possible
   @observable courseKoppsData = undefined //kopps
   analysisData = undefined //kurutveckling-api
-
   @observable user = ''
-  @observable hasDoneSubmit = false
-  @observable image = '#'
-  @observable apiError = ''
-
+  @observable canEdit = false
+  
   buildApiUrl (path, params) {
     let host
     if (typeof window !== 'undefined') {
@@ -80,7 +77,9 @@ class AdminStore {
       throw err
     })
   }
-
+  @action setUser (userKthId) {
+    this.user = userKthId
+  }
   @action clearBreadcrumbs () {
     this.breadcrumbs.replace([])
   }
