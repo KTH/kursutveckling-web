@@ -9,7 +9,7 @@ const browserConfig = require('../configuration').browser
 const serverConfig = require('../configuration').server
 const { sortedKursutveckligApiInfo } = require('../apiCalls/kursutvecklingApi')
 const { filteredKoppsData } = require('../apiCalls/koppsApi')
-
+const i18n = require('../../i18n')
 
 
 module.exports = {
@@ -46,33 +46,32 @@ function _staticRender(context, location) {
 async function _getCourseDevInfo (req, res, next) {
 
   const { courseCode } = req.params
-  // const ldapUser = req.session.authUser ? req.session.authUser.username : 'null'
+  // const ldapUser = req.session.authUser ? requireRole('isCourseResponsible', 'isExaminator', 'isCourseTeacher') : 'null'
   const lang = language.getLanguage(res) || 'sv'
+  const langIndex = lang === 'en' ? 0 : 1
 
   try {
-    // Render inferno app
-
+    // Render react app
     // const context = {}
     const renderProps = _staticRender()
     renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
     renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    console.log('filteredKoppsData', renderProps.props.children.props.adminStore.courseKoppsData )
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
-    console.log('analysisData', renderProps.props.children.props.adminStore.analysisData )
-    // await doAllAsyncBefore({
-    //   pathname: req.originalUrl,
-    //   query: (req.originalUrl === undefined || req.originalUrl.indexOf('?') === -1) ? undefined : req.originalUrl.substring(req.originalUrl.indexOf('?'), req.originalUrl.length),
-    //   adminStore: renderProps.props.children.props.adminStore,
-    //   routes: renderProps.props.children.props.children.props.children.props.children
-    // })
+    let breadcrumbs = [
+      { url: '/student/kurser/kurser-inom-program', label: i18n.message('page_course_programme', lang) },
+      { url: `/student/kurser/kurs/${courseCode}`, label: `${i18n.messages[langIndex].pageTitles.course_info_title} ${courseCode}` }
+    ]
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
+      breadcrumbsPath: breadcrumbs,
       debug: 'debug' in req.query,
-      instrumentationKey: serverConfig.appInsights.instrumentationKey,
+      description: i18n.messages[langIndex].messages.description,
       html,
-      title: courseCode,
-      initialState: JSON.stringify(hydrateStores(renderProps))
+      initialState: JSON.stringify(hydrateStores(renderProps)),
+      instrumentationKey: serverConfig.appInsights.instrumentationKey,
+      lang: lang,
+      title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
     })
   } catch (err) {
     log.error('Error in _getCourseDevInfo', { error: err })
