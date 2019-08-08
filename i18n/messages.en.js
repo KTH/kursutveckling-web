@@ -40,8 +40,8 @@ module.exports = {
   },
   tableHeaders: {
     header_course_round: 'Course round',
-    header_main_edit: 'Edit',
-    header_main_publish_new: 'Publish new course analysis with course data',
+    header_main_edit: 'Edit (access control)',
+    header_main_publish_new: 'Publish new course analysis with course data (access control)',
     alt_header_main_publish_new: 'Go to the admin page to Publish new course analysis with kursdata',
     alt_header_main_edit: 'Go to the admin page to Edit published course analysis and course data',
     alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',

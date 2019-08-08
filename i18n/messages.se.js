@@ -39,8 +39,8 @@ module.exports = {
     page_course_programme: 'KURS- OCH PROGRAMKATALOGEN'
   },
   tableHeaders: {
-    header_main_edit: 'Ändra',
-    header_main_publish_new: 'Publicera ny kursanalys och kursdata',
+    header_main_edit: 'Ändra (behörighetsstyrning)',
+    header_main_publish_new: 'Publicera ny kursanalys och kursdata (behörighetsstyrning)',
     header_course_round: 'Kursomgång',
     alt_header_main_publish_new: 'Gå till adminsida för att Publicera ny kursanalys och kursdata',
     alt_header_main_edit: 'Gå till adminsida för att andra den kursanalysen och kursdata edit this course analysis with course data',
