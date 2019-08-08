@@ -52,10 +52,10 @@ if (config.cas.pgtUrl) {
 
 const strategy = new CasStrategy(casOptions,
    (logOnResult, done) => {
-    const user = logOnResult.user
-    log.debug(`User from CAS: ${user} ${JSON.stringify(logOnResult)}`)
-    return done(null, user, logOnResult)
-  }
+     const user = logOnResult.user
+     log.debug(`User from CAS: ${user} ${JSON.stringify(logOnResult)}`)
+     return done(null, user, logOnResult)
+   }
 )
 
 passport.use(strategy)
@@ -88,18 +88,15 @@ module.exports.redirectAuthenticatedUserHandler = require('kth-node-passport-cas
   }
 })
 
-/*
-  Checks req.session.authUser as created above im unpackLdapUser.
-
+/* Checks req.session.authUser as created above im unpackLdapUser.
   Usage:
+  requireRole('isAdmin', 'isEditor')*/
 
-  requireRole('isAdmin', 'isEditor')
-*/
-function _hasCourseResponsibleGroup (courseCode, courseInitials, ldapUser) {
+function _hasGroup (courseCode, courseInitials, ldapUser, role) {
   // 'edu.courses.SF.SF1624.20192.1.courseresponsible'
   const groups = ldapUser.memberOf
   const startWith = `edu.courses.${courseInitials}.${courseCode}.` // TODO: What to do with years 20192. ?
-  const endWith = '.courseresponsible'
+  const endWith = `.${role}`
   if (groups && groups.length > 0) {
     for (var i = 0; i < groups.length; i++) {
       if (groups[ i ].indexOf(startWith) >= 0 && groups[ i ].indexOf(endWith) >= 0) {
@@ -110,29 +107,23 @@ function _hasCourseResponsibleGroup (courseCode, courseInitials, ldapUser) {
   return false
 }
 
-module.exports.requireRole = function () { // TODO:Different roles for selling text and course development
+module.exports.requireRole = function (req, res, next) { // TODO:Different roles for selling text and course development
   const roles = Array.prototype.slice.call(arguments)
-
-  return async function _hasCourseAcceptedRoles (req, res, next) {
-    const ldapUser = req.session.authUser || {}
-    const courseCode = req.params.courseCode.toUpperCase()
-    const courseInitials = req.params.courseCode.slice(0, 2).toUpperCase()
-    // TODO: Add date for courseresponsible
-    const userCourseRoles = {
-      isExaminator: hasGroup(`edu.courses.${courseInitials}.${courseCode}.examiner`, ldapUser),
-      isCourseResponsible: _hasCourseResponsibleGroup(courseCode, courseInitials, ldapUser)
-    }
-
-    // If we don't have one of these then access is forbidden
-    const hasAuthorizedRole = roles.reduce((prev, curr) => prev || userCourseRoles[curr], false)
-
-    if (!hasAuthorizedRole) {
-      const error = new Error('Du har inte behörighet att redigera Kursinformationssidan eftersom du inte är inlagd i KOPPS som examinator eller kursansvarig för kursen. \
-        Se förteckning över KOPPS-administratörer som kan hjälpa dig att lägga in dig på rätt roll för din kurs. \
-        https://intra.kth.se/utbildning/utbildningsadministr/kopps/koppsanvandare-1.33459')
-      error.status = 403
-      return next(error)
-    }
-    return next()
+  const ldapUser = req.session.authUser || {}
+  console.log('dddddd', ldapUser)
+  const courseCode = req.params.courseCode.toUpperCase()
+  const courseInitials = req.params.courseCode.slice(0, 2).toUpperCase()
+  // TODO: Add date for courseresponsible
+  const userCourseRoles = {
+    isCourseTeacher: _hasGroup(courseCode, courseInitials, ldapUser, 'teachers'),
+    isExaminator: hasGroup(`edu.courses.${courseInitials}.${courseCode}.examiner`, ldapUser),
+    isCourseResponsible: _hasGroup(courseCode, courseInitials, ldapUser, 'courseresponsible')
   }
+
+  // If we don't have one of these then access is forbidden
+  const hasAuthorizedRole = roles.reduce((prev, curr) => prev || userCourseRoles[curr], false)
+  if (!hasAuthorizedRole) {
+    return false
+  }
+  return true
 }
