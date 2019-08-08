@@ -184,7 +184,6 @@ server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedire
  * **********************************
  */
 const { System, CourseDevCtrl } = require('./controllers')
-const { requireRole } = require('./authentication')
 
 // System routes
 const systemRoute = AppRouter()
@@ -196,8 +195,8 @@ server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
-appRoute.get('system.gateway', config.proxyPrefixPath.uri + '/gateway', getServerGatewayLogin('/'), /* requireRole('isCourseResponsible', 'isExaminator'),*/ CourseDevCtrl.getCourseDevInfo)
+appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', getServerGatewayLogin(), CourseDevCtrl.getCourseDevInfo)
+// appRoute.get('system.gateway', config.proxyPrefixPath.uri + '/gateway', getServerGatewayLogin('/'), CourseDevCtrl.getCourseDevInfo)
 
 server.use('/', appRoute.getRouter())
 
