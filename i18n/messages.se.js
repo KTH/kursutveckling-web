@@ -18,12 +18,12 @@ module.exports = {
     /**
      * Message keys
      */
-    service_name: 'Kursutveckling-web',
+    service_name: 'Kursens utveckling och historik web',
+    title: 'Kursens utveckling och historik',
+    description: 'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
 
     example_message_key: 'Här är en svensk översättning på en label',
-
     button_label_example: 'Klicka här för att skicka data till servern!',
-
     field_text_example: 'Data att skicka till API',
 
     field_label_get_example: 'Min datamodell(Svar från api anrop GET): ',
@@ -34,9 +34,8 @@ module.exports = {
 
     site_name: 'Kursutvecklingsinformation',
     host_name: 'KTH',
-    page_student: 'STUDENT PÅ KURSUTVECKLING',
-    page_teacher: 'LÄRARE PÅ KURSUTVECKLING',
-    page_course_programme: 'KURS- OCH PROGRAMKATALOGEN'
+    page_course_programme: 'KURS- OCH PROGRAMKATALOGEN',
+    page_student: 'STUDENT PÅ KTH'
   },
   tableHeaders: {
     header_main_edit: 'Ändra (behörighetsstyrning)',

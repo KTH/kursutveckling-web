@@ -18,7 +18,9 @@ module.exports = {
     /**
      * Message keys
      */
-    service_name: 'course development web',
+    service_name: 'Course development and history web',
+    title: 'Course development and history',
+    description: 'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
 
     example_message_key: 'This is an english translation of a label',
 
@@ -34,9 +36,8 @@ module.exports = {
 
     site_name: 'Course development information',
     host_name: 'KTH',
-    page_student: 'STUDENT AT KTH COURSE DEVELOPMENT INFORMATION',
-    page_teacher: 'TEACHER AT KTH COURSE DEVELOPMENT INFORMATION',
-    page_course_programme: 'COURSE AND PROGRAMME DIRECTORY'
+    page_course_programme: 'COURSE AND PROGRAMME DIRECTORY',
+    page_student: 'STUDENT AT KTH'
   },
   tableHeaders: {
     header_course_round: 'Course round',
@@ -72,7 +73,7 @@ module.exports = {
     },
     header_more_info: 'More information',
     link_syllabus: 'Course syllabus',
-    link_analysis: 'Course analys',
+    link_analysis: 'Course analysis',
     link_pm: 'Course memo',
     no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
