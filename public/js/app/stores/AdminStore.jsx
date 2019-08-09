@@ -1,11 +1,6 @@
 'use strict'
-// import { globalRegistry } from 'component-registry'
 import { observable, action } from 'mobx'
 import axios from 'axios'
-import { safeGet } from 'safe-utils'
-import { EMPTY } from '../util/constants'
-
-// import { IDeserialize } from '../interfaces/utils'
 
 const paramRegex = /\/(:[^\/\s]*)/g
 
@@ -22,16 +17,12 @@ function _webUsesSSL (url) {
   return url.startsWith('https:')
 }
 class AdminStore {
-  // This won't work because primitives can't be ovserved https://mobx.js.org/best/pitfalls.html#dereference-values-as-late-as-possible
   @observable courseKoppsData = undefined //kopps
-  analysisData = undefined //kurutveckling-api
-  @observable user = ''
-  @observable canEdit = false
+  analysisData = undefined //kursutveckling-api
   
   buildApiUrl (path, params) {
     let host
     if (typeof window !== 'undefined') {
-      // host = 'http://localhost:' + '3001'
       host = this.apiHost
     } else {
       host = 'http://localhost:' + this.browserConfig.port
@@ -130,16 +121,6 @@ class AdminStore {
     const store = this
 
     if (typeof window !== 'undefined' && window.__initialState__ && window.__initialState__[storeName]) {
-      /* TODO:
-      const util = globalRegistry.getUtility(IDeserialize, 'kursutveckling-web')
-      const importData = JSON.parse(decodeURIComponent(window.__initialState__[storeName]))
-      console.log("importData",importData, "util",util)
-      for (let key in importData) {
-        // Deserialize so we get proper ObjectPrototypes
-        // NOTE! We need to escape/unescape each store to avoid JS-injection
-        store[key] = util.deserialize(importData[key])
-      }
-      delete window.__initialState__[storeName]*/
 
       const tmp = JSON.parse(decodeURIComponent(window.__initialState__[storeName]))
       for (let key in tmp) {

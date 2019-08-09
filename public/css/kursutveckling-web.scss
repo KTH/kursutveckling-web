@@ -122,7 +122,7 @@ h3.popover-header {
     border: solid 1px $dark-grey;
 }
 
-//REDEFINING COLLAPSE Style, TODO: check it in kth-style
+//REDEFINING COLLAPSE Style
 
 .card.collapsible.blue {
     margin-top: 1em;
@@ -157,7 +157,7 @@ h3.popover-header {
         padding: 0 .5em .5em .7em;
     }
 }
-
+//Links
 p.right-link, span.right-links{
     float: right;
     text-align: right;
@@ -189,13 +189,12 @@ a.pdf-link{
     }
 }
 
-//More information collapsible
+//Collapsible "More information"
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
   .card-body.col.extra-info {
     padding: 1em 0;
     @media (min-width: 768px) {
-        // align-items: flex-start;
         display: flex;
         flex-direction: row;
         span.extra-kopps-info-from-kutv-api {
@@ -264,6 +263,9 @@ button.desktop.btn-info-modal {
         max-width: 7em;
     }
 }
+.alterationText {
+    word-wrap: break-word;
+}
 
 /*Mobile View for Tables*/
 /* 
@@ -293,9 +295,6 @@ and also iPads specifically.
 		position: relative;
         display: flex;
         flex-direction: column;
-        // &:last-of-type {
-        //     padding-top: 3.2em;
-        // }
         .mobile-header-popovers {
             background: $dark-grey;
             color: $white;

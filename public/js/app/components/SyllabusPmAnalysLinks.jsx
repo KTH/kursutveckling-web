@@ -19,7 +19,6 @@ const ActiveOrDisavledLink = ({ fileName, storageUri, linkTitle, alt, validFrom 
 const SyllabusPmAnalysLinks = ({translate, courseRoundObj, storageUri, lang}) => {
   const { courseCode, syllabusStartTerm, analysisFileName, pdfAnalysisDate,
     pmFileName, pdfPMDate } = courseRoundObj
-  console.log('courseRoundObj', courseRoundObj) // TODO: REMOVE
   const syllabusFileName = syllabusStartTerm
         ? `${courseCode}-${syllabusStartTerm}.pdf?lang=${lang}` : ''
   const syllabusPublishedDate = syllabusStartTerm
