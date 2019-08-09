@@ -61,16 +61,10 @@ const filteredKoppsData = async (courseCode, lang) => {
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
   } catch(error) {
-    log.error("Error while trying to filter data from KOPPS", {error})
-    return {
-      courseCode: courseCode.toUpperCase(),
-      courseTitle: '',
-      syllabusSemesterList: [],
-      courseCredits: '',
-      apiError: true,
-      koppsDataLang: lang,
-      koppsLangIndex: lang === 'en' ? 0 : 1
-    }
+    log.error("Error IN filteredKoppsData while trying to filter data from KOPPS", {error})
+    const apiError = new Error('KOPPS API INFORMATION är inte tillgänlig för nu, försöker senare')
+    apiError.status = 500
+    throw apiError
   }
 }
 
