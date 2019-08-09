@@ -18,11 +18,8 @@ module.exports = {
 
 const serverPaths = require('../server').getPaths()
 
-//MOVE THIS PART TO OTHER CONTROLLER
-
 function hydrateStores (renderProps) {
   // This assumes that all stores are specified in a root element called Provider
-
   const {props} = renderProps.props.children
   const outp = {}
   for (let key in props) {
@@ -37,9 +34,7 @@ function _staticRender(context, location) {
   if (process.env.NODE_ENV === 'development') {
     delete require.cache[require.resolve('../../dist/app.js')]
   }
-
   const { staticRender } = require('../../dist/app.js')
-
   return staticRender(context, location)
 }
 
