@@ -14,6 +14,7 @@ const i18n = require('../../i18n')
 
 module.exports = {
   getCourseDevInfo: co.wrap(_getCourseDevInfo),
+  getErrorPage: co.wrap(_getErrorPage)
 }
 
 const serverPaths = require('../server').getPaths()
@@ -65,11 +66,19 @@ async function _getCourseDevInfo (req, res, next) {
       html,
       initialState: JSON.stringify(hydrateStores(renderProps)),
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
-      lang: lang,
+      lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
     })
   } catch (err) {
     log.error('Error in _getCourseDevInfo', { error: err })
     next(err)
   }
+}
+
+function _getErrorPage(req, res, next) {
+  const html='Something got wrong... No course code was found' 
+  res.render('noCourse/index', {
+    html,
+    initialState: "Ingen kurskod"
+  })
 }

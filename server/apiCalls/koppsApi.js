@@ -56,13 +56,12 @@ const filteredKoppsData = async (courseCode, lang) => {
       courseTitle: isValidData(courseObj.course.title[lang]),
       syllabusSemesterList: getListOfCoursePlanValidYearsPeriods(courseObj.termsWithCourseRounds),
       courseCredits: isValidData(courseObj.course.credits),
-      apiError: false,
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
   } catch(error) {
-    log.error("Error IN filteredKoppsData while trying to filter data from KOPPS", {error})
-    const apiError = new Error('KOPPS API INFORMATION är inte tillgänlig för nu, försöker senare')
+    log.error("Error in filteredKoppsData while trying to filter data from KOPPS", {error})
+    const apiError = new Error('KOPPS API information är inte tillgänlig för nu, försöker senare')
     apiError.status = 500
     throw apiError
   }

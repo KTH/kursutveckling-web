@@ -196,6 +196,7 @@ server.use('/', systemRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
+appRoute.get('course.noCourseCode', config.proxyPrefixPath.uri + '/', CourseDevCtrl.getErrorPage)
 
 server.use('/', appRoute.getRouter())
 
