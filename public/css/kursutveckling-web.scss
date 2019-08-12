@@ -104,6 +104,11 @@ span.intro-text {
 //== LIST OF COLLAPSIBLE TABLES ==
 .tables-list {
     margin: 3em 0;
+    &>span:first-of-type {
+        &>span.header-with-link > h2 {
+            margin-top: 0;
+        } 
+    }
     span.header-with-link {
         // margin-top: 1.5em; 
         @media (min-width: 768px) {
