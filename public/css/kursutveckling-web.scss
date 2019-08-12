@@ -161,9 +161,13 @@ h3.popover-header {
         margin-left: 10em;
     }
     div.kursplan-bordered-list {
+        padding: .5em;
         @extend %bordered-area;
         p {
             margin-bottom: 0;
+        }
+        a.pdf-link {
+            margin: 0;
         }
     }
 }
