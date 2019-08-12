@@ -254,6 +254,9 @@ a.pdf-link{
 }
 
 //===TABLE===
+.table th {
+    text-align: center;
+}
 button.desktop.btn-info-modal, button.mobile.btn-info-modal {
     @extend %table-info-icon-for-popup;
 }
@@ -299,7 +302,8 @@ and also iPads specifically.
 @media only screen and (max-width: 767px) {
 	/* Force table to not be like tables anymore */
 	.table table, thead, tbody, th, td, tr { 
-		display: block; 
+        display: flex;
+        flex-direction: column; 
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
@@ -315,9 +319,7 @@ and also iPads specifically.
 		/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #fff; 
-		position: relative;
-        display: flex;
-        flex-direction: column;
+        position: relative;
         .mobile-header-popovers {
             background: $dark-grey;
             color: $white;
@@ -325,17 +327,19 @@ and also iPads specifically.
             flex-direction: row;
             font-size: 1rem;
             justify-content: flex-start;
-            margin: -.7em -2.5em .3em -.7em;
+            margin: -.7em -.7em .3em -.7em;
             padding: .5em;
             vertical-align: bottom;
-            width: 100%; 
             label {
                 font-weight: 500;
+                line-height: 1.2em;
                 margin-right: .5em;
                 white-space: normal;
+                width: 100%;
             }
             button {
-                align-self: flex-end;
+                align-self: flex-start;
+                padding-right: 1em;
             }
         }      
 	}
