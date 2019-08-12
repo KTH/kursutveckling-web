@@ -96,10 +96,10 @@ module.exports = {
     alertMessages: {
       kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas. Eller kurskoden är felstavade',
       kutv: {
-        save: 'Utkast för kursutveckling har sparats',
+        save: 'Utkast för kursanalys och kursdata har sparats',
         s_msg: 'Du hittar det sparade utkastet under Kursanalys och kursdata/ Publicera ny',
-        pub: 'Kursutveckling har publicerats',
-        delete: 'Utkast för kursutveckling har raderats'
+        pub: 'Kursanalys och kursdata har publicerats',
+        delete: 'Utkast för kursanalys och kursdata har raderats'
       },
       see_more: 'Se',
       term: 'Termin',

@@ -99,10 +99,10 @@ module.exports = {
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS or course code has been entered incorrectly',
       kutv: {
-        save: 'Draft for course development has been saved',
+        save: 'Draft for course analysis and course data has been saved',
         s_msg: 'You can find saved drafts under Course analysis and course data / Publish new',
-        pub: 'Course development and course data have been published',
-        delete: 'Draft for course development has been removed'
+        pub: 'Course analysis and course data have been published',
+        delete: 'Draft for course analysis and course data has been removed'
       },
       see_more: 'Look at',
       term: 'Term',
