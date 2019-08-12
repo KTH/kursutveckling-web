@@ -46,6 +46,12 @@ $dark-grey: #65656c;
 .alert {
     max-width: 100em;
     margin: 15px;
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        margin-top: 0;
+    }
 }
 
 span.navigation {
@@ -85,6 +91,7 @@ span.navigation {
     }
     h4 {
         margin-top: 0;
+        margin-bottom: .3em;
     }
     .link-to::after{
       content: '';
@@ -95,9 +102,6 @@ span.navigation {
       vertical-align: middle;
       background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/pill-back.svg) no-repeat;
       transform: rotate(180deg);
-    }
-    td.admin-link {
-        padding-top: 1em;
     }
 }
 //INTRODUCTION TEXT
