@@ -41,8 +41,8 @@ module.exports = {
   },
   tableHeaders: {
     header_course_round: 'Course round',
-    header_main_edit: 'Edit (access control)',
-    header_main_publish_new: 'Publish new course analysis with course data (access control)',
+    header_main_edit: 'Edit (for course responsible)',
+    header_main_publish_new: 'Publish new course analysis with course data (for course responsible)',
     alt_header_main_publish_new: 'Go to the admin page to Publish new course analysis with kursdata',
     alt_header_main_edit: 'Go to the admin page to Edit published course analysis and course data',
     alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
@@ -94,6 +94,7 @@ module.exports = {
     course_admin_title_alt: 'Administrate "About course"',
     header_syllabuses: 'All course syllabuses',
     info_text: 'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
+    info_manually_edited: '* Course data has been registered manually',
     label_syllabus_link: 'Course syllabus',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {

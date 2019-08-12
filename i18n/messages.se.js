@@ -38,8 +38,8 @@ module.exports = {
     page_student: 'STUDENT PÅ KTH'
   },
   tableHeaders: {
-    header_main_edit: 'Ändra (behörighetsstyrning)',
-    header_main_publish_new: 'Publicera ny kursanalys och kursdata (behörighetsstyrning)',
+    header_main_edit: 'Ändra (för kursansvarig)',
+    header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     header_course_round: 'Kursomgång',
     alt_header_main_publish_new: 'Gå till adminsida för att Publicera ny kursanalys och kursdata',
     alt_header_main_edit: 'Gå till adminsida för att andra den kursanalysen och kursdata edit this course analysis with course data',
@@ -91,6 +91,7 @@ module.exports = {
     course_admin_title_alt: 'Administrera "Om kursen"',
     header_syllabuses: 'Samtliga kursplaner',
     info_text: 'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
+    info_manually_edited: '* Kursdata har registrerats manuellt',
     label_syllabus_link: 'Kursplan',
     no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
