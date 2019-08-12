@@ -56,7 +56,7 @@ async function _getCourseDevInfo (req, res, next) {
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
     let breadcrumbs = [
       { url: '/student/kurser/kurser-inom-program', label: i18n.message('page_course_programme', lang) },
-      { url: `/student/kurser/kurs/${courseCode.toUpperCase()}`, label: `${i18n.messages[langIndex].pageTitles.course_info_title.toUpperCase()} ${courseCode.toUpperCase()}` }
+      { url: `/student/kurser/kurs/${courseCode.toUpperCase()}`, label: `${courseCode.toUpperCase()}` }
     ]
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
