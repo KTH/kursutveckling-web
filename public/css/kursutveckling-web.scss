@@ -54,6 +54,7 @@ $dark-grey: #65656c;
     }
 }
 
+//== NAVIGATION KIP MENU AT LEFT AND COURSE SYLLABUSSES COLLABSIBLE AT RIGHT ==
 span.navigation {
     margin-right: 0;
     margin-top: 1em;
@@ -67,18 +68,6 @@ span.navigation {
         span.right_intro {
             margin-left: 3em;
             max-width: 50em;
-        }
-    }
-}
-
-.tables-list {
-    margin: 4em 0;
-    span.header-with-link {
-        margin-top: 1.5em; 
-        @media (min-width: 768px) {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
         }
     }
 }
@@ -104,7 +93,7 @@ span.navigation {
       transform: rotate(180deg);
     }
 }
-//INTRODUCTION TEXT
+//INTRODUCTION TEXT UNDER KIP-MENU
 span.intro-text {
     width: 100%;
     p {
@@ -112,6 +101,21 @@ span.intro-text {
     }
 }
 
+//== LIST OF COLLAPSIBLE TABLES ==
+.tables-list {
+    margin: 3em 0;
+    span.header-with-link {
+        // margin-top: 1.5em; 
+        @media (min-width: 768px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+    }
+    h2 {
+        margin-top: .7em;
+    }
+}
 //POPOVERS
 p.popOver {
     margin: .2em 0 .2em 0;
@@ -155,6 +159,7 @@ h3.popover-header {
 }
 .card.collapsible.blue.course-data-for-round {
     width: 100%;
+    margin-bottom: .5em; 
     div.bordered-table {
         @extend %bordered-area;
         margin-bottom: 1.5em;
