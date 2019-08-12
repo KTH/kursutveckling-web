@@ -33,6 +33,7 @@ const CourseDevAllYears = ({allYearsAnalysisDataObj, koppsData, translate}) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
     <div className='tables-list col'>
+      <p>{translate.info_manually_edited}</p>
       {
         yearsDescending.map((year, index) =>
           <CourseDevAllRoundsForEachYear key={index}

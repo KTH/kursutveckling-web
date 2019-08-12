@@ -40,6 +40,7 @@ module.exports = {
     page_student: 'STUDENT AT KTH'
   },
   tableHeaders: {
+    info_manually_edited: '* Course data has been registered manually',
     header_course_round: 'Course round',
     header_main_edit: 'Edit (for course responsible)',
     header_main_publish_new: 'Publish new course analysis with course data (for course responsible)',
@@ -94,7 +95,6 @@ module.exports = {
     course_admin_title_alt: 'Administrate "About course"',
     header_syllabuses: 'All course syllabuses',
     info_text: 'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
-    info_manually_edited: '* Course data has been registered manually',
     label_syllabus_link: 'Course syllabus',
     no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
