@@ -107,6 +107,11 @@ span.intro-text {
 //== LIST OF COLLAPSIBLE TABLES ==
 .tables-list {
     margin: 3em 0;
+            span.header-with-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
     h2 {
         margin-top: .7em;
     }
@@ -115,14 +120,31 @@ span.intro-text {
             margin-top: 0;
         } 
     }
-    @media (min-width: 768px) {
-        span.header-with-link {
-            display: flex;
+    span.header-with-link {
+        display: flex;
+        flex-direction: column;
+        h2 {
+            align-self: flex-start
+        }
+        a {
+            align-self: flex-end;
+            margin-top: .5em;
+            text-align: right;
+        }
+        // align-items: flex-end;
+        @media (min-width: 768px) {
+            flex-direction: row;
             justify-content: space-between;
             align-items: baseline;
+            h2, a {
+                align-self: center;
+            }
         }
-        .table-for-year > p.right-link {
-            margin-bottom: 0;
+    }
+    .table-for-year > p.right-link {
+        margin-top: 1em;
+        @media (min-width: 768px) {
+            margin: 0;
         }
     }
 }
@@ -189,18 +211,23 @@ p.right-link, span.right-links{
 span.right-links {
     float: left;
     text-align: left;
-    p { margin-bottom: 0; }
+    margin: 1em .2em 0;
     @media (min-width: 768px) {
+        p { margin-bottom: 0; }
         display: flex;
         justify-content: flex-end; 
         float: right;
         text-align: right;
+        margin: 0;
     }
 }
 
 //Kursplan, kurspm, kursanalys links
-a.pdf-link{
-    margin: 0 1.5em 0 1em;
+a.pdf-link {
+    margin: 0;
+    @media (min-width: 768px) {
+        margin: 0 1.5em 0 1em;
+    }
     &:before {
         background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
         content: '';

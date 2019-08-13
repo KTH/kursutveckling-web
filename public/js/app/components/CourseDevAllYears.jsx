@@ -9,7 +9,7 @@ const CourseDevAllRoundsForEachYear = ({oneYearAnalysisDataArrOfObj, koppsData, 
     <span>
       <span className='header-with-link'>
         <h2>{year}</h2>
-        <a href={linkToCreateNew} alt={translate.alt_header_main_publish_new}>{translate.header_main_publish_new}</a>
+        <a href={linkToCreateNew} className='right-link' alt={translate.alt_header_main_publish_new}>{translate.header_main_publish_new}</a>
       </span>
       {oneYearAnalysisDataArrOfObj.length === 0
       ? <p>{translate.no_course_analys}</p>
