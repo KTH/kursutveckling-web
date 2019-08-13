@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 import { getDateFormat } from '../util/helpers'

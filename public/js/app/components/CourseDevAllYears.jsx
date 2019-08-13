@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import CourseDevelopmentForEachCourseRound from './CourseDevelopmentForEachCourseRound'
 import React from 'react'
 import { KUTV_ADMIN_URL } from '../util/constants'
