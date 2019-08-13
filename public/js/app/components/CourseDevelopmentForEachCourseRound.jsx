@@ -22,7 +22,6 @@ class CourseDevelopmentForEachCourseRound extends Component {
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
     const courseAnalysDataId = courseRoundObj._id
-    console.log('courseRoundData', courseRoundObj)
 
     return (
       <div className='card collapsible blue course-data-for-round'>
