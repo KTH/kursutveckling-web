@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import { SYLLABUS_URL } from '../util/constants'
 import { getDateFormat } from '../util/helpers'

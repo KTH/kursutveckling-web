@@ -1,5 +1,4 @@
 'use strict'
-import '@babel/polyfill'
 if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
   // require('inferno-devtools')
 }

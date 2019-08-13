@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 import { SYLLABUS_URL} from '../util/constants'

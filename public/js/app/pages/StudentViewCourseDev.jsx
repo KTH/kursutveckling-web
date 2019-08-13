@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React, { Component } from 'react'
 import { inject, observer} from 'mobx-react'
 import i18n from '../../../../i18n'

@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import { Table } from 'reactstrap'
 import CoursePlansCollapsibleList from './CoursePlansCollapsibleList'

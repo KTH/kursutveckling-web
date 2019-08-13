@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React, { Component } from 'react'
 import { EMPTY } from '../util/constants'
 

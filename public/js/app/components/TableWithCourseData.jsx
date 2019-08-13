@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import { Button, Table } from 'reactstrap'
 import { PopOverTextForTableHeaders, PopoverExamItem } from './PopOverTextForTable'

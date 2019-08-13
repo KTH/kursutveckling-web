@@ -1,5 +1,4 @@
 'use strict'
-import '@babel/polyfill'
 
 export const getDateFormat = (date, language) => {
   if (language === 'Svenska' || language === 1 || language === 'sv' || date.length === 0) {

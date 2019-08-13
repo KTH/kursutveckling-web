@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import { UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap'
 
