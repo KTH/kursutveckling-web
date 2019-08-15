@@ -25,14 +25,14 @@ Application is showing course syllabuses via **kursplan-api**
 Web pages is public for everyone. 
 
 **All connected projects can be found here:**
-[https://github.com/KTH/kursutveckling-admin-web](https://github.com/KTH/kursutveckling-admin-web)
-[https://github.com/KTH/kursutveckling-api](https://github.com/KTH/kursutveckling-api)
-[https://github.com/KTH/kursplan-api](https://github.com/KTH/kursplan-api)
+- [https://github.com/KTH/kursutveckling-admin-web](https://github.com/KTH/kursutveckling-admin-web)
+- [https://github.com/KTH/kursutveckling-api](https://github.com/KTH/kursutveckling-api)
+- [https://github.com/KTH/kursplan-api](https://github.com/KTH/kursplan-api)
 
 **Related projects**
-[https://github.com/KTH/kursinfo-admin-web](https://github.com/KTH/kursinfo-admin-web)
-[https://github.com/KTH/kursinfo-api](https://github.com/KTH/kursinfo-api)
-[https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
+- [https://github.com/KTH/kursinfo-admin-web](https://github.com/KTH/kursinfo-admin-web)
+- [https://github.com/KTH/kursinfo-api](https://github.com/KTH/kursinfo-api)
+- [https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
 
 
 ###Where do you keep you secrets?
