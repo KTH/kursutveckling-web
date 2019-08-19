@@ -34,8 +34,8 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
       objYear = obj.semester.substr(0,4)
       //if = true manually edited
       if (obj.isPublished === true) {
-        obj.examinationGrade = obj.examinationGradeFromLadok === false ? obj.examinationGrade + ' %' : obj.examinationGrade + ' % *'
-        obj.registeredStudents = obj.registeredStudentsFromLadok === false ? obj.registeredStudents : obj.registeredStudents + ' *'
+        obj.examinationGrade = obj.examinationGradeFromLadok === false ? obj.examinationGrade + ' % *' : obj.examinationGrade + ' %'
+        obj.registeredStudents = obj.registeredStudentsFromLadok === false ? obj.registeredStudents + ' *' : obj.registeredStudents
         if (sortedByYear[objYear])
           sortedByYear[objYear].push(obj)
         else { //typ sortedOlderThan5YearsAgo
