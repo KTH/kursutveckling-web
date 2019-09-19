@@ -53,3 +53,17 @@ LDAP_BASE=[OU=UG,DC=ref,DC=ug,DC=kth,DC=se]
 LDAP_URI=ldaps://[usertname]@ldap.ref.ug.kth.se
 LDAP_PASSWORD=[password]
 ```
+
+**IE 11 Support**
+
+In order to support _Internet Explorer 11_, older versions of `MobX` and `query-string` are used.
+
+From `MobX` project page:
+
+> MobX 4 runs on any ES5 browser and will be actively maintained. The MobX 4 and 5 api's are the same and semantically can achieve the same, but MobX 4 has some limitations.
+
+
+From `query-string` project page:
+
+
+> This module targets Node.js 6 or later and the latest version of Chrome, Firefox, and Safari. If you want support for older browsers, or, if your project is using create-react-app v1, use version 5
