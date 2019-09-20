@@ -25,6 +25,9 @@ $dark-grey: #65656c;
 
 #kth-kursinfo{
     width:100%;
+    .card.collapsible {
+        cursor: pointer;
+    }
 }
 .kursinfo-main-page {    
     padding-bottom: 3em;
