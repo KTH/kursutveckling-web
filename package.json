@@ -39,7 +39,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "kth-node-access-log": "^0.2.0",
-    "kth-node-api-call": "^2.0.0",
+    "kth-node-api-call": "^2.0.4",
     "kth-node-configuration": "^1.6.4",
     "kth-node-express-routing": "^1.0.0",
     "kth-node-i18n": "^1.0.2",
