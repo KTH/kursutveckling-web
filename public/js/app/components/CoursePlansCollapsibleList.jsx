@@ -11,7 +11,8 @@ class CoursePlansCollapsibleList extends Component {
     this.toggleHeader = this.toggleHeader.bind(this)
   }
 
-  toggleHeader () {
+  toggleHeader (e) {
+    e.preventDefault()
     this.setState(state => ({collapse: !state.collapse}))
   }
 
@@ -20,8 +21,11 @@ class CoursePlansCollapsibleList extends Component {
     const { courseCode, syllabusSemesterList } = this.props.adminStore.courseKoppsData
     return (
       <div className='card collapsible blue course-plans'>
-        <span className='card-header' role='tab' tabIndex='0' onClick={this.toggleHeader}>
-          <a id='kursplan-list' aria-expanded={this.state.collapse} load='false' data-toggle='collapse'>{translate.header_syllabuses}</a>
+        <span className='card-header' role='tab' onClick={this.toggleHeader}>
+          <a href='#plan' id='kursplan-list' aria-expanded={this.state.collapse} 
+          load='false' data-toggle='collapse' alt={translate.header_syllabuses}>
+            {translate.header_syllabuses}
+          </a>
         </span>
         <Collapse isOpen={this.state.collapse} toggler='#kursplan-list'>
             <div className='kursplan-bordered-list'>

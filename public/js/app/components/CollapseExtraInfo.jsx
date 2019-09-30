@@ -49,16 +49,19 @@ class CollapseExtraInfo extends Component {
     this.toggleHeader = this.toggleHeader.bind(this)
     this.state = {collapseExtraInfo: this.props.isOpen}
   }
-  toggleHeader () {
+  toggleHeader (event) {
+    event.preventDefault()
     this.setState(state => ({collapseExtraInfo: !state.collapseExtraInfo}))
   }
   render () {
     const { courseRoundObj, label, translate } = this.props
     return (
       <div className='card collapsible rubric-list white' >
-        <span className='card-header info-rubric' role='tab' tabIndex='0' onClick={this.toggleHeader}>
-          <a className='collapse-header title' id={label} aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'>{translate.header_more_info}</a>
-        </span>
+        <div className='card-header info-rubric' role='tab' onClick={this.toggleHeader}>
+          <a href='#more' className='collapse-header title' id={label}
+            aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'
+            alt={`${translate.alt_header_more_info} ${courseRoundObj.analysisName}`}>{translate.header_more_info}</a>
+        </div>
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
           <div className='card-body col extra-info'>
             <ExtraKoppsInfo translate={translate.extra_kopps_info} courseRoundObj={courseRoundObj} />

@@ -13,7 +13,8 @@ class CourseDevelopmentForEachCourseRound extends Component {
     this.state = {collapse: true}
   }
 
-  toggleRound () {
+  toggleRound (e) {
+    e.preventDefault()
     this.setState(state => ({collapse: !state.collapse}))
   }
 
@@ -25,8 +26,8 @@ class CourseDevelopmentForEachCourseRound extends Component {
 
     return (
       <div className='card collapsible blue course-data-for-round'>
-        <span className='course-data-title card-header' role='tab' tabIndex='0' onClick={this.toggleRound}>
-          <a id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundObj.analysisName}</a>
+        <span className='course-data-title card-header' role='tab' onClick={this.toggleRound}>
+          <a href='#courseData' id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundObj.analysisName}</a>
         </span>
         {/*  */}
         <Collapse className='bordered-table' isOpen={this.state.collapse} toggler={'#' + courseAnalysDataId}>
