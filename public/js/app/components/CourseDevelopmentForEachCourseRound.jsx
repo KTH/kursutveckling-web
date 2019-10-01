@@ -27,9 +27,11 @@ class CourseDevelopmentForEachCourseRound extends Component {
     return (
       <div className='card collapsible blue course-data-for-round'>
         <span className='course-data-title card-header' role='tab' onClick={this.toggleRound}>
-          <a href='#courseData' id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundObj.analysisName}</a>
+          <h4 className='mb-0'>
+            <a href='#courseData' id={courseAnalysDataId} aria-expanded={this.state.collapse} load='false'>{translate.header_course_round}: {courseRoundObj.analysisName}</a>            
+          </h4>
         </span>
-        {/*  */}
+      {/*  */}
         <Collapse className='bordered-table' isOpen={this.state.collapse} toggler={'#' + courseAnalysDataId}>
           <SyllabusPmAnalysLinks translate={translate} 
             courseRoundObj={courseRoundObj} 

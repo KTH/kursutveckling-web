@@ -58,9 +58,11 @@ class CollapseExtraInfo extends Component {
     return (
       <div className='card collapsible rubric-list white' >
         <div className='card-header info-rubric' role='tab' onClick={this.toggleHeader}>
-          <a href='#more' className='collapse-header title' id={label}
-            aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'
-            alt={`${translate.alt_header_more_info} ${courseRoundObj.analysisName}`}>{translate.header_more_info}</a>
+          <h4 className='mb-0'>
+            <a href='#more' className='collapse-header title' id={label}
+              aria-expanded={this.state.collapseExtraInfo} load='false' data-toggle='collapse'
+              alt={`${translate.alt_header_more_info} ${courseRoundObj.analysisName}`}>{translate.header_more_info}</a>
+          </h4>
         </div>
         <Collapse color='white' isOpen={this.state.collapseExtraInfo} toggler={label}>
           <div className='card-body col extra-info'>

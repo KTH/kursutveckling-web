@@ -22,10 +22,12 @@ class CoursePlansCollapsibleList extends Component {
     return (
       <div className='card collapsible blue course-plans'>
         <span className='card-header' role='tab' onClick={this.toggleHeader}>
-          <a href='#plan' id='kursplan-list' aria-expanded={this.state.collapse} 
-          load='false' data-toggle='collapse' alt={translate.header_syllabuses}>
+          <h4 className='mb-0'>
+            <a href='#plan' id='kursplan-list' aria-expanded={this.state.collapse} 
+            load='false' data-toggle='collapse' alt={translate.header_syllabuses}>
             {translate.header_syllabuses}
-          </a>
+            </a>
+          </h4>
         </span>
         <Collapse isOpen={this.state.collapse} toggler='#kursplan-list'>
             <div className='kursplan-bordered-list'>
