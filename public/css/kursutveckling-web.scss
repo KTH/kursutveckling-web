@@ -167,6 +167,12 @@ h3.popover-header {
 
 //REDEFINING COLLAPSE Style
 
+.card.collapsible {
+    h4.mb-0 {
+        margin-top: 0 !important;
+    }
+}
+
 .card.collapsible.blue {
     margin-top: 1em;
     .course-data-title > a::before{
