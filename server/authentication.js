@@ -4,7 +4,7 @@ const passport = require('passport')
 const config = require('./configuration').server
 const log = require('kth-node-log')
 const CasStrategy = require('kth-node-passport-cas').Strategy
-const {GatewayStrategy} = require('kth-node-passport-cas')
+const { GatewayStrategy } = require('kth-node-passport-cas')
 
 /**
  * Passport will maintain persistent login sessions. In order for persistent sessions to work, the authenticated
@@ -51,11 +51,11 @@ if (config.cas.pgtUrl) {
 }
 
 const strategy = new CasStrategy(casOptions,
-   (logOnResult, done) => {
-     const user = logOnResult.user
-     log.debug(`User from CAS: ${user} ${JSON.stringify(logOnResult)}`)
-     return done(null, user, logOnResult)
-   }
+  (logOnResult, done) => {
+    const user = logOnResult.user
+    log.debug(`User from CAS: ${user} ${JSON.stringify(logOnResult)}`)
+    return done(null, user, logOnResult)
+  }
 )
 
 passport.use(strategy)
@@ -90,7 +90,7 @@ module.exports.redirectAuthenticatedUserHandler = require('kth-node-passport-cas
 
 /* Checks req.session.authUser as created above im unpackLdapUser.
   Usage:
-  requireRole('isAdmin', 'isEditor')*/
+  requireRole('isAdmin', 'isEditor') */
 
 function _hasGroup (courseCode, courseInitials, ldapUser, role) {
   // 'edu.courses.SF.SF1624.20192.1.courseresponsible'
@@ -99,7 +99,7 @@ function _hasGroup (courseCode, courseInitials, ldapUser, role) {
   const endWith = `.${role}`
   if (groups && groups.length > 0) {
     for (var i = 0; i < groups.length; i++) {
-      if (groups[ i ].indexOf(startWith) >= 0 && groups[ i ].indexOf(endWith) >= 0) {
+      if (groups[i].indexOf(startWith) >= 0 && groups[i].indexOf(endWith) >= 0) {
         return true
       }
     }
@@ -110,7 +110,6 @@ function _hasGroup (courseCode, courseInitials, ldapUser, role) {
 module.exports.requireRole = function (req, res, next) { // TODO:Different roles for selling text and course development
   const roles = Array.prototype.slice.call(arguments)
   const ldapUser = req.session.authUser || {}
-  console.log('dddddd', ldapUser)
   const courseCode = req.params.courseCode.toUpperCase()
   const courseInitials = req.params.courseCode.slice(0, 2).toUpperCase()
   // TODO: Add date for courseresponsible
