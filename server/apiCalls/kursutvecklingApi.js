@@ -4,8 +4,7 @@ const log = require('kth-node-log')
 
 async function _getKursutvecklingApiInfo (courseCode) {
     try {
-      const client = api.kursutvecklingApi.client
-      const paths = api.kursutvecklingApi.paths
+      const { client, paths } = api.kursutvecklingApi
 
       return await client.getAsync(client.resolve(paths.getAnalysisListByCourseCode.uri, { courseCode }), { useCache: true })
     } catch (error) {
@@ -53,7 +52,7 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
   }
 }
 
-  module.exports = {sortedKursutveckligApiInfo}
+  module.exports = { sortedKursutveckligApiInfo }
 
     // 2019
     // 2018

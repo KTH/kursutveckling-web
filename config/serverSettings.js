@@ -60,6 +60,11 @@ module.exports = {
   apiKey: {
     kursutvecklingApi: getEnv('API_KEY', devDefaults('1234'))
   },
+    // Service API's
+  nodeApi: {
+    kursutvecklingApi: unpackNodeApiConfig('API_URI', devKursutvecklingApi)
+  },
+  koppsApi: unpackKOPPSConfig('KOPPS_URI', devKoppsApi),
 
   // Authentication
   auth: {
@@ -70,14 +75,6 @@ module.exports = {
     ssoBaseURL: getEnv('CAS_SSO_URI', devSsoBaseURL)
   },
   ldap: unpackLDAPConfig('LDAP_URI', getEnv('LDAP_PASSWORD'), devLdap, ldapOptions),
-  kopps: unpackKOPPSConfig('KOPPS_URI', devKoppsApi),
-
-  // Service API's
-  nodeApi: {
-    kursutvecklingApi: unpackNodeApiConfig('API_URI', devKursutvecklingApi)
-  },
-
-  redisOptions: unpackRedisConfig('REDIS_URI', devRedis), // TODO, CHECK IF IT IS NEEDED
 
   // Cortina
   blockApi: {
@@ -100,8 +97,13 @@ module.exports = {
     cortinaBlock: {
       redis: unpackRedisConfig('REDIS_URI', devRedis)
     },
-    nodeApi: {// TODO, CHECK IF IT IS NEEDED
-      redis: unpackRedisConfig('REDIS_URI', devRedis)
+    koppsApi: {
+      redis: unpackRedisConfig('REDIS_URI', devRedis),
+      expireTime: getEnv('KOPPS_API_CACHE_EXPIRE_TIME', 60 * 60) // 60 minuteS
+    },
+    kursutvecklingApi: {
+      redis: unpackRedisConfig('REDIS_URI', devRedis),
+      expireTime: getEnv('KURSUTVECKLING_API_CACHE_EXPIRE_TIME', 3 * 60) // 3 * 60 s = 3 MINUTES
     }
   },
 
