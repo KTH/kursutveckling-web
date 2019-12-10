@@ -25,38 +25,18 @@ $dark-grey: #65656c;
 
 #kth-kursinfo{
     width:100%;
-    .card.collapsible {
-        cursor: pointer;
-    }
 }
 .kursinfo-main-page {    
     padding-bottom: 3em;
     padding-top: 2em;
     width: 100%;
 }
-.courseTitle {
-    margin: 0;
-    margin-top: 20px;
+.pageTitle {
     h1 {
-        margin-bottom: 0;
         margin-left: -.095em;
-    }
-    h4 {
-        margin-top: 0;
     }
     .alert {
         margin-left: 0;
-    }
-}
-
-.alert {
-    max-width: 100em;
-    margin: 15px;
-    p {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        margin-top: 0;
     }
 }
 
@@ -87,16 +67,6 @@ span.navigation {
     h4 {
         margin-top: 0;
         margin-bottom: .3em;
-    }
-    .link-to::after{
-      content: '';
-      height: 1.5em;
-      width: 1.5em;
-      display: inline-block;
-      margin: -.6em 0 .3em .3em;
-      vertical-align: middle;
-      background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/pill-back.svg) no-repeat;
-      transform: rotate(180deg);
     }
 }
 //INTRODUCTION TEXT UNDER KIP-MENU
@@ -155,16 +125,6 @@ span.intro-text {
 p.popOver {
     margin: .2em 0 .2em 0;
 }
-.popover-body {
-    font-family: "Open Sans",Arial,"Helvetica Neue",helvetica,sans-serif;
-}
-h3.popover-header {
-    margin-top: 0 !important;
-}
-.header-popup {
-    border: solid 1px $dark-grey;
-}
-
 //REDEFINING COLLAPSE Style
 
 .card.collapsible {
@@ -234,23 +194,6 @@ span.right-links {
     }
 }
 
-//Kursplan, kurspm, kursanalys links
-a.pdf-link {
-    margin: 0;
-    @media (min-width: 768px) {
-        margin: 0 1.5em 0 1em;
-    }
-    &:before {
-        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/file-pdf-fa-regular.svg) no-repeat;
-        content: '';
-        display: inline-block;
-        height: 1.3em;
-        width: 1.3em;
-        margin: .5em .4em .6em .4em;
-        vertical-align: middle;
-    }
-}
-
 //Collapsible "More information"
 .card.collapsible.white.rubric-list {
   margin-top: -1em;
@@ -279,9 +222,9 @@ a.pdf-link {
     }
   }
   &> .card-header.info-rubric {
-    background-color: $white;
+    background-color: $white; //move to kth-style
 
-    a.collapse-header.title{
+    a.collapse-header.title{ //move to kth-style
         color: $black;
         &:before {
           margin-left: -.7em;
