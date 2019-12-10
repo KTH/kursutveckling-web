@@ -12,17 +12,6 @@ $dark-grey: #65656c;
     padding-bottom: 1em;
 }
 
-%table-info-icon-for-popup {
-    height: 1.2em; 
-    width: 1.2em;
-    border: solid .8px $white;
-    filter: grayscale(1) brightness(88%) contrast(2);
-    &:focus, :hover {
-        outline: 0; 
-        filter: grayscale(1) brightness(90%) contrast(2);
-    }
-}
-
 #kth-kursinfo{
     width:100%;
 }
@@ -238,9 +227,6 @@ span.right-links {
 //===TABLE===
 .table th {
     text-align: center;
-}
-button.desktop.btn-info-modal, button.mobile.btn-info-modal {
-    @extend %table-info-icon-for-popup;
 }
 //Table elments  visibility for desktop
 .table td { 
