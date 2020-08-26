@@ -24,7 +24,7 @@ const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, ariaLabel, vali
   )
 }
 
-const SyllabusPmAnalysLinks = ({ translate, courseRoundObj, storageUri, lang }) => {
+const SyllabusPmAnalysLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
   const {
     courseCode,
     syllabusStartTerm,
@@ -32,7 +32,7 @@ const SyllabusPmAnalysLinks = ({ translate, courseRoundObj, storageUri, lang }) 
     pdfAnalysisDate,
     pmFileName,
     pdfPMDate
-  } = courseRoundObj
+  } = thisAnalysisObj
   const syllabusFileName = syllabusStartTerm
     ? `${courseCode}-${syllabusStartTerm}.pdf?lang=${lang}`
     : ''

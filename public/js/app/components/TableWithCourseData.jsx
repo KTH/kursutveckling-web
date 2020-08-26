@@ -22,8 +22,8 @@ const OnlyMobileVisiblePopup = ({ popUpHeader, id }) => {
   )
 }
 
-const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
-  const { examinationRounds: rawExamsData, _id: popOverId } = thisOfferingCourseData
+const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
+  const { examinationRounds: rawExamsData, _id: popOverId } = thisAnalysisObj
   const listOfExamRounds = _getListOfExamRounds(rawExamsData)
   const orderedColumns = [
     'responsibles',
@@ -42,7 +42,7 @@ const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
               <th key={index} className={colName}>
                 {translate[colName].header}{' '}
                 <Button
-                  id={'desktopPopOver' + popOverId + colName}
+                  id={'targetforDesktopPopOver' + popOverId + colName}
                   type="button"
                   className="desktop btn-info-modal"
                 />{' '}
@@ -56,11 +56,11 @@ const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
               <td className={colName} id={colName + popOverId} key={index}>
                 <OnlyMobileVisiblePopup
                   popUpHeader={translate[colName].header}
-                  id={'labelforMobilePopOver' + popOverId + colName}
+                  id={'targetforMobilePopOver' + popOverId + colName}
                 />
                 {(colName === 'examRounds' &&
                   listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
-                  <p>{thisOfferingCourseData[colName]}</p>
+                  <p>{thisAnalysisObj[colName]}</p>
                 )}
               </td>
             ))}

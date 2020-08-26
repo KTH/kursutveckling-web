@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react'
 
 @inject(['adminStore'])
 @observer
-class CourseDevelopmentForEachCourseRound extends Component {
+class SectionForEachCourseOffering extends Component {
   constructor(props) {
     super(props)
     this.toggleRound = this.toggleRound.bind(this)
@@ -20,10 +20,10 @@ class CourseDevelopmentForEachCourseRound extends Component {
   }
 
   render() {
-    const { courseRoundObj, translate } = this.props
+    const { thisAnalysisObj, translate } = this.props
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
-    const courseAnalysDataId = courseRoundObj._id
+    const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
 
     return (
       <div className="card collapsible blue course-data-for-round">
@@ -35,7 +35,7 @@ class CourseDevelopmentForEachCourseRound extends Component {
               aria-expanded={this.state.collapse}
               load="false"
             >
-              {translate.header_course_round}: {courseRoundObj.analysisName}
+              {translate.header_course_round}: {analysisName}
             </a>
           </h4>
         </span>
@@ -47,19 +47,19 @@ class CourseDevelopmentForEachCourseRound extends Component {
         >
           <SyllabusPmAnalysLinks
             translate={translate}
-            courseRoundObj={courseRoundObj}
+            thisAnalysisObj={thisAnalysisObj}
             storageUri={this.props.adminStore.browserConfig.storageUri}
             lang={koppsDataLang}
           />
 
           <TableWithCourseData
             translate={translate.table_headers_with_popup}
-            thisOfferingCourseData={courseRoundObj}
+            thisAnalysisObj={thisAnalysisObj}
           />
 
           <CollapseExtraInfo
             translate={translate}
-            courseRoundObj={courseRoundObj}
+            thisAnalysisObj={thisAnalysisObj}
             label={courseAnalysDataId}
           />
         </Collapse>
@@ -67,4 +67,4 @@ class CourseDevelopmentForEachCourseRound extends Component {
     )
   }
 }
-export default CourseDevelopmentForEachCourseRound
+export default SectionForEachCourseOffering
