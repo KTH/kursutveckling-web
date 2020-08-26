@@ -24,7 +24,7 @@ const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, ariaLabel, vali
   )
 }
 
-const SyllabusPmAnalysLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
+const PdfLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
   const {
     courseCode,
     syllabusStartTerm,
@@ -69,4 +69,4 @@ const SyllabusPmAnalysLinks = ({ translate, thisAnalysisObj, storageUri, lang })
   )
 }
 
-export default SyllabusPmAnalysLinks
+export default PdfLinks

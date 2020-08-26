@@ -49,7 +49,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, translate }) => {
   )
 }
 
-const CourseDevAllYears = ({ allYearsAnalysisDataObj, koppsData, translate }) => {
+const ListYears = ({ allYearsAnalysisDataObj, koppsData, translate }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
     <div className="tables-list col">
@@ -67,4 +67,4 @@ const CourseDevAllYears = ({ allYearsAnalysisDataObj, koppsData, translate }) =>
   )
 }
 
-export default CourseDevAllYears
+export default ListYears

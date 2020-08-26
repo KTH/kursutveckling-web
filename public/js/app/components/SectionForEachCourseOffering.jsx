@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 import CollapseExtraInfo from './CollapseExtraInfo'
-import SyllabusPmAnalysLinks from './SyllabusPmAnalysLinks'
+import PdfLinks from './PdfLinks'
 import TableWithCourseData from './TableWithCourseData'
 import { inject, observer } from 'mobx-react'
 
@@ -45,7 +45,7 @@ class SectionForEachCourseOffering extends Component {
           isOpen={this.state.collapse}
           toggler={'#' + courseAnalysDataId}
         >
-          <SyllabusPmAnalysLinks
+          <PdfLinks
             translate={translate}
             thisAnalysisObj={thisAnalysisObj}
             storageUri={this.props.adminStore.browserConfig.storageUri}

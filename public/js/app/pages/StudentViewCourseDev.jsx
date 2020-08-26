@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { inject, observer} from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import i18n from '../../../../i18n'
 
 import PageTitle from '../components/PageTitle'
 import KipLinkNav from '../components/KipNav'
-import CourseDevAllYears from '../components/CourseDevAllYears'
+import ListYears from '../components/ListYears'
 import AlertMsg from '../components/AlertMsg'
 
-const IntroText = ({translate}) => {
+const IntroText = ({ translate }) => {
   return (
     <span className="intro-text">
       <p>{translate.info_text}</p>
@@ -15,30 +15,41 @@ const IntroText = ({translate}) => {
   )
 }
 
-@inject(['adminStore']) @observer
+@inject(['adminStore'])
+@observer
 class StudentViewCourseDev extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.state = {
-    }
+    this.state = {}
   }
 
-  render () {
+  render() {
     const { courseKoppsData, analysisData } = this.props.adminStore
     const { courseCode, koppsDataLang } = courseKoppsData
-    const { pageTitles, tableHeaders} = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
+    const { pageTitles, tableHeaders } = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
 
     return (
-      <div key='kursinfo-container' className='kursinfo-main-page col' >
+      <div key="kursinfo-container" className="kursinfo-main-page col">
         {/* ---COURSE TITEL--- */}
-        <PageTitle key='title'
+        <PageTitle
+          key="title"
           courseKoppsData={courseKoppsData}
           pageTitle={pageTitles.course_dev_title}
-          />
-        <KipLinkNav key='kip-navigation' courseCode={courseCode} lang={koppsDataLang} translate={pageTitles} />
+        />
+        <KipLinkNav
+          key="kip-navigation"
+          courseCode={courseCode}
+          lang={koppsDataLang}
+          translate={pageTitles}
+        />
         <AlertMsg props={this.props} lang={koppsDataLang} translate={pageTitles} />
-        <IntroText  key='intro-text' translate={pageTitles}/>
-        <CourseDevAllYears key='list-of-course-data-for-several-years' koppsData={courseKoppsData} allYearsAnalysisDataObj={analysisData} translate={tableHeaders}/>
+        <IntroText key="intro-text" translate={pageTitles} />
+        <ListYears
+          key="list-of-course-data-for-several-years"
+          koppsData={courseKoppsData}
+          allYearsAnalysisDataObj={analysisData}
+          translate={tableHeaders}
+        />
       </div>
     )
   }
