@@ -62,7 +62,8 @@ module.exports = {
       },
       examShortAndLongStrArr: {
         header: 'Examination',
-        popoverText: 'Form of examinataion for the course offering.'
+        popoverText:
+          'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before choosing course.'
       },
       alterationText: {
         header: 'Changes of the course before this course offering',
@@ -126,7 +127,7 @@ module.exports = {
     course_dev_title_alt: 'To Course development and history',
     course_info_title: 'Course information',
     course_info_title_alt: 'To Course information view',
-    course_admin_title: 'Administrate About course',
+    course_admin_title: 'Administrate',
     course_admin_title_alt: 'Administrate About course',
     header_syllabuses: 'All course syllabuses',
     info_text:

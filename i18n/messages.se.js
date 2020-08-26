@@ -59,7 +59,8 @@ module.exports = {
       },
       examShortAndLongStrArr: {
         header: 'Examination',
-        popoverText: 'Form av examination vid gällande kursomgång.'
+        popoverText:
+          'Form av examination vid gällande kursomgång enligt format: examinationsmodul, högskolepoäng, betygsskala. Se detaljer om Examination på sidan Inför kursval.'
       },
       alterationText: {
         header: 'Förändringar som har införts till den här kursomgången',
@@ -122,7 +123,7 @@ module.exports = {
     course_dev_title_alt: 'Till Kursens utveckling och historik vy',
     course_info_title: 'Kursinformation',
     course_info_title_alt: 'Till Kursinformation vy',
-    course_admin_title: 'Administrera Om kursen',
+    course_admin_title: 'Administrera',
     course_admin_title_alt: 'Administrera Om kursen',
     header_syllabuses: 'Samtliga kursplaner',
     info_text:
