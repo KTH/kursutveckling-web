@@ -111,10 +111,7 @@ span.intro-text {
     }
   }
 }
-//POPOVERS
-p.popOver {
-  margin: 0.2em 0 0.2em 0;
-}
+
 //REDEFINING COLLAPSE Style
 
 .card.collapsible {
@@ -244,14 +241,14 @@ button.desktop.btn-info-modal {
   visibility: visible;
 }
 /*Table cells try to give it more stable width*/
-/* ['responsibles', 'examiners', 'registeredStudents', 'examShortAndLongStrArr', 'examinationGrade', 'alterationText']*/
+/* ['responsibles', 'examiners', 'registeredStudents', 'examRounds', 'examinationGrade', 'alterationText']*/
 @media (min-width: 768px) {
   .responsibles,
   .examiners {
     min-width: 9em;
     max-width: 9em;
   }
-  .examShortAndLongStrArr {
+  .examRounds {
     min-width: 9em;
     max-width: 9em;
   }
