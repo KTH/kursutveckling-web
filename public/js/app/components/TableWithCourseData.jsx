@@ -2,20 +2,20 @@ import React from 'react'
 import { Button, Table } from 'reactstrap'
 import { PopOverTextForTableHeaders } from './PopOverTextForTable'
 
-function _getShortStrForEachExam(examinationRoundsArr) {
-  let shortExamStrArr = []
-  if (examinationRoundsArr && examinationRoundsArr.length > 0) {
-    shortExamStrArr = examinationRoundsArr.map(row => {
+function _getListOfExamRounds(rawExamRoundsStrArr) {
+  let listOfShortStrForExamRounds = []
+  if (rawExamRoundsStrArr && rawExamRoundsStrArr.length > 0) {
+    listOfShortStrForExamRounds = rawExamRoundsStrArr.map(row => {
       const examInfoArr = row.trim().split(';')
       return `${examInfoArr[0]} (${examInfoArr[2]}) ${examInfoArr[5]}` || ''
     })
   }
-  return shortExamStrArr
+  return listOfShortStrForExamRounds
 }
 
 const OnlyMobileVisiblePopup = ({ popUpHeader, id }) => {
   return (
-    <span className="mobile-header-popovers">
+    <span className="mobile-header-popovers" key={'onlyForMobileView' + popUpHeader + id}>
       <label>{popUpHeader}</label>{' '}
       <Button id={id} type="button" className="mobile btn-info-modal" />{' '}
     </span>
@@ -23,9 +23,8 @@ const OnlyMobileVisiblePopup = ({ popUpHeader, id }) => {
 }
 
 const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
-  const { examinationRounds, _id: popOverId } = thisOfferingCourseData
-  const examRounds = _getShortStrForEachExam(examinationRounds)
-  const courseDataThisRoundInfo = { ...thisOfferingCourseData, ...examRounds }
+  const { examinationRounds: rawExamsData, _id: popOverId } = thisOfferingCourseData
+  const listOfExamRounds = _getListOfExamRounds(rawExamsData)
   const orderedColumns = [
     'responsibles',
     'examiners',
@@ -42,7 +41,11 @@ const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
             {orderedColumns.map((colName, index) => (
               <th key={index} className={colName}>
                 {translate[colName].header}{' '}
-                <Button id={popOverId + colName} type="button" className="desktop btn-info-modal" />{' '}
+                <Button
+                  id={'desktopPopOver' + popOverId + colName}
+                  type="button"
+                  className="desktop btn-info-modal"
+                />{' '}
               </th>
             ))}
           </tr>
@@ -53,9 +56,12 @@ const TableWithCourseData = ({ translate, thisOfferingCourseData }) => {
               <td className={colName} id={colName + popOverId} key={index}>
                 <OnlyMobileVisiblePopup
                   popUpHeader={translate[colName].header}
-                  id={'labelfor' + popOverId + colName}
+                  id={'labelforMobilePopOver' + popOverId + colName}
                 />
-                <p>{courseDataThisRoundInfo[colName]}</p>
+                {(colName === 'examRounds' &&
+                  listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
+                  <p>{thisOfferingCourseData[colName]}</p>
+                )}
               </td>
             ))}
           </tr>
