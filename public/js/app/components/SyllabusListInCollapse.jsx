@@ -30,7 +30,7 @@ class SyllabusListInCollapse extends Component {
               aria-expanded={this.state.collapse}
               load="false"
               data-toggle="collapse"
-              alt={translate.header_syllabuses}
+              aria-label={translate.aria_label_header_syllabuses}
             >
               {translate.header_syllabuses}
             </a>
@@ -49,7 +49,7 @@ class SyllabusListInCollapse extends Component {
                     return (
                       <p key={index}>
                         <a
-                          alt={translate.alt_label_syllabus_link}
+                          aria-label={translate.aria_label_syllabus_link}
                           href={`${SYLLABUS_URL}${courseCode}-${startSemester}.pdf?lang=${lang}`}
                           key={index}
                           id={startSemester}

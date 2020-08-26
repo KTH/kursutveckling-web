@@ -48,21 +48,21 @@ const PdfLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
         fileName={syllabusFileName}
         storageUri={SYLLABUS_URL}
         linkTitle={translate.link_syllabus}
-        ariaLabel={translate.alt_link_syllabus}
+        ariaLabel={translate.aria_label_link_syllabus}
         validFrom={syllabusPublishedDate}
       />
       <ActiveOrDisabledLink
         fileName={pmFileName}
         storageUri={storageUri}
         linkTitle={translate.link_pm}
-        ariaLabel={translate.alt_link_pm}
+        ariaLabel={translate.aria_label_link_pm}
         validFrom={getDateFormat(pdfPMDate, lang)}
       />
       <ActiveOrDisabledLink
         fileName={analysisFileName}
         storageUri={storageUri}
         linkTitle={translate.link_analysis}
-        ariaLabel={translate.alt_link_analysis}
+        ariaLabel={translate.aria_label_link_analysis}
         validFrom={getDateFormat(pdfAnalysisDate, lang)}
       />
     </span>

@@ -81,7 +81,9 @@ class CollapseExtraInfo extends Component {
               aria-expanded={this.state.collapseExtraInfo}
               load="false"
               data-toggle="collapse"
-              alt={`${translate.alt_header_more_info} ${thisAnalysisObj.analysisName}`}
+              aria-label={`${translate.aria_label_header_more_info} ${
+                thisAnalysisObj.analysisName
+              }`}
             >
               {translate.header_more_info}
             </a>

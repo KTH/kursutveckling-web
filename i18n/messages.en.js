@@ -50,10 +50,11 @@ module.exports = {
       'Go to the admin page to Publish new course analysis with kursdata for year ',
     aria_label_header_main_edit:
       'Go to the admin page to Edit published course analysis and course data. Course rounds:',
-    alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
-    alt_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
-    alt_link_pm: 'Open a new tab to show the valid Course-memo pdf',
-    alt_header_more_info: 'Click on the tab to show or hide More information for course round:',
+    aria_label_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
+    aria_label_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
+    aria_label_link_pm: 'Open a new tab to show the valid Course-memo pdf',
+    aria_label_header_more_info:
+      'Click on the tab to show or hide More information for course round:',
     table_headers_with_popup: {
       examiners: {
         header: 'Examiners',
@@ -102,7 +103,6 @@ module.exports = {
     extra_dates_and_comments: {
       no_added: 'No information inserted',
       header_publishing_dates: 'Published date',
-      // alt_alla: 'It is possible to upload new versions of course analysis and course memos and rewrite changes to this course offering. Look at comments about the purpose of the new versions in this field',
       publishedDate: 'Published first time',
       changedAfterPublishedDate: 'Last time changed',
       commentChange: 'Comments to changes in course data or course analysis after publishing',
@@ -122,13 +122,14 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    alt_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
-    course_dev_title: 'Course development and history',
-    course_dev_title_alt: 'To Course development and history',
-    course_info_title: 'Course information',
-    course_info_title_alt: 'To Course information view',
+    aria_label_course_admin_title: 'Administrate About course',
+    aria_label_course_dev_title: 'To Course development and history',
+    aria_label_course_info_title: 'To Course information view',
+    aria_label_header_syllabuses: 'Click on the tab to show or hide All course syllabuses',
+    aria_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
     course_admin_title: 'Administrate',
-    course_admin_title_alt: 'Administrate About course',
+    course_dev_title: 'Course development and history',
+    course_info_title: 'Course information',
     header_syllabuses: 'All course syllabuses',
     info_text:
       'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',

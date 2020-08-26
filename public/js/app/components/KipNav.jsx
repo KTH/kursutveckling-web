@@ -15,7 +15,7 @@ const KipLinkNav = ({ courseCode, translate, lang }) => {
             <td colSpan="2">
               <h4>{translate.about_course}</h4>
               <p>
-                <a href={kursOmLink} alt={translate.course_info_title_alt}>
+                <a href={kursOmLink} aria-label={translate.aria_label_course_info_title}>
                   {translate.course_info_title}
                 </a>
               </p>
@@ -25,7 +25,11 @@ const KipLinkNav = ({ courseCode, translate, lang }) => {
             </td>
             <td className="admin-link">
               <p>
-                <a href={kursAdmin} className="link-to" alt={translate.course_admin_title_alt}>
+                <a
+                  href={kursAdmin}
+                  className="link-to"
+                  aria-label={translate.aria_label_course_admin_title}
+                >
                   {translate.course_admin_title}
                 </a>
               </p>

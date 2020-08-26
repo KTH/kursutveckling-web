@@ -47,10 +47,11 @@ module.exports = {
       'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
     aria_label_header_main_edit:
       'Gå till adminsida för att andra den kursanalysen och kursdata för kursomgång:',
-    alt_link_syllabus: 'Till gällande Kursplan',
-    alt_link_analysis: 'Till gällande Kursanalys',
-    alt_link_pm: 'Till gällande Kurs-PM',
-    alt_header_more_info: 'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
+    aria_label_link_syllabus: 'Till gällande Kursplan',
+    aria_label_link_analysis: 'Till gällande Kursanalys',
+    aria_label_link_pm: 'Till gällande Kurs-PM',
+    aria_label_header_more_info:
+      'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
     table_headers_with_popup: {
       examiners: {
         header: 'Examinator',
@@ -118,13 +119,14 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'Om kursen',
-    alt_label_syllabus_link: 'Visa gällande kursplan för den period',
-    course_dev_title: 'Kursens utveckling och historik',
-    course_dev_title_alt: 'Till Kursens utveckling och historik vy',
-    course_info_title: 'Kursinformation',
-    course_info_title_alt: 'Till Kursinformation vy',
+    aria_label_course_admin_title: 'Administrera Om kursen',
+    aria_label_course_dev_title: 'Till Kursens utveckling och historik vy',
+    aria_label_course_info_title: 'Till Kursinformation vy',
+    aria_label_header_syllabuses: 'Trycka på länk för att visa eller gömma Samtliga kursplaner',
+    aria_label_syllabus_link: 'Visa gällande kursplan för den period',
     course_admin_title: 'Administrera',
-    course_admin_title_alt: 'Administrera Om kursen',
+    course_dev_title: 'Kursens utveckling och historik',
+    course_info_title: 'Kursinformation',
     header_syllabuses: 'Samtliga kursplaner',
     info_text:
       'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
