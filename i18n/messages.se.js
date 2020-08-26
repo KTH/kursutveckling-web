@@ -31,7 +31,7 @@ module.exports = {
     field_label_post_example: 'Min datamodell(Svar från api anrop POST): ',
 
     lang_block_id: '1.272446',
-    locale_text: 'Kursutvecklingsinformation på svenska',
+    locale_text: 'Denna sida på svenska',
 
     site_name: 'Kursutvecklingsinformation',
     host_name: 'KTH',

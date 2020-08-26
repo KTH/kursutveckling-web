@@ -33,7 +33,7 @@ module.exports = {
     field_label_post_example: 'My modelData(Response from api call POST): ',
 
     lang_block_id: '1.77273',
-    locale_text: 'Course development information in English',
+    locale_text: 'This page in English',
 
     site_name: 'Course development information',
     host_name: 'KTH',
