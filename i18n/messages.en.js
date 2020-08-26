@@ -46,9 +46,9 @@ module.exports = {
     header_main_edit: 'Edit (for course responsible)',
     header_main_publish_new:
       'Publish new course analysis with course data (for course responsible)',
-    alt_header_main_publish_new:
+    aria_label_header_main_publish_new:
       'Go to the admin page to Publish new course analysis with kursdata for year ',
-    alt_header_main_edit:
+    aria_label_header_main_edit:
       'Go to the admin page to Edit published course analysis and course data. Course rounds:',
     alt_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
     alt_link_analysis: 'Open a new tab to show the valid Course analysis pdf',

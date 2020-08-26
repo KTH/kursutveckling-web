@@ -18,7 +18,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, translate }) => {
         <a
           href={linkToCreateNew}
           className="right-link"
-          alt={`${translate.alt_header_main_publish_new} ${year}`}
+          aria-label={`${translate.alt_header_main_publish_new} ${year}`}
         >
           {translate.header_main_publish_new}
         </a>
@@ -33,7 +33,9 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, translate }) => {
                 href={`${KUTV_ADMIN_URL}${
                   thisOfferingAnalysis._id
                 }?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
-                alt={`${translate.alt_header_main_edit} ${thisOfferingAnalysis.analysisName}`}
+                aria-label={`${translate.alt_header_main_edit} ${
+                  thisOfferingAnalysis.analysisName
+                }`}
               >
                 {translate.header_main_edit}
               </a>

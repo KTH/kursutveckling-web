@@ -43,9 +43,9 @@ module.exports = {
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     header_course_round: 'Kursomgång',
-    alt_header_main_publish_new:
+    aria_label_header_main_publish_new:
       'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
-    alt_header_main_edit:
+    aria_label_header_main_edit:
       'Gå till adminsida för att andra den kursanalysen och kursdata för kursomgång:',
     alt_link_syllabus: 'Till gällande Kursplan',
     alt_link_analysis: 'Till gällande Kursanalys',
