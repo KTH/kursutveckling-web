@@ -141,7 +141,7 @@ span.intro-text {
   @media (min-width: 768px) {
     margin-left: 10em;
   }
-  div.kursplan-bordered-list {
+  div.collapse-bordered-list {
     padding: 0.5em;
     @extend %bordered-area;
     p {

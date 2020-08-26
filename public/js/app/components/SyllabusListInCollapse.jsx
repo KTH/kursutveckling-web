@@ -26,7 +26,7 @@ class SyllabusListInCollapse extends Component {
           <h4 className="mb-0">
             <a
               href="#plan"
-              id="kursplan-list"
+              id="syllabuses-list"
               aria-expanded={this.state.collapse}
               load="false"
               data-toggle="collapse"
@@ -36,8 +36,8 @@ class SyllabusListInCollapse extends Component {
             </a>
           </h4>
         </span>
-        <Collapse isOpen={this.state.collapse} toggler="#kursplan-list">
-          <div className="kursplan-bordered-list">
+        <Collapse isOpen={this.state.collapse} toggler="#syllabuses-list">
+          <div className="collapse-bordered-list">
             {/* --- ALL SYLLABUS LINKS--- */}
             {syllabusSemesterList.length > 0
               ? syllabusSemesterList.map((tillSemester, index, semesterArr) => {
