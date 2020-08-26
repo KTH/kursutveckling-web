@@ -50,7 +50,7 @@ module.exports = {
     alt_header_more_info: 'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
     table_headers_with_popup: {
       examiners: {header: 'Examinator', popoverText: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'},
-      examShortAndLongStrArr: {header: 'Examination', popoverText: 'Form av examination vid gällande kursomgång.'},
+      examShortAndLongStrArr: {header: 'Examination', popoverText: 'Form av examination vid gällande kursomgång enligt format: examinationsmodul, högskolepoäng, betygsskala. Se detaljer om Examination på sidan Inför kursval.'},
       alterationText: {header: 'Förändringar som har införts till den här kursomgången', popoverText: 'Summerade förändringar som har införts till den här kursomgången. Syftet med att publicera förändringar som infördes till kursen innan kursomgångens start är att visa på hur kursen förbättras och utvecklas över tid. Kursomgångarnas alla dokumenterade förändringar visar på vilka utvecklingssteg kursen har genomgått.'},
       examinationGrade: {header: 'Resultat', popoverText: 'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'},
       responsibles: {header: 'Kursansvarig', popoverText: 'Samtliga kursansvariga för de kurstillfällen som ingår i kursomgången. Kursansvariga administreras i Kopps.'},
