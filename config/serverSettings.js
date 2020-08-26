@@ -7,7 +7,14 @@
  * *************************************************
  *
  */
-const { getEnv, devDefaults, unpackLDAPConfig, unpackKOPPSConfig, unpackRedisConfig, unpackNodeApiConfig } = require('kth-node-configuration')
+const {
+  getEnv,
+  devDefaults,
+  unpackLDAPConfig,
+  unpackKOPPSConfig,
+  unpackRedisConfig,
+  unpackNodeApiConfig
+} = require('kth-node-configuration')
 const { typeConversion } = require('kth-node-configuration/lib/utils')
 const { safeGet } = require('safe-utils')
 
@@ -15,8 +22,12 @@ const { safeGet } = require('safe-utils')
 const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
-const devKursutvecklingApi = devDefaults('http://localhost:3001/api/kursutveckling?defaultTimeout=10000') // required=true&
-const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000') // required=true&
+const devKursutvecklingApi = devDefaults(
+  'http://localhost:3001/api/kursutveckling?defaultTimeout=10000'
+) // required=true&
+const devKoppsApi = devDefaults(
+  'https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000'
+) // required=true&
 const devSessionKey = devDefaults('kursutveckling-web.sid')
 const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
@@ -35,7 +46,7 @@ const ldapOptions = {
   testSearch: true, // TODO: Should this be an ENV setting?
   timeout: typeConversion(getEnv('LDAP_TIMEOUT', null)),
   reconnectTime: typeConversion(getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null)),
-  reconnectOnIdle: (getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null) ? true : false),
+  reconnectOnIdle: getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null) ? true : false,
   connecttimeout: typeConversion(getEnv('LDAP_CONNECT_TIMEOUT', null)),
   searchtimeout: typeConversion(getEnv('LDAP_SEARCH_TIMEOUT', null))
 }
@@ -60,7 +71,7 @@ module.exports = {
   apiKey: {
     kursutvecklingApi: getEnv('API_KEY', devDefaults('1234'))
   },
-    // Service API's
+  // Service API's
   nodeApi: {
     kursutvecklingApi: unpackNodeApiConfig('API_URI', devKursutvecklingApi)
   },
@@ -114,7 +125,9 @@ module.exports = {
     useRedis: safeGet(() => getEnv('SESSION_USE_REDIS', devSessionUseRedis) === 'true'),
     sessionOptions: {
       // do not set session secret here!!
-      cookie: { secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true') },
+      cookie: {
+        secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true')
+      },
       proxy: safeGet(() => getEnv('SESSION_TRUST_PROXY', true) === 'true')
     },
     redisOptions: unpackRedisConfig('REDIS_URI', devRedis)
