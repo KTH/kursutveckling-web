@@ -8,7 +8,7 @@ const KipLinkNav = ({ courseCode, translate, lang }) => {
   const kursOmLink = `${COURSE_INFO_URL}${courseCode}?l=${lang}`
   const kursAdmin = `${KURSINFO_ADMIN_URL}${courseCode}?l=${lang}`
   return (
-    <span className="navigation row">
+    <nav className="navigation row">
       <Table className="kip-menu">
         <tbody>
           <tr>
@@ -40,7 +40,7 @@ const KipLinkNav = ({ courseCode, translate, lang }) => {
       <span className="right_intro col">
         <SyllabusListInCollapse translate={translate} lang={lang} />
       </span>
-    </span>
+    </nav>
   )
 }
 
