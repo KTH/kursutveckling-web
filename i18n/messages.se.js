@@ -44,6 +44,7 @@ module.exports = {
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     header_course_round: 'Kursomgång',
+    aria_label_close_icon: 'Stäng',
     aria_label_header_main_publish_new:
       'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
     aria_label_header_main_edit:
@@ -51,6 +52,7 @@ module.exports = {
     aria_label_link_syllabus: 'Till gällande Kursplan',
     aria_label_link_analysis: 'Till gällande Kursanalys',
     aria_label_link_pm: 'Till gällande Kurs-PM',
+    aria_label_info_icon: 'Mer information',
     aria_label_header_more_info:
       'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
     table_headers_with_popup: {
