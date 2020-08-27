@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 import CollapseExtraInfo from './CollapseExtraInfo'
-import PdfLinks from './PdfLinks'
+import PdfLinksNav from './PdfLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 import { inject, observer } from 'mobx-react'
 
@@ -29,16 +29,20 @@ class SectionForEachCourseOffering extends Component {
   }
 
   render() {
-    const { thisAnalysisObj, tableLabels } = this.props
+    const { thisAnalysisObj, parentSectionId, tableLabels } = this.props
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
     // const analysisLang = dataLang(analysisName)
+    const ariaheaderDataName = `round-header-${courseAnalysDataId}`
 
     return (
-      <div className="card collapsible blue course-data-for-round">
-        <span className="course-data-title card-header" role="tab" onClick={this.toggleRound}>
-          <h4 className="mb-0">
+      <section
+        className="card collapsible blue course-data-for-round"
+        aria-describedby={parentSectionId}
+      >
+        <header className="course-data-title card-header" role="tab" onClick={this.toggleRound}>
+          <h4 id={ariaheaderDataName} className="mb-0">
             <a
               href="#courseData"
               id={courseAnalysDataId}
@@ -48,14 +52,15 @@ class SectionForEachCourseOffering extends Component {
               {tableLabels.header_course_round}: {analysisName}
             </a>
           </h4>
-        </span>
+        </header>
         {/*  */}
         <Collapse
+          aria-labelledby={ariaheaderDataName}
           className="bordered-table"
           isOpen={this.state.collapse}
           toggler={'#' + courseAnalysDataId}
         >
-          <PdfLinks
+          <PdfLinksNav
             lang={koppsDataLang}
             translate={tableLabels}
             thisAnalysisObj={thisAnalysisObj}
@@ -73,7 +78,7 @@ class SectionForEachCourseOffering extends Component {
             translate={tableLabels}
           />
         </Collapse>
-      </div>
+      </section>
     )
   }
 }

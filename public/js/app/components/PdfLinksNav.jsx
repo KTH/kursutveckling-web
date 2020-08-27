@@ -24,7 +24,7 @@ const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, ariaLabel, vali
   )
 }
 
-const PdfLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
+const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
   const {
     courseCode,
     syllabusStartTerm,
@@ -43,7 +43,7 @@ const PdfLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
     : ''
 
   return (
-    <span className="right-links">
+    <nav className="right-links">
       <ActiveOrDisabledLink
         fileName={syllabusFileName}
         storageUri={SYLLABUS_URL}
@@ -65,8 +65,8 @@ const PdfLinks = ({ translate, thisAnalysisObj, storageUri, lang }) => {
         ariaLabel={translate.aria_label_link_analysis}
         validFrom={getDateFormat(pdfAnalysisDate, lang)}
       />
-    </span>
+    </nav>
   )
 }
 
-export default PdfLinks
+export default PdfLinksNav

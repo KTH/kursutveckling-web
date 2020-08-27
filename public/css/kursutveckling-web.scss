@@ -88,7 +88,7 @@ span.intro-text {
   h2 {
     margin-top: 0.7em;
   }
-  & > article:first-of-type {
+  & > section:first-of-type {
     & > header.header-with-link > h2 {
       margin-top: 0;
     }
@@ -174,13 +174,12 @@ span.intro-text {
 }
 //Links
 p.right-link,
-nav.right-link,
-span.right-links {
+nav.right-link {
   float: right;
   text-align: right;
 }
 
-span.right-links {
+nav.right-links {
   float: left;
   text-align: left;
   margin: 1em 0.2em 0;

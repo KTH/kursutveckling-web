@@ -71,8 +71,11 @@ class CollapseExtraInfo extends Component {
 
   render() {
     const { thisAnalysisObj, label, translate } = this.props
+    const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
+    const ariaheaderDataName = `round-header-${courseAnalysDataId}`
+
     return (
-      <div className="card collapsible rubric-list white">
+      <div className="card collapsible rubric-list white" aria-labelledby={ariaheaderDataName}>
         <div className="card-header info-rubric" role="tab" onClick={this.toggleHeader}>
           <h4 className="mb-0">
             <a
@@ -82,9 +85,7 @@ class CollapseExtraInfo extends Component {
               aria-expanded={this.state.collapseExtraInfo}
               load="false"
               data-toggle="collapse"
-              aria-label={`${translate.aria_label_header_more_info} ${
-                thisAnalysisObj.analysisName
-              }`}
+              aria-label={`${translate.aria_label_header_more_info} ${analysisName}`}
             >
               {translate.header_more_info}
             </a>

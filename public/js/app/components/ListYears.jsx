@@ -5,15 +5,17 @@ import { KUTV_ADMIN_URL } from '../util/constants'
 const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
   const { courseCode, courseTitle, courseCredits, koppsDataLang } = koppsData
   const linkToCreateNew = `${KUTV_ADMIN_URL}${courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
-  const headerId = 'header' + year
+  const headerId = 'year-header-' + year
+  const thisSectionId = 'section-for-year-' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>
     secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
   )
 
   return (
-    <article
-      aria-label={`${tableLabels.aria_label_header_main_publish_new} ${year}`}
+    <section
+      id={thisSectionId}
+      aria-label={`${tableLabels.aria_label_list_years}. ${pageLabels.aria_year} ${year}`}
       aria-labelledby={headerId}
       aria-describedby="section-with-years"
     >
@@ -38,28 +40,36 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
       {thisYearAnalyses.length === 0 ? (
         <p>{tableLabels.no_course_analys}</p>
       ) : (
-        thisYearAnalyses.map((thisOfferingAnalysis, index) => (
-          <article className="table-for-year" key={index}>
-            <nav className="right-link">
-              <a
-                href={`${KUTV_ADMIN_URL}${
-                  thisOfferingAnalysis._id
-                }?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
-                aria-label={`${tableLabels.aria_label_header_main_edit} ${
-                  thisOfferingAnalysis.analysisName
-                }`}
-              >
-                {tableLabels.header_main_edit}
-              </a>
-            </nav>
-            <SectionForEachCourseOffering
-              thisAnalysisObj={thisOfferingAnalysis}
-              tableLabels={tableLabels}
-            />
-          </article>
-        ))
+        thisYearAnalyses.map((thisOfferingAnalysis, index) => {
+          const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
+          const arialinkEditThisDoc = `admin-edit-${courseAnalysDataId}`
+          const ariaheaderDataName = `round-header-${courseAnalysDataId}`
+          return (
+            <article
+              className="table-for-year"
+              key={index}
+              aria-labelledby={ariaheaderDataName}
+              aria-describedby={thisSectionId}
+            >
+              <nav className="right-link" aria_labelledby={arialinkEditThisDoc}>
+                <a
+                  id={arialinkEditThisDoc}
+                  href={`${KUTV_ADMIN_URL}${courseAnalysDataId}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
+                  aria-label={`${tableLabels.aria_label_header_main_edit} ${analysisName}`}
+                >
+                  {tableLabels.header_main_edit}
+                </a>
+              </nav>
+              <SectionForEachCourseOffering
+                parentSectionId={thisSectionId}
+                thisAnalysisObj={thisOfferingAnalysis}
+                tableLabels={tableLabels}
+              />
+            </article>
+          )
+        })
       )}
-    </article>
+    </section>
   )
 }
 
