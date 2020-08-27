@@ -2,70 +2,89 @@ import SectionForEachCourseOffering from './SectionForEachCourseOffering'
 import React from 'react'
 import { KUTV_ADMIN_URL } from '../util/constants'
 
-const SectionPerYear = ({ thisYearAnalyses, koppsData, year, translate }) => {
+const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
   const { courseCode, courseTitle, courseCredits, koppsDataLang } = koppsData
   const linkToCreateNew = `${KUTV_ADMIN_URL}${courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
-
+  const headerId = 'header' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>
     secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
   )
 
   return (
-    <span>
-      <span className="header-with-link">
-        <h2>{year}</h2>
-        <a
-          href={linkToCreateNew}
-          className="right-link"
-          aria-label={`${translate.aria_label_header_main_publish_new} ${year}`}
-        >
-          {translate.header_main_publish_new}
-        </a>
-      </span>
+    <article
+      aria-label={`${tableLabels.aria_label_header_main_publish_new} ${year}`}
+      aria-labelledby={headerId}
+      aria-describedby="section-with-years"
+    >
+      <header
+        className="header-with-link"
+        role={pageLabels.aria_header_and_link}
+        aria-labelledby={headerId}
+      >
+        <h2 id={headerId} aria-label={pageLabels.aria_year}>
+          {year}
+        </h2>
+        <nav>
+          <a
+            href={linkToCreateNew}
+            className="right-link"
+            aria-label={`${tableLabels.aria_label_header_main_publish_new} ${year}`}
+          >
+            {tableLabels.header_main_publish_new}
+          </a>
+        </nav>
+      </header>
       {thisYearAnalyses.length === 0 ? (
-        <p>{translate.no_course_analys}</p>
+        <p>{tableLabels.no_course_analys}</p>
       ) : (
         thisYearAnalyses.map((thisOfferingAnalysis, index) => (
-          <span className="table-for-year" key={index}>
-            <p className="right-link">
+          <article className="table-for-year" key={index}>
+            <nav className="right-link">
               <a
                 href={`${KUTV_ADMIN_URL}${
                   thisOfferingAnalysis._id
                 }?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
-                aria-label={`${translate.aria_label_header_main_edit} ${
+                aria-label={`${tableLabels.aria_label_header_main_edit} ${
                   thisOfferingAnalysis.analysisName
                 }`}
               >
-                {translate.header_main_edit}
+                {tableLabels.header_main_edit}
               </a>
-            </p>
+            </nav>
             <SectionForEachCourseOffering
               thisAnalysisObj={thisOfferingAnalysis}
-              translate={translate}
+              tableLabels={tableLabels}
             />
-          </span>
+          </article>
         ))
       )}
-    </span>
+    </article>
   )
 }
 
-const ListYears = ({ allYearsAnalysisDataObj, koppsData, translate }) => {
+const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
-    <div className="tables-list col">
-      <p>{translate.info_manually_edited}</p>
+    <section
+      className="tables-list col"
+      role="list"
+      id="section-with-years"
+      aria-label={pageTitles.aria_label_list_years}
+      aria-labelledby="course-title"
+    >
+      <p>{tableHeaders.info_manually_edited}</p>
       {yearsDescending.map((year, index) => (
         <SectionPerYear
           key={index}
           thisYearAnalyses={allYearsAnalysisDataObj[year]}
           koppsData={koppsData}
           year={year}
-          translate={translate}
+          pageLabels={pageTitles}
+          tableLabels={tableHeaders}
         />
       ))}
-    </div>
+    </section>
   )
 }
 
