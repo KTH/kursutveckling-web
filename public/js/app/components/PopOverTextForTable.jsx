@@ -1,23 +1,59 @@
-import React from 'react'
-import { UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap'
+import React, { Component } from 'react'
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap'
 
-export const PopOverTextForTableHeaders = ({ translate, columnsArr, popOverId }) =>
-  columnsArr.map((colName, index) => {
-    const { header, popoverText } = translate[colName]
+const OnlyMobileVisiblePopup = ({ popUpHeader, id, onClick }) => {
+  return (
+    <span className="mobile-header-popovers" key={'onlyForMobileView' + popUpHeader + id}>
+      <label>{popUpHeader}</label>{' '}
+      <Button id={id} type="button" className="mobile btn-info-modal" onClick={onClick} />{' '}
+    </span>
+  )
+}
+class ControlledPopover extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { popoverOpen: false }
+    this.toggle = this.toggle.bind(this)
+  }
 
+  toggle() {
+    this.setState(state => ({ popoverOpen: !state.popoverOpen }))
+  }
+
+  render() {
+    const { header, popoverText, popType, targetId } = this.props
+    const { popoverOpen } = this.state
     return (
-      <span key={'hiddenTexts-For-' + popOverId + colName}>
-        {['targetforDesktopPopOver', 'targetforMobilePopOver'].map(triggerId => (
-          <UncontrolledPopover
-            trigger="legacy"
-            placement="bottom-start"
-            target={triggerId + popOverId + colName}
-            key={triggerId + popOverId + colName}
-          >
-            <PopoverHeader>{header}</PopoverHeader>
-            <PopoverBody>{popoverText}</PopoverBody>
-          </UncontrolledPopover>
-        ))}
+      <span>
+        {(popType === 'mobile' && (
+          <OnlyMobileVisiblePopup popUpHeader={header} id={targetId} onClick={this.toggle} />
+        )) || (
+          <Button
+            id={targetId}
+            type="button"
+            className="desktop btn-info-modal"
+            onClick={this.toggle}
+          />
+        )}
+        <Popover
+          isOpen={popoverOpen}
+          trigger="legacy"
+          placement="top"
+          target={targetId}
+          key={targetId}
+          onBlur={this.toggle}
+        >
+          <PopoverHeader>
+            {header}{' '}
+            <Button className="close" onClick={this.toggle}>
+              &times;
+            </Button>
+          </PopoverHeader>
+          <PopoverBody>{popoverText}</PopoverBody>
+        </Popover>
       </span>
     )
-  })
+  }
+}
+
+export default ControlledPopover
