@@ -21,7 +21,7 @@ class SyllabusListInCollapse extends Component {
     const { lang, translate } = this.props
     const { courseCode, syllabusSemesterList } = this.props.adminStore.courseKoppsData
     return (
-      <div className="card collapsible blue course-plans">
+      <div className="card collapsible blue course-syllabuses">
         <span className="card-header" role="tab" onClick={this.toggleHeader}>
           <h4 className="mb-0">
             <a

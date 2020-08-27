@@ -22,7 +22,7 @@ const OnlyMobileVisiblePopup = ({ popUpHeader, id }) => {
   )
 }
 
-const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
+const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
   const { examinationRounds: rawExamsData, _id: popOverId } = thisAnalysisObj
   const listOfExamRounds = _getListOfExamRounds(rawExamsData)
   const orderedColumns = [
@@ -53,7 +53,7 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
         <tbody>
           <tr>
             {orderedColumns.map((colName, index) => (
-              <td className={colName} id={colName + popOverId} key={index}>
+              <td className={colName} id={colName + popOverId} key={index} lang={analysisLang}>
                 <OnlyMobileVisiblePopup
                   popUpHeader={translate[colName].header}
                   id={'targetforMobilePopOver' + popOverId + colName}

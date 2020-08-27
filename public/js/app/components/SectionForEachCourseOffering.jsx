@@ -36,7 +36,7 @@ class SectionForEachCourseOffering extends Component {
     const analysisLang = dataLang(analysisName)
 
     return (
-      <div className="card collapsible blue course-data-for-round" lang={analysisLang}>
+      <div className="card collapsible blue course-data-for-round">
         <span
           className="course-data-title card-header"
           role="tab"
@@ -62,21 +62,23 @@ class SectionForEachCourseOffering extends Component {
           toggler={'#' + courseAnalysDataId}
         >
           <PdfLinks
+            lang={koppsDataLang}
             translate={translate}
             thisAnalysisObj={thisAnalysisObj}
             storageUri={this.props.adminStore.browserConfig.storageUri}
-            lang={koppsDataLang}
           />
 
           <TableWithCourseData
-            translate={translate.table_headers_with_popup}
+            analysisLang={analysisLang}
             thisAnalysisObj={thisAnalysisObj}
+            translate={translate.table_headers_with_popup}
           />
 
           <CollapseExtraInfo
-            translate={translate}
-            thisAnalysisObj={thisAnalysisObj}
+            analysisLang={analysisLang}
             label={courseAnalysDataId}
+            thisAnalysisObj={thisAnalysisObj}
+            translate={translate}
           />
         </Collapse>
       </div>

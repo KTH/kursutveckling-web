@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Collapse } from 'reactstrap'
 import { formatISODate } from '../util/helpers'
 
-const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
+const ExtraKoppsInfo = ({ analysisLang, translate, thisAnalysisObj }) => {
   const { _id: popOverId } = thisAnalysisObj
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
   return (
@@ -20,6 +20,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
           ) : (
             <p
               className="textBlock"
+              lang={analysisLang}
               dangerouslySetInnerHTML={{ __html: thisAnalysisObj[infoTitle] }}
             />
           )}
@@ -28,7 +29,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
     </span>
   )
 }
-const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
+const ExtraDatesAndComment = ({ analysisLang, translate, thisAnalysisObj }) => {
   const { changedAfterPublishedDate, commentChange, publishedDate } = thisAnalysisObj
   return (
     <span>
@@ -46,7 +47,9 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
             {formatISODate(changedAfterPublishedDate, translate.page_lang)}
           </p>
           <p>{translate.commentChange}:</p>
-          <p>{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
+          <p lang={commentChange === '' ? analysisLang : translate.page_lang}>
+            {commentChange === '' ? <i>{translate.no_added}</i> : commentChange}
+          </p>
         </span>
       ) : (
         <p>
@@ -69,7 +72,7 @@ class CollapseExtraInfo extends Component {
   }
 
   render() {
-    const { thisAnalysisObj, label, translate } = this.props
+    const { analysisLang, thisAnalysisObj, label, translate } = this.props
     return (
       <div className="card collapsible rubric-list white">
         <div className="card-header info-rubric" role="tab" onClick={this.toggleHeader}>
@@ -92,10 +95,12 @@ class CollapseExtraInfo extends Component {
         <Collapse color="white" isOpen={this.state.collapseExtraInfo} toggler={label}>
           <div className="card-body col extra-info">
             <ExtraKoppsInfo
+              analysisLang={analysisLang}
               translate={translate.extra_kopps_info}
               thisAnalysisObj={thisAnalysisObj}
             />
             <ExtraDatesAndComment
+              analysisLang={analysisLang}
               translate={translate.extra_dates_and_comments}
               thisAnalysisObj={thisAnalysisObj}
             />
