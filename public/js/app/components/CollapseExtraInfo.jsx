@@ -31,6 +31,7 @@ const ExtraKoppsInfo = ({ analysisLang, translate, thisAnalysisObj }) => {
 }
 const ExtraDatesAndComment = ({ analysisLang, translate, thisAnalysisObj }) => {
   const { changedAfterPublishedDate, commentChange, publishedDate } = thisAnalysisObj
+  const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
       <p>
@@ -38,16 +39,16 @@ const ExtraDatesAndComment = ({ analysisLang, translate, thisAnalysisObj }) => {
       </p>
       <p>
         {translate.publishedDate}:&nbsp;
-        {formatISODate(publishedDate, translate.page_lang)}
+        {formatISODate(publishedDate, pageLang)}
       </p>
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
         <span>
           <p>
             {translate.changedAfterPublishedDate}:&nbsp;
-            {formatISODate(changedAfterPublishedDate, translate.page_lang)}
+            {formatISODate(changedAfterPublishedDate, pageLang)}
           </p>
-          <p>{translate.commentChange}:</p>
-          <p lang={commentChange === '' ? analysisLang : translate.page_lang}>
+          <p>{labelAboutChanges}:</p>
+          <p lang={commentChange === '' ? pageLang : analysisLang}>
             {commentChange === '' ? <i>{translate.no_added}</i> : commentChange}
           </p>
         </span>

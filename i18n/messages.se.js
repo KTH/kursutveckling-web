@@ -104,7 +104,8 @@ module.exports = {
       publishedDate: 'Publicerad första gången',
       changedAfterPublishedDate: 'Senaste ändrad',
       commentChange: 'Kommentar till gjorda ändringar',
-      no_date_last_changed: 'ej ändrad efter publicering'
+      no_date_last_changed: 'ej ändrad efter publicering',
+      page_lang: 'sv'
     },
     header_more_info: 'Mer information',
     link_syllabus: 'Kursplan',
@@ -115,8 +116,7 @@ module.exports = {
     course_short_semester: {
       1: 'VT ',
       2: 'HT '
-    },
-    page_lang: 'sv'
+    }
   },
   pageTitles: {
     about_course: 'Om kursen',

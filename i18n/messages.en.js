@@ -107,7 +107,8 @@ module.exports = {
       publishedDate: 'Published first time',
       changedAfterPublishedDate: 'Last time changed',
       commentChange: 'Comments to changes in course data or course analysis after publishing',
-      no_date_last_changed: 'No changes since first published.'
+      no_date_last_changed: 'No changes since first published.',
+      page_lang: 'en'
     },
     header_more_info: 'More information',
     link_syllabus: 'Course syllabus',
@@ -115,7 +116,6 @@ module.exports = {
     link_pm: 'Course memo',
     no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
-    page_lang: 'en',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
