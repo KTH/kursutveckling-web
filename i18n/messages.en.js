@@ -125,6 +125,9 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
+    aria_year: 'Year',
+    aria_header_and_link: 'header with link to',
+    aria_label_list_years: 'List of all Course analysis and course data',
     aria_label_course_admin_title: 'Administrate About course',
     aria_label_course_dev_title: 'To Course development and history',
     aria_label_course_info_title: 'To Course information view',
