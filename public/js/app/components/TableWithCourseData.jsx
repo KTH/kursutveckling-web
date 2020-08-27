@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Table } from 'reactstrap'
-import { PopOverTextForTableHeaders } from './PopOverTextForTable'
+import ControlledPopover from './PopOverTextForTable'
 
 function _getListOfExamRounds(rawExamRoundsStrArr) {
   let listOfShortStrForExamRounds = []
@@ -11,15 +11,6 @@ function _getListOfExamRounds(rawExamRoundsStrArr) {
     })
   }
   return listOfShortStrForExamRounds
-}
-
-const OnlyMobileVisiblePopup = ({ popUpHeader, id }) => {
-  return (
-    <span className="mobile-header-popovers" key={'onlyForMobileView' + popUpHeader + id}>
-      <label>{popUpHeader}</label>{' '}
-      <Button id={id} type="button" className="mobile btn-info-modal" />{' '}
-    </span>
-  )
 }
 
 const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
@@ -41,10 +32,11 @@ const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
             {orderedColumns.map((colName, index) => (
               <th key={index} className={colName}>
                 {translate[colName].header}{' '}
-                <Button
-                  id={'targetforDesktopPopOver' + popOverId + colName}
-                  type="button"
-                  className="desktop btn-info-modal"
+                <ControlledPopover
+                  targetId={'targetforDesktopPopOver' + popOverId + colName}
+                  header={translate[colName].header}
+                  popoverText={translate[colName].popoverText}
+                  popType="desktop"
                 />{' '}
               </th>
             ))}
@@ -54,9 +46,11 @@ const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
           <tr>
             {orderedColumns.map((colName, index) => (
               <td className={colName} id={colName + popOverId} key={index} lang={analysisLang}>
-                <OnlyMobileVisiblePopup
-                  popUpHeader={translate[colName].header}
-                  id={'targetforMobilePopOver' + popOverId + colName}
+                <ControlledPopover
+                  targetId={'targetforMobilePopOver' + popOverId + colName}
+                  header={translate[colName].header}
+                  popoverText={translate[colName].popoverText}
+                  popType="mobile"
                 />
                 {(colName === 'examRounds' &&
                   listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
@@ -67,11 +61,6 @@ const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
           </tr>
         </tbody>
       </Table>
-      <PopOverTextForTableHeaders
-        columnsArr={orderedColumns}
-        translate={translate}
-        popOverId={popOverId}
-      />
     </span>
   )
 }
