@@ -29,7 +29,13 @@ class StudentViewCourseDev extends Component {
     const { pageTitles, tableHeaders } = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
 
     return (
-      <div key="kursinfo-container" className="kursinfo-main-page col">
+      <main
+        id="mainContent"
+        key="kursinfo-container"
+        className="kursinfo-main-page col"
+        aria-labelledby="course-title"
+        aria-describedby="intro-text"
+      >
         {/* ---COURSE TITEL--- */}
         <PageTitle
           key="title"
@@ -43,14 +49,14 @@ class StudentViewCourseDev extends Component {
           translate={pageTitles}
         />
         <AlertMsg props={this.props} lang={koppsDataLang} translate={pageTitles} />
-        <IntroText key="intro-text" translate={pageTitles} />
+        <IntroText id="intro-text" key="intro-text" translate={pageTitles} />
         <ListYears
           key="list-of-course-data-for-several-years"
           koppsData={courseKoppsData}
           allYearsAnalysisDataObj={analysisData}
           translate={tableHeaders}
         />
-      </div>
+      </main>
     )
   }
 }
