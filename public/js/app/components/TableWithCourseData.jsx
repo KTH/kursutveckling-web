@@ -13,7 +13,7 @@ function _getListOfExamRounds(rawExamRoundsStrArr) {
   return listOfShortStrForExamRounds
 }
 
-const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
+const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
   const { examinationRounds: rawExamsData, _id: popOverId } = thisAnalysisObj
   const listOfExamRounds = _getListOfExamRounds(rawExamsData)
   const orderedColumns = [
@@ -45,7 +45,7 @@ const TableWithCourseData = ({ analysisLang, translate, thisAnalysisObj }) => {
         <tbody>
           <tr>
             {orderedColumns.map((colName, index) => (
-              <td className={colName} id={colName + popOverId} key={index} lang={analysisLang}>
+              <td className={colName} id={colName + popOverId} key={index}>
                 <ControlledPopover
                   targetId={'targetforMobilePopOver' + popOverId + colName}
                   header={translate[colName].header}

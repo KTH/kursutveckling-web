@@ -5,14 +5,14 @@ import PdfLinks from './PdfLinks'
 import TableWithCourseData from './TableWithCourseData'
 import { inject, observer } from 'mobx-react'
 
-const dataLang = analysisName => {
-  const lastElementOfString = analysisName.split(',').pop()
-  //take the last one
-  const isEnglish =
-    lastElementOfString.includes('English') || lastElementOfString.includes('Swedish')
+// const dataLang = analysisName => {
+//   const lastElementOfString = analysisName.split(',').pop()
+//   //take the last one
+//   const isEnglish =
+//     lastElementOfString.includes('English') || lastElementOfString.includes('Swedish')
 
-  return isEnglish ? 'en' : 'sv'
-}
+//   return isEnglish ? 'en' : 'sv'
+// }
 
 @inject(['adminStore'])
 @observer
@@ -33,23 +33,17 @@ class SectionForEachCourseOffering extends Component {
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
-    const analysisLang = dataLang(analysisName)
+    // const analysisLang = dataLang(analysisName)
 
     return (
       <div className="card collapsible blue course-data-for-round">
-        <span
-          className="course-data-title card-header"
-          role="tab"
-          onClick={this.toggleRound}
-          lang={analysisLang}
-        >
+        <span className="course-data-title card-header" role="tab" onClick={this.toggleRound}>
           <h4 className="mb-0">
             <a
               href="#courseData"
               id={courseAnalysDataId}
               aria-expanded={this.state.collapse}
               load="false"
-              lang={analysisLang}
             >
               {translate.header_course_round}: {analysisName}
             </a>
@@ -69,13 +63,11 @@ class SectionForEachCourseOffering extends Component {
           />
 
           <TableWithCourseData
-            analysisLang={analysisLang}
             thisAnalysisObj={thisAnalysisObj}
             translate={translate.table_headers_with_popup}
           />
 
           <CollapseExtraInfo
-            analysisLang={analysisLang}
             label={courseAnalysDataId}
             thisAnalysisObj={thisAnalysisObj}
             translate={translate}

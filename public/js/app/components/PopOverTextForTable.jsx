@@ -33,6 +33,8 @@ class ControlledPopover extends Component {
             type="button"
             className="desktop btn-info-modal"
             onClick={this.toggle}
+            aria-label="Mer information om"
+            aria-describedby
           />
         )}
         <Popover
@@ -45,7 +47,7 @@ class ControlledPopover extends Component {
         >
           <PopoverHeader>
             {header}{' '}
-            <Button className="close" onClick={this.toggle}>
+            <Button className="close" onClick={this.toggle} aria-label="Close">
               &times;
             </Button>
           </PopoverHeader>
