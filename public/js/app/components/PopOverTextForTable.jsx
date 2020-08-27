@@ -8,7 +8,7 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, popUpHeader, id, onClick }) => {
       className="mobile-header-popovers"
       key={'onlyForMobileView' + popUpHeader + id}
       role="info icon button"
-      aria-labelledBy="mobile-table-header"
+      aria-labelledby="mobile-table-header"
     >
       <label id="mobile-table-header">{popUpHeader}</label>{' '}
       <Button
