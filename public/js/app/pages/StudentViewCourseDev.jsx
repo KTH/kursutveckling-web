@@ -54,7 +54,8 @@ class StudentViewCourseDev extends Component {
           key="list-of-course-data-for-several-years"
           koppsData={courseKoppsData}
           allYearsAnalysisDataObj={analysisData}
-          translate={tableHeaders}
+          tableHeaders={tableHeaders}
+          pageTitles={pageTitles}
         />
       </main>
     )

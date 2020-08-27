@@ -29,7 +29,7 @@ class SectionForEachCourseOffering extends Component {
   }
 
   render() {
-    const { thisAnalysisObj, translate } = this.props
+    const { thisAnalysisObj, tableLabels } = this.props
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
@@ -45,7 +45,7 @@ class SectionForEachCourseOffering extends Component {
               aria-expanded={this.state.collapse}
               load="false"
             >
-              {translate.header_course_round}: {analysisName}
+              {tableLabels.header_course_round}: {analysisName}
             </a>
           </h4>
         </span>
@@ -57,20 +57,20 @@ class SectionForEachCourseOffering extends Component {
         >
           <PdfLinks
             lang={koppsDataLang}
-            translate={translate}
+            translate={tableLabels}
             thisAnalysisObj={thisAnalysisObj}
             storageUri={this.props.adminStore.browserConfig.storageUri}
           />
 
           <TableWithCourseData
             thisAnalysisObj={thisAnalysisObj}
-            translate={translate.table_headers_with_popup}
+            translate={tableLabels.table_headers_with_popup}
           />
 
           <CollapseExtraInfo
             label={'moreData' + courseAnalysDataId}
             thisAnalysisObj={thisAnalysisObj}
-            translate={translate}
+            translate={tableLabels}
           />
         </Collapse>
       </div>
