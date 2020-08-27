@@ -248,6 +248,10 @@ span.right-links {
     display: none;
   }
 }
+div.popover.show {
+  top: -40px !important;
+}
+
 button.desktop.btn-info-modal,
 button.mobile.btn-info-modal {
   @extend %grey-icon-for-table-header;
