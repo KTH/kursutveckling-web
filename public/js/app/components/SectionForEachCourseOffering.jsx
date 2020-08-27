@@ -68,7 +68,7 @@ class SectionForEachCourseOffering extends Component {
           />
 
           <CollapseExtraInfo
-            label={courseAnalysDataId}
+            label={'moreData' + courseAnalysDataId}
             thisAnalysisObj={thisAnalysisObj}
             translate={translate}
           />

@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap'
+import i18n from '../../../../i18n'
 
-const OnlyMobileVisiblePopup = ({ popUpHeader, id, onClick }) => {
+const OnlyMobileVisiblePopup = ({ ariaLabel, popUpHeader, id, onClick }) => {
   return (
-    <span className="mobile-header-popovers" key={'onlyForMobileView' + popUpHeader + id}>
-      <label>{popUpHeader}</label>{' '}
-      <Button id={id} type="button" className="mobile btn-info-modal" onClick={onClick} />{' '}
+    <span
+      className="mobile-header-popovers"
+      key={'onlyForMobileView' + popUpHeader + id}
+      role="info icon button"
+      aria-labelledBy="mobile-table-header"
+    >
+      <label id="mobile-table-header">{popUpHeader}</label>{' '}
+      <Button
+        id={id}
+        type="button"
+        className="mobile btn-info-modal"
+        onClick={onClick}
+        aria-label={ariaLabel}
+        role="info icon"
+      />{' '}
     </span>
   )
 }
@@ -21,37 +34,45 @@ class ControlledPopover extends Component {
   }
 
   render() {
-    const { header, popoverText, popType, targetId } = this.props
+    const { describesId, header, popoverText, popType, targetId } = this.props
     const { popoverOpen } = this.state
+    const tableLang = i18n.isSwedish() ? 1 : 0
+    const { aria_label_info_icon: ariaLabel, aria_label_close_icon: closeAria } = i18n.messages[
+      tableLang
+    ].tableHeaders
+
     return (
-      <span>
+      <span role="popover" role="info icon button" aria-labelledby={targetId}>
         {(popType === 'mobile' && (
-          <OnlyMobileVisiblePopup popUpHeader={header} id={targetId} onClick={this.toggle} />
+          <OnlyMobileVisiblePopup
+            popUpHeader={header}
+            id={targetId}
+            onClick={this.toggle}
+            ariaLabel={ariaLabel}
+          />
         )) || (
           <Button
             id={targetId}
             type="button"
             className="desktop btn-info-modal"
             onClick={this.toggle}
-            aria-label="Mer information om"
-            aria-describedby
+            aria-label={ariaLabel}
           />
         )}
         <Popover
           isOpen={popoverOpen}
-          trigger="legacy"
-          placement="top"
+          placement={popType === 'mobile' ? 'left' : 'top'}
           target={targetId}
           key={targetId}
           onBlur={this.toggle}
         >
           <PopoverHeader>
             {header}{' '}
-            <Button className="close" onClick={this.toggle} aria-label="Close">
+            <Button className="close" onClick={this.toggle} aria-label={closeAria}>
               &times;
             </Button>
           </PopoverHeader>
-          <PopoverBody>{popoverText}</PopoverBody>
+          <PopoverBody id={describesId}>{popoverText}</PopoverBody>
         </Popover>
       </span>
     )

@@ -29,35 +29,47 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
       <Table>
         <thead>
           <tr>
-            {orderedColumns.map((colName, index) => (
-              <th key={index} className={colName}>
-                {translate[colName].header}{' '}
-                <ControlledPopover
-                  targetId={'targetforDesktopPopOver' + popOverId + colName}
-                  header={translate[colName].header}
-                  popoverText={translate[colName].popoverText}
-                  popType="desktop"
-                />{' '}
-              </th>
-            ))}
+            {orderedColumns.map((colName, index) => {
+              const popOverTargetId = 'targetforDesktopPopOver' + popOverId + colName
+              const ariaDescribedBy = 'header-description' + popOverId + colName
+              const { header, popoverText } = translate[colName]
+              return (
+                <th key={index} className={colName} aria-describedby={ariaDescribedBy}>
+                  {header}{' '}
+                  <ControlledPopover
+                    targetId={popOverTargetId}
+                    describesId={ariaDescribedBy}
+                    header={header}
+                    popoverText={popoverText}
+                    popType="desktop"
+                  />{' '}
+                </th>
+              )
+            })}
           </tr>
         </thead>
         <tbody>
           <tr>
-            {orderedColumns.map((colName, index) => (
-              <td className={colName} id={colName + popOverId} key={index}>
-                <ControlledPopover
-                  targetId={'targetforMobilePopOver' + popOverId + colName}
-                  header={translate[colName].header}
-                  popoverText={translate[colName].popoverText}
-                  popType="mobile"
-                />
-                {(colName === 'examRounds' &&
-                  listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
-                  <p>{thisAnalysisObj[colName]}</p>
-                )}
-              </td>
-            ))}
+            {orderedColumns.map((colName, index) => {
+              const popOverTargetId = 'targetforMobilePopOver' + popOverId + colName
+              const ariaDescribedBy = 'mobile-header-description' + popOverId + colName
+              const { header, popoverText } = translate[colName]
+              return (
+                <td className={colName} id={colName + popOverId} key={index}>
+                  <ControlledPopover
+                    targetId={popOverTargetId}
+                    describesId={ariaDescribedBy}
+                    header={header}
+                    popoverText={popoverText}
+                    popType="mobile"
+                  />
+                  {(colName === 'examRounds' &&
+                    listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
+                    <p>{thisAnalysisObj[colName]}</p>
+                  )}
+                </td>
+              )
+            })}
           </tr>
         </tbody>
       </Table>
