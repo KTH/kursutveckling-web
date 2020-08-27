@@ -35,6 +35,7 @@ module.exports = {
 
     site_name: 'Kursutvecklingsinformation',
     host_name: 'KTH',
+    page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
     page_student: 'Student på KTH'
   },
