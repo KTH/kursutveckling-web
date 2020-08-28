@@ -91,6 +91,7 @@ module.exports = {
       }
     },
     extra_kopps_info: {
+      aria_label_span: 'More information about course data',
       no_added: 'No information inserted',
       commentExam: {
         header: 'Examination comments',

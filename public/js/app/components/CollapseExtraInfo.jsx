@@ -6,10 +6,10 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
   const { _id: popOverId } = thisAnalysisObj
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
   return (
-    <span className="extra-kopps-info-from-kutv-api">
+    <span className="extra-kopps-info-from-kutv-api" aria-label={translate.aria_label_span}>
       {orderedTitles.map((infoTitle, index) => (
         <span key={index} className={infoTitle}>
-          <p id={popOverId + index} key={'header-for-' + infoTitle}>
+          <p role="heading" aria-level="5" id={popOverId + index} key={'header-for-' + infoTitle}>
             <b>{translate[infoTitle].header}</b>
           </p>
           {thisAnalysisObj[infoTitle] === '' ? (
@@ -33,30 +33,43 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
-      <p>
+      <p role="heading" aria-level="5">
         <b>{translate.header_publishing_dates}</b>
       </p>
       <p>
-        {translate.publishedDate}:&nbsp;
+        <span role="heading" aria-level="6">
+          {translate.publishedDate}:&nbsp;
+        </span>
         {formatISODate(publishedDate, pageLang)}
       </p>
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
-        <span>
-          <p>
-            {translate.changedAfterPublishedDate}:&nbsp;
+        <span role="list">
+          <p role="listitem">
+            <span role="heading" aria-level="6">
+              {translate.changedAfterPublishedDate}
+              :&nbsp;
+            </span>
             {formatISODate(changedAfterPublishedDate, pageLang)}
           </p>
-          <p>{labelAboutChanges}:</p>
-          <p>{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
+          <article role="listitem">
+            <p role="heading" aria-level="6">
+              {labelAboutChanges}:
+            </p>
+            <p>{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
+          </article>
         </span>
       ) : (
         <p>
-          {translate.changedAfterPublishedDate}:&nbsp;<i>{translate.no_date_last_changed}</i>
+          <span role="heading" aria-level="6">
+            {translate.changedAfterPublishedDate}
+          </span>
+          :&nbsp;<i>{translate.no_date_last_changed}</i>
         </p>
       )}
     </span>
   )
 }
+
 class CollapseExtraInfo extends Component {
   constructor(props) {
     super(props)

@@ -88,6 +88,7 @@ module.exports = {
       }
     },
     extra_kopps_info: {
+      aria_label_span: 'Mer information om kursdata',
       no_added: 'Ingen information tillagd',
       commentExam: {
         header: 'Kommentar till examination',
