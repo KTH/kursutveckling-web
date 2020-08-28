@@ -14,7 +14,7 @@ function _getListOfExamRounds(rawExamRoundsStrArr) {
 }
 
 const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
-  const { examinationRounds: rawExamsData, _id: popOverId } = thisAnalysisObj
+  const { examinationRounds: rawExamsData, _id: analysisId } = thisAnalysisObj
   const listOfExamRounds = _getListOfExamRounds(rawExamsData)
   const orderedColumns = [
     'responsibles',
@@ -25,20 +25,19 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
     'alterationText'
   ]
   return (
-    <span className="table-for-each-course-offering" key={popOverId}>
+    <span className="table-for-each-course-offering" key={analysisId}>
       <Table>
         <thead>
           <tr>
             {orderedColumns.map((colName, index) => {
-              const popOverTargetId = 'targetforDesktopPopOver' + popOverId + colName
-              const ariaDescribedBy = 'header-description' + popOverId + colName
+              const cellId = analysisId + colName
+              const ariaDescribedBy = 'header-description' + cellId
               const { header, popoverText } = translate[colName]
               return (
-                <th key={index} className={colName} aria-describedby={ariaDescribedBy}>
+                <th key={index} className={colName}>
                   {header}{' '}
                   <ControlledPopover
-                    targetId={popOverTargetId}
-                    describesId={ariaDescribedBy}
+                    cellId={cellId}
                     header={header}
                     popoverText={popoverText}
                     popType="desktop"
@@ -51,14 +50,12 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
         <tbody>
           <tr>
             {orderedColumns.map((colName, index) => {
-              const popOverTargetId = 'targetforMobilePopOver' + popOverId + colName
-              const ariaDescribedBy = 'mobile-header-description' + popOverId + colName
               const { header, popoverText } = translate[colName]
+              const cellId = analysisId + colName
               return (
-                <td className={colName} id={colName + popOverId} key={index}>
+                <td className={colName} id={cellId} key={index}>
                   <ControlledPopover
-                    targetId={popOverTargetId}
-                    describesId={ariaDescribedBy}
+                    cellId={cellId}
                     header={header}
                     popoverText={popoverText}
                     popType="mobile"

@@ -39,7 +39,9 @@ class SectionForEachCourseOffering extends Component {
     return (
       <section
         className="card collapsible blue course-data-for-round"
+        aria-labelledby={ariaheaderDataName}
         aria-describedby={parentSectionId}
+        role="listitem"
       >
         <header className="course-data-title card-header" role="tab" onClick={this.toggleRound}>
           <h4 id={ariaheaderDataName} className="mb-0">
