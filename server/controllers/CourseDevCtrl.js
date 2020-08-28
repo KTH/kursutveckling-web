@@ -10,7 +10,6 @@ const { sortedKursutveckligApiInfo } = require('../apiCalls/kursutvecklingApi')
 const { filteredKoppsData } = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 
-
 module.exports = {
   getCourseDevInfo: co.wrap(_getCourseDevInfo),
   getErrorPage: co.wrap(_getErrorPage)
@@ -18,9 +17,9 @@ module.exports = {
 
 const serverPaths = require('../server').getPaths()
 
-function hydrateStores (renderProps) {
+function hydrateStores(renderProps) {
   // This assumes that all stores are specified in a root element called Provider
-  const {props} = renderProps.props.children
+  const { props } = renderProps.props.children
   const outp = {}
   for (let key in props) {
     if (typeof props[key].initializeStore === 'function') {
@@ -38,8 +37,7 @@ function _staticRender(context, location) {
   return staticRender(context, location)
 }
 
-async function _getCourseDevInfo (req, res, next) {
-
+async function _getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
   // const ldapUser = req.session.authUser ? requireRole('isCourseResponsible', 'isExaminator', 'isCourseTeacher') : 'null'
   const lang = language.getLanguage(res) || 'sv'
@@ -49,13 +47,28 @@ async function _getCourseDevInfo (req, res, next) {
     // Render react app
     // const context = {}
     const renderProps = _staticRender()
-    renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
+    renderProps.props.children.props.adminStore.setBrowserConfig(
+      browserConfig,
+      serverPaths,
+      serverConfig.hostUrl
+    )
     renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
-    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(
+      courseCode,
+      lang
+    )
+    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(
+      courseCode
+    )
     let breadcrumbs = [
-      { url: '/student/kurser/kurser-inom-program', label: i18n.message('page_course_programme', lang) },
-      { url: `/student/kurser/kurs/${courseCode.toUpperCase()}`, label: `${courseCode.toUpperCase()}` }
+      {
+        url: '/student/kurser/kurser-inom-program',
+        label: i18n.message('page_course_programme', lang)
+      },
+      {
+        url: `/student/kurser/kurs/${courseCode.toUpperCase()}`,
+        label: `${i18n.message('page_about_course', lang)} ${courseCode.toUpperCase()}`
+      }
     ]
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
@@ -75,9 +88,9 @@ async function _getCourseDevInfo (req, res, next) {
 }
 
 function _getErrorPage(req, res, next) {
-  const html='Something got wrong... No course code was found' 
+  const html = 'Something got wrong... No course code was found'
   res.render('noCourse/index', {
     html,
-    initialState: "Ingen kurskod"
+    initialState: 'Ingen kurskod'
   })
 }

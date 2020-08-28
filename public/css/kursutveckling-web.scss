@@ -5,182 +5,194 @@ $light-grey: #d4d4d4;
 $dark-grey: #65656c;
 
 %bordered-area {
-    border: 1px solid $light-grey;
-    border-radius: 0.25rem;
-    border-top: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
+  border: 1px solid $light-grey;
+  border-radius: 0.25rem;
+  border-top: 0;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
-#kth-kursinfo{
-    width:100%;
+%grey-icon-for-table-header {
+  height: 1.2em;
+  width: 1.2em;
+  border: 0.8px solid #fff;
+  -webkit-filter: grayscale(1) brightness(88%) contrast(2);
+  filter: grayscale(1) brightness(88%) contrast(2);
+  margin-left: 0;
+  vertical-align: middle;
+  visibility: visible;
 }
-.kursinfo-main-page {    
-    padding-bottom: 3em;
-    padding-top: 2em;
-    width: 100%;
+
+#kth-kursinfo {
+  width: 100%;
+}
+.kursinfo-main-page {
+  padding-bottom: 3em;
+  padding-top: 2em;
+  width: 100%;
 }
 .pageTitle {
-    h1 {
-        margin-left: -.095em;
-    }
-    .alert {
-        margin-left: 0;
-    }
+  h1 {
+    margin-left: -0.095em;
+  }
+  .alert {
+    margin-left: 0;
+  }
 }
 
 //== NAVIGATION KIP MENU AT LEFT AND COURSE SYLLABUSSES COLLABSIBLE AT RIGHT ==
-span.navigation {
-    margin-right: 0;
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+nav.navigation {
+  margin-right: 0;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  span.right_intro {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
     span.right_intro {
-        width: 100%;
+      margin-left: 3em;
+      max-width: 50em;
     }
-    @media (min-width: 768px) {
-        display: flex;
-        justify-content: space-between;
-        span.right_intro {
-            margin-left: 3em;
-            max-width: 50em;
-        }
-    }
+  }
 }
 
 .kip-menu {
-    margin-left: 1.95em;
-    margin-right: 1em;
-    @media (min-width: 768px) {
-        max-width: 30em;
-    }
-    h4 {
-        margin-top: 0;
-        margin-bottom: .3em;
-    }
+  margin-left: 1.95em;
+  margin-right: 1em;
+  @media (min-width: 768px) {
+    max-width: 30em;
+  }
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+  }
 }
 //INTRODUCTION TEXT UNDER KIP-MENU
 span.intro-text {
-    width: 100%;
-    p {
-        margin-left: 1em;
-    }
+  width: 100%;
+  p {
+    margin-left: 1em;
+  }
 }
 
 //== LIST OF COLLAPSIBLE TABLES ==
 .tables-list {
-    margin: 3em 0;
-            span.header-with-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
+  margin: 3em 0;
+  header.header-with-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  h2 {
+    margin-top: 0.7em;
+  }
+  & > section:first-of-type {
+    & > header.header-with-link > h2 {
+      margin-top: 0;
+    }
+  }
+  header.header-with-link {
+    display: flex;
+    flex-direction: column;
     h2 {
-        margin-top: .7em;
+      align-self: flex-start;
     }
-    &>span:first-of-type {
-        &>span.header-with-link > h2 {
-            margin-top: 0;
-        } 
+    nav {
+      align-self: flex-end;
+      margin-top: 0.5em;
+      text-align: right;
     }
-    span.header-with-link {
-        display: flex;
-        flex-direction: column;
-        h2 {
-            align-self: flex-start
-        }
-        a {
-            align-self: flex-end;
-            margin-top: .5em;
-            text-align: right;
-        }
-        // align-items: flex-end;
-        @media (min-width: 768px) {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: baseline;
-            h2, a {
-                align-self: baseline;
-            }
-        }
+    // align-items: flex-end;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      h2,
+      nav {
+        align-self: baseline;
+      }
     }
-    .table-for-year > p.right-link {
-        margin-top: 1em;
-        @media (min-width: 768px) {
-            margin: 0;
-        }
+  }
+  .table-for-year > nav.right-link {
+    margin-top: 1em;
+    @media (min-width: 768px) {
+      margin: 0;
     }
+  }
 }
-//POPOVERS
-p.popOver {
-    margin: .2em 0 .2em 0;
-}
+
 //REDEFINING COLLAPSE Style
 
 .card.collapsible {
-    h4.mb-0 {
-        margin-top: 0 !important;
-        a {
-            text-decoration: none;
-        }
+  h4.mb-0 {
+    margin-top: 0 !important;
+    a {
+      text-decoration: none;
     }
+  }
 }
 
 .card.collapsible.blue {
-    margin-top: 1em;
-    .course-data-title > a::before{
-        margin-left: .5em;
-    }
-    .course-data-title {
-        display: flex;
-        justify-content: space-between;
-    }
+  margin-top: 1em;
+  .course-data-title > a::before {
+    margin-left: 0.5em;
+  }
+  .course-data-title {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-.card.collapsible.blue.course-plans {
-    margin-top: 0 !important;
-    margin-bottom: 1.5em;
-    margin-left: 1em;
-    @media (min-width: 768px){
-        margin-left: 10em;
+.card.collapsible.blue.course-syllabuses {
+  margin-top: 0 !important;
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+  @media (min-width: 768px) {
+    margin-left: 10em;
+  }
+  div.collapse-bordered-list {
+    padding: 0.5em;
+    @extend %bordered-area;
+    p {
+      margin-bottom: 0;
     }
-    div.kursplan-bordered-list {
-        padding: .5em;
-        @extend %bordered-area;
-        p {
-            margin-bottom: 0;
-        }
-        a.pdf-link {
-            margin: 0;
-        }
+    a.pdf-link {
+      margin: 0;
     }
+  }
 }
 .card.collapsible.blue.course-data-for-round {
-    width: 100%;
-    margin-bottom: .5em; 
-    div.bordered-table {
-        @extend %bordered-area;
-        margin-bottom: 1.5em;
-        padding: 0 .5em .5em .7em;
-    }
+  width: 100%;
+  margin-bottom: 0.5em;
+  div.bordered-table {
+    @extend %bordered-area;
+    margin-bottom: 1.5em;
+    padding: 0 0.5em 0.5em 0.7em;
+  }
 }
 //Links
-p.right-link, span.right-links{
-    float: right;
-    text-align: right;
+p.right-link,
+nav.right-link {
+  float: right;
+  text-align: right;
 }
 
-span.right-links {
-    float: left;
-    text-align: left;
-    margin: 1em .2em 0;
-    @media (min-width: 768px) {
-        p { margin-bottom: 0; }
-        display: flex;
-        justify-content: flex-end; 
-        float: right;
-        text-align: right;
-        margin: 0;
+nav.right-links {
+  float: left;
+  text-align: left;
+  margin: 1em 0.2em 0;
+  @media (min-width: 768px) {
+    p {
+      margin-bottom: 0;
     }
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    text-align: right;
+    margin: 0;
+  }
 }
 
 //Collapsible "More information"
@@ -189,76 +201,85 @@ span.right-links {
   .card-body.col.extra-info {
     padding: 1em 0;
     @media (min-width: 768px) {
-        display: flex;
-        flex-direction: row;
-        span.extra-kopps-info-from-kutv-api {
-            align-self: flex-start;
-            flex-basis: 60%;
-            span {
-                margin: 0;
-            }
+      display: flex;
+      flex-direction: row;
+      span.extra-kopps-info-from-kutv-api {
+        align-self: flex-start;
+        flex-basis: 60%;
+        span {
+          margin: 0;
         }
-        span:last-of-type {
-            align-self: flex-start;
-            height: 100%;
-            margin-left: 3em;
-            span {
-                margin: 0;
-                padding: 0;
-            }
+      }
+      span:last-of-type {
+        align-self: flex-start;
+        height: 100%;
+        margin-left: 3em;
+        span {
+          margin: 0;
+          padding: 0;
         }
-
+      }
     }
   }
-  &> .card-header.info-rubric {
+  & > .card-header.info-rubric {
     background-color: $white; //move to kth-style
 
-    a.collapse-header.title{ //move to kth-style
-        color: $black;
-        &:before {
-          margin-left: -.7em;
-          font-size: 16px;
-          background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/arrow-black-right.svg) no-repeat;
-          background-size: .9em .9em;
-        }
-    }}
+    a.collapse-header.title {
+      //move to kth-style
+      color: $black;
+      &:before {
+        margin-left: -0.7em;
+        font-size: 16px;
+        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/arrow-black-right.svg)
+          no-repeat;
+        background-size: 0.9em 0.9em;
+      }
+    }
+  }
 }
 
 //===TABLE===
 .table th {
-    text-align: center;
+  text-align: center;
 }
 //Table elments  visibility for desktop
-.table td { 
-    .mobile-header-popovers{
-        display: none; 
-    }
+.table td {
+  .mobile-header-popovers {
+    display: none;
+  }
 }
-button.desktop.btn-info-modal {
-    visibility: visible;
+div.popover.show {
+  top: -40px !important;
 }
+
+button.desktop.btn-info-modal,
+button.mobile.btn-info-modal {
+  @extend %grey-icon-for-table-header;
+}
+
 /*Table cells try to give it more stable width*/
-/* ['responsibles', 'examiners', 'registeredStudents', 'examShortAndLongStrArr', 'examinationGrade', 'alterationText']*/
+/* ['responsibles', 'examiners', 'registeredStudents', 'examRounds', 'examinationGrade', 'alterationText']*/
 @media (min-width: 768px) {
-    .responsibles, .examiners {
-        min-width: 9em;
-        max-width: 9em;
-    }
-    .examShortAndLongStrArr {
-        min-width: 9em;
-        max-width: 9em;
-    }
-    .registeredStudents {
-        min-width: 8em;
-        max-width: 8em;
-    }
-    .examinationGrade {
-        min-width: 7em;
-        max-width: 7em;
-    }
+  .responsibles,
+  .examiners {
+    min-width: 9em;
+    max-width: 9em;
+  }
+  .examRounds {
+    min-width: 9em;
+    max-width: 9em;
+  }
+  .registeredStudents {
+    min-width: 8em;
+    max-width: 8em;
+  }
+  .examinationGrade {
+    min-width: 7em;
+    max-width: 7em;
+  }
 }
 .alterationText {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /*Mobile View for Tables*/
@@ -268,47 +289,54 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 @media only screen and (max-width: 767px) {
-	/* Force table to not be like tables anymore */
-	.table table, thead, tbody, th, td, tr { 
-        display: flex;
-        flex-direction: column; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	.table thead tr { 
-		position: absolute;
-		top: -9999px;
-        left: -9999px;
-	}
-	
-	.table tr { border: 1px solid #fff; }
-	
-	.table td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #fff; 
-        position: relative;
-        .mobile-header-popovers {
-            background: $dark-grey;
-            color: $white;
-            display: flex;
-            flex-direction: row;
-            font-size: 1rem;
-            justify-content: flex-start;
-            margin: -.7em -.7em .3em -.7em;
-            padding: .5em;
-            vertical-align: bottom;
-            label {
-                font-weight: 500;
-                line-height: 1.2em;
-                margin-right: .5em;
-                white-space: normal;
-                width: 100%;
-            }
-            button {
-                align-self: flex-start;
-                padding-right: 1em;
-            }
-        }      
-	}
+  /* Force table to not be like tables anymore */
+  .table table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tr {
+    border: 1px solid #fff;
+  }
+
+  .table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    span.mobile-header-popovers {
+      background: $dark-grey;
+      color: $white;
+      display: flex;
+      flex-direction: row;
+      font-size: 1rem;
+      justify-content: flex-start;
+      margin: -0.7em -0.7em 0.3em -0.7em;
+      padding: 0.5em;
+      vertical-align: bottom;
+      label {
+        font-weight: 500;
+        line-height: 1.2em;
+        margin-right: 0.5em;
+        white-space: normal;
+        width: 100%;
+      }
+      button {
+        align-self: flex-start;
+        padding-right: 1em;
+      }
+    }
+  }
 }

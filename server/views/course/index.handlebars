@@ -2,15 +2,9 @@
   window.__initialState__ = {{{initialState}}}
 </script>
 {{prefixScript '/static/app.js' 'scripts'}}
-  <div class="container articleNavigation">
-    <div class="row justify-content-between">
-      <div class="col-xs-12 col-lg-12"> 
-          {{breadcrumbs breadcrumbsPath lang}}
-          </div>
-      </div>
-  </div>
+
 {{#if error}}
-  <p>Error: {{error}}</p>
+<p>Error: {{error}}</p>
 {{else}}
-  <div id="kth-kursinfo">{{html}}</div>
+<div id="kth-kursinfo">{{html}}</div>
 {{/if}}

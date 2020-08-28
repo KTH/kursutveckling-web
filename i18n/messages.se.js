@@ -1,5 +1,5 @@
 module.exports = {
-  shortNames: [ 'sv', 'se' ],
+  shortNames: ['sv', 'se'],
   longNameSe: 'Svenska',
   longNameEn: 'Swedish',
   messages: {
@@ -20,7 +20,8 @@ module.exports = {
      */
     service_name: 'Kursens utveckling och historik web',
     title: 'Kursens utveckling och historik',
-    description: 'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
+    description:
+      'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
 
     example_message_key: 'Här är en svensk översättning på en label',
     button_label_example: 'Klicka här för att skicka data till servern!',
@@ -30,37 +31,75 @@ module.exports = {
     field_label_post_example: 'Min datamodell(Svar från api anrop POST): ',
 
     lang_block_id: '1.272446',
-    locale_text: 'Kursutvecklingsinformation på svenska',
+    locale_text: 'Denna sida på svenska',
 
     site_name: 'Kursutvecklingsinformation',
     host_name: 'KTH',
-    page_course_programme: 'KURS- OCH PROGRAMKATALOGEN',
-    page_student: 'STUDENT PÅ KTH'
+    page_about_course: 'Om kursen',
+    page_course_programme: 'Kurs- och programkatalogen',
+    page_student: 'Student på KTH'
   },
   tableHeaders: {
     info_manually_edited: '* Kursdata har registrerats manuellt',
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     header_course_round: 'Kursomgång',
-    alt_header_main_publish_new: 'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
-    alt_header_main_edit: 'Gå till adminsida för att andra den kursanalysen och kursdata för kursomgång:',
-    alt_link_syllabus: 'Till gällande Kursplan',
-    alt_link_analysis: 'Till gällande Kursanalys',
-    alt_link_pm: 'Till gällande Kurs-PM',
-    alt_header_more_info: 'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
+    aria_label_close_icon: 'Stäng',
+    aria_label_header_main_publish_new:
+      'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
+    aria_label_header_main_edit:
+      'Gå till adminsida för att andra den kursanalysen och kursdata för kursomgång:',
+    aria_label_link_syllabus: 'Till gällande Kursplan',
+    aria_label_link_analysis: 'Till gällande Kursanalys',
+    aria_label_link_pm: 'Till gällande Kurs-PM',
+    aria_label_info_icon: 'Mer information',
+    aria_label_header_more_info:
+      'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
     table_headers_with_popup: {
-      examiners: {header: 'Examinator', popoverText: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'},
-      examShortAndLongStrArr: {header: 'Examination', popoverText: 'Form av examination vid gällande kursomgång enligt format: examinationsmodul, högskolepoäng, betygsskala. Se detaljer om Examination på sidan Inför kursval.'},
-      alterationText: {header: 'Förändringar som har införts till den här kursomgången', popoverText: 'Summerade förändringar som har införts till den här kursomgången. Syftet med att publicera förändringar som infördes till kursen innan kursomgångens start är att visa på hur kursen förbättras och utvecklas över tid. Kursomgångarnas alla dokumenterade förändringar visar på vilka utvecklingssteg kursen har genomgått.'},
-      examinationGrade: {header: 'Resultat', popoverText: 'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'},
-      responsibles: {header: 'Kursansvarig', popoverText: 'Samtliga kursansvariga för de kurstillfällen som ingår i kursomgången. Kursansvariga administreras i Kopps.'},
-      registeredStudents: {header: 'Studenter', popoverText: 'Antal förstagångsregistrerade på de kurstillfällen som ingår i kursomgången. Studenter som antagits men som inte registrerats ska inte räknas in. Inte heller registrerade studenter som omregistrerats från ett annat kurstillfälle på samma kurs ska räknas in.'}
+      examiners: {
+        header: 'Examinator',
+        popoverText:
+          'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
+      },
+      examRounds: {
+        header: 'Examination',
+        popoverText:
+          'Form av examination vid gällande kursomgång enligt format: examinationsmodul, högskolepoäng, betygsskala. Se detaljer om Examination på sidan Inför kursval.'
+      },
+      alterationText: {
+        header: 'Förändringar som har införts till den här kursomgången',
+        popoverText:
+          'Summerade förändringar som har införts till den här kursomgången. Syftet med att publicera förändringar som infördes till kursen innan kursomgångens start är att visa på hur kursen förbättras och utvecklas över tid. Kursomgångarnas alla dokumenterade förändringar visar på vilka utvecklingssteg kursen har genomgått.'
+      },
+      examinationGrade: {
+        header: 'Resultat',
+        popoverText:
+          'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
+      },
+      responsibles: {
+        header: 'Kursansvarig',
+        popoverText:
+          'Samtliga kursansvariga för de kurstillfällen som ingår i kursomgången. Kursansvariga administreras i Kopps.'
+      },
+      registeredStudents: {
+        header: 'Studenter',
+        popoverText:
+          'Antal förstagångsregistrerade på de kurstillfällen som ingår i kursomgången. Studenter som antagits men som inte registrerats ska inte räknas in. Inte heller registrerade studenter som omregistrerats från ett annat kurstillfälle på samma kurs ska räknas in.'
+      }
     },
     extra_kopps_info: {
+      aria_label_span: 'Mer information om kursdata',
       no_added: 'Ingen information tillagd',
-      commentExam: {header: 'Kommentar till examination', popoverText: 'Kommentar till form av examination vid gällande kursomgång.'},
-      programmeCodes: {header: 'Obligatorisk inom program', popoverText: ''},
-      analysisName: {header: 'Kurstillfällen som ingår i kursomgång', popoverText: 'Alla kurstillfällen som ingick i kursomgången. Studenter är antagna till ett kurstillfälle. Programstudenter, betalande studenter och fristående studenter antas till olika kurstillfällen men kan utbildas i samma kursomgång. Kurstillfällen ska alltså grupperas ihop till en kursomgång. Kursomgången är ett praktiskt genomförande av en kurs. Kursomgången har en gemensam starttidpunkt, gemensam kurstakt och normalt gemensam undervisning för en studentgrupp. Schemat läggs per kursomgång, kurs-PM utformas per kursomgång och kursanalys genomförs per kursomgång.'}
+      commentExam: {
+        header: 'Kommentar till examination',
+        popoverText: 'Kommentar till form av examination vid gällande kursomgång.'
+      },
+      programmeCodes: { header: 'Obligatorisk inom program', popoverText: '' },
+      analysisName: {
+        header: 'Kurstillfällen som ingår i kursomgång',
+        popoverText:
+          'Alla kurstillfällen som ingick i kursomgången. Studenter är antagna till ett kurstillfälle. Programstudenter, betalande studenter och fristående studenter antas till olika kurstillfällen men kan utbildas i samma kursomgång. Kurstillfällen ska alltså grupperas ihop till en kursomgång. Kursomgången är ett praktiskt genomförande av en kurs. Kursomgången har en gemensam starttidpunkt, gemensam kurstakt och normalt gemensam undervisning för en studentgrupp. Schemat läggs per kursomgång, kurs-PM utformas per kursomgång och kursanalys genomförs per kursomgång.'
+      }
     },
     extra_dates_and_comments: {
       no_added: 'Ingen information tillagd',
@@ -68,7 +107,8 @@ module.exports = {
       publishedDate: 'Publicerad första gången',
       changedAfterPublishedDate: 'Senaste ändrad',
       commentChange: 'Kommentar till gjorda ändringar',
-      no_date_last_changed: 'ej ändrad efter publicering'
+      no_date_last_changed: 'ej ändrad efter publicering',
+      page_lang: 'sv'
     },
     header_more_info: 'Mer information',
     link_syllabus: 'Kursplan',
@@ -79,24 +119,29 @@ module.exports = {
     course_short_semester: {
       1: 'VT ',
       2: 'HT '
-    },
-    page_lang: 'sv'
+    }
   },
   pageTitles: {
     about_course: 'Om kursen',
-    alt_label_syllabus_link: 'Visa gällande kursplan för den period',
-    course_dev_title: 'Kursens utveckling och historik',
-    course_dev_title_alt: 'Till Kursens utveckling och historik vy',
-    course_info_title: 'Kursinformation',
-    course_info_title_alt: 'Till Kursinformation vy',
+    aria_year: 'Year',
+    aria_header_and_link: 'titeln med snabb länk till',
+    aria_label_list_years: 'Listan av alla publicerade kursanalyser och kursdata',
+    aria_label_course_admin_title: 'Administrera Om kursen',
+    aria_label_course_dev_title: 'Till Kursens utveckling och historik vy',
+    aria_label_course_info_title: 'Till Kursinformation vy',
+    aria_label_header_syllabuses: 'Trycka på länk för att visa eller gömma Samtliga kursplaner',
+    aria_label_syllabus_link: 'Visa gällande kursplan för den period',
     course_admin_title: 'Administrera',
-    course_admin_title_alt: 'Administrera Om kursen',
+    course_dev_title: 'Kursens utveckling och historik',
+    course_info_title: 'Kursinformation',
     header_syllabuses: 'Samtliga kursplaner',
-    info_text: 'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
+    info_text:
+      'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
     label_syllabus_link: 'Kursplan',
     no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
-      kopps_api_down: 'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas. Eller kurskoden är felstavade',
+      kopps_api_down:
+        'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas. Eller kurskoden är felstavade',
       kutv: {
         save: 'Utkast för kursanalys och kursdata har sparats',
         s_msg: 'Du hittar det sparade utkastet under Kursanalys och kursdata/ Publicera ny',

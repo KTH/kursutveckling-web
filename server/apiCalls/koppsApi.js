@@ -24,9 +24,11 @@ const koppsConfig = {
 
 const api = connections.setup(koppsConfig, koppsConfig, koppsOpts)
 
-const koppsCourseData = async (courseCode) => {
+const koppsCourseData = async courseCode => {
   const { client } = api.koppsApi
-  const uri = `${config.koppsApi.basePath}course/${encodeURIComponent(courseCode)}/courseroundterms?fromTerm=20071`
+  const uri = `${config.koppsApi.basePath}course/${encodeURIComponent(
+    courseCode
+  )}/courseroundterms?fromTerm=20071`
   try {
     const course = await client.getAsync({ uri, useCache: true })
     return course.body
@@ -36,40 +38,62 @@ const koppsCourseData = async (courseCode) => {
   }
 }
 
-function isValidData (dataObject) {
+function isValidData(dataObject) {
   return !dataObject ? ' ' : dataObject
 }
 
-function getListOfCoursePlanValidYearsPeriods (allRoundsArrOfObjs) {
-  let allValidStartYearsArr = []
-  let thisCourseSyllabusTerm, prev = 0
-  if (allRoundsArrOfObjs.length > 0) {  
+function getListOfValidFromSyllabusTerms(allRoundsArrOfObjs) {
+  let startYears = []
+  let validFrom,
+    prev = 0
+  if (allRoundsArrOfObjs.length > 0) {
     for (let termObj of allRoundsArrOfObjs) {
-      thisCourseSyllabusTerm = parseInt(termObj.courseSyllabus.validFromTerm)
-      if (thisCourseSyllabusTerm !== prev && thisCourseSyllabusTerm) {
-        allValidStartYearsArr.push(thisCourseSyllabusTerm)
-        prev = thisCourseSyllabusTerm
+      validFrom = parseInt(termObj.courseSyllabus.validFromTerm)
+      if (validFrom !== prev && validFrom) {
+        startYears.push(validFrom)
+        prev = validFrom
       }
     }
   }
-  let courseSyllabysPeriodFromToYearsArr = allValidStartYearsArr.sort().reverse() //just to be sure it is always correct order independent on API
-  if (courseSyllabysPeriodFromToYearsArr.length > 0) courseSyllabysPeriodFromToYearsArr.unshift('')
-  return courseSyllabysPeriodFromToYearsArr //[ '', 20182, 20082, 20082, 20081 ]
+  let descListOfStartDate = startYears.sort().reverse() //just to be sure it is always correct order independent on API
+  if (descListOfStartDate.length > 0) descListOfStartDate.unshift('')
+  return descListOfStartDate //[ '', 20182, 20082, 20082, 20081 ]
+}
+
+const combineStartEndDates = async syllabusStartDates => {
+  if (!syllabusStartDates.length > 0) return {} //{20182}
+  let periods = {}
+  await syllabusStartDates.map((nextSyllabusDate, index, startDates) => {
+    if (startDates[index + 1]) {
+      const start = startDates[index + 1]
+      let lastTerm = nextSyllabusDate.toString().substring(4, 5)
+      if (lastTerm === '2') nextSyllabusDate -= 1
+      else if (lastTerm === '1') nextSyllabusDate -= 9
+      periods = { ...periods, ...{ [start]: { endDate: nextSyllabusDate } } }
+    }
+  })
+  return periods
 }
 
 const filteredKoppsData = async (courseCode, lang) => {
   try {
     const courseObj = await koppsCourseData(courseCode)
+    const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(
+      courseObj.termsWithCourseRounds
+    )
+    const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
+    console.log('syllabusPeriods ', syllabusPeriods)
     return {
       courseCode: courseCode.toUpperCase(),
       courseTitle: isValidData(courseObj.course.title[lang]),
-      syllabusSemesterList: getListOfCoursePlanValidYearsPeriods(courseObj.termsWithCourseRounds),
+      sortedSyllabusStart,
+      syllabusPeriods,
       courseCredits: isValidData(courseObj.course.credits),
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
-  } catch(error) {
-    log.error("Error in filteredKoppsData while trying to filter data from KOPPS", {error})
+  } catch (error) {
+    log.error('Error in filteredKoppsData while trying to filter data from KOPPS', { error })
     const apiError = new Error('KOPPS API information är inte tillgänlig för nu, försöker senare')
     apiError.status = 500
     throw apiError

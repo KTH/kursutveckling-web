@@ -22,7 +22,6 @@ RUN cp -a /npm/node_modules /application && \
 COPY ["config", "config"]
 COPY ["public", "public"]
 COPY ["i18n", "i18n"]
-COPY ["gulpfile.js", "gulpfile.js"]
 COPY ["package.json", "package.json"]
 RUN apk add --no-cache bash && \
     npm run docker && \
