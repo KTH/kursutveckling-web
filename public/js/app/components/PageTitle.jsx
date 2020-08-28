@@ -13,7 +13,7 @@ class PageTitle extends Component {
     return (
       <header id="course-title" className="pageTitle col">
         <h1>{pageTitle}</h1>
-        <div>
+        <div role="heading" aria-level="1">
           <span property="aiiso:code">{title.courseCode}</span>
           <span property="teach:pageTitle"> {title.courseTitle}</span>
           <span content={title.courseCredits} datatype="xsd:decimal" property="teach:ects">
