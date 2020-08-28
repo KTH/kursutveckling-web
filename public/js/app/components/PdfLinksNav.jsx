@@ -1,6 +1,7 @@
 import React from 'react'
 import { SYLLABUS_URL } from '../util/constants'
 import { getDateFormat } from '../util/helpers'
+import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 
 const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, ariaLabel, validFrom }) => {
   return (
@@ -33,24 +34,10 @@ const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
     pmFileName,
     pdfPMDate
   } = thisAnalysisObj
-  const syllabusFileName = syllabusStartTerm
-    ? `${courseCode}-${syllabusStartTerm}.pdf?lang=${lang}`
-    : ''
-  const syllabusPublishedDate = syllabusStartTerm
-    ? `${
-        translate.course_short_semester[syllabusStartTerm.toString().substring(4, 5)]
-      } ${syllabusStartTerm.toString().substring(0, 4)}`
-    : ''
 
   return (
     <nav className="right-links">
-      <ActiveOrDisabledLink
-        fileName={syllabusFileName}
-        storageUri={SYLLABUS_URL}
-        linkTitle={translate.link_syllabus}
-        ariaLabel={translate.aria_label_link_syllabus}
-        validFrom={syllabusPublishedDate}
-      />
+      <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
       <ActiveOrDisabledLink
         fileName={pmFileName}
         storageUri={storageUri}
