@@ -21,6 +21,7 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, ariaPressed, popUpHeader, id, onCli
         onClick={onClick}
         aria-label={ariaLabel}
         aria-pressed={ariaPressed}
+        role="button"
       />
     </span>
   )
@@ -65,6 +66,7 @@ class ControlledPopover extends Component {
             onClick={this.toggle}
             aria-label={ariaLabel}
             aria-pressed={popoverOpen}
+            role="button"
           />
         )}
         <Popover
