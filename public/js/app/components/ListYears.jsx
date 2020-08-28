@@ -18,12 +18,9 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
       aria-label={`${tableLabels.aria_label_list_years}. ${pageLabels.aria_year} ${year}`}
       aria-labelledby={headerId}
       aria-describedby="section-with-years"
+      role="listitem"
     >
-      <header
-        className="header-with-link"
-        role={pageLabels.aria_header_and_link}
-        aria-labelledby={headerId}
-      >
+      <header className="header-with-link" aria-label={pageLabels.aria_header_and_link}>
         <h2 id={headerId} aria-label={pageLabels.aria_year}>
           {year}
         </h2>
@@ -50,6 +47,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
               key={index}
               aria-labelledby={ariaheaderDataName}
               aria-describedby={thisSectionId}
+              role="list"
             >
               <nav className="right-link" aria_labelledby={arialinkEditThisDoc}>
                 <a
