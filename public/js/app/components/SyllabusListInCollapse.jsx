@@ -21,23 +21,30 @@ class SyllabusListInCollapse extends Component {
     const { lang, translate } = this.props
     const { courseCode, syllabusSemesterList } = this.props.adminStore.courseKoppsData
     return (
-      <div className="card collapsible blue course-syllabuses">
+      <div
+        className="card collapsible blue course-syllabuses"
+        aria-labelledby="syllabuses-list"
+        aria-describedby="describe-syllabuses-list"
+      >
         <span className="card-header" role="tab" onClick={this.toggleHeader}>
           <h4 className="mb-0">
             <a
+              aria-describedby="describe-syllabuses-list"
               href="#plan"
               id="syllabuses-list"
               aria-expanded={this.state.collapse}
               load="false"
               data-toggle="collapse"
-              aria-label={translate.aria_label_header_syllabuses}
             >
               {translate.header_syllabuses}
             </a>
           </h4>
+          <span id="describe-syllabuses-list" className="sr-only">
+            {translate.aria_label_header_syllabuses}
+          </span>
         </span>
         <Collapse isOpen={this.state.collapse} toggler="#syllabuses-list">
-          <div className="collapse-bordered-list">
+          <div className="collapse-bordered-list" role="list">
             {/* --- ALL SYLLABUS LINKS--- */}
             {syllabusSemesterList.length > 0
               ? syllabusSemesterList.map((tillSemester, index, semesterArr) => {
@@ -47,7 +54,7 @@ class SyllabusListInCollapse extends Component {
                     if (lastTerm === '2') tillSemester -= 1
                     else if (lastTerm === '1') tillSemester -= 9
                     return (
-                      <p key={index}>
+                      <p key={index} role="listitem">
                         <a
                           aria-label={translate.aria_label_syllabus_link}
                           href={`${SYLLABUS_URL}${courseCode}-${startSemester}.pdf?lang=${lang}`}
