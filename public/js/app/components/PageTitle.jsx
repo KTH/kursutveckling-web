@@ -1,26 +1,36 @@
 import React, { Component } from 'react'
-import { EMPTY } from '../util/constants'
+import { EMPTY, KURSINFO_ADMIN_URL } from '../util/constants'
 
 class PageTitle extends Component {
   render() {
     const title = this.props.courseKoppsData
-    const { pageTitle } = this.props
-    const { koppsDataLang } = title
-    title.courseCredits =
-      title.courseCredits !== EMPTY && title.courseCredits.toString().indexOf('.') < 0
-        ? title.courseCredits + '.0'
-        : title.courseCredits
+    const { pageTitle, translate } = this.props
+    const { courseCode, courseCredits, courseTitle, koppsDataLang } = title
+    const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${koppsDataLang}`
+
+    const credits =
+      courseCredits !== EMPTY && courseCredits.toString().indexOf('.') < 0
+        ? courseCredits + '.0'
+        : courseCredits
+    const creditUnit =
+      koppsDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
+
+    const courseName = `${courseCode} ${courseTitle} ${creditUnit}`
     return (
       <header id="course-title" className="pageTitle col">
-        <h1>{pageTitle}</h1>
-        <div role="heading" aria-level="1">
-          <span property="aiiso:code">{title.courseCode}</span>
-          <span property="teach:pageTitle"> {title.courseTitle}</span>
-          <span content={title.courseCredits} datatype="xsd:decimal" property="teach:ects">
-            &nbsp;
-            {koppsDataLang === 'en'
-              ? `${title.courseCredits} credits`
-              : `${title.courseCredits.toString().replace('.', ',')} hp`}
+        <h1 data-testid="main-heading">{pageTitle}</h1>
+        <div data-testid="sub-heading">
+          <span role="heading" aria-level="4">
+            {courseCode && courseName}
+          </span>
+          <span>
+            <a
+              className="right-link"
+              href={adminPageLink}
+              aria-label={translate.aria_label_course_admin_title}
+            >
+              {translate.course_admin_title}
+            </a>
           </span>
         </div>
       </header>
