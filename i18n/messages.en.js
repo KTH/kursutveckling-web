@@ -36,6 +36,7 @@ module.exports = {
     locale_text: 'This page in English',
 
     site_name: 'Course development information',
+    skip_to_main_content: 'Skip to main content',
     host_name: 'KTH',
     page_about_course: 'About course',
     page_course_programme: 'Course and programme directory',
@@ -134,7 +135,7 @@ module.exports = {
     aria_label_course_info_title: 'To Course information view',
     aria_label_header_syllabuses: 'Click on the tab to show or hide All course syllabuses',
     aria_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
-    course_admin_title: 'Administrate',
+    course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',
     header_syllabuses: 'All course syllabuses',

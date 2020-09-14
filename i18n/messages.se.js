@@ -34,6 +34,7 @@ module.exports = {
     locale_text: 'Denna sida på svenska',
 
     site_name: 'Kursutvecklingsinformation',
+    skip_to_main_content: 'Hoppa till huvudinnehållet',
     host_name: 'KTH',
     page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
@@ -131,7 +132,7 @@ module.exports = {
     aria_label_course_info_title: 'Till Kursinformation vy',
     aria_label_header_syllabuses: 'Trycka på länk för att visa eller gömma Samtliga kursplaner',
     aria_label_syllabus_link: 'Visa gällande kursplan för den period',
-    course_admin_title: 'Administrera',
+    course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
     course_info_title: 'Kursinformation',
     header_syllabuses: 'Samtliga kursplaner',
