@@ -36,6 +36,7 @@ module.exports = {
     locale_text: 'This page in English',
 
     site_name: 'Course development information',
+    skip_to_main_content: 'Skip to main content',
     host_name: 'KTH',
     page_about_course: 'About course',
     page_course_programme: 'Course and programme directory',
@@ -43,7 +44,6 @@ module.exports = {
   },
   tableHeaders: {
     info_manually_edited: '* Course data has been registered manually',
-    header_course_round: 'Course round',
     header_main_edit: 'Edit (for course responsible)',
     header_main_publish_new:
       'Publish new course analysis with course data (for course responsible)',
@@ -91,7 +91,6 @@ module.exports = {
       }
     },
     extra_kopps_info: {
-      aria_label_span: 'More information about course data',
       no_added: 'No information inserted',
       commentExam: {
         header: 'Examination comments',
@@ -128,13 +127,12 @@ module.exports = {
     about_course: 'About course',
     aria_year: 'Year',
     aria_header_and_link: 'header with link to',
-    aria_label_list_years: 'List of all Course analysis and course data',
     aria_label_course_admin_title: 'Administrate About course',
     aria_label_course_dev_title: 'To Course development and history',
     aria_label_course_info_title: 'To Course information view',
     aria_label_header_syllabuses: 'Click on the tab to show or hide All course syllabuses',
     aria_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
-    course_admin_title: 'Administrate',
+    course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',
     header_syllabuses: 'All course syllabuses',

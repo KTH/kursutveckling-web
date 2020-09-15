@@ -19,9 +19,8 @@ class LinkToValidSyllabusPdf extends Component {
     const endDate = syllabusPeriods[startDate].endDate.toString()
 
     return (
-      <p key={'listitem-syllabus-from-' + startDate} role="listitem">
+      <p key={'link-syllabus-from-' + startDate}>
         <a
-          aria-label={label.aria_label_syllabus_link}
           href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
           id={startDate}
           target="_blank"

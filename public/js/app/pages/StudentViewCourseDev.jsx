@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import i18n from '../../../../i18n'
 
+import CollapseSyllabusHistory from '../components/CollapseSyllabusHistory'
 import PageTitle from '../components/PageTitle'
-import KipLinkNav from '../components/KipNav'
 import ListYears from '../components/ListYears'
 import AlertMsg from '../components/AlertMsg'
 
@@ -41,9 +41,10 @@ class StudentViewCourseDev extends Component {
           key="title"
           courseKoppsData={courseKoppsData}
           pageTitle={pageTitles.course_dev_title}
+          translate={pageTitles}
         />
-        <KipLinkNav
-          key="kip-navigation"
+        <CollapseSyllabusHistory
+          key="links-syllabus-history"
           courseCode={courseCode}
           lang={koppsDataLang}
           translate={pageTitles}

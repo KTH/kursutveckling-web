@@ -46,7 +46,7 @@ class SyllabusListInCollapse extends Component {
           </span>
         </span>
         <Collapse isOpen={this.state.collapse} toggler="#syllabuses-list">
-          <div className="collapse-bordered-list" role="list">
+          <div className="collapse-bordered-list">
             {/* --- ALL SYLLABUS LINKS--- */}
             {sortedSyllabusStart.length > 0
               ? sortedSyllabusStart.map((tillSemester, index, semesterArr) => {
