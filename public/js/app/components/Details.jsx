@@ -9,7 +9,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
     <span className="extra-kopps-info-from-kutv-api">
       {orderedTitles.map((infoTitle, index) => (
         <span key={index} className={infoTitle}>
-          <p role="heading" aria-level="5" id={popOverId + index} key={'header-for-' + infoTitle}>
+          <p role="heading" aria-level="4" id={popOverId + index} key={'header-for-' + infoTitle}>
             <b>{translate[infoTitle].header}</b>
           </p>
           {thisAnalysisObj[infoTitle] === '' ? (
@@ -33,11 +33,11 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
-      <p role="heading" aria-level="5">
+      <p role="heading" aria-level="4">
         <b>{translate.header_publishing_dates}</b>
       </p>
       <p>
-        <span role="heading" aria-level="6">
+        <span role="heading" aria-level="5">
           {translate.publishedDate}:&nbsp;
         </span>
         {formatISODate(publishedDate, pageLang)}
@@ -45,14 +45,14 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
         <span>
           <p>
-            <span role="heading" aria-level="6">
+            <span role="heading" aria-level="5">
               {translate.changedAfterPublishedDate}
               :&nbsp;
             </span>
             {formatISODate(changedAfterPublishedDate, pageLang)}
           </p>
           <article>
-            <p role="heading" aria-level="6">
+            <p role="heading" aria-level="5">
               {labelAboutChanges}:
             </p>
             <p>{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
@@ -60,7 +60,7 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
         </span>
       ) : (
         <p>
-          <span role="heading" aria-level="6">
+          <span role="heading" aria-level="5">
             {translate.changedAfterPublishedDate}
           </span>
           :&nbsp;<i>{translate.no_date_last_changed}</i>
@@ -69,54 +69,24 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
     </span>
   )
 }
-
-class CollapseExtraInfo extends Component {
-  constructor(props) {
-    super(props)
-    this.toggleHeader = this.toggleHeader.bind(this)
-    this.state = { collapseExtraInfo: this.props.isOpen }
-  }
-
-  toggleHeader(event) {
-    event.preventDefault()
-    this.setState(state => ({ collapseExtraInfo: !state.collapseExtraInfo }))
-  }
-
-  render() {
-    const { thisAnalysisObj, label, translate } = this.props
-    const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
-
-    return (
-      <div className="card collapsible rubric-list white">
-        <div className="card-header info-rubric" onClick={this.toggleHeader}>
-          <h4 className="mb-0">
-            <a
-              href="#more"
-              className="collapse-header title"
-              id={label}
-              aria-expanded={this.state.collapseExtraInfo}
-              load="false"
-              data-toggle="collapse"
-            >
-              {translate.header_more_info}
-            </a>
-          </h4>
-        </div>
-        <Collapse color="white" isOpen={this.state.collapseExtraInfo} toggler={label}>
-          <div className="card-body col extra-info">
-            <ExtraKoppsInfo
-              translate={translate.extra_kopps_info}
-              thisAnalysisObj={thisAnalysisObj}
-            />
-            <ExtraDatesAndComment
-              translate={translate.extra_dates_and_comments}
-              thisAnalysisObj={thisAnalysisObj}
-            />
-          </div>
-        </Collapse>
+const Details = ({ thisAnalysisObj, label, translate }) => {
+  const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
+  return (
+    <details className="extra-info">
+      <summary className="white">{translate.header_more_info}</summary>
+      <div>
+        <ExtraKoppsInfo
+          translate={translate.extra_kopps_info}
+          thisAnalysisObj={thisAnalysisObj}
+        />
+        <ExtraDatesAndComment
+          translate={translate.extra_dates_and_comments}
+          thisAnalysisObj={thisAnalysisObj}
+        />
       </div>
-    )
-  }
+    </details>
+  )
 }
 
-export default CollapseExtraInfo
+
+export default Details

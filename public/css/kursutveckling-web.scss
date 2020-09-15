@@ -180,47 +180,33 @@ span.right-links {
 }
 
 //Collapsible "More information"
-.card.collapsible.white.rubric-list {
+.extra-info {
   margin-top: -1em;
-  .card-body.col.extra-info {
-    padding: 1em 0;
-    @media (min-width: 768px) {
-      display: flex;
-      flex-direction: row;
-      span.extra-kopps-info-from-kutv-api {
-        align-self: flex-start;
-        flex-basis: 60%;
-        span {
-          margin: 0;
-        }
-      }
-      span:last-of-type {
-        align-self: flex-start;
-        height: 100%;
-        margin-left: 3em;
-        span {
-          margin: 0;
-          padding: 0;
-        }
+  div {
+    display: flex;
+    flex-direction: row;
+    padding-top: .5em;
+  }
+  @media (min-width: 768px) {
+    span.extra-kopps-info-from-kutv-api {
+      align-self: flex-start;
+      flex-basis: 60%;
+      span {
+        margin: 0;
       }
     }
-  }
-  & > .card-header.info-rubric {
-    background-color: $white; //move to kth-style
-
-    a.collapse-header.title {
-      //move to kth-style
-      color: $black;
-      &:before {
-        margin-left: -0.7em;
-        font-size: 16px;
-        background: url(https://app.kth.se/style/kth-style/img/kth-style/icons/arrow-black-right.svg)
-          no-repeat;
-        background-size: 0.9em 0.9em;
+    span:last-of-type {
+      align-self: flex-start;
+      height: 100%;
+      margin-left: 3em;
+      span {
+        margin: 0;
+        padding: 0;
       }
     }
   }
 }
+
 
 //===TABLE===
 .table th {

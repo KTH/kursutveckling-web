@@ -1,17 +1,8 @@
 import React, { Component } from 'react'
-import CollapseExtraInfo from './CollapseExtraInfo'
+import Details from './Details'
 import PdfLinksNav from './PdfLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 import { inject, observer } from 'mobx-react'
-
-// const dataLang = analysisName => {
-//   const lastElementOfString = analysisName.split(',').pop()
-//   //take the last one
-//   const isEnglish =
-//     lastElementOfString.includes('English') || lastElementOfString.includes('Swedish')
-
-//   return isEnglish ? 'en' : 'sv'
-// }
 
 @inject(['adminStore'])
 @observer
@@ -50,7 +41,7 @@ class SectionForEachCourseOffering extends Component {
             translate={tableLabels.table_headers_with_popup}
           />
 
-          <CollapseExtraInfo
+          <Details
             label={'moreData' + courseAnalysDataId}
             thisAnalysisObj={thisAnalysisObj}
             translate={tableLabels}
