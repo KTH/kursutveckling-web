@@ -44,7 +44,6 @@ module.exports = {
     info_manually_edited: '* Kursdata har registrerats manuellt',
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
-    header_course_round: 'Kursomgång',
     aria_label_close_icon: 'Stäng',
     aria_label_header_main_publish_new:
       'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
@@ -89,7 +88,6 @@ module.exports = {
       }
     },
     extra_kopps_info: {
-      aria_label_span: 'Mer information om kursdata',
       no_added: 'Ingen information tillagd',
       commentExam: {
         header: 'Kommentar till examination',
@@ -126,7 +124,6 @@ module.exports = {
     about_course: 'Om kursen',
     aria_year: 'Year',
     aria_header_and_link: 'titeln med snabb länk till',
-    aria_label_list_years: 'Listan av alla publicerade kursanalyser och kursdata',
     aria_label_course_admin_title: 'Administrera Om kursen',
     aria_label_course_dev_title: 'Till Kursens utveckling och historik vy',
     aria_label_course_info_title: 'Till Kursinformation vy',
