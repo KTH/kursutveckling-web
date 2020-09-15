@@ -1,5 +1,4 @@
 'use strict'
-const co = require('co')
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 const ReactDOMServer = require('react-dom/server')
@@ -11,8 +10,8 @@ const { filteredKoppsData } = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 
 module.exports = {
-  getCourseDevInfo: co.wrap(_getCourseDevInfo),
-  getErrorPage: co.wrap(_getErrorPage)
+  getCourseDevInfo: _getCourseDevInfo,
+  getErrorPage: _getErrorPage
 }
 
 const serverPaths = require('../server').getPaths()
