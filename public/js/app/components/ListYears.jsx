@@ -13,19 +13,8 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
   )
 
   return (
-    <section id={thisSectionId} aria-describedby="section-with-years">
-      <header className="header-with-link">
+    <section id={thisSectionId}>
         <h2 id={headerId}>{year}</h2>
-        <span>
-          <a
-            href={linkToCreateNew}
-            className="right-link"
-            aria-label={`${tableLabels.aria_label_header_main_publish_new} ${year}`}
-          >
-            {tableLabels.header_main_publish_new}
-          </a>
-        </span>
-      </header>
       {thisYearAnalyses.length === 0 ? (
         <p>{tableLabels.no_course_analys}</p>
       ) : (
@@ -57,7 +46,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
 const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
-    <section className="tables-list col" id="section-with-years">
+    <section className="tables-list col">
       <p>{tableHeaders.info_manually_edited}</p>
       {yearsDescending.map((year, index) => (
         <SectionPerYear
