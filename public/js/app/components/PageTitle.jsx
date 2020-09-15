@@ -24,7 +24,7 @@ class PageTitle extends Component {
             {courseCode && courseName}
           </span>
           <span>
-            <a className="right-link" href={adminPageLink}>
+            <a className="right-link" href={adminPageLink} style={{fontSize: '16px', aling: 'baseline'}}>
               {translate.course_admin_title}
             </a>
           </span>
