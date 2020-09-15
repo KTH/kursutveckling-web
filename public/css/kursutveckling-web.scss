@@ -54,44 +54,8 @@ span.intro-text {
 }
 
 //== LIST OF COLLAPSIBLE TABLES ==
-.tables-list {
-  margin: 3em 0;
-  header.header-with-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  h2 {
-    margin-top: 0.7em;
-  }
-  & > section:first-of-type {
-    & > header.header-with-link > h2 {
-      margin-top: 0;
-    }
-  }
-  header.header-with-link {
-    display: flex;
-    flex-direction: column;
-    h2 {
-      align-self: flex-start;
-    }
-    nav {
-      align-self: flex-end;
-      margin-top: 0.5em;
-      text-align: right;
-    }
-    // align-items: flex-end;
-    @media (min-width: 768px) {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      h2,
-      nav {
-        align-self: baseline;
-      }
-    }
-  }
-  .table-for-year > nav.right-link {
+.list-section-per-year {
+  .table-for-year > div.right-link {
     margin-top: 1em;
     @media (min-width: 768px) {
       margin: 0;

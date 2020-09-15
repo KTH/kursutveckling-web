@@ -5,15 +5,14 @@ import { KUTV_ADMIN_URL } from '../util/constants'
 const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
   const { courseCode, courseTitle, courseCredits, koppsDataLang } = koppsData
   const linkToCreateNew = `${KUTV_ADMIN_URL}${courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
-  const headerId = 'year-header-' + year
-  const thisSectionId = 'section-for-year-' + year
+  const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>
     secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
   )
 
   return (
-    <section id={thisSectionId}>
+    <section aria-describedby={headerId}>
         <h2 id={headerId}>{year}</h2>
       {thisYearAnalyses.length === 0 ? (
         <p>{tableLabels.no_course_analys}</p>
@@ -32,7 +31,6 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
                 </a>
               </div>
               <SectionForEachCourseOffering
-                parentSectionId={thisSectionId}
                 thisAnalysisObj={thisOfferingAnalysis}
                 tableLabels={tableLabels}
               />
@@ -47,7 +45,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
 const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
-    <section className="tables-list col">
+    <section className="list-section-per-year col">
       <p>{tableHeaders.info_manually_edited}</p>
       {yearsDescending.map((year, index) => (
         <SectionPerYear

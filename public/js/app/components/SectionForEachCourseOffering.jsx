@@ -13,39 +13,36 @@ class SectionForEachCourseOffering extends Component {
   }
 
   render() {
-    const { thisAnalysisObj, parentSectionId, tableLabels } = this.props
+    const { thisAnalysisObj, tableLabels } = this.props
     const { koppsDataLang } = this.props.adminStore.courseKoppsData
 
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
-    // const analysisLang = dataLang(analysisName)
 
     return (
       <section
         className="course-data-for-round"
-        aria-describedby={parentSectionId}
+        aria-describedby={'h3' + courseAnalysDataId}
       >
-        <header className="course-data-title">
-          <h3 className="mb-0">
-              {analysisName}
-          </h3>
-        </header>
-          <PdfLinksNav
-            lang={koppsDataLang}
-            translate={tableLabels}
-            thisAnalysisObj={thisAnalysisObj}
-            storageUri={this.props.adminStore.browserConfig.storageUri}
-          />
+        <h3 className="mb-0" id={'h3' + courseAnalysDataId}>
+            {analysisName}
+        </h3>
+        <PdfLinksNav
+          lang={koppsDataLang}
+          translate={tableLabels}
+          thisAnalysisObj={thisAnalysisObj}
+          storageUri={this.props.adminStore.browserConfig.storageUri}
+        />
 
-          <TableWithCourseData
-            thisAnalysisObj={thisAnalysisObj}
-            translate={tableLabels.table_headers_with_popup}
-          />
+        <TableWithCourseData
+          thisAnalysisObj={thisAnalysisObj}
+          translate={tableLabels.table_headers_with_popup}
+        />
 
-          <Details
-            label={'moreData' + courseAnalysDataId}
-            thisAnalysisObj={thisAnalysisObj}
-            translate={tableLabels}
-          />
+        <Details
+          label={'moreData' + courseAnalysDataId}
+          thisAnalysisObj={thisAnalysisObj}
+          translate={tableLabels}
+        />
       </section>
     )
   }
