@@ -45,16 +45,9 @@ module.exports = {
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     aria_label_close_icon: 'Stäng',
-    aria_label_header_main_publish_new:
-      'Gå till adminsida för att Publicera ny kursanalys och kursdata för år ',
     aria_label_header_main_edit:
-      'Gå till adminsida för att andra den kursanalysen och kursdata för kursomgång:',
-    aria_label_link_syllabus: 'Till gällande Kursplan',
-    aria_label_link_analysis: 'Till gällande Kursanalys',
-    aria_label_link_pm: 'Till gällande Kurs-PM',
+      'Ändra publicerad kursanalys och kursdata för kursomgång:',
     aria_label_info_icon: 'Mer information',
-    aria_label_header_more_info:
-      'Trycka på länk för att visa eller gömma Mer information för kursomgång:',
     table_headers_with_popup: {
       examiners: {
         header: 'Examinator',
@@ -113,6 +106,7 @@ module.exports = {
     link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
+    no_added: 'ej tillagd',
     no_course_analys: 'Det finns inga publicerade kursanalyser och kursdata',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {

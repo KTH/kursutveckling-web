@@ -48,16 +48,9 @@ module.exports = {
     header_main_publish_new:
       'Publish new course analysis with course data (for course responsible)',
     aria_label_close_icon: 'Close',
-    aria_label_header_main_publish_new:
-      'Go to the admin page to Publish new course analysis with kursdata for year ',
     aria_label_header_main_edit:
-      'Go to the admin page to Edit published course analysis and course data. Course rounds:',
+      'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
-    aria_label_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
-    aria_label_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
-    aria_label_link_pm: 'Open a new tab to show the valid Course-memo pdf',
-    aria_label_header_more_info:
-      'Click on the tab to show or hide More information for course round:',
     table_headers_with_popup: {
       examiners: {
         header: 'Examiners',
@@ -116,6 +109,7 @@ module.exports = {
     link_syllabus: 'Course syllabus',
     link_analysis: 'Course analysis',
     link_pm: 'Course memo',
+    no_added: 'not added',
     no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
     course_short_semester: {
