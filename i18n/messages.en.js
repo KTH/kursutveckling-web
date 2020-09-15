@@ -119,13 +119,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    aria_year: 'Year',
-    aria_header_and_link: 'header with link to',
-    aria_label_course_admin_title: 'Administrate About course',
-    aria_label_course_dev_title: 'To Course development and history',
-    aria_label_course_info_title: 'To Course information view',
-    aria_label_header_syllabuses: 'Click on the tab to show or hide All course syllabuses',
-    aria_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
     course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',

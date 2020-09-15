@@ -26,7 +26,6 @@ class SyllabusListInCollapse extends Component {
       <div
         className="card collapsible blue course-syllabuses"
         aria-labelledby="syllabuses-list"
-        aria-describedby="describe-syllabuses-list"
       >
         <span className="card-header" role="tab" onClick={this.toggleHeader}>
           <h4 className="mb-0">
@@ -41,9 +40,6 @@ class SyllabusListInCollapse extends Component {
               {translate.header_syllabuses}
             </a>
           </h4>
-          <span id="describe-syllabuses-list" className="sr-only">
-            {translate.aria_label_header_syllabuses}
-          </span>
         </span>
         <Collapse isOpen={this.state.collapse} toggler="#syllabuses-list">
           <div className="collapse-bordered-list">

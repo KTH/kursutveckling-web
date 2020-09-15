@@ -116,13 +116,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'Om kursen',
-    aria_year: 'Year',
-    aria_header_and_link: 'titeln med snabb länk till',
-    aria_label_course_admin_title: 'Administrera Om kursen',
-    aria_label_course_dev_title: 'Till Kursens utveckling och historik vy',
-    aria_label_course_info_title: 'Till Kursinformation vy',
-    aria_label_header_syllabuses: 'Trycka på länk för att visa eller gömma Samtliga kursplaner',
-    aria_label_syllabus_link: 'Visa gällande kursplan för den period',
     course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
     course_info_title: 'Kursinformation',
