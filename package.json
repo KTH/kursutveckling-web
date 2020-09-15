@@ -12,14 +12,12 @@
   "scripts": {
     "babel-not-used": "babel public/js/app -d dist/js ",
     "vendor": "parcel build ./public/js/vendor.js",
-    "test": "jest test/unit/*.js --passWithNoTests",
+    "test": "NODE_ENV=test jest test/unit/*.js --passWithNoTests",
     "docker": "npm install --development && npm run build && npm prune --production",
-    "build": "NODE_ENV=production parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
+    "build": "NODE_ENV=production rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
     "build-dev-no-minify": "NODE_ENV=development rm -rf dist && parcel build --no-minify ./public/js/app/app.jsx && npm run vendor && parcel watch ./public/js/app/app.jsx",
     "build-dev": "cross-env NODE_ENV=development rm -rf dist && parcel build ./public/js/vendor.js --public-url /kursutveckling/static && parcel watch ./public/js/app/app.jsx --public-url /kursutveckling/static",
-    "build-dev-old-gulp": "NODE_ENV=development rm -rf ./dist && gulp build && parcel build ./public/img/* && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
     "start": "NODE_ENV=production node app.js",
-    "start-nodemon": "nodemon --ignore dist/ --ignore public/ app.js\"",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
   },
   "pre-push": ["test"],
@@ -96,6 +94,28 @@
     "pretty-quick": "^2.0.2",
     "react-test-renderer": "^16.13.1",
     "sass": "^1.26.10"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        },
+        "plugin-proposal-decorators"
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        },
+        "plugin-proposal-class-properties"
+      ]
+    ]
   },
   "engines": {
     "node": "12.0.0"
