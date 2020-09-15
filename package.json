@@ -48,7 +48,7 @@
     "kth-node-web-common": "^5.1.2",
     "kth-style": "^5.0.13",
     "locale": "^0.1.0",
-    "mobx": "^4.13.0",
+    "mobx": "^5.15.6",
     "mobx-react": "^5.4.4",
     "passport": "^0.4.1",
     "prop-types": "^15.7.2",
