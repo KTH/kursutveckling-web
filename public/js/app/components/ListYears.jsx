@@ -22,14 +22,15 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
           const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
           return (
             <article className="table-for-year" key={index}>
-              <span className="right-link">
+              <div>
                 <a
+                  className="right-link"
                   href={`${KUTV_ADMIN_URL}${courseAnalysDataId}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
                   aria-label={`${tableLabels.aria_label_header_main_edit} ${analysisName}`}
                 >
                   {tableLabels.header_main_edit}
                 </a>
-              </span>
+              </div>
               <SectionForEachCourseOffering
                 parentSectionId={thisSectionId}
                 thisAnalysisObj={thisOfferingAnalysis}
