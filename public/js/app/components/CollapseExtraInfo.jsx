@@ -6,7 +6,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
   const { _id: popOverId } = thisAnalysisObj
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
   return (
-    <span className="extra-kopps-info-from-kutv-api" aria-label={translate.aria_label_span}>
+    <span className="extra-kopps-info-from-kutv-api">
       {orderedTitles.map((infoTitle, index) => (
         <span key={index} className={infoTitle}>
           <p role="heading" aria-level="5" id={popOverId + index} key={'header-for-' + infoTitle}>
@@ -43,15 +43,15 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
         {formatISODate(publishedDate, pageLang)}
       </p>
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
-        <span role="list">
-          <p role="listitem">
+        <span>
+          <p>
             <span role="heading" aria-level="6">
               {translate.changedAfterPublishedDate}
               :&nbsp;
             </span>
             {formatISODate(changedAfterPublishedDate, pageLang)}
           </p>
-          <article role="listitem">
+          <article>
             <p role="heading" aria-level="6">
               {labelAboutChanges}:
             </p>
@@ -85,11 +85,10 @@ class CollapseExtraInfo extends Component {
   render() {
     const { thisAnalysisObj, label, translate } = this.props
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
-    const ariaheaderDataName = `round-header-${courseAnalysDataId}`
 
     return (
-      <div className="card collapsible rubric-list white" aria-labelledby={ariaheaderDataName}>
-        <div className="card-header info-rubric" role="tab" onClick={this.toggleHeader}>
+      <div className="card collapsible rubric-list white">
+        <div className="card-header info-rubric" onClick={this.toggleHeader}>
           <h4 className="mb-0">
             <a
               href="#more"
@@ -98,7 +97,6 @@ class CollapseExtraInfo extends Component {
               aria-expanded={this.state.collapseExtraInfo}
               load="false"
               data-toggle="collapse"
-              aria-label={`${translate.aria_label_header_more_info} ${analysisName}`}
             >
               {translate.header_more_info}
             </a>

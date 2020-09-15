@@ -34,14 +34,12 @@ class SectionForEachCourseOffering extends Component {
 
     const { analysisName, _id: courseAnalysDataId } = thisAnalysisObj
     // const analysisLang = dataLang(analysisName)
-    const ariaheaderDataName = `round-header-${courseAnalysDataId}`
 
     return (
       <section
         className="card collapsible blue course-data-for-round"
         aria-labelledby={ariaheaderDataName}
         aria-describedby={parentSectionId}
-        role="listitem"
       >
         <header className="course-data-title card-header" role="tab" onClick={this.toggleRound}>
           <h4 id={ariaheaderDataName} className="mb-0">
@@ -57,7 +55,6 @@ class SectionForEachCourseOffering extends Component {
         </header>
         {/*  */}
         <Collapse
-          aria-labelledby={ariaheaderDataName}
           className="bordered-table"
           isOpen={this.state.collapse}
           toggler={'#' + courseAnalysDataId}

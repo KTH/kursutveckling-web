@@ -24,11 +24,7 @@ class PageTitle extends Component {
             {courseCode && courseName}
           </span>
           <span>
-            <a
-              className="right-link"
-              href={adminPageLink}
-              aria-label={translate.aria_label_course_admin_title}
-            >
+            <a className="right-link" href={adminPageLink}>
               {translate.course_admin_title}
             </a>
           </span>

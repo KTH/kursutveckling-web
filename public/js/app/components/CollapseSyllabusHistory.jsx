@@ -10,7 +10,7 @@ const CollapseSyllabusHistory = ({ courseCode, translate, lang }) => {
   return (
     <div className="history row">
       <nav className="col">
-        <a href={kursOmLink} className="link-back" aria-label={labelAboutCoursePage}>
+        <a href={kursOmLink} className="link-back">
           {labelAboutCoursePage}
         </a>
       </nav>
