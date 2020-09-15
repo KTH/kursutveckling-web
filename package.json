@@ -20,7 +20,9 @@
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
   },
-  "pre-push": ["test"],
+  "pre-push": [
+    "test"
+  ],
   "dependencies": {
     "applicationinsights": "^1.8.7",
     "axios": "^0.19.2",
@@ -44,9 +46,9 @@
     "kth-node-server": "^3.1.2",
     "kth-node-session": "^1.0.4",
     "kth-node-web-common": "^5.1.2",
-    "kth-style": "^5.0.11",
+    "kth-style": "^5.0.13",
     "locale": "^0.1.0",
-    "mobx": "^5.15.6",
+    "mobx": "^4.13.0",
     "mobx-react": "^5.4.4",
     "passport": "^0.4.1",
     "prop-types": "^15.7.2",
@@ -114,7 +116,15 @@
           "loose": true
         },
         "plugin-proposal-class-properties"
-      ]
+      ],
+      [
+        "@babel/plugin-proposal-private-methods",
+        {
+          "loose": true
+        },
+        "plugin-proposal-private-methods"
+      ],
+      "@babel/plugin-transform-runtime"
     ]
   },
   "engines": {
