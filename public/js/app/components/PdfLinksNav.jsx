@@ -36,7 +36,7 @@ const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
   } = thisAnalysisObj
 
   return (
-    <nav className="right-links">
+    <span className="right-links">
       <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
       <ActiveOrDisabledLink
         fileName={pmFileName}
@@ -52,7 +52,7 @@ const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
         ariaLabel={translate.aria_label_link_analysis}
         validFrom={getDateFormat(pdfAnalysisDate, lang)}
       />
-    </nav>
+    </span>
   )
 }
 

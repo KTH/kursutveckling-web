@@ -150,25 +150,20 @@ span.right_intro {
     }
   }
 }
-.card.collapsible.blue.course-data-for-round {
+.course-data-for-round {
   width: 100%;
   margin-bottom: 0.5em;
-  div.bordered-table {
-    @extend %bordered-area;
-    margin-bottom: 1.5em;
-    padding: 0 0.5em 0.5em 0.7em;
-  }
 }
 //Links
 a.right-link,
-nav.right-link,
+span.right-link,
 p.right-link {
   float: right;
   font-weight: normal;
   text-align: right;
 }
 
-nav.right-links {
+span.right-links {
   float: left;
   text-align: left;
   margin: 1em 0.2em 0;

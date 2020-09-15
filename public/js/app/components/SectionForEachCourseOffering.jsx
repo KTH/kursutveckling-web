@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Collapse } from 'reactstrap'
 import CollapseExtraInfo from './CollapseExtraInfo'
 import PdfLinksNav from './PdfLinksNav'
 import TableWithCourseData from './TableWithCourseData'
@@ -19,13 +18,7 @@ import { inject, observer } from 'mobx-react'
 class SectionForEachCourseOffering extends Component {
   constructor(props) {
     super(props)
-    this.toggleRound = this.toggleRound.bind(this)
-    this.state = { collapse: true }
-  }
-
-  toggleRound(e) {
-    e.preventDefault()
-    this.setState(state => ({ collapse: !state.collapse }))
+    this.state = { }
   }
 
   render() {
@@ -37,27 +30,14 @@ class SectionForEachCourseOffering extends Component {
 
     return (
       <section
-        className="card collapsible blue course-data-for-round"
+        className="course-data-for-round"
         aria-describedby={parentSectionId}
       >
-        <header className="course-data-title card-header" onClick={this.toggleRound}>
-          <h4 className="mb-0">
-            <a
-              href="#courseData"
-              id={courseAnalysDataId}
-              aria-expanded={this.state.collapse}
-              load="false"
-            >
+        <header className="course-data-title">
+          <h3 className="mb-0">
               {analysisName}
-            </a>
-          </h4>
+          </h3>
         </header>
-        {/*  */}
-        <Collapse
-          className="bordered-table"
-          isOpen={this.state.collapse}
-          toggler={'#' + courseAnalysDataId}
-        >
           <PdfLinksNav
             lang={koppsDataLang}
             translate={tableLabels}
@@ -75,7 +55,6 @@ class SectionForEachCourseOffering extends Component {
             thisAnalysisObj={thisAnalysisObj}
             translate={tableLabels}
           />
-        </Collapse>
       </section>
     )
   }
