@@ -102,7 +102,8 @@ module.exports = {
       no_date_last_changed: 'ej ändrad efter publicering',
       page_lang: 'sv'
     },
-    header_more_info: 'Mer information',
+    header_more_info: 'Ytterligare data',
+    aria_header_more_info: 'Ytterligare data om kursomgång:',
     link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
