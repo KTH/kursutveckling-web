@@ -55,6 +55,17 @@ span.intro-text {
 
 //== LIST OF COLLAPSIBLE TABLES ==
 .list-section-per-year {
+  margin: 3em 0;
+  h2 {
+    margin-top: 1.4em;
+  }
+  h3 {
+    margin-top: .5em;
+    margin-bottom: 1em;
+  }
+  & > section:first-of-type > h2 {
+      margin-top: 0.7em;
+  }
   .table-for-year > div.right-link {
     margin-top: 1em;
     @media (min-width: 768px) {
