@@ -28,7 +28,6 @@ $dark-grey: #65656c;
 }
 .kursinfo-main-page {
   padding-bottom: 3em;
-  padding-top: 2em;
   width: 100%;
 }
 .pageTitle {
@@ -53,66 +52,18 @@ span.intro-text {
   }
 }
 
-//== LIST OF COLLAPSIBLE TABLES ==
-.list-section-per-year {
-  margin: 3em 0;
-  h2 {
-    margin-top: 1.4em;
-  }
-  h3 {
-    margin-top: .5em;
-    margin-bottom: 1em;
-  }
-  & > section:first-of-type > h2 {
-      margin-top: 0.7em;
-  }
-  .table-for-year > div.right-link {
-    margin-top: 1em;
-    @media (min-width: 768px) {
-      margin: 0;
-    }
-  }
-}
-
-//REDEFINING COLLAPSE Style
-
-.card.collapsible {
-  h4.mb-0 {
-    margin-top: 0 !important;
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
-.card.collapsible.blue {
-  margin-top: 1em;
-  .course-data-title > a::before {
-    margin-left: 0.5em;
-  }
-  .course-data-title {
-    display: flex;
-    justify-content: space-between;
-  }
-}
 //== COURSE SYLLABUSSES COLLABSIBLE AT RIGHT ==
-span.right_intro {
-  width: 100%;
-  margin-right: 0;
-  margin-top: 1em;
-  margin-bottom: 1.5em;
-  @media (min-width: 768px) {
-    float: right;
-    max-width: 30em;
-  }
-}
-.card.collapsible.blue.course-syllabuses {
+
+details.course-syllabuses {
   margin-top: 0 !important;
   margin-bottom: 1.5em;
-  margin-left: 1em;
+  margin-right: .5em;
   @media (min-width: 768px) {
-    width: 30em;
+    width: 20em;
     float: right;
+  }
+  summary+:nth-child(2) {
+    margin-top: 0 !important;
   }
   div.collapse-bordered-list {
     padding: 0.5em;
@@ -125,39 +76,60 @@ span.right_intro {
     }
   }
 }
-.course-data-for-round {
-  width: 100%;
-  margin-bottom: 0.5em;
-}
+
 //Links
-a.right-link,
-span.right-link,
-div.right-link
-p.right-link {
+a.right-link {
   float: right;
   font-weight: normal;
   text-align: right;
 }
 
-span.right-links {
-  float: left;
-  text-align: left;
-  margin: 1em 0.2em 0;
-  @media (min-width: 768px) {
-    p {
-      margin-bottom: 0;
+//== LIST OF COLLAPSIBLE TABLES ==
+.list-section-per-year {
+  margin: 3em 0;
+  h2 {
+    margin-top: 38px;
+    margin-bottom: 26px;
+  }
+
+  .h3-and-link {
+    h3 {
+      margin-top: 0;
     }
     display: flex;
-    justify-content: flex-end;
-    float: right;
-    text-align: right;
-    margin: 0;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+  
+  & > section:first-of-type > h2 {
+      margin-top: 0.7em;
+  }
+
+  .right-block-of-links {
+    float: left;
+    text-align: left;
+    margin: 0 0.2em 0;
+    @media (min-width: 768px) {
+      display: flex;
+      justify-content: flex-end;
+      float: right;
+      text-align: right;
+      margin: 0;
+      p:last-of-type > a {
+        margin-right: 0;
+      }     
+    }
   }
 }
 
 //Collapsible "More information"
 .extra-info {
-  margin-top: -1em;
   div {
     display: flex;
     flex-direction: row;
@@ -188,7 +160,7 @@ span.right-links {
 .table th {
   text-align: center;
 }
-//Table elments  visibility for desktop
+//Table elements  visibility for desktop
 .table td {
   .mobile-header-popovers {
     display: none;
