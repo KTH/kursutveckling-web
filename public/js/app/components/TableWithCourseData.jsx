@@ -25,52 +25,50 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
     'alterationText'
   ]
   return (
-    <span className="table-for-each-course-offering" key={analysisId}>
-      <Table>
-        <thead>
-          <tr>
-            {orderedColumns.map((colName, index) => {
-              const cellId = analysisId + colName
-              const ariaDescribedBy = 'header-description' + cellId
-              const { header, popoverText } = translate[colName]
-              return (
-                <th key={index} className={colName}>
-                  {header}{' '}
-                  <ControlledPopover
-                    cellId={cellId}
-                    header={header}
-                    popoverText={popoverText}
-                    popType="desktop"
-                  />{' '}
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {orderedColumns.map((colName, index) => {
-              const { header, popoverText } = translate[colName]
-              const cellId = analysisId + colName
-              return (
-                <td className={colName} id={cellId} key={index}>
-                  <ControlledPopover
-                    cellId={cellId}
-                    header={header}
-                    popoverText={popoverText}
-                    popType="mobile"
-                  />
-                  {(colName === 'examRounds' &&
-                    listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
-                    <p>{thisAnalysisObj[colName]}</p>
-                  )}
-                </td>
-              )
-            })}
-          </tr>
-        </tbody>
-      </Table>
-    </span>
+    <Table className="table-for-each-course-offering" key={analysisId}>
+      <thead>
+        <tr>
+          {orderedColumns.map((colName, index) => {
+            const cellId = analysisId + colName
+            const ariaDescribedBy = 'header-description' + cellId
+            const { header, popoverText } = translate[colName]
+            return (
+              <th key={index} className={colName}>
+                {header}{' '}
+                <ControlledPopover
+                  cellId={cellId}
+                  header={header}
+                  popoverText={popoverText}
+                  popType="desktop"
+                />{' '}
+              </th>
+            )
+          })}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {orderedColumns.map((colName, index) => {
+            const { header, popoverText } = translate[colName]
+            const cellId = analysisId + colName
+            return (
+              <td className={colName} id={cellId} key={index}>
+                <ControlledPopover
+                  cellId={cellId}
+                  header={header}
+                  popoverText={popoverText}
+                  popType="mobile"
+                />
+                {(colName === 'examRounds' &&
+                  listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
+                  <p>{thisAnalysisObj[colName]}</p>
+                )}
+              </td>
+            )
+          })}
+        </tr>
+      </tbody>
+    </Table>
   )
 }
 

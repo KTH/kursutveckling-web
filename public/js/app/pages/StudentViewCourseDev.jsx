@@ -25,7 +25,7 @@ class StudentViewCourseDev extends Component {
 
   render() {
     const { courseKoppsData, analysisData } = this.props.adminStore
-    const { courseCode, koppsDataLang } = courseKoppsData
+    const { courseCode, koppsDataLang, sortedSyllabusStart } = courseKoppsData
     const { pageTitles, tableHeaders } = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
 
     return (
@@ -48,6 +48,7 @@ class StudentViewCourseDev extends Component {
           courseCode={courseCode}
           lang={koppsDataLang}
           translate={pageTitles}
+          sortedSyllabusStart={sortedSyllabusStart}
         />
         <AlertMsg props={this.props} lang={koppsDataLang} translate={pageTitles} />
         <IntroText id="intro-text" key="intro-text" translate={pageTitles} />

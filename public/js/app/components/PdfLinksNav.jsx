@@ -47,7 +47,7 @@ class PdfLinksNav extends Component {
     } = thisAnalysisObj
 
     return (
-      <span className="right-links">
+      <span className="right-block-of-links">
         <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
         <ActiveOrDisabledLink
           fileName={pmFileName}
