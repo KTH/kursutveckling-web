@@ -1,6 +1,9 @@
-import SectionForEachCourseOffering from './SectionForEachCourseOffering'
 import React from 'react'
 import { KUTV_ADMIN_URL } from '../util/constants'
+import Details from './Details'
+import PdfLinksNav from './PdfLinksNav'
+import TableWithCourseData from './TableWithCourseData'
+
 
 const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
   const { courseCode, courseTitle, courseCredits, koppsDataLang } = koppsData
@@ -10,35 +13,59 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
   thisYearAnalyses.sort((firstEl, secondEl) =>
     secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
   )
-
   return (
-    <section aria-describedby={headerId}>
+    thisYearAnalyses.length === 0 ? (
+      <section aria-describedby={headerId}>
         <h2 id={headerId}>{year}</h2>
-      {thisYearAnalyses.length === 0 ? (
-        <p>{tableLabels.no_course_analys}</p>
-      ) : (
-        thisYearAnalyses.map((thisOfferingAnalysis, index) => {
-          const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
-          return (
-            <article className="table-for-year" key={index}>
-              <div>
-                <a
-                  className="right-link"
-                  href={`${KUTV_ADMIN_URL}${courseAnalysDataId}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
-                  aria-label={`${tableLabels.aria_label_header_main_edit} ${analysisName}`}
-                >
-                  {tableLabels.header_main_edit}
-                </a>
-              </div>
-              <SectionForEachCourseOffering
-                thisAnalysisObj={thisOfferingAnalysis}
-                tableLabels={tableLabels}
-              />
-            </article>
-          )
-        })
-      )}
-    </section>
+        <p><i>{tableLabels.no_course_analys}</i></p>
+      </section>
+    ) : (
+      thisYearAnalyses.map((thisOfferingAnalysis, index) => {
+        const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
+        return (
+          <section
+            className="course-data-for-round"
+            aria-describedby={'h3' + courseAnalysDataId}
+          >
+            {index === 0 && <h2 id={headerId}>{year}</h2>}
+            <h3 className="mb-0" id={'h3' + courseAnalysDataId}>
+                {analysisName}
+            </h3>
+            <PdfLinksNav
+              lang={koppsDataLang}
+              translate={tableLabels}
+              thisAnalysisObj={thisOfferingAnalysis}
+            />
+
+            <TableWithCourseData
+              thisAnalysisObj={thisOfferingAnalysis}
+              translate={tableLabels.table_headers_with_popup}
+            />
+
+            <Details
+              label={'moreData' + courseAnalysDataId}
+              thisAnalysisObj={thisOfferingAnalysis}
+              translate={tableLabels}
+            />
+          </section>
+          // <article className="table-for-year" key={index}>
+          //   <div>
+          //     <a
+          //       className="right-link"
+          //       href={`${KUTV_ADMIN_URL}${courseAnalysDataId}?l=${koppsDataLang}&serv=kutv&status=p&title=${courseTitle}_${courseCredits}`}
+          //       aria-label={`${tableLabels.aria_label_header_main_edit} ${analysisName}`}
+          //     >
+          //       {tableLabels.header_main_edit}
+          //     </a>
+          //   </div>
+          //   <SectionForEachCourseOffering
+          //     thisAnalysisObj={thisOfferingAnalysis}
+          //     tableLabels={tableLabels}
+          //   />
+          // </article>
+        )
+      })
+    )
   )
 }
 

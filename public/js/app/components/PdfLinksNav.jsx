@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { SYLLABUS_URL } from '../util/constants'
 import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
+import { inject, observer } from 'mobx-react'
 
 const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, translate, validFrom }) => {
   return (
@@ -24,35 +25,48 @@ const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, translate, vali
   )
 }
 
-const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
-  const {
-    courseCode,
-    syllabusStartTerm,
-    analysisFileName,
-    pdfAnalysisDate,
-    pmFileName,
-    pdfPMDate
-  } = thisAnalysisObj
+@inject(['adminStore'])
+@observer
+class PdfLinksNav extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { }
+  }
 
-  return (
-    <span className="right-links">
-      <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
-      <ActiveOrDisabledLink
-        fileName={pmFileName}
-        storageUri={storageUri}
-        linkTitle={translate.link_pm}
-        translate={translate}
-        validFrom={getDateFormat(pdfPMDate, lang)}
-      />
-      <ActiveOrDisabledLink
-        fileName={analysisFileName}
-        storageUri={storageUri}
-        linkTitle={translate.link_analysis}
-        translate={translate}
-        validFrom={getDateFormat(pdfAnalysisDate, lang)}
-      />
-    </span>
-  )
-}
+  render() {
+    const { translate, thisAnalysisObj, lang } = this.props
+    const { storageUri } = this.props.adminStore.browserConfig
+
+    const {
+      courseCode,
+      syllabusStartTerm,
+      analysisFileName,
+      pdfAnalysisDate,
+      pmFileName,
+      pdfPMDate
+    } = thisAnalysisObj
+
+    return (
+      <span className="right-links">
+        <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
+        <ActiveOrDisabledLink
+          fileName={pmFileName}
+          storageUri={storageUri}
+          linkTitle={translate.link_pm}
+          translate={translate}
+          validFrom={getDateFormat(pdfPMDate, lang)}
+        />
+        <ActiveOrDisabledLink
+          fileName={analysisFileName}
+          storageUri={storageUri}
+          linkTitle={translate.link_analysis}
+          translate={translate}
+          validFrom={getDateFormat(pdfAnalysisDate, lang)}
+        />
+      </span>
+    )
+  }
+} 
+
 
 export default PdfLinksNav
