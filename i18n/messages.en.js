@@ -98,7 +98,6 @@ module.exports = {
     },
     extra_dates_and_comments: {
       no_added: 'No information inserted',
-      header_publishing_dates: 'Published date',
       publishedDate: 'Published first time',
       changedAfterPublishedDate: 'Last time changed',
       commentChange: 'Comments to changes in course data or course analysis after publishing',

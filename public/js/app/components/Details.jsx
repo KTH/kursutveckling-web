@@ -3,15 +3,14 @@ import { Collapse } from 'reactstrap'
 import { formatISODate } from '../util/helpers'
 
 const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
-  const { _id: popOverId } = thisAnalysisObj
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
   return (
     <span className="extra-kopps-info-from-kutv-api">
       {orderedTitles.map((infoTitle, index) => (
-        <span key={index} className={infoTitle}>
-          <p role="heading" aria-level="4" id={popOverId + index} key={'header-for-' + infoTitle}>
-            <b>{translate[infoTitle].header}</b>
-          </p>
+        <span key={'details-' + infoTitle} className={infoTitle}>
+          <h4 key={'header-for-' + infoTitle}>
+            {translate[infoTitle].header}
+          </h4>
           {thisAnalysisObj[infoTitle] === '' ? (
             <p className="textBlock">
               {' '}
@@ -33,38 +32,31 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
-      <p role="heading" aria-level="4">
-        <b>{translate.header_publishing_dates}</b>
-      </p>
-      <p>
-        <span role="heading" aria-level="5">
-          {translate.publishedDate}:&nbsp;
-        </span>
-        {formatISODate(publishedDate, pageLang)}
-      </p>
+      <h4>
+        {translate.publishedDate}
+      </h4>
+      <p className="textBlock">{formatISODate(publishedDate, pageLang)}</p>
+      
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
-        <span>
-          <p>
-            <span role="heading" aria-level="5">
-              {translate.changedAfterPublishedDate}
-              :&nbsp;
-            </span>
+        <>
+          <h4>
+            {translate.changedAfterPublishedDate}
+          </h4>
+          <p className="textBlock">
             {formatISODate(changedAfterPublishedDate, pageLang)}
           </p>
-          <article>
-            <p role="heading" aria-level="5">
-              {labelAboutChanges}:
-            </p>
-            <p>{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
-          </article>
-        </span>
+          <h4>
+            {labelAboutChanges}
+          </h4>
+          <p className="textBlock">{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
+        </>
       ) : (
-        <p>
-          <span role="heading" aria-level="5">
+        <>
+          <h4>
             {translate.changedAfterPublishedDate}
-          </span>
-          :&nbsp;<i>{translate.no_date_last_changed}</i>
-        </p>
+          </h4>
+          <p className="textBlock"><i>{translate.no_date_last_changed}</i></p>
+        </>
       )}
     </span>
   )

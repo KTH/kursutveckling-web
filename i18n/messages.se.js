@@ -95,7 +95,6 @@ module.exports = {
     },
     extra_dates_and_comments: {
       no_added: 'Ingen information tillagd',
-      header_publishing_dates: 'Datum för publicering',
       publishedDate: 'Publicerad första gången',
       changedAfterPublishedDate: 'Senaste ändrad',
       commentChange: 'Kommentar till gjorda ändringar',
