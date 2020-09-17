@@ -105,8 +105,7 @@ module.exports = {
       no_date_last_changed: 'No changes since first published.',
       page_lang: 'en'
     },
-    header_more_info: 'More information',
-    aria_header_more_info: 'More information about course round:',
+    header_more_info: 'More information about course round',
     link_syllabus: 'Course syllabus',
     link_analysis: 'Course analysis',
     link_pm: 'Course memo',

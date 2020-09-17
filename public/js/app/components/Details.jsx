@@ -71,10 +71,10 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
 }
 const Details = ({ thisAnalysisObj, label, translate }) => {
   const { analysisName } = thisAnalysisObj
-  const  {aria_header_more_info,  header_more_info} = translate
+  const  { header_more_info } = translate
   return (
     <details className="extra-info">
-      <summary className="white" aria-label={`${aria_header_more_info} ${analysisName}`}>{header_more_info}</summary>
+      <summary className="white" aria-label={`${header_more_info}: ${analysisName}`}>{header_more_info}</summary>
       <div>
         <ExtraKoppsInfo
           translate={translate.extra_kopps_info}
