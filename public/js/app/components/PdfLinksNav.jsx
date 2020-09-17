@@ -9,18 +9,18 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, tran
   return (
     <p>
       {fileName === '' ? (
-        <a aria-label={`${linkTitle} ${roundName}: ${no_added}`} className="pdf-link btn-link disabled" key={linkTitle}>
+        <a aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`} className="pdf-link btn-link disabled" key={linkTitle}>
           {linkTitle}: {no_added}
         </a>
       ) : (
         <a
-          aria-label={`${linkTitle} ${roundName}: ${validFrom}`}
+          aria-label={`PDF ${linkTitle} ${roundName}: ${validFrom}`}
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
           target="_blank"
         >
-          {linkTitle}: {validFrom}
+          {`${linkTitle}: ${validFrom}`}
         </a>
       )}
     </p>
