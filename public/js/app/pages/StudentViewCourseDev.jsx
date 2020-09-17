@@ -11,7 +11,7 @@ import { COURSE_INFO_URL } from '../util/constants'
 const IntroText = ({ translate, userLang }) => {
   return (
     <span className="intro-text">
-      <p lang={userLang}>{translate.info_text}</p>
+      <p className="col" lang={userLang}>{translate.info_text}</p>
     </span>
   )
 }
@@ -29,6 +29,11 @@ class StudentViewCourseDev extends Component {
     const { courseCode, koppsDataLang: userLang, sortedSyllabusStart } = courseKoppsData
     const { pageTitles, tableHeaders } = i18n.messages[userLang === 'en' ? 0 : 1]
     
+    const kursOmLink = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
+    const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
+
+    const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
+    
     return (
       <main
         className="kursinfo-main-page col"
@@ -37,7 +42,12 @@ class StudentViewCourseDev extends Component {
         lang={userLang}
         aria-labelledby="page-course-title"
         aria-describedby="intro-text"
-      >
+      > 
+        <nav className='navigation main' aria-label={navLabel} lang={userLang} style={{marginTop: '20px'}}>
+          <a href={kursOmLink} className="link-back mt-15 mb-15">
+            {labelAboutCoursePage}
+          </a>
+        </nav>
         {/* ---COURSE TITEL--- */}
         <PageTitle
           key="title"

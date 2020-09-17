@@ -3,11 +3,10 @@ const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
-const browserConfig = require('../configuration').browser
-const serverConfig = require('../configuration').server
 const { sortedKursutveckligApiInfo } = require('../apiCalls/kursutvecklingApi')
 const { filteredKoppsData } = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 module.exports = {
   getCourseDevInfo: _getCourseDevInfo,
@@ -69,8 +68,14 @@ async function _getCourseDevInfo(req, res, next) {
         label: `${i18n.message('page_about_course', lang)} ${courseCode.toUpperCase()}`
       }
     ]
+    
+
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
+      aboutCourse: {
+        siteName: `${i18n.messages[langIndex].messages.page_about_course} ${courseCode}`,
+        siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
+      },
       breadcrumbsPath: breadcrumbs,
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,
