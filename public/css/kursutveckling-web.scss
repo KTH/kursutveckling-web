@@ -35,7 +35,7 @@ $dark-grey: #65656c;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 30px; //change later to 14px, after syllabus details moved
 
   [role=heading] {
     display: flex;
@@ -45,7 +45,7 @@ $dark-grey: #65656c;
       margin-left: -0.095em;
     }
     .t4 {
-      margin-top: 0;
+      margin-top: 4px;
       margin-bottom: 0;
     }
   }
