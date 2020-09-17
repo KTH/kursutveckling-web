@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'reactstrap'
 
-const AlertMsg = ({props, translate, lang}) => {
+const AlertMsg = ({props, translate, userLang}) => {
   const params = props.location.search.substring(1).split('&')
         .map(param => param.split('='))
         .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
@@ -14,9 +14,9 @@ const AlertMsg = ({props, translate, lang}) => {
     serviceAbbr === 'kutv' // && term && name
         && (doneAction === 'save' || doneAction === 'pub' || doneAction === 'delete')
           && (<Alert color='success' aria-live='polite'>
-            <h4>{alertMessages['kutv'][event]}</h4>
+            <h4 lang={userLang}>{alertMessages['kutv'][event]}</h4>
             {term && (
-              <p>{alertMessages.term} {': '}
+              <p lang={userLang}>{alertMessages.term} {': '}
                 {course_short_semester[term.toString().substring(4, 5)]}
                 {term.toString().substring(0, 4)}
               </p>

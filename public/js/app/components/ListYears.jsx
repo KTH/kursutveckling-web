@@ -26,6 +26,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
           <section
             className="course-data-for-round"
             aria-describedby={'h3' + courseAnalysDataId}
+            key={'section-for-analys-' + courseAnalysDataId}
           >
             {index === 0 && <h2 id={headerId}>{year}</h2>}
             <div className="h3-and-link">
@@ -63,11 +64,11 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
   )
 }
 
-const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders }) => {
+const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders, userLang }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
-    <section className="list-section-per-year col">
-      <p>{tableHeaders.info_manually_edited}</p>
+    <div className="list-section-per-year col" >
+      <p lang={userLang}>{tableHeaders.info_manually_edited}</p>
       {yearsDescending.map((year, index) => (
         <SectionPerYear
           key={index}
@@ -78,7 +79,7 @@ const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeader
           tableLabels={tableHeaders}
         />
       ))}
-    </section>
+    </div>
   )
 }
 

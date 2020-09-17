@@ -67,10 +67,6 @@ async function _getCourseDevInfo(req, res, next) {
       {
         url: `/student/kurser/kurs/${courseCode.toUpperCase()}`,
         label: `${i18n.message('page_about_course', lang)} ${courseCode.toUpperCase()}`
-      },
-      {
-        //label: `${i18n.message('title', lang)} ${courseCode.toUpperCase()}`
-        label: i18n.message('title', lang)
       }
     ]
     const html = ReactDOMServer.renderToString(renderProps)
