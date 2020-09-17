@@ -22,7 +22,7 @@ class LinkToValidSyllabusPdf extends Component {
     const coursePlanLabel = `${label_syllabus_link} ( ${startTermName} - ${endTermName} )`
 
     return (
-      <p key={'link-syllabus-from-' + startDate} role="listitem">
+      <p key={'link-syllabus-from-' + startDate}>
         <a
           aria-label={`PDF ${coursePlanLabel}`}
           href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
