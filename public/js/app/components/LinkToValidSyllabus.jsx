@@ -26,7 +26,7 @@ class LinkToValidSyllabusPdf extends Component {
           target="_blank"
           className="pdf-link"
         >
-          {label.label_syllabus_link} {' ( '}
+          {label.label_syllabus_link} {courseCode} {' ( '}
           {/* START SEMESTER FOR THIS COURSE SYLLABUS, f.e., Autumn 2009*/}
           {label.course_short_semester[startDate.substring(4, 5)]}
           {startDate.substring(0, 4)} - &nbsp;
