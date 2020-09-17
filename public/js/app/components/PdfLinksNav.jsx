@@ -4,15 +4,17 @@ import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 import { inject, observer } from 'mobx-react'
 
-const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, translate, validFrom }) => {
+const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, translate, validFrom }) => {
+  const { no_added } = translate
   return (
     <p>
       {fileName === '' ? (
-        <a className="pdf-link btn-link disabled" key={linkTitle}>
-          {linkTitle}: {translate.no_added}
+        <a aria-label={`${linkTitle} ${roundName}: ${no_added}`} className="pdf-link btn-link disabled" key={linkTitle}>
+          {linkTitle}: {no_added}
         </a>
       ) : (
         <a
+          aria-label={`${linkTitle} ${roundName}: ${validFrom}`}
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
@@ -38,12 +40,13 @@ class PdfLinksNav extends Component {
     const { storageUri } = this.props.adminStore.browserConfig
 
     const {
-      courseCode,
-      syllabusStartTerm,
       analysisFileName,
+      analysisName,
+      courseCode,
       pdfAnalysisDate,
       pmFileName,
-      pdfPMDate
+      pdfPMDate,
+      syllabusStartTerm
     } = thisAnalysisObj
 
     return (
@@ -53,6 +56,7 @@ class PdfLinksNav extends Component {
           fileName={pmFileName}
           storageUri={storageUri}
           linkTitle={translate.link_pm}
+          roundName={analysisName}
           translate={translate}
           validFrom={getDateFormat(pdfPMDate, lang)}
         />
@@ -60,6 +64,7 @@ class PdfLinksNav extends Component {
           fileName={analysisFileName}
           storageUri={storageUri}
           linkTitle={translate.link_analysis}
+          roundName={analysisName}
           translate={translate}
           validFrom={getDateFormat(pdfAnalysisDate, lang)}
         />
