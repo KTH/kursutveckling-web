@@ -17,18 +17,14 @@ class PageTitle extends Component {
 
     const courseName = `${courseCode} ${courseTitle} ${creditUnit}`
     return (
-      <header id="course-title" className="pageTitle col">
-        <h1 data-testid="main-heading">{pageTitle}</h1>
-        <div data-testid="sub-heading">
-          <span role="heading" aria-level="4">
-            {courseCode && courseName}
-          </span>
-          <span>
-            <a className="right-link" href={adminPageLink} style={{fontSize: '16px', align: 'baseline'}}>
-              {translate.course_admin_title}
-            </a>
-          </span>
-        </div>
+      <header className="pageTitle col">
+        <span id="page-course-title" role="heading" aria-level="1">
+          <span className="t1">{pageTitle}</span>
+          <span className="t4">{courseCode && courseName}</span>         
+        </span>
+        <a className="right-link" href={adminPageLink} style={{fontSize: '16px', align: 'baseline'}}>
+          {translate.course_admin_title}
+        </a>
       </header>
     )
   }

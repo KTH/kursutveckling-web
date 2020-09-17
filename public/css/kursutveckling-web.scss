@@ -31,8 +31,23 @@ $dark-grey: #65656c;
   width: 100%;
 }
 .pageTitle {
-  h1 {
-    margin-left: -0.095em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+
+  [role=heading] {
+    display: flex;
+    flex-direction: column;
+    .t1 {
+      margin-bottom: 0;
+      margin-left: -0.095em;
+    }
+    .t4 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
   .alert {
     margin-left: 0;
@@ -49,6 +64,7 @@ span.intro-text {
   width: 100%;
   p {
     margin-left: 1em;
+    width: 100%;
   }
 }
 
