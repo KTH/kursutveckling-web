@@ -26,18 +26,12 @@ function appFactory() {
   if (typeof window !== 'undefined') {
     adminStore.initializeStore('adminStore')
   }
-  // createUtility({
-  //   implements: IMobxStore,
-  //   name: 'AdminStore',
-  //   store: adminStore
-  // }).registerWith(globalRegistry)
+
   return (
     <Provider adminStore={adminStore}>
-      {/* <ProgressLayer> */}
       <Switch>
-        <Route path="/kursutveckling" component={StudentViewCourseDev} />
+        <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
       </Switch>
-      {/* </ProgressLayer> */}
     </Provider>
   )
 }

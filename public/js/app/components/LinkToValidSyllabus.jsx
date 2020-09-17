@@ -15,24 +15,22 @@ class LinkToValidSyllabusPdf extends Component {
   render() {
     const { lang, startDate } = this.state
     const { courseCode, syllabusPeriods } = this.props.adminStore.courseKoppsData
-    const { pageTitles: label } = i18n.messages[lang === 'en' ? 0 : 1]
+    const { course_short_semester, label_syllabus_link } = i18n.messages[lang === 'en' ? 0 : 1].pageTitles
     const endDate = syllabusPeriods[startDate].endDate.toString()
+    const startTermName = `${course_short_semester[startDate.substring(4, 5)]}${startDate.substring(0, 4)}`
+    const endTermName = `${course_short_semester[endDate.substring(4, 5)] || ''}${endDate.substring(0, 4)}`
+    const coursePlanLabel = `${label_syllabus_link} ( ${startTermName} - ${endTermName} )`
 
     return (
       <p key={'link-syllabus-from-' + startDate}>
         <a
+          aria-label={`PDF ${coursePlanLabel}`}
           href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
           id={startDate}
           target="_blank"
           className="pdf-link"
-        >
-          {label.label_syllabus_link} {' ( '}
-          {/* START SEMESTER FOR THIS COURSE SYLLABUS, f.e., Autumn 2009*/}
-          {label.course_short_semester[startDate.substring(4, 5)]}
-          {startDate.substring(0, 4)} - &nbsp;
-          {/* LAST SEMESTER FOR THIS COURSE SYLLABUS f.e., Spring 2019*/}
-          {label.course_short_semester[endDate.substring(4, 5)]}
-          {endDate.substring(0, 4)} {' )'}
+        > 
+          {coursePlanLabel}
         </a>
       </p>
     )

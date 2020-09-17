@@ -1,59 +1,77 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { SYLLABUS_URL } from '../util/constants'
 import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
+import { inject, observer } from 'mobx-react'
 
-const ActiveOrDisabledLink = ({ fileName, storageUri, linkTitle, ariaLabel, validFrom }) => {
+const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, translate, validFrom }) => {
+  const { no_added } = translate
   return (
     <p>
       {fileName === '' ? (
-        <a className="pdf-link" key={linkTitle}>
-          {linkTitle}: -
+        <a aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`} className="pdf-link btn-link disabled" key={linkTitle}>
+          {linkTitle}: {no_added}
         </a>
       ) : (
         <a
+          aria-label={`PDF ${linkTitle} ${roundName}: ${validFrom}`}
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
-          aria-label={ariaLabel}
           target="_blank"
         >
-          {linkTitle}: {validFrom}
+          {`${linkTitle}: ${validFrom}`}
         </a>
       )}
     </p>
   )
 }
 
-const PdfLinksNav = ({ translate, thisAnalysisObj, storageUri, lang }) => {
-  const {
-    courseCode,
-    syllabusStartTerm,
-    analysisFileName,
-    pdfAnalysisDate,
-    pmFileName,
-    pdfPMDate
-  } = thisAnalysisObj
+@inject(['adminStore'])
+@observer
+class PdfLinksNav extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { }
+  }
 
-  return (
-    <span className="right-links">
-      <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
-      <ActiveOrDisabledLink
-        fileName={pmFileName}
-        storageUri={storageUri}
-        linkTitle={translate.link_pm}
-        ariaLabel={translate.aria_label_link_pm}
-        validFrom={getDateFormat(pdfPMDate, lang)}
-      />
-      <ActiveOrDisabledLink
-        fileName={analysisFileName}
-        storageUri={storageUri}
-        linkTitle={translate.link_analysis}
-        ariaLabel={translate.aria_label_link_analysis}
-        validFrom={getDateFormat(pdfAnalysisDate, lang)}
-      />
-    </span>
-  )
-}
+  render() {
+    const { translate, thisAnalysisObj, lang } = this.props
+    const { storageUri } = this.props.adminStore.browserConfig
+
+    const {
+      analysisFileName,
+      analysisName,
+      courseCode,
+      pdfAnalysisDate,
+      pmFileName,
+      pdfPMDate,
+      syllabusStartTerm
+    } = thisAnalysisObj
+
+    return (
+      <span className="right-block-of-links">
+        <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
+        <ActiveOrDisabledLink
+          fileName={pmFileName}
+          storageUri={storageUri}
+          linkTitle={translate.link_pm}
+          roundName={analysisName}
+          translate={translate}
+          validFrom={getDateFormat(pdfPMDate, lang)}
+        />
+        <ActiveOrDisabledLink
+          fileName={analysisFileName}
+          storageUri={storageUri}
+          linkTitle={translate.link_analysis}
+          roundName={analysisName}
+          translate={translate}
+          validFrom={getDateFormat(pdfAnalysisDate, lang)}
+        />
+      </span>
+    )
+  }
+} 
+
 
 export default PdfLinksNav

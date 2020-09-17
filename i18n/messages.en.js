@@ -48,16 +48,9 @@ module.exports = {
     header_main_publish_new:
       'Publish new course analysis with course data (for course responsible)',
     aria_label_close_icon: 'Close',
-    aria_label_header_main_publish_new:
-      'Go to the admin page to Publish new course analysis with kursdata for year ',
     aria_label_header_main_edit:
-      'Go to the admin page to Edit published course analysis and course data. Course rounds:',
+      'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
-    aria_label_link_syllabus: 'Open a new tab to show the valid Course syllabus pdf',
-    aria_label_link_analysis: 'Open a new tab to show the valid Course analysis pdf',
-    aria_label_link_pm: 'Open a new tab to show the valid Course-memo pdf',
-    aria_label_header_more_info:
-      'Click on the tab to show or hide More information for course round:',
     table_headers_with_popup: {
       examiners: {
         header: 'Examiners',
@@ -105,17 +98,17 @@ module.exports = {
     },
     extra_dates_and_comments: {
       no_added: 'No information inserted',
-      header_publishing_dates: 'Published date',
       publishedDate: 'Published first time',
       changedAfterPublishedDate: 'Last time changed',
       commentChange: 'Comments to changes in course data or course analysis after publishing',
       no_date_last_changed: 'No changes since first published.',
       page_lang: 'en'
     },
-    header_more_info: 'More information',
+    header_more_info: 'Additional data about this course offering',
     link_syllabus: 'Course syllabus',
     link_analysis: 'Course analysis',
     link_pm: 'Course memo',
+    no_added: 'not added',
     no_course_analys: 'Course analysis and course data is not inserted.',
     // no_pdf_document: 'not found',
     course_short_semester: {
@@ -125,13 +118,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    aria_year: 'Year',
-    aria_header_and_link: 'header with link to',
-    aria_label_course_admin_title: 'Administrate About course',
-    aria_label_course_dev_title: 'To Course development and history',
-    aria_label_course_info_title: 'To Course information view',
-    aria_label_header_syllabuses: 'Click on the tab to show or hide All course syllabuses',
-    aria_label_syllabus_link: 'Show a Course syllabus which is valid for this period',
     course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',

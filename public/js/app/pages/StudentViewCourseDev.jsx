@@ -6,11 +6,12 @@ import CollapseSyllabusHistory from '../components/CollapseSyllabusHistory'
 import PageTitle from '../components/PageTitle'
 import ListYears from '../components/ListYears'
 import AlertMsg from '../components/AlertMsg'
+import { COURSE_INFO_URL } from '../util/constants'
 
-const IntroText = ({ translate }) => {
+const IntroText = ({ translate, userLang }) => {
   return (
     <span className="intro-text">
-      <p>{translate.info_text}</p>
+      <p className="col" lang={userLang}>{translate.info_text}</p>
     </span>
   )
 }
@@ -25,17 +26,28 @@ class StudentViewCourseDev extends Component {
 
   render() {
     const { courseKoppsData, analysisData } = this.props.adminStore
-    const { courseCode, koppsDataLang } = courseKoppsData
-    const { pageTitles, tableHeaders } = i18n.messages[koppsDataLang === 'en' ? 0 : 1]
+    const { courseCode, koppsDataLang: userLang, sortedSyllabusStart } = courseKoppsData
+    const { pageTitles, tableHeaders } = i18n.messages[userLang === 'en' ? 0 : 1]
+    
+    const kursOmLink = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
+    const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
 
+    const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
+    
     return (
       <main
+        className="kursinfo-main-page col"
         id="mainContent"
         key="kursinfo-container"
-        className="kursinfo-main-page col"
-        aria-labelledby="course-title"
+        lang={userLang}
+        aria-labelledby="page-course-title"
         aria-describedby="intro-text"
-      >
+      > 
+        <nav className='navigation main' aria-label={navLabel} lang={userLang} style={{marginTop: '20px'}}>
+          <a href={kursOmLink} className="link-back mt-15 mb-15">
+            {labelAboutCoursePage}
+          </a>
+        </nav>
         {/* ---COURSE TITEL--- */}
         <PageTitle
           key="title"
@@ -46,17 +58,19 @@ class StudentViewCourseDev extends Component {
         <CollapseSyllabusHistory
           key="links-syllabus-history"
           courseCode={courseCode}
-          lang={koppsDataLang}
+          lang={userLang}
           translate={pageTitles}
+          sortedSyllabusStart={sortedSyllabusStart}
         />
-        <AlertMsg props={this.props} lang={koppsDataLang} translate={pageTitles} />
-        <IntroText id="intro-text" key="intro-text" translate={pageTitles} />
+        <AlertMsg props={this.props} userLang={userLang} translate={pageTitles} />
+        <IntroText id="intro-text" key="intro-text" translate={pageTitles} userLang={userLang}/>
         <ListYears
           key="list-of-course-data-for-several-years"
           koppsData={courseKoppsData}
           allYearsAnalysisDataObj={analysisData}
           tableHeaders={tableHeaders}
           pageTitles={pageTitles}
+          userLang={userLang}
         />
       </main>
     )
