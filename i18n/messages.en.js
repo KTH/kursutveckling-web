@@ -105,7 +105,6 @@ module.exports = {
       page_lang: 'en'
     },
     header_more_info: 'Additional data about this course offering',
-    link_syllabus: 'Course syllabus',
     link_analysis: 'Course analysis',
     link_pm: 'Course memo',
     no_added: 'not added',

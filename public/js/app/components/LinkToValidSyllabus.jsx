@@ -19,7 +19,7 @@ class LinkToValidSyllabusPdf extends Component {
     const endDate = syllabusPeriods[startDate].endDate.toString()
     const startTermName = `${course_short_semester[startDate.substring(4, 5)]}${startDate.substring(0, 4)}`
     const endTermName = `${course_short_semester[endDate.substring(4, 5)] || ''}${endDate.substring(0, 4)}`
-    const coursePlanLabel = `${label_syllabus_link} ( ${startTermName} - ${endTermName} )`
+    const coursePlanLabel = `${label_syllabus_link} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
     return (
       <p key={'link-syllabus-from-' + startDate}>

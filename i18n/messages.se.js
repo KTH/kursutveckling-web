@@ -102,7 +102,6 @@ module.exports = {
       page_lang: 'sv'
     },
     header_more_info: 'Ytterligare data om kursomgången',
-    link_syllabus: 'Kursplan',
     link_analysis: 'Kursanalys',
     link_pm: 'Kurs-PM',
     no_added: 'ej tillagd',
