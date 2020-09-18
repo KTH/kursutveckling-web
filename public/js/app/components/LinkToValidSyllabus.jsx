@@ -26,7 +26,6 @@ class LinkToValidSyllabusPdf extends Component {
         <a
           aria-label={`PDF ${coursePlanLabel}`}
           href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
-          id={startDate}
           target="_blank"
           className="pdf-link"
         > 
