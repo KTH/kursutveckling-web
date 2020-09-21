@@ -33,7 +33,7 @@ class StudentViewCourseDev extends Component {
     const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
 
     const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
-    
+
     return (
       <main
         className="kursinfo-main-page col"
@@ -48,7 +48,6 @@ class StudentViewCourseDev extends Component {
             {labelAboutCoursePage}
           </a>
         </nav>
-        {/* ---COURSE TITEL--- */}
         <PageTitle
           key="title"
           courseKoppsData={courseKoppsData}
