@@ -153,8 +153,12 @@ a.right-link {
 .extra-info {
   div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding-top: .5em;
+    @media (min-width: 768px) {
+      flex-direction: row;
+
+    }
   }
   @media (min-width: 768px) {
     span.extra-kopps-info-from-kutv-api {
