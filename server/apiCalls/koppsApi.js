@@ -1,53 +1,17 @@
 'use strict'
 const log = require('kth-node-log')
-const config = require('../configuration').server
-const redis = require('kth-node-redis')
-const connections = require('kth-node-api-call').Connections
-
-const koppsOpts = {
-  log,
-  https: true,
-  redis,
-  cache: config.cache,
-  timeout: 5000,
-  defaultTimeout: config.koppsApi.defaultTimeout,
-  retryOnESOCKETTIMEDOUT: true,
-  useApiKey: false // skip key
-}
-
-config.koppsApi.doNotCallPathsEndpoint = true // skip checking _paths, because kopps doesnt have it
-config.koppsApi.connected = true
-
-const koppsConfig = {
-  koppsApi: config.koppsApi
-}
-
-const api = connections.setup(koppsConfig, koppsConfig, koppsOpts)
-
-const koppsCourseData = async courseCode => {
-  const { client } = api.koppsApi
-  const uri = `${config.koppsApi.basePath}course/${encodeURIComponent(
-    courseCode
-  )}/courseroundterms?fromTerm=20071`
-  try {
-    const course = await client.getAsync({ uri, useCache: true })
-    return course.body
-  } catch (error) {
-    log.error('Exception calling from koppsAPI in koppsApi.koppsCourseData', { error })
-    throw error
-  }
-}
+const rawKoppsCourseData = require('./getRawKoppsData')
 
 function isValidData(dataObject) {
   return !dataObject ? ' ' : dataObject
 }
 
-function getListOfValidFromSyllabusTerms(allRoundsArrOfObjs) {
+function getListOfValidFromSyllabusTerms(roundsInfo) {
   let startYears = []
   let validFrom,
     prev = 0
-  if (allRoundsArrOfObjs.length > 0) {
-    for (let termObj of allRoundsArrOfObjs) {
+  if (roundsInfo.length > 0) {
+    for (let termObj of roundsInfo) {
       validFrom = parseInt(termObj.courseSyllabus.validFromTerm)
       if (validFrom !== prev && validFrom) {
         startYears.push(validFrom)
@@ -75,14 +39,14 @@ const combineStartEndDates = async syllabusStartDates => {
   return periods
 }
 
-const filteredKoppsData = async (courseCode, lang) => {
+const filteredKoppsData = async (courseCode, lang, testCourseObj = null) => {
   try {
-    const courseObj = await koppsCourseData(courseCode)
+    const courseObj = testCourseObj || await rawKoppsCourseData(courseCode)
     const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(
       courseObj.termsWithCourseRounds
     )
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
-    console.log('syllabusPeriods ', syllabusPeriods)
+
     return {
       courseCode: courseCode.toUpperCase(),
       courseTitle: isValidData(courseObj.course.title[lang]),
@@ -100,4 +64,4 @@ const filteredKoppsData = async (courseCode, lang) => {
   }
 }
 
-module.exports = { filteredKoppsData }
+module.exports = filteredKoppsData

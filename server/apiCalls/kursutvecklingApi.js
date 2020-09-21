@@ -1,26 +1,11 @@
-const api = require('../api')
 const log = require('kth-node-log')
+const rawAnalysisData = require('./getRawAnalysisData')
 
-
-async function _getKursutvecklingApiInfo (courseCode) {
-    try {
-      const { client, paths } = api.kursutvecklingApi
-
-      return await client.getAsync(client.resolve(paths.getAnalysisListByCourseCode.uri, { courseCode }), { useCache: true })
-    } catch (error) {
-      const apiError = new Error('Kursutvecklingsinformation är inte tillgänlig för nu, försöker senare')
-      // apiError.status = 500
-      log.error('Error in getKursutvecklingApiInfo', {error})
-      throw apiError
-    }
-  }
-
-async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
+async function sortedKursutveckligApiInfo (courseCode, testApiObj = null) {
   try {
-    const kursutvApiResponse = await _getKursutvecklingApiInfo(courseCode)
-    const arrOfNonSortedObj = kursutvApiResponse.body
+    const arrOfNonSortedObj = testApiObj || await rawAnalysisData(courseCode)
     const thisYear = new Date().getFullYear()
-    let objYear
+    // let year
     let sortedByYear = {}
     let i=0
     while (i <= 5) {
@@ -29,20 +14,22 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
       sortedByYear[thisYear-i] = []
       i++
     }
-    for (obj of arrOfNonSortedObj) {
-      objYear = obj.semester.substr(0,4)
-      //if = true manually edited
-      if (obj.isPublished === true) {
-        obj.examinationGrade = obj.examinationGradeFromLadok === false ? obj.examinationGrade + ' % *' : obj.examinationGrade + ' %'
-        obj.registeredStudents = obj.registeredStudentsFromLadok === false ? obj.registeredStudents + ' *' : obj.registeredStudents
-        if (sortedByYear[objYear])
-          sortedByYear[objYear].push(obj)
+    arrOfNonSortedObj.map((analysis) => {
+      const { isPublished, examinationGrade, examinationGradeFromLadok, registeredStudentsFromLadok, registeredStudents } = analysis
+      
+      const year = analysis.semester.substr(0,4)
+      if (isPublished) {
+        if(examinationGrade) analysis.examinationGrade = !examinationGradeFromLadok ? examinationGrade + ' % *' : examinationGrade + ' %'
+        if(!registeredStudentsFromLadok) analysis.registeredStudents = registeredStudents + ' *' || ''
+        if (sortedByYear[year])
+          sortedByYear[year].push(analysis)
         else { //typ sortedOlderThan5YearsAgo
           //Let's check it there is course development for more than 5 years ago, f.e. 2007
-          sortedByYear[objYear] = [obj] 
+          sortedByYear[year] = [analysis] 
         }
       }
-    }
+    })
+
     return sortedByYear
   } catch (error) {
     const apiError = new Error('sortedKursutveckligApiInfo är inte tillgänlig för nu, försöker senare')
@@ -52,7 +39,7 @@ async function sortedKursutveckligApiInfo (courseCode) { //TODO: CACHE
   }
 }
 
-  module.exports = { sortedKursutveckligApiInfo }
+  module.exports = sortedKursutveckligApiInfo
 
     // 2019
     // 2018
