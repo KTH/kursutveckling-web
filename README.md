@@ -54,11 +54,4 @@ LDAP_URI=ldaps://[usertname]@ldap.ref.ug.kth.se
 LDAP_PASSWORD=[password]
 ```
 
-**IE 11 Support**
-
-In order to support _Internet Explorer 11_, older versions of `MobX` are used.
-
-From `MobX` project page:
-
-> MobX 4 runs on any ES5 browser and will be actively maintained. The MobX 4 and 5 api's are the same and semantically can achieve the same, but MobX 4 has some limitations.
 
