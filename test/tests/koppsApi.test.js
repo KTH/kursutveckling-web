@@ -25,7 +25,6 @@ jest.mock('../../server/configuration', () => ({
 }))
 
 describe('Test functions in kopps api to filter raw data', () => {
-
   test('Test function to filter data is working', async (done) => {
     const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData)
     done()
@@ -33,7 +32,7 @@ describe('Test functions in kopps api to filter raw data', () => {
 
   test('Test if filteredKoppsData function is returning a correct data', async (done) => {
     const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData)
-    expect(filteredData).toStrictEqual(transformedKoppsData)
+    expect(filteredData).toStrictEqual(transformedKoppsData('en'))
     done()
   })
 })
