@@ -4,12 +4,23 @@ import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 import { inject, observer } from 'mobx-react'
 
-const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, translate, validFrom }) => {
+const ActiveOrDisabledLink = ({
+  fileName,
+  linkTitle,
+  storageUri,
+  roundName,
+  translate,
+  validFrom
+}) => {
   const { no_added } = translate
   return (
     <p>
       {fileName === '' ? (
-        <a aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`} className="pdf-link btn-link disabled" key={linkTitle}>
+        <a
+          aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`}
+          className="pdf-link btn-link disabled"
+          key={linkTitle}
+        >
           {linkTitle}: {no_added}
         </a>
       ) : (
@@ -32,7 +43,7 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, tran
 class PdfLinksNav extends Component {
   constructor(props) {
     super(props)
-    this.state = { }
+    this.state = {}
   }
 
   render() {
@@ -71,7 +82,6 @@ class PdfLinksNav extends Component {
       </span>
     )
   }
-} 
-
+}
 
 export default PdfLinksNav

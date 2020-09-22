@@ -11,7 +11,9 @@ import { COURSE_INFO_URL } from '../util/constants'
 const IntroText = ({ translate, userLang }) => {
   return (
     <span className="intro-text">
-      <p className="col" lang={userLang}>{translate.info_text}</p>
+      <p className="col" lang={userLang}>
+        {translate.info_text}
+      </p>
     </span>
   )
 }
@@ -28,7 +30,7 @@ class StudentViewCourseDev extends Component {
     const { courseKoppsData, analysisData } = this.props.adminStore
     const { courseCode, koppsDataLang: userLang, sortedSyllabusStart } = courseKoppsData
     const { pageTitles, tableHeaders } = i18n.messages[userLang === 'en' ? 0 : 1]
-    
+
     const kursOmLink = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
     const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
 
@@ -42,8 +44,13 @@ class StudentViewCourseDev extends Component {
         lang={userLang}
         aria-labelledby="page-course-title"
         aria-describedby="intro-text"
-      > 
-        <nav className='navigation main' aria-label={navLabel} lang={userLang} style={{marginTop: '20px'}}>
+      >
+        <nav
+          className="navigation main"
+          aria-label={navLabel}
+          lang={userLang}
+          style={{ marginTop: '20px' }}
+        >
           <a href={kursOmLink} className="link-back mt-15 mb-15">
             {labelAboutCoursePage}
           </a>
@@ -62,7 +69,7 @@ class StudentViewCourseDev extends Component {
           sortedSyllabusStart={sortedSyllabusStart}
         />
         <AlertMsg props={this.props} userLang={userLang} translate={pageTitles} />
-        <IntroText id="intro-text" key="intro-text" translate={pageTitles} userLang={userLang}/>
+        <IntroText id="intro-text" key="intro-text" translate={pageTitles} userLang={userLang} />
         <ListYears
           key="list-of-course-data-for-several-years"
           koppsData={courseKoppsData}
