@@ -39,13 +39,24 @@ nav.main {
 }
 .pageTitle {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+
   margin-top: 20px;
   margin-bottom: 30px; //change later to 14px, after syllabus details moved
 
-  [role=heading] {
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .t4 {
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+  }
+
+  [role='heading'] {
     display: flex;
     flex-direction: column;
     .t1 {
@@ -54,15 +65,13 @@ nav.main {
     }
     .t4 {
       margin-top: 4px;
-      margin-bottom: 0;
+      margin-bottom: 20px;
     }
   }
   .alert {
     margin-left: 0;
   }
 }
-
-
 
 //INTRODUCTION TEXT UNDER KIP-MENU
 span.intro-text {
@@ -83,7 +92,7 @@ details.course-syllabuses {
     width: 35em;
     float: right;
   }
-  summary+:nth-child(2) {
+  summary + :nth-child(2) {
     margin-top: 0 !important;
   }
   div.collapse-bordered-list {
@@ -119,17 +128,24 @@ a.right-link {
     }
     display: flex;
     flex-direction: column;
+    a {
+      align-self: flex-start;
+      margin: 0.7em 1em;
+    }
 
     @media (min-width: 768px) {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: baseline;
+      a {
+        margin: 0;
+      }
     }
   }
-  
+
   & > section:first-of-type > h2 {
-      margin-top: 0.7em;
+    margin-top: 0.7em;
   }
 
   .right-block-of-links {
@@ -144,20 +160,19 @@ a.right-link {
       margin: 0;
       p:last-of-type > a {
         margin-right: 0;
-      }     
+      }
     }
   }
 }
 
-//Collapsible "More information"
+//Collapsible "Additional information"
 .extra-info {
   div {
     display: flex;
     flex-direction: column;
-    padding-top: .5em;
+    padding-top: 0.5em;
     @media (min-width: 768px) {
       flex-direction: row;
-
     }
   }
   @media (min-width: 768px) {
@@ -179,7 +194,6 @@ a.right-link {
     }
   }
 }
-
 
 //===TABLE===
 .table th {
