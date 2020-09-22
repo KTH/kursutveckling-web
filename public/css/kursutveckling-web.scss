@@ -50,9 +50,9 @@ nav.main {
     justify-content: space-between;
     align-items: flex-end;
 
-    .t4 {
+    [role='heading'] > .t4 {
       margin-top: 4px;
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 
