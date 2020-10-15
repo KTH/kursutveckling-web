@@ -7,7 +7,7 @@
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "import/newline-after-import": ["error", { "count": 0 }],
+    "import/newline-after-import": ["error", { "count": 1 }],
     "semi": ["error", "never"],
     "global-require": "off",
     "prefer-template": "off",
@@ -17,11 +17,8 @@
     "react/prop-types": "off",
     "array-callback-return": "off",
     "react/no-access-state-in-setstate": "off",
-    "react/destructuring-assignment": [
-      true,
-      "always",
-      { "ignoreClassFields": true }
-    ],
+    "react/destructuring-assignment": [2, "always", { "ignoreClassFields": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".test.js", ".jsx"] }],
     "sort-imports": [
       "error",
       {

@@ -32,6 +32,7 @@
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
+    "eslint-plugin-jest-extended": "0.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
     "kth-node-access-log": "^0.2.2",
