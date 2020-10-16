@@ -297,3 +297,30 @@ and also iPads specifically.
     }
   }
 }
+
+/* Archive Page */
+
+@media (min-width: 992px) {
+  .container.main {
+    padding-top: 2rem;
+  }
+  #mainMenu.col.navbar {
+    padding: 0 35px 15px 30px;
+  }
+  #mainMenu.col.navbar.navbar-expand-lg.navbar-light
+    #navbarNav.collapse.navbar-collapse
+    ul.nav.nav-list.expandable
+    li.nav-item.node.expanded {
+    background: url('../img/arrow-black-down.svg') no-repeat 100%;
+    background-size: 14px 14px;
+    background-position: 100% 14px;
+  }
+  #mainMenu.col.navbar .nav-link.active {
+    font-weight: 700;
+  }
+  #mainMenu.col.navbar .nav-link.section {
+    border-top: 1px solid #d4d4d4;
+    padding-top: 14px !important;
+    margin-top: 7px;
+  }
+}

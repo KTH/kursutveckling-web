@@ -41,7 +41,14 @@ module.exports = {
     page_student: 'Student på KTH',
 
     archiveTitles: {
-      archive_header: 'Arkiv'
+      archive: 'Arkiv',
+      about_course: 'Om kursen',
+      sub_menu_aria_label: 'Undermeny',
+      course_programme: 'Kurs- och programkatalogen',
+      before_choosing_course: 'Inför kursval',
+      course_history: 'Kursens utveckling och historik',
+      prepare_course: 'Förbereda och gå kurs',
+      course_development: 'Kursutveckling'
     }
   },
   tableHeaders: {

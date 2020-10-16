@@ -34,7 +34,7 @@ describe(`User language: ${userLang}. Component <Archive>`, () => {
   test('renders and check all headers', () => {
     const allH1Headers = getAllByRole('heading', { level: 1 })
     expect(allH1Headers.length).toBe(1)
-    expect(allH1Headers[0]).toHaveTextContent(translation.archive_header)
+    expect(allH1Headers[0]).toHaveTextContent(translation.archive)
 
     const allSubHeaders = getAllByLabelText(subHeaderText)
     expect(allSubHeaders.length).toBe(1)

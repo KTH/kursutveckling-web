@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
+import ArchiveSideMenu from '../components/ArchiveSideMenu'
+import ArchivePageHeader from '../components/ArchivePageHeader'
+
 import i18n from '../../../../i18n'
+import { Col, Row } from 'reactstrap'
 
 @inject(['archiveStore'])
 @observer
@@ -12,19 +16,15 @@ class Archive extends Component {
     const translation = i18n.message('archiveTitles', userLang)
 
     return (
-      <>
-        <header role="presentation">
-          <h1 id="page-heading" aria-labelledby="page-heading page-sub-heading">
-            {translation.archive_header}
-          </h1>
-          <div>
-            <p id="page-sub-heading" aria-hidden="true">
-              {archiveStore.subHeadline}
-            </p>
-          </div>
-        </header>
-        <main id="mainContent" />
-      </>
+      <Col>
+        <Row>
+          <ArchiveSideMenu translation={translation} courseCode={archiveStore.courseCode} />
+          <Col>
+            <ArchivePageHeader translation={translation} subHeadline={archiveStore.subHeadline} />
+            <main id="mainContent" />
+          </Col>
+        </Row>
+      </Col>
     )
   }
 }
