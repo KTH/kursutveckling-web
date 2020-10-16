@@ -38,15 +38,18 @@ module.exports = {
     host_name: 'KTH',
     page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
-    page_student: 'Student på KTH'
+    page_student: 'Student på KTH',
+
+    archiveTitles: {
+      archive_header: 'Arkiv'
+    }
   },
   tableHeaders: {
     info_manually_edited: '* Kursdata har registrerats manuellt',
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     aria_label_close_icon: 'Stäng',
-    aria_label_header_main_edit:
-      'Ändra publicerad kursanalys och kursdata för kursomgång:',
+    aria_label_header_main_edit: 'Ändra publicerad kursanalys och kursdata för kursomgång:',
     aria_label_info_icon: 'Mer information',
     table_headers_with_popup: {
       examiners: {
