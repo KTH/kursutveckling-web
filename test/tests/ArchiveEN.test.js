@@ -9,14 +9,17 @@ import mockArchiveStore from '../mocks/mockArchiveStore'
 
 import i18n from '../../i18n'
 
-const { getAllByRole } = screen
+const { getAllByRole, getAllByLabelText } = screen
+
 const userLang = 'en'
+const subHeaderText = 'SF1624 Algebra and Geometry, 7.5 credits'
+
 const translation = i18n.message('archiveTitles', userLang)
 
 const ArchivePage = () => {
   return (
     <StaticRouter>
-      <Provider archiveStore={mockArchiveStore(userLang)}>
+      <Provider archiveStore={mockArchiveStore({ userLang, subHeadline: subHeaderText })}>
         <Archive />
       </Provider>
     </StaticRouter>
@@ -25,12 +28,15 @@ const ArchivePage = () => {
 
 describe(`User language: ${userLang}. Component <Archive>`, () => {
   beforeEach(() => {
-    render(<ArchivePage userLang={userLang} />)
+    render(<ArchivePage />)
   })
 
   test('renders and check all headers', () => {
     const allH1Headers = getAllByRole('heading', { level: 1 })
     expect(allH1Headers.length).toBe(1)
     expect(allH1Headers[0]).toHaveTextContent(translation.archive_header)
+
+    const allSubHeaders = getAllByLabelText(subHeaderText)
+    expect(allSubHeaders.length).toBe(1)
   })
 })

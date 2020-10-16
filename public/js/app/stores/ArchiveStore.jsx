@@ -1,4 +1,4 @@
-import { action, computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
 class ArchiveStore {
   initializeStore(storeName) {
@@ -35,10 +35,31 @@ class ArchiveStore {
     }
   }
 
-  courseCode = ''
+  @observable courseCode = ''
+
+  @observable userLang = 'sv'
+
+  @observable courseKoppsData = {
+    courseCode: '',
+    courseTitle: '',
+    courseCredits: 0,
+    koppsDataLang: 'sv'
+  }
+
+  @computed get formattedCredits() {
+    const unit = {
+      en: 'credits',
+      sv: 'hp'
+    }
+    const { courseCredits } = this.courseKoppsData
+    const credits =
+      this.userLang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
+    return `${credits} ${unit[this.userLang]}`
+  }
 
   @computed get subHeadline() {
-    return `${this.courseCode}`
+    const { courseCode, courseTitle } = this.courseKoppsData
+    return `${courseCode} ${courseTitle}, ${this.formattedCredits}`
   }
 }
 

@@ -2,13 +2,13 @@ import ArchiveStore from '../../public/js/app/stores/ArchiveStore'
 
 const realArchiveStore = new ArchiveStore()
 
-const mockArchiveStore = (userLang = 'en') => {
-  const routerWithData = {
+const mockArchiveStore = (mockData) => {
+  const storeWithData = {
     ...realArchiveStore,
-    userLang
+    ...mockData
   }
 
-  return routerWithData
+  return storeWithData
 }
 
 export default mockArchiveStore

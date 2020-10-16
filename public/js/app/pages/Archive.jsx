@@ -12,9 +12,19 @@ class Archive extends Component {
     const translation = i18n.message('archiveTitles', userLang)
 
     return (
-      <main>
-        <h1>{translation.archive_header}</h1>
-      </main>
+      <>
+        <header role="presentation">
+          <h1 id="page-heading" aria-labelledby="page-heading page-sub-heading">
+            {translation.archive_header}
+          </h1>
+          <div>
+            <p id="page-sub-heading" aria-hidden="true">
+              {archiveStore.subHeadline}
+            </p>
+          </div>
+        </header>
+        <main />
+      </>
     )
   }
 }
