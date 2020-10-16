@@ -19,6 +19,9 @@ class ArchiveStore {
         window.__initialState__ = 'Mobx store state initialized'
       }
     }
+
+    require('../../../../node_modules/kth-style/dist/js/menus')
+    require('../../../../node_modules/kth-style/dist/js/backtotop')
   }
 
   @action setBrowserConfig(config, paths, apiHost, profileBaseUrl) {

@@ -23,7 +23,7 @@ class Archive extends Component {
             </p>
           </div>
         </header>
-        <main />
+        <main id="mainContent" />
       </>
     )
   }
