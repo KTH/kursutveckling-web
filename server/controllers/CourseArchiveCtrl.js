@@ -76,7 +76,7 @@ async function _getContent(req, res, next) {
       initialState: JSON.stringify(hydrateStores(renderProps)),
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
-      title: courseCode + ' | ' + i18n.message('messages.title', lang)
+      title: courseCode + ' | ' + i18n.message('title', lang)
     })
   } catch (err) {
     log.error('Error in _getCourseDevInfo', { error: err })
