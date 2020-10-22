@@ -20,7 +20,12 @@ class Archive extends Component {
         <Row>
           <ArchiveSideMenu translation={translation} courseCode={archiveStore.courseCode} />
           <Col>
-            <ArchivePageHeader translation={translation} subHeadline={archiveStore.subHeadline} />
+            <ArchivePageHeader
+              translation={translation}
+              subHeadline={archiveStore.subHeadline}
+              courseCode={archiveStore.courseCode}
+              language={userLang}
+            />
             <main id="mainContent" />
           </Col>
         </Row>

@@ -50,7 +50,8 @@ module.exports = {
       before_choosing_course: 'Before choosing course',
       course_history: 'Course development and history',
       prepare_course: 'Prepare and take course',
-      course_development: 'Course development'
+      course_development: 'Course development',
+      administration: 'Administrate About course'
     }
   },
   tableHeaders: {

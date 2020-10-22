@@ -48,7 +48,8 @@ module.exports = {
       before_choosing_course: 'Inför kursval',
       course_history: 'Kursens utveckling och historik',
       prepare_course: 'Förbereda och gå kurs',
-      course_development: 'Kursutveckling'
+      course_development: 'Kursutveckling',
+      administration: 'Administrera Om kursen'
     }
   },
   tableHeaders: {

@@ -300,6 +300,35 @@ and also iPads specifically.
 
 /* Archive Page */
 
+#page-sub-heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#page-sub-heading-admin-link {
+  font-size: 1rem;
+  line-height: 1.375;
+  margin-bottom: 14px;
+  margin-top: 0.325rem;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  #page-sub-heading {
+    font-size: 1rem !important;
+  }
+}
+@media (max-width: 991.98px) {
+  #page-sub-heading-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+  }
+  #page-sub-heading-admin-link {
+    text-align: left;
+  }
+}
+
 @media (min-width: 992px) {
   .container.main {
     padding-top: 2rem;
