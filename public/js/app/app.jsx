@@ -14,6 +14,7 @@ import StudentViewCourseDev from './pages/StudentViewCourseDev'
 import Archive from './pages/Archive'
 
 import '../../css/kursutveckling-web.scss'
+import '../../img/arrow-black-down.svg'
 
 function appFactory() {
   if (process.env.NODE_ENV !== 'production') {
