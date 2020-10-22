@@ -1,5 +1,17 @@
 import React from 'react'
 
+const courseProgrammeLink = () => '/student/kurser/kurser-inom-program'
+
+const aboutCourseLink = (courseCode) => `/student/kurser/kurs/${courseCode}`
+
+const beforeChoosingCourseLink = (courseCode) => aboutCourseLink(courseCode)
+
+const prepareCourseLink = (courseCode) => `/kurs-pm/${courseCode}`
+
+const courseArchiveLink = (courseCode) => `/kursutveckling/${courseCode}/arkiv`
+
+const courseDevelopmentLink = (courseCode) => `/kursutveckling/${courseCode}`
+
 const ArchiveSideMenu = ({ translation, courseCode }) => {
   return (
     <nav
@@ -10,22 +22,22 @@ const ArchiveSideMenu = ({ translation, courseCode }) => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="nav">
           <li className="parentLink">
-            <a href="/">{translation.course_programme}</a>
+            <a href={courseProgrammeLink()}>{translation.course_programme}</a>
           </li>
         </ul>
         <ul className="nav nav-list expandable">
           <li className="nav-item leaf">
-            <a aria-current="page" className="nav-link active" href="/">
+            <a aria-current="page" className="nav-link active" href={aboutCourseLink(courseCode)}>
               {`${translation.about_course} ${courseCode}`}
             </a>
           </li>
           <li className="nav-item leaf">
-            <a className="nav-link section active" href="/">
+            <a className="nav-link section active" href={beforeChoosingCourseLink(courseCode)}>
               {translation.before_choosing_course}
             </a>
           </li>
           <li className="nav-item node">
-            <a className="nav-link" href="/">
+            <a className="nav-link" href={prepareCourseLink(courseCode)}>
               {translation.prepare_course}
             </a>
           </li>
@@ -35,17 +47,21 @@ const ArchiveSideMenu = ({ translation, courseCode }) => {
             </a>
           </li> */}
           <li className="nav-item node selected expanded">
-            <a aria-current="page" className="nav-link active" href="/">
+            <a
+              aria-current="page"
+              className="nav-link active"
+              href={courseDevelopmentLink(courseCode)}
+            >
               {translation.course_history}
             </a>
             <ul id="leftmenu-div-1" className="nav nav-list">
               <li className="nav-item leaf">
-                <a className="nav-link active" href="/">
+                <a className="nav-link active" href={courseArchiveLink(courseCode)}>
                   {translation.archive}
                 </a>
               </li>
               <li className="nav-item leaf">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href={courseDevelopmentLink(courseCode)}>
                   {translation.course_development}
                 </a>
               </li>
