@@ -51,7 +51,16 @@ module.exports = {
       course_history: 'Course development and history',
       prepare_course: 'Prepare and take course',
       course_development: 'Course development',
-      administration: 'Administrate About course'
+      administration: 'Administrate About course',
+      label_syllabus: 'Course syllabus',
+      label_syllabuses: 'Course syllabuses',
+      label_semesters: 'Semesters',
+      course_short_semester: {
+        1: 'Spring',
+        2: 'Autumn'
+      },
+      ongoing_label: 'ongoing',
+      label_memos: 'Course Memos'
     }
   },
   tableHeaders: {

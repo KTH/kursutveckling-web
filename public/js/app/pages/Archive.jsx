@@ -6,6 +6,7 @@ import ArchivePageHeader from '../components/ArchivePageHeader'
 
 import i18n from '../../../../i18n'
 import { Col, Row } from 'reactstrap'
+import SyllabusTable from '../components/SyllabusTable'
 
 @inject(['archiveStore'])
 @observer
@@ -26,7 +27,14 @@ class Archive extends Component {
               courseCode={archiveStore.courseCode}
               language={userLang}
             />
-            <main id="mainContent" />
+            <main id="mainContent">
+              <SyllabusTable
+                translation={translation}
+                courseCode={archiveStore.courseCode}
+                language={userLang}
+                syllabusPeriods={archiveStore.courseKoppsData.syllabusPeriods}
+              />
+            </main>
           </Col>
         </Row>
       </Col>

@@ -49,7 +49,16 @@ module.exports = {
       course_history: 'Kursens utveckling och historik',
       prepare_course: 'Förbereda och gå kurs',
       course_development: 'Kursutveckling',
-      administration: 'Administrera Om kursen'
+      administration: 'Administrera Om kursen',
+      label_syllabus: 'Kursplan',
+      label_syllabuses: 'Kursplaner',
+      label_semesters: 'Terminer',
+      course_short_semester: {
+        1: 'VT',
+        2: 'HT'
+      },
+      ongoing_label: 'tillsvidare',
+      label_memos: 'Kurs-PM'
     }
   },
   tableHeaders: {

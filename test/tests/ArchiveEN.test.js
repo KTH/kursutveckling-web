@@ -12,14 +12,23 @@ import i18n from '../../i18n'
 const { getAllByRole, getAllByLabelText } = screen
 
 const userLang = 'en'
+const courseCode = 'SF1624'
 const subHeaderText = 'SF1624 Algebra and Geometry, 7.5 credits'
+const courseKoppsData = { syllabusPeriods: { 19701: { endDate: 20372 } } }
 
 const translation = i18n.message('archiveTitles', userLang)
 
 const ArchivePage = () => {
   return (
     <StaticRouter>
-      <Provider archiveStore={mockArchiveStore({ userLang, subHeadline: subHeaderText })}>
+      <Provider
+        archiveStore={mockArchiveStore({
+          userLang,
+          courseCode,
+          subHeadline: subHeaderText,
+          courseKoppsData
+        })}
+      >
         <Archive />
       </Provider>
     </StaticRouter>
@@ -38,5 +47,14 @@ describe(`User language: ${userLang}. Component <Archive>`, () => {
 
     const allSubHeaders = getAllByLabelText(subHeaderText)
     expect(allSubHeaders.length).toBe(1)
+
+    const allH2Headers = getAllByRole('heading', { level: 2 })
+    expect(allH2Headers.length).toBe(1)
+    expect(allH2Headers[0]).toHaveTextContent(translation.label_syllabuses)
+  })
+
+  test('renders syllabus table', () => {
+    const syllabusTable = getAllByRole('table')
+    expect(syllabusTable.length).toBe(1)
   })
 })
