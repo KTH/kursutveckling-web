@@ -60,7 +60,9 @@ module.exports = {
         2: 'Autumn'
       },
       ongoing_label: 'ongoing',
-      label_memos: 'Course Memos'
+      label_memos: 'Course Memos',
+      label_course_offering: 'Course offering',
+      label_memo: 'Course Memo'
     }
   },
   tableHeaders: {

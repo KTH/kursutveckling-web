@@ -58,7 +58,9 @@ module.exports = {
         2: 'HT'
       },
       ongoing_label: 'tillsvidare',
-      label_memos: 'Kurs-PM'
+      label_memos: 'Kurs-PM',
+      label_course_offering: 'Kursomgång',
+      label_memo: 'Kurs-PM'
     }
   },
   tableHeaders: {

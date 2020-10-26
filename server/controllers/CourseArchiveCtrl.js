@@ -8,6 +8,7 @@ const { toJS } = require('mobx')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { getMiniMemosPdfAndWeb } = require('../apiCalls/kursPmDataApi')
 
 const serverPaths = require('../server').getPaths()
 
@@ -49,9 +50,13 @@ async function _getContent(req, res, next) {
       courseCode,
       lang
     )
-    // renderProps.props.children.props.archiveStore.analysisData = await sortedKursutveckligApiInfo(
-    //   courseCode
-    // )
+    renderProps.props.children.props.archiveStore.memoData = await getMiniMemosPdfAndWeb(
+      courseCode.toUpperCase()
+    )
+    console.log(
+      'renderProps.props.children.props.archiveStore.memoData',
+      renderProps.props.children.props.archiveStore.memoData
+    )
     const breadcrumbs = [
       {
         url: '/student/kurser/kurser-inom-program',
