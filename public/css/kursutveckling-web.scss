@@ -196,15 +196,18 @@ a.right-link {
 }
 
 //===TABLE===
-.table th {
-  text-align: center;
-}
-//Table elements  visibility for desktop
-.table td {
-  .mobile-header-popovers {
-    display: none;
+.table-for-each-course-offering {
+  .table th {
+    text-align: center;
+  }
+  //Table elements  visibility for desktop
+  .table.table-for-each-course-offering td {
+    .mobile-header-popovers {
+      display: none;
+    }
   }
 }
+
 div.popover.show {
   top: -40px !important;
 }
@@ -247,52 +250,54 @@ and also iPads specifically.
 */
 @media only screen and (max-width: 767px) {
   /* Force table to not be like tables anymore */
-  .table table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Hide table headers (but not display: none;, for accessibility) */
-  .table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  .table tr {
-    border: 1px solid #fff;
-  }
-
-  .table td {
-    /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #fff;
-    position: relative;
-    span.mobile-header-popovers {
-      background: $dark-grey;
-      color: $white;
+  .table-for-each-course-offering {
+    .table table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
       display: flex;
-      flex-direction: row;
-      font-size: 1rem;
-      justify-content: flex-start;
-      margin: -0.7em -0.7em 0.3em -0.7em;
-      padding: 0.5em;
-      vertical-align: bottom;
-      label {
-        font-weight: 500;
-        line-height: 1.2em;
-        margin-right: 0.5em;
-        white-space: normal;
-        width: 100%;
-      }
-      button {
-        align-self: flex-start;
-        padding-right: 1em;
+      flex-direction: column;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .table tr {
+      border: 1px solid #fff;
+    }
+
+    .table td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #fff;
+      position: relative;
+      span.mobile-header-popovers {
+        background: $dark-grey;
+        color: $white;
+        display: flex;
+        flex-direction: row;
+        font-size: 1rem;
+        justify-content: flex-start;
+        margin: -0.7em -0.7em 0.3em -0.7em;
+        padding: 0.5em;
+        vertical-align: bottom;
+        label {
+          font-weight: 500;
+          line-height: 1.2em;
+          margin-right: 0.5em;
+          white-space: normal;
+          width: 100%;
+        }
+        button {
+          align-self: flex-start;
+          padding-right: 1em;
+        }
       }
     }
   }
@@ -321,36 +326,28 @@ and also iPads specifically.
   .pdf-link {
     margin-left: 0;
     &:before {
-      display: none;
+      display: inline-block;
+      margin-left: 0;
     }
   }
 }
 
-.course-syllabus-header {
-  &:after {
-    content: '';
-    display: inline-block;
-    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj4KICA8cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTM2OS45IDk3LjlMMjg2IDE0QzI3NyA1IDI2NC44LS4xIDI1Mi4xLS4xSDQ4QzIxLjUgMCAwIDIxLjUgMCA0OHY0MTZjMCAyNi41IDIxLjUgNDggNDggNDhoMjg4YzI2LjUgMCA0OC0yMS41IDQ4LTQ4VjEzMS45YzAtMTIuNy01LjEtMjUtMTQuMS0zNHpNMzMyLjEgMTI4SDI1NlY1MS45bDc2LjEgNzYuMXpNNDggNDY0VjQ4aDE2MHYxMDRjMCAxMy4zIDEwLjcgMjQgMjQgMjRoMTA0djI4OEg0OHptMjUwLjItMTQzLjdjLTEyLjItMTItNDctOC43LTY0LjQtNi41LTE3LjItMTAuNS0yOC43LTI1LTM2LjgtNDYuMyAzLjktMTYuMSAxMC4xLTQwLjYgNS40LTU2LTQuMi0yNi4yLTM3LjgtMjMuNi00Mi42LTUuOS00LjQgMTYuMS0uNCAzOC41IDcgNjcuMS0xMCAyMy45LTI0LjkgNTYtMzUuNCA3NC40LTIwIDEwLjMtNDcgMjYuMi01MSA0Ni4yLTMuMyAxNS44IDI2IDU1LjIgNzYuMS0zMS4yIDIyLjQtNy40IDQ2LjgtMTYuNSA2OC40LTIwLjEgMTguOSAxMC4yIDQxIDE3IDU1LjggMTcgMjUuNSAwIDI4LTI4LjIgMTcuNS0zOC43em0tMTk4LjEgNzcuOGM1LjEtMTMuNyAyNC41LTI5LjUgMzAuNC0zNS0xOSAzMC4zLTMwLjQgMzUuNy0zMC40IDM1em04MS42LTE5MC42YzcuNCAwIDYuNyAzMi4xIDEuOCA0MC44LTQuNC0xMy45LTQuMy00MC44LTEuOC00MC44em0tMjQuNCAxMzYuNmM5LjctMTYuOSAxOC0zNyAyNC43LTU0LjcgOC4zIDE1LjEgMTguOSAyNy4yIDMwLjEgMzUuNS0yMC44IDQuMy0zOC45IDEzLjEtNTQuOCAxOS4yem0xMzEuNi01cy01IDYtMzcuMy03LjhjMzUuMS0yLjYgNDAuOSA1LjQgMzcuMyA3Ljh6IiAvPgo8L3N2Zz4=)
-      no-repeat;
-    height: 1.3em;
-    width: 1.3em;
-    margin-left: 0.6em;
-    vertical-align: middle;
-  }
-}
+// .course-syllabus-header {
+//   &:after {
+//     content: '';
+//     display: inline-block;
+//     background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj4KICA8cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTM2OS45IDk3LjlMMjg2IDE0QzI3NyA1IDI2NC44LS4xIDI1Mi4xLS4xSDQ4QzIxLjUgMCAwIDIxLjUgMCA0OHY0MTZjMCAyNi41IDIxLjUgNDggNDggNDhoMjg4YzI2LjUgMCA0OC0yMS41IDQ4LTQ4VjEzMS45YzAtMTIuNy01LjEtMjUtMTQuMS0zNHpNMzMyLjEgMTI4SDI1NlY1MS45bDc2LjEgNzYuMXpNNDggNDY0VjQ4aDE2MHYxMDRjMCAxMy4zIDEwLjcgMjQgMjQgMjRoMTA0djI4OEg0OHptMjUwLjItMTQzLjdjLTEyLjItMTItNDctOC43LTY0LjQtNi41LTE3LjItMTAuNS0yOC43LTI1LTM2LjgtNDYuMyAzLjktMTYuMSAxMC4xLTQwLjYgNS40LTU2LTQuMi0yNi4yLTM3LjgtMjMuNi00Mi42LTUuOS00LjQgMTYuMS0uNCAzOC41IDcgNjcuMS0xMCAyMy45LTI0LjkgNTYtMzUuNCA3NC40LTIwIDEwLjMtNDcgMjYuMi01MSA0Ni4yLTMuMyAxNS44IDI2IDU1LjIgNzYuMS0zMS4yIDIyLjQtNy40IDQ2LjgtMTYuNSA2OC40LTIwLjEgMTguOSAxMC4yIDQxIDE3IDU1LjggMTcgMjUuNSAwIDI4LTI4LjIgMTcuNS0zOC43em0tMTk4LjEgNzcuOGM1LjEtMTMuNyAyNC41LTI5LjUgMzAuNC0zNS0xOSAzMC4zLTMwLjQgMzUuNy0zMC40IDM1em04MS42LTE5MC42YzcuNCAwIDYuNyAzMi4xIDEuOCA0MC44LTQuNC0xMy45LTQuMy00MC44LTEuOC00MC44em0tMjQuNCAxMzYuNmM5LjctMTYuOSAxOC0zNyAyNC43LTU0LjcgOC4zIDE1LjEgMTguOSAyNy4yIDMwLjEgMzUuNS0yMC44IDQuMy0zOC45IDEzLjEtNTQuOCAxOS4yem0xMzEuNi01cy01IDYtMzcuMy03LjhjMzUuMS0yLjYgNDAuOSA1LjQgMzcuMyA3Ljh6IiAvPgo8L3N2Zz4=)
+//       no-repeat;
+//     height: 1.3em;
+//     width: 1.3em;
+//     margin-left: 0.6em;
+//     vertical-align: middle;
+//   }
+// }
 
 @media (max-width: 767.98px) {
   #page-sub-heading {
     font-size: 1rem !important;
-  }
-  .archive-table {
-    .pdf-link {
-      margin-left: 0;
-      &:before {
-        display: inline-block;
-        margin-left: 0;
-      }
-    }
   }
 }
 @media (max-width: 991.98px) {

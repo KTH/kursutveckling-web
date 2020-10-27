@@ -27,7 +27,7 @@ const row = (translation, courseCode, language, memo) => {
           }
           target={memo.isPdf ? '_blank' : null}
           rel={memo.isPdf ? 'noreferrer' : null}
-          className={memo.isPdf ? 'pdf-post-link' : null}
+          className={memo.isPdf ? 'pdf-link' : null}
         >
           {memoLabel}
         </a>
