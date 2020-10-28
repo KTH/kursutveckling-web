@@ -62,7 +62,8 @@ module.exports = {
       label_course_offering: 'Kursomgång',
       label_memo: 'Kurs-PM',
       label_version: 'Ver',
-      label_latest_version: 'Senaste versionen'
+      label_latest_version: 'Senaste versionen',
+      no_syllabus: 'Denna kurs saknar godkänd kursplan.'
     }
   },
   tableHeaders: {
