@@ -39,7 +39,7 @@ class Archive extends Component {
                 translation={translation}
                 courseCode={archiveStore.courseCode}
                 language={userLang}
-                memoData={archiveStore.memoData}
+                courseMemos={archiveStore.courseMemos}
               />
             </main>
           </Col>

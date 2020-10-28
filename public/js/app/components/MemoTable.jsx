@@ -1,44 +1,37 @@
 import React from 'react'
 
-const row = (translation, courseCode, language, memo) => {
-  const offeringLabel = (
-    <>
-      {`${
-        translation.course_short_semester[memo.semester.substring(4, 5)]
-      } ${memo.semester.substring(0, 4)}${memo.ladokRoundIds.reduce(
-        (label, id) => `${label}-${id}`,
-        ''
-      )}`}
-    </>
-  )
-  const memoLabel = `${memo.memoName || memo.courseMemoFileName} `
+const row = (translation, courseCode, language, courseMemo) => {
+  const { courseOffering, isPdf, memoName, memoVersions } = courseMemo
   return (
-    <tr
-      key={`memo-${memo.semester}${memo.ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')}`}
-    >
-      <td>{offeringLabel}</td>
+    <tr key={courseOffering}>
+      <td>{courseOffering}</td>
       <td>
-        <a
-          aria-label={memo.isPdf ? `PDF ${memoLabel}` : `${memoLabel}`}
-          href={
-            memo.isPdf
-              ? `https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/${memo.courseMemoFileName}`
-              : `/kurs-pm/${courseCode}/${memo.memoEndPoint}`
-          }
-          target={memo.isPdf ? '_blank' : null}
-          rel={memo.isPdf ? 'noreferrer' : null}
-          className={memo.isPdf ? 'pdf-link' : null}
-        >
-          {memoLabel}
-        </a>
+        <ul className="link-list">
+          {memoName && (
+            <li className="text-nowrap">
+              <p>{memoName + ':'}</p>
+            </li>
+          )}
+          {memoVersions.map((v) => (
+            <li className="text-nowrap">
+              <a
+                aria-label={isPdf ? `PDF ${v.label}` : `${v.label}`}
+                href={v.url}
+                target={isPdf ? '_blank' : null}
+                rel={isPdf ? 'noreferrer' : null}
+                className={isPdf ? 'pdf-link' : null}
+              >
+                {v.name}
+              </a>
+            </li>
+          ))}
+        </ul>
       </td>
     </tr>
   )
 }
 
-const MemoTable = ({ translation, courseCode, language, memoData = {} }) => {
-  const semesters = Object.keys(memoData) || []
-  semesters.sort().reverse()
+const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
   return (
     <>
       <h2>{translation.label_memos}</h2>
@@ -50,10 +43,7 @@ const MemoTable = ({ translation, courseCode, language, memoData = {} }) => {
           </tr>
         </thead>
         <tbody>
-          {semesters.map((semester) => {
-            const memosForSemester = memoData[semester]
-            return memosForSemester.map((memo) => row(translation, courseCode, language, memo))
-          })}
+          {courseMemos.map((courseMemo) => row(translation, courseCode, language, courseMemo))}
         </tbody>
       </table>
     </>

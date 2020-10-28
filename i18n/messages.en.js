@@ -62,7 +62,9 @@ module.exports = {
       ongoing_label: 'ongoing',
       label_memos: 'Course Memos',
       label_course_offering: 'Course offering',
-      label_memo: 'Course Memo'
+      label_memo: 'Course Memo',
+      label_version: 'Ver',
+      label_latest_version: 'Latest version'
     }
   },
   tableHeaders: {

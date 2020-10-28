@@ -60,7 +60,9 @@ module.exports = {
       ongoing_label: 'tillsvidare',
       label_memos: 'Kurs-PM',
       label_course_offering: 'Kursomgång',
-      label_memo: 'Kurs-PM'
+      label_memo: 'Kurs-PM',
+      label_version: 'Ver',
+      label_latest_version: 'Senaste versionen'
     }
   },
   tableHeaders: {

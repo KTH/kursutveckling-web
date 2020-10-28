@@ -8,7 +8,7 @@ const { toJS } = require('mobx')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const { getMiniMemosPdfAndWeb } = require('../apiCalls/kursPmDataApi')
+const { getCourseMemos } = require('../apiCalls/kursPmDataApi')
 
 const serverPaths = require('../server').getPaths()
 
@@ -33,38 +33,29 @@ function _staticRender(context, location) {
 }
 
 async function _getContent(req, res, next) {
-  const { courseCode } = req.params
+  const { courseCode: cc } = req.params
+  const courseCode = cc.toUpperCase()
   const lang = language.getLanguage(res) || 'sv'
 
   try {
     const renderProps = _staticRender()
-    renderProps.props.children.props.archiveStore.setBrowserConfig(
-      browserConfig,
-      serverPaths,
-      serverConfig.hostUrl
-    )
-    renderProps.props.children.props.archiveStore.__SSR__setCookieHeader(req.headers.cookie)
-    renderProps.props.children.props.archiveStore.courseCode = courseCode.toUpperCase()
-    renderProps.props.children.props.archiveStore.userLang = lang
-    renderProps.props.children.props.archiveStore.courseKoppsData = await filteredKoppsData(
-      courseCode,
-      lang
-    )
-    renderProps.props.children.props.archiveStore.memoData = await getMiniMemosPdfAndWeb(
-      courseCode.toUpperCase()
-    )
-    console.log(
-      'renderProps.props.children.props.archiveStore.memoData',
-      renderProps.props.children.props.archiveStore.memoData
-    )
+    const { archiveStore } = renderProps.props.children.props
+
+    archiveStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
+    archiveStore.__SSR__setCookieHeader(req.headers.cookie)
+    archiveStore.courseCode = courseCode
+    archiveStore.userLang = lang
+    archiveStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    archiveStore.courseMemos = await getCourseMemos(courseCode, lang)
+
     const breadcrumbs = [
       {
         url: '/student/kurser/kurser-inom-program',
         label: i18n.message('page_course_programme', lang)
       },
       {
-        url: `/student/kurser/kurs/${courseCode.toUpperCase()}`,
-        label: `${i18n.message('page_about_course', lang)} ${courseCode.toUpperCase()}`
+        url: `/student/kurser/kurs/${courseCode}`,
+        label: `${i18n.message('page_about_course', lang)} ${courseCode}`
       }
     ]
 
