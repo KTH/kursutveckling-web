@@ -56,7 +56,7 @@ const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {}
           </tbody>
         </table>
       ) : (
-        <Alert color="info">{translation.no_syllabus}</Alert>
+        <p className="inline-information">{translation.no_syllabuses}</p>
       )}
     </>
   )

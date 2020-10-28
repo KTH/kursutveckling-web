@@ -50,7 +50,7 @@ function memoVersion(courseMemo, archiveTitles, latest) {
   const latestLabel = latest ? ` (${archiveTitles.label_latest_version})` : ''
   const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
   const versionDate = formatVersionDate(memoCommonLangAbbr, lastChangeDate)
-  const versionName = `${versionLabel} ${version} ${versionDate}${latestLabel}`
+  const versionName = `${versionLabel} ${version} – ${versionDate}${latestLabel}`
   const url = `/kurs-pm/${courseCode}/${memoEndPoint}${latest ? '' : '/' + version}`
   return { name: versionName, url }
 }

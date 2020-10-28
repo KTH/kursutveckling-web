@@ -65,7 +65,8 @@ module.exports = {
       label_memo: 'Course Memo',
       label_version: 'Ver',
       label_latest_version: 'Latest version',
-      no_syllabus: 'This course doesn´t have an approved course syllabus.'
+      no_syllabuses: 'This course doesn´t have an approved course syllabus.',
+      no_memos: 'Placeholder (no course memos).'
     }
   },
   tableHeaders: {

@@ -35,17 +35,21 @@ const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
   return (
     <>
       <h2>{translation.label_memos}</h2>
-      <table className="table archive-table">
-        <thead>
-          <tr>
-            <th scope="col">{translation.label_course_offering}</th>
-            <th scope="col">{translation.label_memo}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courseMemos.map((courseMemo) => row(translation, courseCode, language, courseMemo))}
-        </tbody>
-      </table>
+      {courseMemos.length ? (
+        <table className="table archive-table">
+          <thead>
+            <tr>
+              <th scope="col">{translation.label_course_offering}</th>
+              <th scope="col">{translation.label_memo}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courseMemos.map((courseMemo) => row(translation, courseCode, language, courseMemo))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="inline-information">{translation.no_memos}</p>
+      )}
     </>
   )
 }
