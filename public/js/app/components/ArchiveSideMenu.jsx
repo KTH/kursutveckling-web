@@ -26,7 +26,7 @@ const ArchiveSideMenu = ({ translation, courseCode }) => {
           </li>
         </ul>
         <ul className="nav nav-list expandable">
-          <li className="nav-item leaf">
+          <li className="nav-item ancestor">
             <a aria-current="page" className="nav-link active" href={aboutCourseLink(courseCode)}>
               {`${translation.about_course} ${courseCode}`}
             </a>
@@ -46,26 +46,15 @@ const ArchiveSideMenu = ({ translation, courseCode }) => {
               Slutföra ej avklarad kurs
             </a>
           </li> */}
-          <li className="nav-item node selected expanded">
-            <a
-              aria-current="page"
-              className="nav-link active"
-              href={courseDevelopmentLink(courseCode)}
-            >
-              {translation.course_history}
+          <li className="nav-item leaf">
+            <a className="nav-link" href={courseDevelopmentLink(courseCode)}>
+              {translation.course_development}
             </a>
-            <ul id="leftmenu-div-1" className="nav nav-list">
-              <li className="nav-item leaf">
-                <a className="nav-link active" href={courseArchiveLink(courseCode)}>
-                  {translation.archive}
-                </a>
-              </li>
-              <li className="nav-item leaf">
-                <a className="nav-link" href={courseDevelopmentLink(courseCode)}>
-                  {translation.course_development}
-                </a>
-              </li>
-            </ul>
+          </li>
+          <li className="nav-item leaf">
+            <a className="nav-link active" href={courseArchiveLink(courseCode)}>
+              {translation.archive}
+            </a>
           </li>
         </ul>
       </div>
