@@ -7,13 +7,9 @@ const row = (translation, courseCode, language, courseMemo) => {
       <td>{courseOffering}</td>
       <td>
         <ul className="link-list">
-          {memoName && (
-            <li className="text-nowrap">
-              <p>{memoName + ':'}</p>
-            </li>
-          )}
+          {memoName && <li key={memoName}>{memoName + ':'}</li>}
           {memoVersions.map((v) => (
-            <li className="text-nowrap">
+            <li key={v.name}>
               <a
                 aria-label={isPdf ? `PDF ${v.label}` : `${v.label}`}
                 href={v.url}

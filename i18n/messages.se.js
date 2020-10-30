@@ -61,7 +61,7 @@ module.exports = {
       label_course_offering: 'Kursomgång',
       label_memo: 'Kurs-PM',
       label_version: 'Ver',
-      label_latest_version: 'Senaste versionen',
+      label_latest_version: 'senaste versionen',
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
       no_memos: 'Platshållare (kurs-PM saknas).'
     }
