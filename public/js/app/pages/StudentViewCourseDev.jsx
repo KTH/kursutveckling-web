@@ -44,12 +44,7 @@ class StudentViewCourseDev extends Component {
         aria-labelledby="page-course-title"
         aria-describedby="intro-text"
       >
-        <nav
-          className="navigation main"
-          aria-label={navLabel}
-          lang={userLang}
-          style={{ marginTop: '20px' }}
-        >
+        <nav className="navigation main" aria-label={navLabel} lang={userLang}>
           <a href={kursOmLink} className="link-back mt-15 mb-15">
             {labelAboutCoursePage}
           </a>
