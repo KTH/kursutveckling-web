@@ -83,30 +83,6 @@ span.intro-text {
   }
 }
 
-//== COURSE SYLLABUSSES COLLABSIBLE AT RIGHT ==
-
-details.course-syllabuses {
-  margin-top: 0 !important;
-  margin-bottom: 1.5em;
-  @media (min-width: 768px) {
-    width: 35em;
-    float: right;
-  }
-  summary + :nth-child(2) {
-    margin-top: 0 !important;
-  }
-  div.collapse-bordered-list {
-    padding: 0.5em;
-    @extend %bordered-area;
-    p {
-      margin-bottom: 0;
-    }
-    a.pdf-link {
-      margin: 0;
-    }
-  }
-}
-
 //Links
 a.right-link {
   float: right;

@@ -145,7 +145,6 @@ module.exports = {
     course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',
-    header_syllabuses: 'All course syllabuses',
     info_text:
       'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
     label_syllabus_link: 'Course syllabus',

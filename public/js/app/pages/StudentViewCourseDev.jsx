@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import i18n from '../../../../i18n'
 
-import CollapseSyllabusHistory from '../components/CollapseSyllabusHistory'
 import PageTitle from '../components/PageTitle'
 import ListYears from '../components/ListYears'
 import AlertMsg from '../components/AlertMsg'
@@ -60,13 +59,6 @@ class StudentViewCourseDev extends Component {
           courseKoppsData={courseKoppsData}
           pageTitle={pageTitles.course_dev_title}
           translate={pageTitles}
-        />
-        <CollapseSyllabusHistory
-          key="links-syllabus-history"
-          courseCode={courseCode}
-          lang={userLang}
-          translate={pageTitles}
-          sortedSyllabusStart={sortedSyllabusStart}
         />
         <AlertMsg props={this.props} userLang={userLang} translate={pageTitles} />
         <IntroText id="intro-text" key="intro-text" translate={pageTitles} userLang={userLang} />

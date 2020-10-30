@@ -142,7 +142,6 @@ module.exports = {
     course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
     course_info_title: 'Kursinformation',
-    header_syllabuses: 'Samtliga kursplaner',
     info_text:
       'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
     label_syllabus_link: 'Kursplan',

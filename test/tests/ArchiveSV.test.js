@@ -15,6 +15,19 @@ const userLang = 'sv'
 const courseCode = 'SF1624'
 const subHeaderText = 'SF1624 Algebra and Geometry, 7,5 credits'
 const courseKoppsData = { syllabusPeriods: { 19701: { endDate: 20372 } } }
+const courseMemos = [
+  {
+    courseOffering: 'Course Offering',
+    isPdf: false,
+    memoName: 'Memo Name',
+    memoVersions: [
+      {
+        name: 'Ver 1 – 2020-07-01 15:37:34 (Senaste versionen)',
+        url: '/kurs-pm/SF1624/SF162420202-5-7'
+      }
+    ]
+  }
+]
 
 const translation = i18n.message('archiveTitles', userLang)
 
@@ -26,7 +39,8 @@ const ArchivePage = () => {
           userLang,
           courseCode,
           subHeadline: subHeaderText,
-          courseKoppsData
+          courseKoppsData,
+          courseMemos
         })}
       >
         <Archive />
