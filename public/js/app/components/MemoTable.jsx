@@ -19,6 +19,7 @@ const row = (translation, courseCode, language, courseMemo) => {
               >
                 {v.name}
               </a>
+              {v.latest ? ` (${translation.label_latest_version})` : ''}
             </li>
           ))}
         </ul>

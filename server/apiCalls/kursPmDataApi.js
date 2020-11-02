@@ -47,14 +47,13 @@ function formatVersionDate(language = 'sv', date) {
 
 function memoVersion(courseMemo, archiveTitles, latest) {
   const versionLabel = archiveTitles.label_version
-  const latestLabel = latest ? ` (${archiveTitles.label_latest_version})` : ''
   const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
   const versionDate = formatVersionDate(memoCommonLangAbbr, lastChangeDate)
-  const versionName = `${versionLabel} ${version} – ${versionDate}${latestLabel}`
+  const versionName = `${versionLabel} ${version} – ${versionDate}`
   const url = `/kurs-pm/${latest ? '' : 'old/'}${courseCode}/${memoEndPoint}${
     latest ? '' : '/' + version
   }`
-  return { name: versionName, url }
+  return { name: versionName, url, latest }
 }
 
 function parseUploadedMemo(courseMemo, userLanguage) {

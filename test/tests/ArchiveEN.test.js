@@ -22,7 +22,7 @@ const courseMemos = [
     memoName: 'Memo Name',
     memoVersions: [
       {
-        name: 'Ver 1 – 2020-07-01 15:37:34 (Senaste versionen)',
+        name: 'Ver 1 – 2020-07-01 15:37:34 (senaste versionen)',
         url: '/kurs-pm/SF1624/SF162420202-5-7'
       }
     ]
