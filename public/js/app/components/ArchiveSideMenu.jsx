@@ -32,7 +32,7 @@ const ArchiveSideMenu = ({ translation, courseCode }) => {
             </a>
           </li>
           <li className="nav-item leaf">
-            <a className="nav-link section active" href={beforeChoosingCourseLink(courseCode)}>
+            <a className="nav-link" href={beforeChoosingCourseLink(courseCode)}>
               {translation.before_choosing_course}
             </a>
           </li>

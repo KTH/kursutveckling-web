@@ -296,15 +296,18 @@ and also iPads specifically.
 }
 
 .archive-table {
-  th {
-    width: 50%;
-  }
   .pdf-link {
     margin-left: 0;
     &::before {
       display: inline-block;
       margin-left: 0;
     }
+  }
+}
+
+.syllabus-table {
+  th {
+    width: 50%;
   }
 }
 
