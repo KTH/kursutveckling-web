@@ -7,15 +7,15 @@ const AppRouter = require('kth-node-express-routing').PageRouter
 const getPaths = require('kth-node-express-routing').getPaths
 
 if (config.appInsights && config.appInsights.instrumentationKey) {
-  let appInsights = require('applicationinsights')
+  const appInsights = require('applicationinsights')
   appInsights.setup(config.appInsights.instrumentationKey)
-      .setAutoDependencyCorrelation(true)
-      .setAutoCollectRequests(true)
-      .setAutoCollectPerformance(true)
-      .setAutoCollectExceptions(true)
-      .setAutoCollectDependencies(true)
-      .setAutoCollectConsole(true)
-      .start()
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .start()
 }
 
 // Expose the server and paths
@@ -30,7 +30,7 @@ module.exports.getPaths = () => getPaths()
 const log = require('kth-node-log')
 const packageFile = require('../package.json')
 
-let logConfiguration = {
+const logConfiguration = {
   name: packageFile.name,
   app: packageFile.name,
   env: process.env.NODE_ENV,
@@ -183,7 +183,7 @@ server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedire
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, CourseDevCtrl } = require('./controllers')
+const { System, CourseDevCtrl, CourseArchiveCtrl } = require('./controllers')
 
 // System routes
 const systemRoute = AppRouter()
@@ -196,6 +196,7 @@ server.use('/', systemRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
+appRoute.get('course.getCourseArchive', config.proxyPrefixPath.uri + '/:courseCode/arkiv', CourseArchiveCtrl.getContent)
 appRoute.get('course.noCourseCode', config.proxyPrefixPath.uri + '/', CourseDevCtrl.getErrorPage)
 
 server.use('/', appRoute.getRouter())

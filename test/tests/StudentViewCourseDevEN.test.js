@@ -23,11 +23,6 @@ const ROUNDS = [
 const expectedLinks = [
   'About course SF1624',
   'Administrate About course',
-  //Syllabus history collapse
-  'Course syllabus SF1624 ( Autumn 2019 - )',
-  'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-  'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-  'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
   //by each round
   'Edit (for course responsible)',
   'Course syllabus SF1624 ( Autumn 2019 - )',
@@ -227,15 +222,10 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(31)
+    expect(links.length).toBe(27)
     const expectedLinks = [
       'About course SF1624',
       'Administrate About course',
-      //Syllabus history collapse
-      'Course syllabus SF1624 ( Autumn 2019 - )',
-      'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       //by each round
       'Edit (for course responsible)',
       'Course syllabus SF1624 ( Autumn 2019 - )',
@@ -273,11 +263,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const expectedAriaLabels = [
       null,
       null,
-      //Syllabus history collapse
-      'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
-      'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       //by each round
       `${editLink}CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
@@ -315,10 +300,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
-      'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
-      'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en',
-      'http://localhost/student/kurser/kurs/kursplan/SF1624-20092.pdf?lang=en',
-      'http://localhost/student/kurser/kurs/kursplan/SF1624-20082.pdf?lang=en',
       'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2019_9?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       'http://localhost/pm-SF1624HT2019_9.pdf',

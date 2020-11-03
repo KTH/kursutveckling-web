@@ -1,35 +1,38 @@
 'use strict'
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
-  // require('inferno-devtools')
-}
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom' // matchPath
-import { inject, Provider } from 'mobx-react'
+import { Provider } from 'mobx-react'
 import { StaticRouter } from 'react-router'
 
 import { configure } from 'mobx'
 
 import AdminStore from './stores/AdminStore'
+import ArchiveStore from './stores/ArchiveStore'
 import StudentViewCourseDev from './pages/StudentViewCourseDev'
+import Archive from './pages/Archive'
 
 import '../../css/kursutveckling-web.scss'
 
 function appFactory() {
-  if (process.env['NODE_ENV'] !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     configure({
       isolateGlobalState: true
     })
   }
 
   const adminStore = new AdminStore()
+  const archiveStore = new ArchiveStore()
   if (typeof window !== 'undefined') {
     adminStore.initializeStore('adminStore')
+    archiveStore.initializeStore('archiveStore')
   }
 
   return (
-    <Provider adminStore={adminStore}>
+    <Provider adminStore={adminStore} archiveStore={archiveStore}>
       <Switch>
+        <Route path="/kursutveckling/:courseCode/arkiv" component={Archive} />
         <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
       </Switch>
     </Provider>

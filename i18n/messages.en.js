@@ -40,7 +40,33 @@ module.exports = {
     host_name: 'KTH',
     page_about_course: 'About course',
     page_course_programme: 'Course and programme directory',
-    page_student: 'Student at KTH'
+    page_student: 'Student at KTH',
+
+    archiveTitles: {
+      archive: 'Archive',
+      about_course: 'About course',
+      sub_menu_aria_label: 'Sub menu',
+      course_programme: 'Course and programme directory',
+      before_choosing_course: 'Before choosing course',
+      prepare_course: 'Prepare and take course',
+      course_development: 'Course development',
+      administration: 'Administrate About course',
+      label_syllabus: 'Course syllabus',
+      label_syllabuses: 'Course syllabuses',
+      label_semesters: 'Semesters',
+      course_short_semester: {
+        1: 'Spring',
+        2: 'Autumn'
+      },
+      ongoing_label: 'ongoing',
+      label_memos: 'Course Memos',
+      label_course_offering: 'Course offering',
+      label_memo: 'Course Memo',
+      label_version: 'Ver',
+      label_latest_version: 'latest version',
+      no_syllabuses: 'This course doesn´t have an approved course syllabus.',
+      no_memos: 'This course has no published course memos.'
+    }
   },
   tableHeaders: {
     info_manually_edited: '* Course data has been registered manually',
@@ -48,8 +74,7 @@ module.exports = {
     header_main_publish_new:
       'Publish new course analysis with course data (for course responsible)',
     aria_label_close_icon: 'Close',
-    aria_label_header_main_edit:
-      'Change published course analysis and course data. Course rounds:',
+    aria_label_header_main_edit: 'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
     table_headers_with_popup: {
       examiners: {
@@ -120,7 +145,6 @@ module.exports = {
     course_admin_title: 'Administrate About course',
     course_dev_title: 'Course development and history',
     course_info_title: 'Course information',
-    header_syllabuses: 'All course syllabuses',
     info_text:
       'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
     label_syllabus_link: 'Course syllabus',

@@ -38,15 +38,40 @@ module.exports = {
     host_name: 'KTH',
     page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
-    page_student: 'Student på KTH'
+    page_student: 'Student på KTH',
+
+    archiveTitles: {
+      archive: 'Arkiv',
+      about_course: 'Om kursen',
+      sub_menu_aria_label: 'Undermeny',
+      course_programme: 'Kurs- och programkatalogen',
+      before_choosing_course: 'Inför kursval',
+      prepare_course: 'Förbereda och gå kurs',
+      course_development: 'Kursens utveckling',
+      administration: 'Administrera Om kursen',
+      label_syllabus: 'Kursplan',
+      label_syllabuses: 'Kursplaner',
+      label_semesters: 'Terminer',
+      course_short_semester: {
+        1: 'VT',
+        2: 'HT'
+      },
+      ongoing_label: 'tillsvidare',
+      label_memos: 'Kurs-PM',
+      label_course_offering: 'Kursomgång',
+      label_memo: 'Kurs-PM',
+      label_version: 'Ver',
+      label_latest_version: 'senaste versionen',
+      no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
+      no_memos: 'Denna kurs har inga publicerade kurs-PM.'
+    }
   },
   tableHeaders: {
     info_manually_edited: '* Kursdata har registrerats manuellt',
     header_main_edit: 'Ändra (för kursansvarig)',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     aria_label_close_icon: 'Stäng',
-    aria_label_header_main_edit:
-      'Ändra publicerad kursanalys och kursdata för kursomgång:',
+    aria_label_header_main_edit: 'Ändra publicerad kursanalys och kursdata för kursomgång:',
     aria_label_info_icon: 'Mer information',
     table_headers_with_popup: {
       examiners: {
@@ -117,7 +142,6 @@ module.exports = {
     course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling och historik',
     course_info_title: 'Kursinformation',
-    header_syllabuses: 'Samtliga kursplaner',
     info_text:
       'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
     label_syllabus_link: 'Kursplan',
