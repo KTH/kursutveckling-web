@@ -148,7 +148,6 @@ module.exports = {
     info_text:
       'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
     label_syllabus_link: 'Course syllabus',
-    no_course_syllabus: 'No course syllabuses are found',
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS or course code has been entered incorrectly',
       kutv: {

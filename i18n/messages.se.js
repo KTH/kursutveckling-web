@@ -145,7 +145,6 @@ module.exports = {
     info_text:
       'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
     label_syllabus_link: 'Kursplan',
-    no_course_syllabus: 'Inga kursplaner är upphittade',
     alertMessages: {
       kopps_api_down:
         'Det går för närvarande inte att hämta information från KOPPS så viss information kommer att saknas. Eller kurskoden är felstavade',
