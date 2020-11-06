@@ -81,7 +81,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const allH1Headers = getAllByRole('heading', { level: 1 })
     expect(allH1Headers.length).toBe(1)
     expect(allH1Headers[0]).toHaveTextContent(
-      'Course development and historySF1624 Algebra and Geometry 7.5 credits'
+      'Course developmentSF1624 Algebra and Geometry 7.5 credits'
     )
   })
 
