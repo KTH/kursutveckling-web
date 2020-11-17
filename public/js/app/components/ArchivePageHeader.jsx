@@ -1,7 +1,7 @@
 import React from 'react'
 
 const administrationLink = (courseCode, language) =>
-  `/kursinfoadmin/kursutveckling/${courseCode}?l=${language}`
+  `/kursinfoadmin/kurser/kurs/${courseCode}?l=${language}`
 
 const ArchivePageHeader = ({ translation, subHeadline, courseCode, language }) => {
   return (
