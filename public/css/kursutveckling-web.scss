@@ -136,6 +136,13 @@ a.right-link {
         margin-right: 0;
       }
     }
+    .pdf-link {
+      &:before {
+        height: 1em;
+        margin: 0 0.3em 0 0;
+        vertical-align: -9%;
+      }
+    }
   }
 }
 
