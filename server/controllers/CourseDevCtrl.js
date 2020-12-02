@@ -8,10 +8,6 @@ const filteredKoppsData = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
-module.exports = {
-  getCourseDevInfo: _getCourseDevInfo,
-  getErrorPage: _getErrorPage
-}
 
 const serverPaths = require('../server').getPaths()
 
@@ -35,7 +31,7 @@ function _staticRender(context, location) {
   return staticRender(context, location)
 }
 
-async function _getCourseDevInfo(req, res, next) {
+async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
   // const ldapUser = req.session.authUser ? requireRole('isCourseResponsible', 'isExaminator', 'isCourseTeacher') : 'null'
   const lang = language.getLanguage(res) || 'sv'
@@ -58,7 +54,7 @@ async function _getCourseDevInfo(req, res, next) {
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(
       courseCode
     )
-    let breadcrumbs = [
+    const breadcrumbs = [
       {
         url: '/student/kurser/kurser-inom-program',
         label: i18n.message('page_course_programme', lang)
@@ -91,10 +87,19 @@ async function _getCourseDevInfo(req, res, next) {
   }
 }
 
-function _getErrorPage(req, res, next) {
-  const html = 'Something got wrong... No course code was found'
+function getErrorPage(req, res) {
+  const lang = language.getLanguage(res) || 'sv'
+
+  const html = lang=== 'en' ? 'No course code was entered. Try to add a course code to the existing web browser addresss' : 'Web addressen saknar en kurskod. Försöka med att lägga till en kurskod till addressen.'
+
   res.render('noCourse/index', {
     html,
+    lang,
     initialState: 'Ingen kurskod'
   })
+}
+
+module.exports = {
+  getCourseDevInfo,
+  getErrorPage
 }
