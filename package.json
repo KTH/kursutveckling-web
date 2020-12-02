@@ -10,6 +10,7 @@
     "uri": "git+https://github.com/KTH/kursutveckling-web.git"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "babel-not-used": "babel public/js/app -d dist/js ",
     "vendor": "parcel build ./public/js/vendor.js",
     "test": "NODE_ENV=test jest test/tests/*.js --passWithNoTests",
@@ -101,6 +102,9 @@
     "react-test-renderer": "^16.14.0",
     "sass": "^1.28.0"
   },
+  "resolutions": {
+    "node-forge": "0.10.0"
+  },
   "babel": {
     "presets": [
       "@babel/preset-env",
@@ -132,7 +136,7 @@
     ]
   },
   "engines": {
-    "node": "12.0.0"
+    "node": "14.0.0"
   },
   "jshintConfig": {
     "maxerr": 5
