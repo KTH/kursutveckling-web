@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 import { inject, observer } from 'mobx-react'
+import { Breadcrumbs } from '@kth/kth-kip-style-react-components'
+
 import i18n from '../../../../i18n'
 
 import PageTitle from '../components/PageTitle'
 import ListYears from '../components/ListYears'
 import AlertMsg from '../components/AlertMsg'
 import { COURSE_INFO_URL } from '../util/constants'
-import { Breadcrumbs } from '@kth/kth-kip-style-react-components'
 
 const IntroText = ({ translate, userLang }) => {
   return (
@@ -18,6 +19,15 @@ const IntroText = ({ translate, userLang }) => {
       </p>
     </span>
   )
+}
+
+function renderBreadcrumbsIntoKthHeader(courseCode, language) {
+  const breadcrumbContainer = document.getElementById('breadcrumbs-header')
+  if (breadcrumbContainer)
+    ReactDOM.render(
+      <Breadcrumbs include="aboutCourse" courseCode={courseCode} language={language} />,
+      breadcrumbContainer
+    )
 }
 
 @inject(['adminStore'])
@@ -38,7 +48,7 @@ class StudentViewCourseDev extends Component {
 
     const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
 
-    ReactDOM.render(<Breadcrumbs include="aboutCourse" courseCode={courseCode} language={userLang} />, document.getElementById('breadcrumbs-header'))
+    renderBreadcrumbsIntoKthHeader(courseCode, userLang)
 
     return (
       <main
