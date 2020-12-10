@@ -8,7 +8,6 @@ const filteredKoppsData = require('../apiCalls/koppsApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
-
 const serverPaths = require('../server').getPaths()
 
 function hydrateStores(renderProps) {
@@ -54,17 +53,6 @@ async function getCourseDevInfo(req, res, next) {
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(
       courseCode
     )
-    const breadcrumbs = [
-      {
-        url: '/student/kurser/kurser-inom-program',
-        label: i18n.message('page_course_programme', lang)
-      },
-      {
-        url: `/student/kurser/kurs/${courseCode.toUpperCase()}`,
-        label: `${i18n.message('page_about_course', lang)} ${courseCode.toUpperCase()}`
-      }
-    ]
-    
 
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
@@ -72,7 +60,6 @@ async function getCourseDevInfo(req, res, next) {
         siteName: `${i18n.messages[langIndex].messages.page_about_course} ${courseCode}`,
         siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
-      breadcrumbsPath: breadcrumbs,
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,
       html,
@@ -90,7 +77,10 @@ async function getCourseDevInfo(req, res, next) {
 function getErrorPage(req, res) {
   const lang = language.getLanguage(res) || 'sv'
 
-  const html = lang=== 'en' ? 'No course code was entered. Try to add a course code to the existing web browser addresss' : 'Web addressen saknar en kurskod. Försöka med att lägga till en kurskod till addressen.'
+  const html =
+    lang === 'en'
+      ? 'No course code was entered. Try to add a course code to the existing web browser addresss'
+      : 'Web addressen saknar en kurskod. Försöka med att lägga till en kurskod till addressen.'
 
   res.render('noCourse/index', {
     html,
