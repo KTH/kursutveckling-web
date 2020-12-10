@@ -1,6 +1,6 @@
 import AdminStore from '../../public/js/app/stores/AdminStore'
-import transformedAnalysisData from '../mocks/transformedAnalysisData'
-import transformedKoppsData from '../mocks/transformedKoppsData'
+import transformedAnalysisData from './transformedAnalysisData'
+import transformedKoppsData from './transformedKoppsData'
 
 const realAdminStore = new AdminStore()
 
