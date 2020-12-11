@@ -48,24 +48,12 @@ async function _getContent(req, res, next) {
     archiveStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
     archiveStore.courseMemos = await getCourseMemos(courseCode, lang)
 
-    const breadcrumbs = [
-      {
-        url: '/student/kurser/kurser-inom-program',
-        label: i18n.message('page_course_programme', lang)
-      },
-      {
-        url: `/student/kurser/kurs/${courseCode}`,
-        label: `${i18n.message('page_about_course', lang)} ${courseCode}`
-      }
-    ]
-
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('archive/index', {
       aboutCourse: {
         siteName: `${i18n.message('page_about_course', lang)} ${courseCode}`,
         siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
-      breadcrumbsPath: breadcrumbs,
       debug: 'debug' in req.query,
       description: i18n.message('description', lang),
       html,
@@ -75,7 +63,7 @@ async function _getContent(req, res, next) {
       title: courseCode + ' | ' + i18n.message('title', lang)
     })
   } catch (err) {
-    log.error('Error in _getCourseDevInfo', { error: err })
+    log.error('Error in _getContent in CourseArchiveCtrl', { error: err })
     next(err)
   }
 }

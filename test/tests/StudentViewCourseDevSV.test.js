@@ -177,7 +177,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   })
 
   test('Get some dates of data changes in course data or Kursanalys after publishing if it renders', async () => {
-    const changeDates = getAllByText('9/11/2019')
+    const changeDates = getAllByText('2019-09-11')
     expect(changeDates.length).toBe(3)
   })
 

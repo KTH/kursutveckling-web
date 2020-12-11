@@ -2,12 +2,11 @@ import React from 'react'
 import { Provider } from 'mobx-react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import i18n from '../../i18n'
 import { StaticRouter } from 'react-router'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
 
-const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
+const { getAllByRole, getAllByText, getByText } = screen
 
 const ROUNDS = [
   'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
@@ -20,36 +19,6 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const expectedLinks = [
-  'About course SF1624',
-  'Administrate About course',
-  //by each round
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2019 - )',
-  'Course memo: 10/09/2019',
-  'Course analysis: 10/09/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-  'Course analysis: 04/09/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-  'Course analysis: 11/09/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-  'Course analysis: 09/10/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-  'Course analysis: 08/10/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-  'Course analysis: 09/09/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-  'Course analysis: 03/09/2019',
-  'Edit (for course responsible)',
-  'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-  'Course analysis: 08/10/2019'
-]
 const TEST_ALERT_SAVE = {
   location: {
     pathname: '/kursutveckling/SF1624',
@@ -99,61 +68,61 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
   })
 
-  test('renders all h4 for Alert and each round Additional information headers, ', () => {
+  test('renders all h4 for Alert and each round Additional information headers.', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
     expect(allH4Headers.length).toBe(46)
     const expectedhds = [
       'Draft for course analysis and course data has been saved',
-      //first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
+      // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
-      //next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
+      // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
-      //next round CITEH1 ( Startdatum 2018-10-29, Svenska )
+      // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
-      //next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
+      // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
-      //next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
+      // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
-      //no 'Comments to changes in course data or course analysis after publishing',
-      //next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
+      // no 'Comments to changes in course data or course analysis after publishing',
+      // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
-      //no 'Comments to changes in course data or course analysis after publishing',
-      //next round Med teknik ( Startdatum 2008-08-29, Svenska )
+      // no 'Comments to changes in course data or course analysis after publishing',
+      // next round Med teknik ( Startdatum 2008-08-29, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
-      //no 'Comments to changes in course data or course analysis after publishing',
-      //next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
+      // no 'Comments to changes in course data or course analysis after publishing',
+      // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
       'Examination comments',
       'Compulsory within programme',
       'Administrative course instances included in the course offering',
@@ -193,7 +162,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
     const rounds = ROUNDS
-    rounds.map((roundName, index) =>
+    rounds.map((roundName) =>
       expect(
         screen.getByLabelText(`Additional data about this course offering: ${roundName}`)
       ).toBeInTheDocument()
@@ -206,7 +175,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('Check if aria-label is correct for Edit (for course responsible) if it renders', async () => {
-    ROUNDS.map((roundName, index) =>
+    ROUNDS.map((roundName) =>
       expect(
         screen.getByLabelText(
           `Change published course analysis and course data. Course rounds: ${roundName}`
@@ -226,7 +195,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const expectedLinks = [
       'About course SF1624',
       'Administrate About course',
-      //by each round
+      // by each round
       'Edit (for course responsible)',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course memo: 10/09/2019',
@@ -263,7 +232,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const expectedAriaLabels = [
       null,
       null,
-      //by each round
+      // by each round
       `${editLink}CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',

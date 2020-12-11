@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
 import { inject, observer } from 'mobx-react'
+import { Breadcrumbs } from '@kth/kth-kip-style-react-components'
+
 import i18n from '../../../../i18n'
 
 import PageTitle from '../components/PageTitle'
@@ -17,6 +21,15 @@ const IntroText = ({ translate, userLang }) => {
   )
 }
 
+function renderBreadcrumbsIntoKthHeader(courseCode, language) {
+  const breadcrumbContainer = document.getElementById('breadcrumbs-header')
+  if (breadcrumbContainer)
+    ReactDOM.render(
+      <Breadcrumbs include="aboutCourse" courseCode={courseCode} language={language} />,
+      breadcrumbContainer
+    )
+}
+
 @inject(['adminStore'])
 @observer
 class StudentViewCourseDev extends Component {
@@ -27,13 +40,15 @@ class StudentViewCourseDev extends Component {
 
   render() {
     const { courseKoppsData, analysisData } = this.props.adminStore
-    const { courseCode, koppsDataLang: userLang, sortedSyllabusStart } = courseKoppsData
+    const { courseCode, koppsDataLang: userLang } = courseKoppsData
     const { pageTitles, tableHeaders } = i18n.messages[userLang === 'en' ? 0 : 1]
 
     const kursOmLink = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
     const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
 
     const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
+
+    renderBreadcrumbsIntoKthHeader(courseCode, userLang)
 
     return (
       <main
