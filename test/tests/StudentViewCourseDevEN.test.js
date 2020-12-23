@@ -169,12 +169,12 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     )
   })
 
-  test('Get Edit (for course responsible) if it renders', async () => {
-    const extraInfo = getAllByText('Edit (for course responsible)')
+  test('Get Edit (for course coordinator) if it renders', async () => {
+    const extraInfo = getAllByText('Edit (for course coordinator)')
     expect(extraInfo.length).toBe(8)
   })
 
-  test('Check if aria-label is correct for Edit (for course responsible) if it renders', async () => {
+  test('Check if aria-label is correct for Edit (for course coordinator) if it renders', async () => {
     ROUNDS.map((roundName) =>
       expect(
         screen.getByLabelText(
@@ -184,8 +184,8 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     )
   })
 
-  test('Get Edit (for course responsible) if it renders', async () => {
-    const extraInfo = getAllByText('Edit (for course responsible)')
+  test('Get Edit (for course coordinator) if it renders', async () => {
+    const extraInfo = getAllByText('Edit (for course coordinator)')
     expect(extraInfo.length).toBe(8)
   })
 
@@ -196,29 +196,29 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       'About course SF1624',
       'Administrate About course',
       // by each round
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course memo: 10/09/2019',
       'Course analysis: 10/09/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 04/09/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 11/09/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 09/10/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
       'Course analysis: 08/10/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 09/09/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 03/09/2019',
-      'Edit (for course responsible)',
+      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 08/10/2019'
     ]

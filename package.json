@@ -13,7 +13,7 @@
     "preinstall": "npx npm-force-resolutions",
     "babel-not-used": "babel public/js/app -d dist/js ",
     "vendor": "parcel build ./public/js/vendor.js",
-    "test": "NODE_ENV=test jest test/tests/*.js --passWithNoTests",
+    "test": "NODE_ENV=test jest test/tests/*.js --passWithNoTests --forceExit",
     "test:watch": "NODE_ENV=test jest test/tests/*.js --watch",
     "docker": "npm install --development && npm run build && npm prune --production",
     "build": "NODE_ENV=production rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
@@ -137,7 +137,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged",
+      "pre-push": "npm run test"
     }
   },
   "prettier": {

@@ -21,7 +21,7 @@ module.exports = {
     service_name: 'Course development and history web',
     title: 'Course development and history',
     description:
-      'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
+      'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
 
     example_message_key: 'This is an english translation of a label',
 
@@ -70,9 +70,9 @@ module.exports = {
   },
   tableHeaders: {
     info_manually_edited: '* Course data has been registered manually',
-    header_main_edit: 'Edit (for course responsible)',
+    header_main_edit: 'Edit (for course coordinator)',
     header_main_publish_new:
-      'Publish new course analysis with course data (for course responsible)',
+      'Publish new course analysis with course data (for course coordinator)',
     aria_label_close_icon: 'Close',
     aria_label_header_main_edit: 'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
@@ -100,7 +100,7 @@ module.exports = {
       responsibles: {
         header: 'Responsible',
         popoverText:
-          'All the course responsibles for the all the administrative course instances that are included in the course offering. Course responsibles are administrated in Kopps.'
+          'All the course coordinators for the all the administrative course instances that are included in the course offering. Course coordinators are administrated in Kopps.'
       },
       registeredStudents: {
         header: 'Students',
@@ -146,7 +146,7 @@ module.exports = {
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     info_text:
-      'On this page course analysis and course data are published by course responsibles. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course responsibles, examiners etc. can use the page as a tool for course development.',
+      'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
     label_syllabus_link: 'Course syllabus',
     alertMessages: {
       kopps_api_down: 'Failed to get data from KOPPS or course code has been entered incorrectly',
