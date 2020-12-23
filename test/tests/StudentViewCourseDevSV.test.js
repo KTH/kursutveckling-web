@@ -359,7 +359,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(changes.length).toBe(16)
   })
 
-  test('Responsible names if it renders', async () => {
+  test('Coordinator names if it renders', async () => {
     const names = getAllByText('Testovich3 Person3')
     expect(names.length).toBe(1)
   })

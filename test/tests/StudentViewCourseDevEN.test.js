@@ -314,7 +314,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('Get table headers (mobile and desktop)', async () => {
-    const responsible = getAllByText('Responsible')
+    const responsible = getAllByText('Coordinator')
     expect(responsible.length).toBe(16)
     const examiner = getAllByText('Examiners')
     expect(examiner.length).toBe(16)
@@ -328,7 +328,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(changes.length).toBe(16)
   })
 
-  test('Responsible names if it renders', async () => {
+  test('Coordinator names if it renders', async () => {
     const names = getAllByText('Testovich3 Person3')
     expect(names.length).toBe(1)
   })
