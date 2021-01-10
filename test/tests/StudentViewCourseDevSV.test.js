@@ -88,7 +88,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('renders h2 for all years', () => {
     const allH2Headers = getAllByRole('heading', { level: 2 })
     expect(allH2Headers.length).toBe(9)
-    const expectedh2ds = ['2020', '2019', '2018', '2017', '2016', '2015', '2010', '2009', '2008']
+    const expectedh2ds = ['2021', '2020', '2019', '2018', '2017', '2016', '2010', '2009', '2008']
     expectedh2ds.map((h2, index) => expect(allH2Headers[index]).toHaveTextContent(h2))
   })
 

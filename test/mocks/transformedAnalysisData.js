@@ -141,7 +141,6 @@ const transformedAnalysisData = {
       __v: 0
     }
   ],
-  2015: [],
   2016: [],
   2017: [
     {
@@ -293,7 +292,8 @@ const transformedAnalysisData = {
       __v: 0
     }
   ],
-  2020: []
+  2020: [],
+  2021: []
 }
 
 export default transformedAnalysisData
