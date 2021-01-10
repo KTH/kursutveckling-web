@@ -174,4 +174,6 @@ const mockRawKoppsData = {
   }
 }
 
-module.exports = mockRawKoppsData
+const mockEmptyRawKoppsData = {}
+
+module.exports = { mockRawKoppsData, mockEmptyRawKoppsData }

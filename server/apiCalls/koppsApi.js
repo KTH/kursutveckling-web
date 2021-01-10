@@ -6,7 +6,7 @@ function isValidData(dataObject) {
   return !dataObject ? ' ' : dataObject
 }
 
-function getListOfValidFromSyllabusTerms(roundsInfo) {
+function getListOfValidFromSyllabusTerms(roundsInfo = []) {
   let startYears = []
   let validFrom,
     prev = 0
@@ -24,7 +24,7 @@ function getListOfValidFromSyllabusTerms(roundsInfo) {
   return descListOfStartDate //[ '', 20182, 20082, 20082, 20081 ]
 }
 
-const combineStartEndDates = async syllabusStartDates => {
+const combineStartEndDates = async (syllabusStartDates) => {
   if (!syllabusStartDates.length > 0) return {} //{20182}
   let periods = {}
   await syllabusStartDates.map((nextSyllabusDate, index, startDates) => {
@@ -41,7 +41,7 @@ const combineStartEndDates = async syllabusStartDates => {
 
 const filteredKoppsData = async (courseCode, lang, testCourseObj = null) => {
   try {
-    const courseObj = testCourseObj || await rawKoppsCourseData(courseCode)
+    const courseObj = testCourseObj || (await rawKoppsCourseData(courseCode))
     const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(
       courseObj.termsWithCourseRounds
     )
@@ -49,10 +49,10 @@ const filteredKoppsData = async (courseCode, lang, testCourseObj = null) => {
 
     return {
       courseCode: courseCode.toUpperCase(),
-      courseTitle: isValidData(courseObj.course.title[lang]),
+      courseTitle: isValidData(courseObj.course ? courseObj.course.title[lang] : null),
       sortedSyllabusStart,
       syllabusPeriods,
-      courseCredits: isValidData(courseObj.course.credits),
+      courseCredits: isValidData(courseObj.course ? courseObj.course.credits : null),
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
