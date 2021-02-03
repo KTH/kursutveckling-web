@@ -322,11 +322,6 @@ and also iPads specifically.
   font-style: italic;
 }
 
-@media (max-width: 767.98px) {
-  #page-sub-heading {
-    font-size: 1rem !important;
-  }
-}
 @media (max-width: 991.98px) {
   #page-sub-heading-wrapper {
     display: flex;
