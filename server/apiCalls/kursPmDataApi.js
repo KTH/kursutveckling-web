@@ -56,7 +56,23 @@ function memoVersion(courseMemo, archiveTitles, latest) {
   return { name: versionName, url, latest }
 }
 
-function parseUploadedMemo(courseMemo, userLanguage) {
+function resolveMemoBlobUrl() {
+  const devMemoStorageUrl =
+    'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/'
+  const prodMemoStorageUrl =
+    'https://kursinfostorageprod.blob.core.windows.net/memo-blob-container/'
+  const memoStorageUrl = process.env.MEMO_STORAGE_URL
+  if (memoStorageUrl) {
+    return memoStorageUrl
+  }
+  const nodeEnv = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase()
+  if (nodeEnv === 'development' || nodeEnv === 'dev' || !nodeEnv) {
+    return devMemoStorageUrl
+  }
+  return prodMemoStorageUrl
+}
+
+function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguage) {
   const translations = i18n.messages
   const languageIndex = userLanguage === 'en' ? 0 : 1
   const { archiveTitles } = translations[languageIndex].messages
@@ -72,7 +88,7 @@ function parseUploadedMemo(courseMemo, userLanguage) {
   const memoFileName = courseMemo.courseMemoFileName
 
   const name = `${memoLabel} ${courseCode} ${semester} ${year}${offeringIds}`
-  const url = `https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/${memoFileName}`
+  const url = `${memoBlobUrl}${memoFileName}`
   const memoVersions = [{ name, url }]
 
   return { isPdf: true, courseOffering, memoVersions }
@@ -104,6 +120,7 @@ function parsePublishedMemo(courseMemo, oldMemos) {
 
 async function getCourseMemos(courseCode, userLanguage) {
   const courseMemos = []
+  const memoBlobUrl = resolveMemoBlobUrl()
 
   const allOldMemos = await getAllMemosByCourseCodeAndType(courseCode, 'old')
 
@@ -113,7 +130,7 @@ async function getCourseMemos(courseCode, userLanguage) {
     const oldMemos = allOldMemos.filter((o) => o.semester === semester)
     semesterMemos.forEach((m) => {
       const courseMemo = m.isPdf
-        ? parseUploadedMemo(m, userLanguage)
+        ? parseUploadedMemo(m, memoBlobUrl, userLanguage)
         : parsePublishedMemo(
             m,
             oldMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
