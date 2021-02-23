@@ -63,7 +63,11 @@ module.exports = {
       label_version: 'Ver',
       label_latest_version: 'senaste versionen',
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
-      no_memos: 'Denna kurs har inga publicerade kurs-PM.'
+      no_memos: 'Denna kurs har inga publicerade kurs-PM.',
+      label_analyses: 'Kursanalyser',
+      label_analysis: 'Kursanalys',
+      analysis_table_heading1: 'Kursomgång',
+      analysis_table_heading2: 'Kursanalys'
     }
   },
   tableHeaders: {

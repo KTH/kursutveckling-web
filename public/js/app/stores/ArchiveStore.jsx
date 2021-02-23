@@ -49,6 +49,8 @@ class ArchiveStore {
     koppsDataLang: 'sv'
   }
 
+  @observable analysisData = undefined
+
   @computed get formattedCredits() {
     const unit = {
       en: 'credits',

@@ -6,6 +6,7 @@ const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
 // const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
+const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const { getCourseMemos } = require('../apiCalls/kursPmDataApi')
@@ -47,6 +48,7 @@ async function _getContent(req, res, next) {
     archiveStore.userLang = lang
     archiveStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
     archiveStore.courseMemos = await getCourseMemos(courseCode, lang)
+    archiveStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
 
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('archive/index', {
