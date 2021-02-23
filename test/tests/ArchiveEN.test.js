@@ -63,13 +63,13 @@ describe(`User language: ${userLang}. Component <Archive>`, () => {
     expect(allSubHeaders.length).toBe(1)
 
     const allH2Headers = getAllByRole('heading', { level: 2 })
-    expect(allH2Headers.length).toBe(2)
+    expect(allH2Headers.length).toBe(3)
     expect(allH2Headers[0]).toHaveTextContent(translation.label_syllabuses)
     expect(allH2Headers[1]).toHaveTextContent(translation.label_memos)
   })
 
-  test('renders syllabus table', () => {
+  test('renders syllabus, memo and analyses table', () => {
     const syllabusTable = getAllByRole('table')
-    expect(syllabusTable.length).toBe(2)
+    expect(syllabusTable.length).toBe(3)
   })
 })
