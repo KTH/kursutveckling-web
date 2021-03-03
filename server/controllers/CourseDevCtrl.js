@@ -45,7 +45,6 @@ async function getCourseDevInfo(req, res, next) {
       serverPaths,
       serverConfig.hostUrl
     )
-    renderProps.props.children.props.adminStore.__SSR__setCookieHeader(req.headers.cookie)
     renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(
       courseCode,
       lang
