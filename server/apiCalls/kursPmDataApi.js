@@ -103,9 +103,8 @@ function parsePublishedMemo(courseMemo, oldMemos) {
   const semester = archiveTitles.course_short_semester[courseMemo.semester.slice(-1)]
   const year = courseMemo.semester.slice(0, 4)
   const offeringIds = courseMemo.ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
-  const name = courseMemo.memoName
 
-  const courseOffering = `${semester} ${year}${offeringIds} ${name}`
+  const courseOffering = courseMemo.memoName
   const memoName = `${memoLabel} ${courseMemo.courseCode} ${semester} ${year}${offeringIds}`
 
   const memoVersions = oldMemos.map((o) => {
@@ -135,6 +134,7 @@ async function getCourseMemos(courseCode, userLanguage) {
             m,
             oldMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
           )
+      console.log('courseMemo', courseMemo)
       courseMemos.push(courseMemo)
     })
   })
