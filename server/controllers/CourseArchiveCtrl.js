@@ -43,7 +43,6 @@ async function _getContent(req, res, next) {
     const { archiveStore } = renderProps.props.children.props
 
     archiveStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
-    archiveStore.__SSR__setCookieHeader(req.headers.cookie)
     archiveStore.courseCode = courseCode
     archiveStore.userLang = lang
     archiveStore.courseKoppsData = await filteredKoppsData(courseCode, lang)

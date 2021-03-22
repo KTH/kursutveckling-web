@@ -13,7 +13,7 @@ const ArchivePageHeader = ({ translation, subHeadline, courseCode, language }) =
         <p id="page-sub-heading" aria-hidden="true">
           {subHeadline}
         </p>
-        <p id="page-sub-heading-admin-link">
+        <p id="page-sub-heading-admin-link" className="d-none d-sm-block">
           <a title={translation.administration} href={administrationLink(courseCode, language)}>
             {translation.administration}
           </a>

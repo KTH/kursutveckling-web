@@ -31,13 +31,6 @@ class ArchiveStore {
     this.profileBaseUrl = profileBaseUrl
   }
 
-  // eslint-disable-next-line camelcase
-  @action __SSR__setCookieHeader(cookieHeader) {
-    if (typeof window === 'undefined') {
-      this.cookieHeader = cookieHeader || ''
-    }
-  }
-
   @observable courseCode = ''
 
   @observable userLang = 'sv'

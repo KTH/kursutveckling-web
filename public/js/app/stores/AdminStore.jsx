@@ -37,41 +37,6 @@ class AdminStore {
     return [host, newPath].join('')
   }
 
-  _getOptions(params) {
-    // Pass Cookie header on SSR-calls
-    let options
-    if (typeof window === 'undefined') {
-      options = {
-        headers: {
-          Cookie: this.cookieHeader,
-          Accept: 'application/json',
-          'X-Forwarded-Proto': _webUsesSSL(this.apiHost) ? 'https' : 'http'
-        },
-        timeout: 10000,
-        params
-      }
-    } else {
-      options = {
-        params
-      }
-    }
-    return options
-  }
-
-  @action getLdapUserByUsername(params) {
-    return axios
-      .get(this.buildApiUrl(this.paths.api.searchLdapUser.uri, params), this._getOptions())
-      .then((res) => {
-        return res.data
-      })
-      .catch((err) => {
-        if (err.response) {
-          throw new Error(err.message, err.response.data)
-        }
-        throw err
-      })
-  }
-
   @action setUser(userKthId) {
     this.user = userKthId
   }
@@ -89,12 +54,6 @@ class AdminStore {
     this.paths = paths
     this.apiHost = apiHost
     this.profileBaseUrl = profileBaseUrl
-  }
-
-  @action __SSR__setCookieHeader(cookieHeader) {
-    if (typeof window === 'undefined') {
-      this.cookieHeader = cookieHeader || ''
-    }
   }
 
   @action doSetLanguage(lang) {
