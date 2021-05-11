@@ -26,7 +26,7 @@
     "test"
   ],
   "dependencies": {
-    "@kth/kth-kip-style-react-components": "0.0.26",
+    "@kth/kth-kip-style-react-components": "^0.1.2",
     "applicationinsights": "^1.8.10",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
@@ -54,10 +54,10 @@
     "locale": "^0.1.0",
     "mobx": "^5.15.6",
     "mobx-react": "^5.4.4",
-    "passport": "^0.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-icons": "^4.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "reactstrap": "^8.9.0",
@@ -88,11 +88,11 @@
     "node-mocks-http": "^1.10.1",
     "nodemon": "^2.0.7",
     "parcel-bundler": "^1.12.4",
-    "prettier": "^2.2.1",
-    "prettier-eslint-cli": "^5.0.0",
+    "prettier": "^2.3.0",
+    "prettier-eslint-cli": "^5.0.1",
     "pretty-quick": "^3.1.0",
     "react-test-renderer": "^16.14.0",
-    "sass": "^1.32.8"
+    "sass": "^1.32.12"
   },
   "resolutions": {
     "node-forge": "0.10.0"
