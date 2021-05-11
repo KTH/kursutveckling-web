@@ -80,10 +80,12 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('renders and check all headers on the place', () => {
     const allH1Headers = getAllByRole('heading', { level: 1 })
     expect(allH1Headers.length).toBe(1)
-    expect(allH1Headers[0]).toHaveTextContent(
-      'Kursens utvecklingSF1624 Algebra och geometri 7,5 hp'
-    )
+    expect(allH1Headers[0]).toHaveTextContent('Kursens utveckling')
+    const subHeader = getByText('SF1624 Algebra och geometri 7,5 hp')
+    expect(subHeader).toBeTruthy()
   })
+
+  //
 
   test('renders h2 for all years', () => {
     const allH2Headers = getAllByRole('heading', { level: 2 })
