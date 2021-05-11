@@ -32,7 +32,6 @@ function _staticRender(context, location) {
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
-  // const ldapUser = req.session.authUser ? requireRole('isCourseResponsible', 'isExaminator', 'isCourseTeacher') : 'null'
   const lang = language.getLanguage(res) || 'sv'
   const langIndex = lang === 'en' ? 0 : 1
 

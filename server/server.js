@@ -8,7 +8,8 @@ const getPaths = require('kth-node-express-routing').getPaths
 
 if (config.appInsights && config.appInsights.instrumentationKey) {
   const appInsights = require('applicationinsights')
-  appInsights.setup(config.appInsights.instrumentationKey)
+  appInsights
+    .setup(config.appInsights.instrumentationKey)
     .setAutoDependencyCorrelation(true)
     .setAutoCollectRequests(true)
     .setAutoCollectPerformance(true)
@@ -50,11 +51,14 @@ const path = require('path')
 server.set('views', path.join(__dirname, '/views'))
 server.set('layouts', path.join(__dirname, '/views/layouts'))
 server.set('partials', path.join(__dirname, '/views/partials'))
-server.engine('handlebars', exphbs({
-  defaultLayout: 'publicLayout',
-  layoutsDir: server.settings.layouts,
-  partialsDir: server.settings.partials
-}))
+server.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'publicLayout',
+    layoutsDir: server.settings.layouts,
+    partialsDir: server.settings.partials
+  })
+)
 server.set('view engine', 'handlebars')
 // Register handlebar helpers
 require('./views/helpers')
@@ -77,7 +81,7 @@ const compression = require('compression')
 server.use(compression())
 
 // helper
-function setCustomCacheControl (res, path) {
+function setCustomCacheControl(res, path) {
   if (express.static.mime.lookup(path) === 'text/html') {
     // Custom Cache-Control for HTML files
     res.setHeader('Cache-Control', 'no-cache')
@@ -86,11 +90,17 @@ function setCustomCacheControl (res, path) {
 
 // Files/statics routes--
 // Map components HTML files as static content, but set custom cache control header, currently no-cache to force If-modified-since/Etag check.
-server.use(config.proxyPrefixPath.uri + '/static/js/components', express.static('./dist/js/components', { setHeaders: setCustomCacheControl }))
+server.use(
+  config.proxyPrefixPath.uri + '/static/js/components',
+  express.static('./dist/js/components', { setHeaders: setCustomCacheControl })
+)
 // Expose browser configurations
 server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
 // Map kth-style.
-server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
+server.use(
+  config.proxyPrefixPath.uri + '/static/kth-style',
+  express.static('./node_modules/kth-style/dist')
+)
 // Map static content like images, css and js.
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
@@ -131,43 +141,18 @@ const { languageHandler } = require('kth-node-web-common/lib/language')
 server.use(config.proxyPrefixPath.uri, languageHandler)
 
 /* ******************************
- * ******* AUTHENTICATION *******
- * ******************************
- */
-const passport = require('passport')
-// const ldapClient = require('./adldapClient')
-const { authLoginHandler, authCheckHandler, logoutHandler, pgtCallbackHandler, serverLogin, getServerGatewayLogin } = require('kth-node-passport-cas').routeHandlers({
-  casLoginUri: config.proxyPrefixPath.uri + '/login',
-  casGatewayUri: config.proxyPrefixPath.uri + '/loginGateway',
-  proxyPrefixPath: config.proxyPrefixPath.uri,
-  server
-})
-const { redirectAuthenticatedUserHandler } = require('./authentication')
-server.use(passport.initialize())
-server.use(passport.session())
-
-const authRoute = AppRouter()
-authRoute.get('cas.login', config.proxyPrefixPath.uri + '/login', authLoginHandler, redirectAuthenticatedUserHandler)
-authRoute.get('cas.gateway', config.proxyPrefixPath.uri + '/loginGateway', authCheckHandler, redirectAuthenticatedUserHandler)
-authRoute.get('cas.logout', config.proxyPrefixPath.uri + '/logout', logoutHandler)
-// Optional pgtCallback (use config.cas.pgtUrl?)
-authRoute.get('cas.pgtCallback', config.proxyPrefixPath.uri + '/pgtCallback', pgtCallbackHandler)
-server.use('/', authRoute.getRouter())
-
-// Convenience methods that should really be removed
-server.login = serverLogin
-server.gatewayLogin = getServerGatewayLogin
-
-/* ******************************
  * ******* CORTINA BLOCKS *******
  * ******************************
  */
-server.use(config.proxyPrefixPath.uri, require('kth-node-web-common/lib/web/cortina')({
-  blockUrl: config.blockApi.blockUrl,
-  proxyPrefixPath: config.proxyPrefixPath.uri,
-  hostUrl: config.hostUrl,
-  redisConfig: config.cache.cortinaBlock.redis
-}))
+server.use(
+  config.proxyPrefixPath.uri,
+  require('kth-node-web-common/lib/web/cortina')({
+    blockUrl: config.blockApi.blockUrl,
+    proxyPrefixPath: config.proxyPrefixPath.uri,
+    hostUrl: config.hostUrl,
+    redisConfig: config.cache.cortinaBlock.redis
+  })
+)
 
 /* ********************************
  * ******* CRAWLER REDIRECT *******
@@ -175,9 +160,12 @@ server.use(config.proxyPrefixPath.uri, require('kth-node-web-common/lib/web/cort
  */
 const excludePath = config.proxyPrefixPath.uri + '(?!/static).*'
 const excludeExpression = new RegExp(excludePath)
-server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedirect')({
-  hostUrl: config.hostUrl
-}))
+server.use(
+  excludeExpression,
+  require('kth-node-web-common/lib/web/crawlerRedirect')({
+    hostUrl: config.hostUrl
+  })
+)
 
 /* **********************************
  * ******* APPLICATION ROUTES *******
@@ -195,8 +183,16 @@ server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
-appRoute.get('course.getCourseArchive', config.proxyPrefixPath.uri + '/:courseCode/arkiv', CourseArchiveCtrl.getContent)
+appRoute.get(
+  'course.getCourseDevelopment',
+  config.proxyPrefixPath.uri + '/:courseCode',
+  CourseDevCtrl.getCourseDevInfo
+)
+appRoute.get(
+  'course.getCourseArchive',
+  config.proxyPrefixPath.uri + '/:courseCode/arkiv',
+  CourseArchiveCtrl.getContent
+)
 appRoute.get('course.noCourseCode', config.proxyPrefixPath.uri + '/', CourseDevCtrl.getErrorPage)
 
 server.use('/', appRoute.getRouter())

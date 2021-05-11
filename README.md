@@ -41,7 +41,7 @@ Web pages is public for everyone.
 - [https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
 
 ###Where do you keep you secrets?
-Secrets during local development are ALWAYS stored in a `.env`-file in the root of your project. This file should be in .gitignore. It needs to contain at least ldap connection URI and password in order for authentication to work properly:
+Secrets during local development are ALWAYS stored in a `.env`-file in the root of your project. This file should be in .gitignore.
 
 ```
 API_URI=[https://api-r.referens.sys.kth.se/api/kursutveckling]
@@ -50,12 +50,4 @@ KOPPS_URI=[https://api-r.referens.sys.kth.se/api/kopps/v2/]
 SESSION_SECRET=[session secret]
 SESSION_KEY=kutv.sid
 REDIS_URI=[redis azure connection string]
-```
-
-If you want to add authorization:
-
-```
-LDAP_BASE=[OU=UG...]
-LDAP_URI=ldaps://[usertname]@[ldap domain]
-LDAP_PASSWORD=[password]
 ```
