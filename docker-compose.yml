@@ -15,14 +15,7 @@ services:
       KOPPS_URI: 'https://kopps-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000'
       KURSPLAN_API_URI: 'https://api-r.referens.sys.kth.se/api/kursplan?defaultTimeout=60000'
 
-      #NODE_ENV: 'development'
-  
-      
-      # Settings for LDAP
-      LDAP_TIMEOUT: 3000
-      LDAP_CONNECT_TIMEOUT: 3000
-      LDAP_IDLE_RECONNECT_INTERVAL: 180000
-      
+
       SESSION_USE_REDIS: 'true'
 
 
