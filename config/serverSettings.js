@@ -10,12 +10,10 @@
 const {
   getEnv,
   devDefaults,
-  unpackLDAPConfig,
   unpackKOPPSConfig,
   unpackRedisConfig,
   unpackNodeApiConfig
 } = require('kth-node-configuration')
-const { typeConversion } = require('kth-node-configuration/lib/utils')
 const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
