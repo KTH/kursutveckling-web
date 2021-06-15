@@ -1,9 +1,10 @@
 import React from 'react'
 import { Alert } from 'reactstrap'
 
-const AlertMsg = ({ props, translate = {}, userLang = 'en' }) => {
-  const params = props
-    ? props.location.search
+const AlertMsg = ({ props = {}, translate = {}, userLang = 'en' }) => {
+  const { location } = props
+  const params = location
+    ? location.search
         .substring(1)
         .split('&')
         .map((param) => param.split('='))
@@ -11,10 +12,10 @@ const AlertMsg = ({ props, translate = {}, userLang = 'en' }) => {
     : {}
 
   const { event: doneAction, name: courseRoundName, serv: serviceAbbr, term } = params
+  if (serviceAbbr !== 'kutv') return null
+  if (doneAction !== 'save' && doneAction !== 'pub' && doneAction !== 'delete') return null
 
   const { alertMessages, course_short_semester: courseShortSemester } = translate
-  if (serviceAbbr !== 'kutv') return null
-  if (doneAction !== 'save' || doneAction !== 'pub' || doneAction !== 'delete') return null
   return (
     <Alert color="success" aria-live="polite">
       <h4 lang={userLang}>{alertMessages.kutv[doneAction]}</h4>

@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import React from 'react'
-import { render, fireEvent, waitFor, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import AlertMsg from '../../public/js/app/components/AlertMsg'
 import i18n from '../../i18n'
@@ -79,12 +79,11 @@ const pageTitles = (userLang) => i18n.messages[userLang === 'en' ? 0 : 1].pageTi
 
 describe('English. Component <AlertMsg> renders with different messages if user went to admin page, have done some action and send back to public page.', () => {
   // eslint-disable-next-line jest/expect-expect
-  test('renders without props', (done) => {
+  test('renders without props', () => {
     render(<AlertMsg />)
-    done()
   })
 
-  test('renders alert message if user went to admin and published data again', (done) => {
+  test('renders alert message if user went to admin and published data again', () => {
     render(<AlertMsg props={TEST_PUBLISH} userLang="en" translate={pageTitles('en')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.en.alertMessages.kutv.pub)
@@ -92,10 +91,9 @@ describe('English. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('Course round: CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )')
     ).toBeInTheDocument()
-    done()
   })
 
-  test('renders alert message if user went to admin and saved data without publishing it', (done) => {
+  test('renders alert message if user went to admin and saved data without publishing it', () => {
     render(<AlertMsg props={TEST_SAVE} userLang="en" translate={pageTitles('en')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.en.alertMessages.kutv.save)
@@ -106,10 +104,9 @@ describe('English. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('You can find saved drafts under Course analysis and course data / Publish new')
     ).toBeInTheDocument()
-    done()
   })
 
-  test('renders alert message if user went to admin and deleted data', (done) => {
+  test('renders alert message if user went to admin and deleted data', () => {
     render(<AlertMsg props={TEST_DELETE} userLang="en" translate={pageTitles('en')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.en.alertMessages.kutv.delete)
@@ -117,22 +114,19 @@ describe('English. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('Course round: CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )')
     ).toBeInTheDocument()
-    done()
   })
 
-  test('renders alert message if there are no parameters given', (done) => {
+  test('renders alert message if there are no parameters given', () => {
     render(<AlertMsg props={TEST_SIMPLE} userLang="en" translate={pageTitles('en')} />)
-    done()
   })
 })
 
 describe('Swedish. Component <AlertMsg> renders with different messages if user went to admin page, have done some action and send back to public page.', () => {
-  test('renders without props', (done) => {
+  test('renders without props', () => {
     render(<AlertMsg />)
-    done()
   })
 
-  test('renders alert message if user went to admin and published data again', (done) => {
+  test('renders alert message if user went to admin and published data again', () => {
     render(<AlertMsg props={TEST_PUBLISH} userLang="sv" translate={pageTitles('sv')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.sv.alertMessages.kutv.pub)
@@ -140,10 +134,9 @@ describe('Swedish. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('Kursomgång: CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )')
     ).toBeInTheDocument()
-    done()
   })
 
-  test('renders alert message if user went to admin and saved data without publishing it', (done) => {
+  test('renders alert message if user went to admin and saved data without publishing it', () => {
     render(<AlertMsg props={TEST_SAVE} userLang="sv" translate={pageTitles('sv')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.sv.alertMessages.kutv.save)
@@ -154,10 +147,9 @@ describe('Swedish. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('Du hittar det sparade utkastet under Kursanalys och kursdata/ Publicera ny')
     ).toBeInTheDocument()
-    done()
   })
 
-  test('renders alert message if user went to admin and deleted data', (done) => {
+  test('renders alert message if user went to admin and deleted data', () => {
     render(<AlertMsg props={TEST_DELETE} userLang="sv" translate={pageTitles('sv')} />)
     const alertHeader = getByRole('heading', { level: 4 })
     expect(alertHeader).toHaveTextContent(translate.sv.alertMessages.kutv.delete)
@@ -165,12 +157,10 @@ describe('Swedish. Component <AlertMsg> renders with different messages if user 
     expect(
       getByText('Kursomgång: CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )')
     ).toBeInTheDocument()
-    done()
   })
 
   // eslint-disable-next-line jest/expect-expect
-  test('renders alert message if no extra parameters are given in url', (done) => {
+  test('renders alert message if no extra parameters are given in url', () => {
     render(<AlertMsg props={TEST_SIMPLE} userLang="sv" translate={pageTitles('sv')} />)
-    done()
   })
 })
