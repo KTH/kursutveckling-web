@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { EMPTY, KURSINFO_ADMIN_URL } from '../util/constants'
 
+// eslint-disable-next-line react/prefer-stateless-function
 class PageTitle extends Component {
   render() {
-    const title = this.props.courseKoppsData
-    const { pageTitle, translate } = this.props
+    const { courseKoppsData, pageTitle, translate } = this.props
+    const title = courseKoppsData
     const { courseCode, courseCredits, courseTitle, koppsDataLang } = title
     const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${koppsDataLang}`
 

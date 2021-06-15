@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import Table from '../components/Table'
+import Table from './Table'
 import i18n from '../../../../i18n'
 import { getDateFormat } from '../util/helpers'
 
 const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, validFrom }) => {
-  const no_added = 'no_added'
+  const noAddedText = 'no_added'
   return (
     <p>
       {fileName === '' ? (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
-          aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`}
+          aria-label={`PDF ${linkTitle} ${roundName}: ${noAddedText}`}
           className="pdf-link btn-link disabled"
           key={linkTitle}
         >
-          {linkTitle}: {no_added}
+          {`${linkTitle}: ${noAddedText}`}
         </a>
       ) : (
         <a
@@ -22,6 +23,7 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
+          rel="noreferrer"
           target="_blank"
         >
           {`${linkTitle}: ${validFrom}`}
@@ -39,7 +41,7 @@ class AnalysisTable extends Component {
   render() {
     const { archiveStore } = this.props
     const { userLang, courseCode, analysisData } = archiveStore
-    const { storageUri } = this.props.archiveStore.browserConfig
+    const { storageUri } = archiveStore.browserConfig
     const translations = i18n.message('archiveTitles', userLang)
 
     const yearsDescending = Object.keys(analysisData).reverse()

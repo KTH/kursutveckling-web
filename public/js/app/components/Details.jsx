@@ -1,16 +1,13 @@
-import React, { Component } from 'react'
-import { Collapse } from 'reactstrap'
+import React from 'react'
 import { formatISODate } from '../util/helpers'
 
 const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
   return (
     <span className="extra-kopps-info-from-kutv-api">
-      {orderedTitles.map((infoTitle, index) => (
+      {orderedTitles.map((infoTitle) => (
         <span key={'details-' + infoTitle} className={infoTitle}>
-          <h4 key={'header-for-' + infoTitle}>
-            {translate[infoTitle].header}
-          </h4>
+          <h4 key={'header-for-' + infoTitle}>{translate[infoTitle].header}</h4>
           {thisAnalysisObj[infoTitle] === '' ? (
             <p className="textBlock">
               {' '}
@@ -19,6 +16,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
           ) : (
             <p
               className="textBlock"
+              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: thisAnalysisObj[infoTitle] }}
             />
           )}
@@ -32,46 +30,39 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
-      <h4>
-        {translate.publishedDate}
-      </h4>
+      <h4>{translate.publishedDate}</h4>
       <p className="textBlock">{formatISODate(publishedDate, pageLang)}</p>
-      
+
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
         <>
-          <h4>
-            {translate.changedAfterPublishedDate}
-          </h4>
+          <h4>{translate.changedAfterPublishedDate}</h4>
+          <p className="textBlock">{formatISODate(changedAfterPublishedDate, pageLang)}</p>
+          <h4>{labelAboutChanges}</h4>
           <p className="textBlock">
-            {formatISODate(changedAfterPublishedDate, pageLang)}
+            {commentChange === '' ? <i>{translate.no_added}</i> : commentChange}
           </p>
-          <h4>
-            {labelAboutChanges}
-          </h4>
-          <p className="textBlock">{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
         </>
       ) : (
         <>
-          <h4>
-            {translate.changedAfterPublishedDate}
-          </h4>
-          <p className="textBlock"><i>{translate.no_date_last_changed}</i></p>
+          <h4>{translate.changedAfterPublishedDate}</h4>
+          <p className="textBlock">
+            <i>{translate.no_date_last_changed}</i>
+          </p>
         </>
       )}
     </span>
   )
 }
-const Details = ({ thisAnalysisObj, label, translate }) => {
+const Details = ({ thisAnalysisObj, translate }) => {
   const { analysisName } = thisAnalysisObj
-  const  { header_more_info } = translate
+  const { header_more_info: headerLabelMoreInfo } = translate
   return (
     <details className="extra-info">
-      <summary className="white" aria-label={`${header_more_info}: ${analysisName}`}>{header_more_info}</summary>
+      <summary className="white" aria-label={`${headerLabelMoreInfo}: ${analysisName}`}>
+        {headerLabelMoreInfo}
+      </summary>
       <div>
-        <ExtraKoppsInfo
-          translate={translate.extra_kopps_info}
-          thisAnalysisObj={thisAnalysisObj}
-        />
+        <ExtraKoppsInfo translate={translate.extra_kopps_info} thisAnalysisObj={thisAnalysisObj} />
         <ExtraDatesAndComment
           translate={translate.extra_dates_and_comments}
           thisAnalysisObj={thisAnalysisObj}
@@ -80,6 +71,5 @@ const Details = ({ thisAnalysisObj, label, translate }) => {
     </details>
   )
 }
-
 
 export default Details

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button, Table } from 'reactstrap'
+import { Table } from 'reactstrap'
 import ControlledPopover from './PopOverTextForTable'
 
 function _getListOfExamRounds(rawExamRoundsStrArr) {
   let listOfShortStrForExamRounds = []
   if (rawExamRoundsStrArr && rawExamRoundsStrArr.length > 0) {
-    listOfShortStrForExamRounds = rawExamRoundsStrArr.map(row => {
+    listOfShortStrForExamRounds = rawExamRoundsStrArr.map((row) => {
       const examInfoArr = row.trim().split(';')
       return `${examInfoArr[0]} (${examInfoArr[2]}) ${examInfoArr[5]}` || ''
     })
@@ -30,9 +30,9 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
         <tr>
           {orderedColumns.map((colName, index) => {
             const cellId = analysisId + colName
-            const ariaDescribedBy = 'header-description' + cellId
             const { header, popoverText } = translate[colName]
             return (
+              // eslint-disable-next-line react/no-array-index-key
               <th key={index} className={colName}>
                 {header}{' '}
                 <ControlledPopover
@@ -52,6 +52,7 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
             const { header, popoverText } = translate[colName]
             const cellId = analysisId + colName
             return (
+              // eslint-disable-next-line react/no-array-index-key
               <td className={colName} id={cellId} key={index}>
                 <ControlledPopover
                   cellId={cellId}
@@ -60,7 +61,8 @@ const TableWithCourseData = ({ translate, thisAnalysisObj }) => {
                   popType="mobile"
                 />
                 {(colName === 'examRounds' &&
-                  listOfExamRounds.map((exam, index) => <p key={index}>{exam}</p>)) || (
+                  // eslint-disable-next-line react/no-array-index-key
+                  listOfExamRounds.map((exam, i) => <p key={i}>{exam}</p>)) || (
                   <p>{thisAnalysisObj[colName]}</p>
                 )}
               </td>

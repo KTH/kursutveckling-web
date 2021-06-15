@@ -134,7 +134,6 @@ async function getCourseMemos(courseCode, userLanguage) {
             m,
             oldMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
           )
-      console.log('courseMemo', courseMemo)
       courseMemos.push(courseMemo)
     })
   })

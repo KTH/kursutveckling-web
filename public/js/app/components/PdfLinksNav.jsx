@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { SYLLABUS_URL } from '../util/constants'
+import { inject, observer } from 'mobx-react'
+
 import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
-import { inject, observer } from 'mobx-react'
 
 const ActiveOrDisabledLink = ({
   fileName,
@@ -12,16 +12,17 @@ const ActiveOrDisabledLink = ({
   translate,
   validFrom
 }) => {
-  const { no_added } = translate
+  const { noAddedText } = translate
   return (
     <p>
       {fileName === '' ? (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
-          aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`}
+          aria-label={`PDF ${linkTitle} ${roundName}: ${noAddedText}`}
           className="pdf-link btn-link disabled"
           key={linkTitle}
         >
-          {linkTitle}: {no_added}
+          {`${linkTitle}: ${noAddedText}`}
         </a>
       ) : (
         <a
@@ -29,6 +30,7 @@ const ActiveOrDisabledLink = ({
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
+          rel="noreferrer"
           target="_blank"
         >
           {`${linkTitle}: ${validFrom}`}
@@ -47,13 +49,12 @@ class PdfLinksNav extends Component {
   }
 
   render() {
-    const { translate, thisAnalysisObj, lang } = this.props
-    const { storageUri } = this.props.adminStore.browserConfig
+    const { adminStore, translate, thisAnalysisObj, lang } = this.props
+    const { storageUri } = adminStore.browserConfig
 
     const {
       analysisFileName,
       analysisName,
-      courseCode,
       pdfAnalysisDate,
       pmFileName,
       pdfPMDate,

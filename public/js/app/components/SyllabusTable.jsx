@@ -1,5 +1,4 @@
 import React from 'react'
-import { Alert } from 'reactstrap'
 
 import { SYLLABUS_URL } from '../util/constants'
 

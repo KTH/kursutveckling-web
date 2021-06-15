@@ -4,6 +4,7 @@ const renderRow = (row) => {
   return (
     <tr key={row[0]}>
       {row.map((cell, index) => {
+        // eslint-disable-next-line react/no-array-index-key
         return <td key={index}>{typeof cell === 'function' ? cell() : cell}</td>
       })}
     </tr>

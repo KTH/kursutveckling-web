@@ -12,9 +12,6 @@ import i18n from '../../../../i18n'
 import SyllabusTable from '../components/SyllabusTable'
 import MemoTable from '../components/MemoTable'
 import AnalysisTable from '../components/AnalysisTable'
-import Table from '../components/Table'
-
-import { getDateFormat } from '../util/helpers'
 
 function renderBreadcrumbsIntoKthHeader(courseCode, language) {
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')

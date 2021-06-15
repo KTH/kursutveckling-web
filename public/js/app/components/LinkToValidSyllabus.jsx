@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { SYLLABUS_URL } from '../util/constants'
 import { inject, observer } from 'mobx-react'
-import i18n from '../../../../i18n'
 import { toJS } from 'mobx'
+import { SYLLABUS_URL } from '../util/constants'
+
+import i18n from '../../../../i18n'
 
 @inject(['adminStore'])
 @observer
