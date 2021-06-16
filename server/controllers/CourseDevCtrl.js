@@ -5,6 +5,8 @@ const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
+const { getMiniMemosPdfAndWeb } = require('../apiCalls/kursPmDataApi')
+
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
@@ -49,6 +51,10 @@ async function getCourseDevInfo(req, res, next) {
       lang
     )
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(
+      courseCode
+    )
+
+    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb = await getMiniMemosPdfAndWeb(
       courseCode
     )
 
