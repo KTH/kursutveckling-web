@@ -94,6 +94,17 @@ a.right-link {
   & > section:first-of-type > h2 {
     margin-top: 0.7em;
   }
+  .vertical-block-of-links {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.2em 0;
+
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+      float: left;
+      text-align: left;
+    }
+  }
 
   .right-block-of-links {
     float: left;
@@ -101,6 +112,7 @@ a.right-link {
     margin: 0 0.2em 0;
     @media (min-width: 768px) {
       display: flex;
+      align-items: flex-end;
       justify-content: flex-end;
       float: right;
       text-align: right;

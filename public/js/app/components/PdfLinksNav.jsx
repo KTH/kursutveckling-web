@@ -55,22 +55,43 @@ class PdfLinksNav extends Component {
       analysisName,
       courseCode,
       pdfAnalysisDate,
-      pmFileName,
+      pmFileName, //TODO-MEMO: REMOVE
       pdfPMDate,
-      syllabusStartTerm
+      syllabusStartTerm,
+      roundIdList,
+      semester
     } = thisAnalysisObj
+    //     roundIdList: "9"
+    // semester: "20202"
+    console.log('thisAnalysisObj', thisAnalysisObj)
+
+    // function getMemosLinks() {
+    //   const thisSemesterMemos = this.props.adminStore.miniMemosPdfAndWeb[semester] || []
+    // }
+    // const relatedMemos = getMemosLinks()
 
     return (
       <span className="right-block-of-links">
         <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
-        <ActiveOrDisabledLink
-          fileName={pmFileName}
-          storageUri={storageUri}
-          linkTitle={translate.link_pm}
-          roundName={analysisName}
-          translate={translate}
-          validFrom={getDateFormat(pdfPMDate, lang)}
-        />
+        <span className="vertical-block-of-links">
+          <ActiveOrDisabledLink
+            fileName={pmFileName}
+            storageUri={storageUri}
+            linkTitle={translate.link_pm}
+            roundName={analysisName}
+            translate={translate}
+            validFrom={getDateFormat(pdfPMDate, lang)}
+          />
+          <ActiveOrDisabledLink
+            fileName={pmFileName}
+            storageUri={storageUri}
+            linkTitle={translate.link_pm}
+            roundName={analysisName}
+            translate={translate}
+            validFrom={getDateFormat(pdfPMDate, lang)}
+          />
+        </span>
+
         <ActiveOrDisabledLink
           fileName={analysisFileName}
           storageUri={storageUri}
