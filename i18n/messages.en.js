@@ -75,8 +75,7 @@ module.exports = {
   tableHeaders: {
     info_manually_edited: '* Course data has been registered manually',
     header_main_edit: 'Edit (for course coordinator)',
-    header_main_publish_new:
-      'Publish new course analysis with course data (for course coordinator)',
+    header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
     aria_label_close_icon: 'Close',
     aria_label_header_main_edit: 'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
@@ -134,11 +133,9 @@ module.exports = {
       page_lang: 'en'
     },
     header_more_info: 'Additional data about this course offering',
-    link_analysis: 'Course analysis',
-    link_pm: 'Course memo',
-    no_added: 'not added',
+    link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
+    link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
     no_course_analys: 'Course analysis and course data is not inserted.',
-    // no_pdf_document: 'not found',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
