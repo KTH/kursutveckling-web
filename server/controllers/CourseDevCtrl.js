@@ -5,7 +5,7 @@ const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
-const { getMiniMemosPdfAndWeb } = require('../apiCalls/kursPmDataApi')
+const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
@@ -41,20 +41,11 @@ async function getCourseDevInfo(req, res, next) {
     // Render react app
     // const context = {}
     const renderProps = _staticRender()
-    renderProps.props.children.props.adminStore.setBrowserConfig(
-      browserConfig,
-      serverPaths,
-      serverConfig.hostUrl
-    )
-    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(
-      courseCode,
-      lang
-    )
-    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(
-      courseCode
-    )
+    renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
+    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
 
-    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb = await getMiniMemosPdfAndWeb(
+    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(
       courseCode
     )
 

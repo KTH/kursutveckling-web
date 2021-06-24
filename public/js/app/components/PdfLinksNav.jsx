@@ -109,13 +109,14 @@ class PdfLinksNav extends Component {
   }
 
   getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
-    const roundsMissingMemos = []
+    const unfilteredRoundsMissingMemos = []
+    const resultMissingMemos = []
     const existingMemos =
       analysesLadokRounds
         .filter((analysesRoundId) => {
           const roundhasMemo = !!thisSemesterMemos[analysesRoundId]
           if (!roundhasMemo) {
-            roundsMissingMemos.push(analysesRoundId)
+            unfilteredRoundsMissingMemos.push(analysesRoundId)
             return false
           }
           return true
@@ -128,7 +129,12 @@ class PdfLinksNav extends Component {
             [memoUniqueId ? memoUniqueId : 'noName']: thisRoundMemo
           }
         }) || []
-    return [roundsMissingMemos, existingMemos]
+    // if (unfilteredRoundsMissingMemos.length === analysesLadokRounds.length)
+    //   // no memos at all, instead of showing empty message several times, show it once
+    //   resultMissingMemos = unfilteredRoundsMissingMemos.slice(0, 1)
+    // else resultMissingMemos = unfilteredRoundsMissingMemos
+
+    return [unfilteredRoundsMissingMemos, existingMemos]
   }
 
   render() {
@@ -149,27 +155,22 @@ class PdfLinksNav extends Component {
 
     const analysesLadokRounds = roundIdList.split(',') || []
     const thisSemesterMemos = miniMemosPdfAndWeb[analysisSemester] || []
-    const [roundsMissingMemos, existingMemos] = this.getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds)
-
+    const [unfilteredRoundsMissingMemos, existingMemos] = this.getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds)
     return (
       <span className="right-block-of-links">
         <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
         <span className="vertical-block-of-links">
-          {roundsMissingMemos.map((ladokRoundId) => {
+          {unfilteredRoundsMissingMemos.map((ladokRoundId) => {
             const missingMemoOfferingName = parseCourseOffering([ladokRoundId], analysisSemester, lang)
-            return (
-              <ActiveOrDisabledPdfLink
-                ariaLabel={`${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`}
-                linkTitle={`${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`}
-                translate={linkMemoTexts}
-              />
-            )
+            const title = `${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`
+            return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemoTexts} />
           })}
-          {existingMemos.map((memo) => {
+          {existingMemos.map((memo, index) => {
             const memoInfo = Object.values(memo)[0]
             const { isPdf } = memoInfo
             return isPdf ? (
               <ParseUploadedMemo
+                key={index}
                 translate={linkMemoTexts}
                 fileInfo={memoInfo}
                 memoBlobUrl={memoStorageUrl}
@@ -177,7 +178,7 @@ class PdfLinksNav extends Component {
                 translate={linkMemoTexts}
               />
             ) : (
-              <ParseWebMemoName courseMemo={memoInfo} translate={linkMemoTexts} />
+              <ParseWebMemoName courseMemo={memoInfo} key={index} translate={linkMemoTexts} />
             )
           })}
         </span>
