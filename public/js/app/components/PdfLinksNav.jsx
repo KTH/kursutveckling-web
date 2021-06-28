@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react'
+
 import { SYLLABUS_URL } from '../util/constants'
 import { getDateFormat } from '../util/helpers'
 import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
-import { inject, observer } from 'mobx-react'
 import i18n from '../../../../i18n'
 
 const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTitle, translate, validFrom = '' }) => {
@@ -60,10 +62,11 @@ function parseCourseOffering(ladokRoundIds, rawSemester, langAbbr) {
 }
 
 function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate }) {
-  const courseOfferingName = parseCourseOffering(fileInfo.ladokRoundIds, fileInfo.semester, userLanguageAbbr)
+  const { courseCode, courseMemoFileName, ladokRoundIds, semester: memoSemester } = fileInfo
+
+  const courseOfferingName = parseCourseOffering(ladokRoundIds, memoSemester, userLanguageAbbr)
 
   const { label_memo: memoLabel } = translate
-  const { courseCode, courseMemoFileName } = fileInfo
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 
@@ -80,8 +83,6 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 
 function ParseWebMemoName({ courseMemo, translate }) {
   const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester, memoName: courseOffering, memoEndPoint } = courseMemo
-  console.log('WEB courseMemo', courseMemo)
-  console.log('WEB rawSemester', semester)
 
   if (!ladokRoundIds) return null
   const courseOfferingName = parseCourseOffering(ladokRoundIds, semester, memoCommonLangAbbr)
@@ -139,8 +140,10 @@ class PdfLinksNav extends Component {
 
   render() {
     const { translate, thisAnalysisObj, lang } = this.props
-    const { link_memo: linkMemoTexts } = translate
+    const { link_memo: linkMemoTexts, link_analysis: linkAnalysisTexts } = translate
     const { miniMemosPdfAndWeb } = this.props.adminStore
+    console.log('miniMemosPdfAndWeb', miniMemosPdfAndWeb)
+
     const { storageUri } = this.props.adminStore.browserConfig
     const memoStorageUrl = resolveMemoBlobUrl() //move to domain or settings
     const {
@@ -184,16 +187,61 @@ class PdfLinksNav extends Component {
         </span>
 
         <ActiveOrDisabledPdfLink
-          ariaLabel={`PDF ${translate.link_analysis} ${analysisName}`}
+          ariaLabel={`PDF ${linkAnalysisTexts.label_analysis} ${analysisName}`}
           href={`${storageUri}${analysisFileName}`}
           className="pdf-link"
-          linkTitle={`${translate.link_analysis.label_analysis}`}
-          translate={translate.link_analysis}
+          linkTitle={`${linkAnalysisTexts.label_analysis}`}
+          translate={linkAnalysisTexts}
           validFrom={getDateFormat(pdfAnalysisDate, lang)}
         />
       </span>
     )
   }
+}
+
+PdfLinksNav.propTypes = {
+  lang: PropTypes.oneOf(['en', 'sv']).isRequired,
+  translate: PropTypes.shape({
+    link_analysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
+    link_memo: PropTypes.shape({ label_memo: PropTypes.string, no_added_doc: PropTypes.string }).isRequired
+  }).isRequired,
+  thisAnalysisObj: PropTypes.shape({
+    analysisFileName: PropTypes.string,
+    analysisName: PropTypes.string,
+    courseCode: PropTypes.string,
+    pdfAnalysisDate: PropTypes.string,
+    syllabusStartTerm: PropTypes.string,
+    roundIdList: PropTypes.string,
+    semester: PropTypes.string
+  })
+}
+
+ParseUploadedMemo.propTypes = {
+  fileInfo: PropTypes.shape({
+    courseCode: PropTypes.string,
+    courseMemoFileName: PropTypes.string,
+    ladokRoundIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    semester: PropTypes.string
+  }),
+  memoBlobUrl: PropTypes.string,
+  translate: PropTypes.shape({
+    label_memo: PropTypes.string.isRequired
+  }).isRequired,
+  userLanguageAbbr: PropTypes.oneOf(['en', 'sv']).isRequired
+}
+
+ParseWebMemoName.propTypes = {
+  courseMemo: PropTypes.shape({
+    courseCode: PropTypes.string.isRequired,
+    ladokRoundIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    memoCommonLangAbbr: PropTypes.oneOf(['en', 'sv']),
+    semester: PropTypes.string.isRequired,
+    memoName: PropTypes.string,
+    memoEndPoint: PropTypes.string
+  }).isRequired,
+  translate: PropTypes.shape({
+    label_memo: PropTypes.string.isRequired
+  }).isRequired
 }
 
 export default PdfLinksNav

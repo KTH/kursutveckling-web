@@ -45,9 +45,8 @@ async function getCourseDevInfo(req, res, next) {
     renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
     renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
 
-    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(
-      courseCode
-    )
+    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb =
+      (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
 
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {

@@ -21,6 +21,8 @@ class AdminStore {
 
   analysisData = undefined // kursutveckling-api
 
+  miniMemosPdfAndWeb = { miniMemos: [] } // kurs-pm-data-api
+
   buildApiUrl(path, params) {
     let host
     if (typeof window !== 'undefined') {
@@ -96,11 +98,7 @@ class AdminStore {
   initializeStore(storeName) {
     const store = this
 
-    if (
-      typeof window !== 'undefined' &&
-      window.__initialState__ &&
-      window.__initialState__[storeName]
-    ) {
+    if (typeof window !== 'undefined' && window.__initialState__ && window.__initialState__[storeName]) {
       const tmp = JSON.parse(decodeURIComponent(window.__initialState__[storeName]))
       for (let key in tmp) {
         store[key] = tmp[key]

@@ -154,11 +154,7 @@ const transformedAnalysisData = {
       examinationGradeFromLadok: false,
       changedAfterPublishedDate: '2019-10-09',
       syllabusStartTerm: '20102',
-      ugKeys: [
-        'SF1624.examiner',
-        'SF1624.20171.2.courseresponsible',
-        'SF1624.20171.1.courseresponsible'
-      ],
+      ugKeys: ['SF1624.examiner', 'SF1624.20171.2.courseresponsible', 'SF1624.20171.1.courseresponsible'],
       pmFileName: '',
       analysisFileName: 'analysis-SF1624VT2017_1_2.pdf',
       roundIdList: '1,2',
@@ -182,8 +178,7 @@ const transformedAnalysisData = {
       responsibles: 'Somebody Responsible',
       examiners: 'Test Person Testovich, Test2 Person2 Testovich2',
       programmeCodes: 'TCOMK',
-      analysisName:
-        'TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish )',
+      analysisName: 'TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish )',
       __v: 0
     }
   ],
@@ -266,7 +261,7 @@ const transformedAnalysisData = {
       changedAfterPublishedDate: '2019-11-12',
       syllabusStartTerm: '20192',
       ugKeys: ['SF1624.examiner', 'SF1624.20192.9.courseresponsible'],
-      pmFileName: 'pm-SF1624HT2019_9.pdf',
+      pmFileName: 'pm-SF1624HT2019_9.pdf', // old, deprecated value, must be invisible in frontend
       analysisFileName: 'analysis-SF1624HT2019_9.pdf',
       roundIdList: '9',
       semester: '20192',
