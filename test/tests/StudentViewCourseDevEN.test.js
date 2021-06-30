@@ -163,9 +163,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
     const rounds = ROUNDS
     rounds.map((roundName) =>
-      expect(
-        screen.getByLabelText(`Additional data about this course offering: ${roundName}`)
-      ).toBeInTheDocument()
+      expect(screen.getByLabelText(`Additional data about this course offering: ${roundName}`)).toBeInTheDocument()
     )
   })
 
@@ -177,9 +175,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   test('Check if aria-label is correct for Edit (for course coordinator) if it renders', async () => {
     ROUNDS.map((roundName) =>
       expect(
-        screen.getByLabelText(
-          `Change published course analysis and course data. Course rounds: ${roundName}`
-        )
+        screen.getByLabelText(`Change published course analysis and course data. Course rounds: ${roundName}`)
       ).toBeInTheDocument()
     )
   })
@@ -191,14 +187,14 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(27)
+    expect(links.length).toBe(26)
     const expectedLinks = [
       'About course SF1624',
       'Administrate About course',
       // by each round
       'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2019 - )',
-      'Course memo: 10/09/2019',
+      // 'Course memo: 10/09/2019', deprecated should not be visible
       'Course analysis: 10/09/2019',
       'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
@@ -235,7 +231,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       // by each round
       `${editLink}CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
-      'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
+      // 'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
       'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
       `${editLink}CMEDT1 ( Startdatum 2018-10-29, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
@@ -259,19 +255,18 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 08/10/2019'
     ]
-    links.map((link, index) =>
-      expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index])
-    )
+    links.map((link, index) => expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index]))
   })
 
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
+    expect(links.length).toBe(26)
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2019_9?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
-      'http://localhost/pm-SF1624HT2019_9.pdf',
+      // 'http://localhost/pm-SF1624HT2019_9.pdf',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
       'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2018_9?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en',
@@ -299,8 +294,8 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('check how behave memo link when no memo is added', async () => {
-    const memoNotAdded = screen.getAllByText('Course memo: not added')
-    expect(memoNotAdded.length).toBe(7)
+    const memoNotAdded = screen.getAllByText('No course memo added')
+    expect(memoNotAdded.length).toBe(9)
   })
 
   test('Get grade scale if it renders', async () => {

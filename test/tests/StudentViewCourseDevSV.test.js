@@ -20,36 +20,6 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const expectedLinks = [
-  'About course SF1624',
-  'Administrate About course',
-  //by each round
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2019 - )',
-  'Kurs-PM: 2019-09-10',
-  'Kursanalys: 2019-09-10',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-  'Kursanalys: 2019-09-04',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-  'Kursanalys: 2019-09-11',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-  'Kursanalys: 2019-10-09',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2009 - VT 2010 )',
-  'Kursanalys: 2019-10-08',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-  'Kursanalys: 2019-09-09',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-  'Kursanalys: 2019-09-03',
-  'Ändra (för kursansvarig)',
-  'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-  'Kursanalys: 2019-10-08'
-]
 const TEST_ALERT_SAVE = {
   location: {
     pathname: '/kursutveckling/SF1624',
@@ -196,9 +166,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
     const rounds = ROUNDS
     rounds.map((roundName, index) =>
-      expect(
-        screen.getByLabelText(`Ytterligare data om kursomgången: ${roundName}`)
-      ).toBeInTheDocument()
+      expect(screen.getByLabelText(`Ytterligare data om kursomgången: ${roundName}`)).toBeInTheDocument()
     )
   })
 
@@ -210,9 +178,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('Check if aria-label is correct for Ändra (för kursansvarig) if it renders', async () => {
     ROUNDS.map((roundName, index) =>
       expect(
-        screen.getByLabelText(
-          `Ändra publicerad kursanalys och kursdata för kursomgång: ${roundName}`
-        )
+        screen.getByLabelText(`Ändra publicerad kursanalys och kursdata för kursomgång: ${roundName}`)
       ).toBeInTheDocument()
     )
   })
@@ -224,14 +190,14 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(27)
+    expect(links.length).toBe(26)
     const expectedLinks = [
       'Om kursen SF1624',
       'Administrera Om kursen',
       //by each round
       'Ändra (för kursansvarig)',
       'Kursplan SF1624 ( HT 2019 - )',
-      'Kurs-PM: 2019-09-10',
+      // 'Kurs-PM: 2019-09-10',
       'Kursanalys: 2019-09-10',
       'Ändra (för kursansvarig)',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
@@ -268,7 +234,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       //by each round
       `${editLink}CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )`,
       'PDF Kursplan SF1624 ( HT 2019 -  )',
-      'PDF Kurs-PM CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
+      // 'PDF Kurs-PM CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
       'PDF Kursanalys CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
       `${editLink}CMEDT1 ( Startdatum 2018-10-29, Svenska )`,
       'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
@@ -292,9 +258,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
       'PDF Kursanalys CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 2019-10-08'
     ]
-    links.map((link, index) =>
-      expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index])
-    )
+    links.map((link, index) => expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index]))
   })
 
   test('Links have a correct href', async () => {
@@ -304,7 +268,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=sv',
       'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2019_9?l=sv&serv=kutv&status=p&title=Algebra%20och%20geometri_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
-      'http://localhost/pm-SF1624HT2019_9.pdf',
+      // 'http://localhost/pm-SF1624HT2019_9.pdf',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
       'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2018_9?l=sv&serv=kutv&status=p&title=Algebra%20och%20geometri_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=sv',
@@ -332,8 +296,8 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   })
 
   test('check how behave memo link when no memo is added', async () => {
-    const memoNotAdded = screen.getAllByText('Kurs-PM: ej tillagd')
-    expect(memoNotAdded.length).toBe(7)
+    const memoNotAdded = screen.getAllByText('Inget kurs-PM tillagt')
+    expect(memoNotAdded.length).toBe(9)
   })
 
   test('Get grade scale if it renders', async () => {

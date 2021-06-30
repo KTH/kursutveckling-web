@@ -22,6 +22,19 @@ async function getMiniMemosPdfAndWeb(courseCode) {
   }
 }
 
+async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
+  const { client, paths } = api.kursPmDataApi
+  const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
+
+  try {
+    const res = await client.getAsync({ uri })
+    return res.body
+  } catch (err) {
+    log.debug('getSortedAndPrioritizedMiniMemosWebOrPdf is not available', err)
+    return err
+  }
+}
+
 async function getAllMemosByCourseCodeAndType(courseCode, type) {
   const { client, paths } = api.kursPmDataApi
   const uri = client.resolve(paths.getAllMemosByCourseCodeAndType.uri, { courseCode, type })
@@ -50,17 +63,13 @@ function memoVersion(courseMemo, archiveTitles, latest) {
   const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
   const versionDate = formatVersionDate(memoCommonLangAbbr, lastChangeDate)
   const versionName = `${versionLabel} ${version} – ${versionDate}`
-  const url = `/kurs-pm/${latest ? '' : 'old/'}${courseCode}/${memoEndPoint}${
-    latest ? '' : '/' + version
-  }`
+  const url = `/kurs-pm/${latest ? '' : 'old/'}${courseCode}/${memoEndPoint}${latest ? '' : '/' + version}`
   return { name: versionName, url, latest }
 }
 
 function resolveMemoBlobUrl() {
-  const devMemoStorageUrl =
-    'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/'
-  const prodMemoStorageUrl =
-    'https://kursinfostorageprod.blob.core.windows.net/memo-blob-container/'
+  const devMemoStorageUrl = 'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/'
+  const prodMemoStorageUrl = 'https://kursinfostorageprod.blob.core.windows.net/memo-blob-container/'
   const memoStorageUrl = process.env.MEMO_STORAGE_URL
   if (memoStorageUrl) {
     return memoStorageUrl
@@ -144,5 +153,6 @@ async function getCourseMemos(courseCode, userLanguage) {
 }
 
 module.exports = {
-  getCourseMemos
+  getCourseMemos,
+  getSortedAndPrioritizedMiniMemosWebOrPdf
 }

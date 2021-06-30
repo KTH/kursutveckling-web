@@ -80,8 +80,7 @@ module.exports = {
     table_headers_with_popup: {
       examiners: {
         header: 'Examinator',
-        popoverText:
-          'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
+        popoverText: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
       },
       examRounds: {
         header: 'Examination',
@@ -131,9 +130,8 @@ module.exports = {
       page_lang: 'sv'
     },
     header_more_info: 'Ytterligare data om kursomgången',
-    link_analysis: 'Kursanalys',
-    link_pm: 'Kurs-PM',
-    no_added: 'ej tillagd',
+    link_analysis: { label_analysis: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
+    link_memo: { label_memo: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
     no_course_analys: 'Det finns inga publicerade kursanalyser och kursdata',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {
