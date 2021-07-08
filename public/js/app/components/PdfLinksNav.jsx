@@ -40,7 +40,7 @@ function resolveMemoBlobUrl() {
     return memoStorageUrl
   }
   const nodeEnv = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase()
-  if (nodeEnv === 'development' || nodeEnv === 'dev' || !nodeEnv) {
+  if (nodeEnv === 'development' || nodeEnv === 'test' || nodeEnv === 'dev' || !nodeEnv) {
     return devMemoStorageUrl
   }
   return prodMemoStorageUrl
@@ -139,10 +139,9 @@ class PdfLinksNav extends Component {
   }
 
   render() {
-    const { translate, thisAnalysisObj, lang } = this.props
+    const { translate, staticAnalysisInfo, lang } = this.props
     const { link_memo: linkMemoTexts, link_analysis: linkAnalysisTexts } = translate
     const { miniMemosPdfAndWeb } = this.props.adminStore
-    console.log('miniMemosPdfAndWeb', miniMemosPdfAndWeb)
 
     const { storageUri } = this.props.adminStore.browserConfig
     const memoStorageUrl = resolveMemoBlobUrl() //move to domain or settings
@@ -154,7 +153,7 @@ class PdfLinksNav extends Component {
       syllabusStartTerm,
       roundIdList,
       semester: analysisSemester
-    } = thisAnalysisObj
+    } = staticAnalysisInfo
 
     const analysesLadokRounds = roundIdList.split(',') || []
     const thisSemesterMemos = miniMemosPdfAndWeb[analysisSemester] || []
@@ -205,7 +204,7 @@ PdfLinksNav.propTypes = {
     link_analysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
     link_memo: PropTypes.shape({ label_memo: PropTypes.string, no_added_doc: PropTypes.string }).isRequired
   }).isRequired,
-  thisAnalysisObj: PropTypes.shape({
+  staticAnalysisInfo: PropTypes.shape({
     analysisFileName: PropTypes.string,
     analysisName: PropTypes.string,
     courseCode: PropTypes.string,

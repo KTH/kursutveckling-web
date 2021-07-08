@@ -39,11 +39,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
               {tableLabels.header_main_edit}
             </a>
           </div>
-          <PdfLinksNav
-            lang={koppsDataLang}
-            translate={tableLabels}
-            thisAnalysisObj={thisOfferingAnalysis}
-          />
+          <PdfLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
 
           <TableWithCourseData
             thisAnalysisObj={thisOfferingAnalysis}
