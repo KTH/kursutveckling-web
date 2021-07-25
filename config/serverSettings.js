@@ -20,12 +20,8 @@ const { safeGet } = require('safe-utils')
 const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
-const devKursutvecklingApi = devDefaults(
-  'http://localhost:3001/api/kursutveckling?defaultTimeout=10000'
-) // required=true&
-const devKoppsApi = devDefaults(
-  'https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000'
-) // required=true&
+const devKursutvecklingApi = devDefaults('http://localhost:3001/api/kursutveckling?defaultTimeout=10000') // required=true&
+const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000') // required=true&
 const devKursPmDataApi = devDefaults('http://localhost:3002/api/kurs-pm-data?defaultTimeout=10000')
 const devSessionKey = devDefaults('kursutveckling-web.sid')
 const devSessionUseRedis = devDefaults(true)
@@ -93,7 +89,9 @@ module.exports = {
     sessionOptions: {
       // do not set session secret here!!
       cookie: {
-        secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true')
+        secure: String(getEnv('SESSION_SECURE_COOKIE', false)).toLowerCase() === 'true',
+        path: getEnv('SERVICE_PUBLISH', '/kursutveckling'),
+        sameSite: getEnv('SESSION_SAME_SITE_COOKIE', 'Lax')
       },
       proxy: safeGet(() => getEnv('SESSION_TRUST_PROXY', true) === 'true')
     },
