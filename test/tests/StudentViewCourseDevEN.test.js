@@ -167,54 +167,28 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     )
   })
 
-  test('Get Edit (for course coordinator) if it renders', async () => {
-    const extraInfo = getAllByText('Edit (for course coordinator)')
-    expect(extraInfo.length).toBe(8)
-  })
-
-  test('Check if aria-label is correct for Edit (for course coordinator) if it renders', async () => {
-    ROUNDS.map((roundName) =>
-      expect(
-        screen.getByLabelText(`Change published course analysis and course data. Course rounds: ${roundName}`)
-      ).toBeInTheDocument()
-    )
-  })
-
-  test('Get Edit (for course coordinator) if it renders', async () => {
-    const extraInfo = getAllByText('Edit (for course coordinator)')
-    expect(extraInfo.length).toBe(8)
-  })
-
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(26)
+    expect(links.length).toBe(18)
     const expectedLinks = [
       'About course SF1624',
       'Administrate About course',
       // by each round
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       // 'Course memo: 10/09/2019', deprecated should not be visible
       'Course analysis: 10/09/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 04/09/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 11/09/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'Course analysis: 09/10/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
       'Course analysis: 08/10/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 09/09/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 03/09/2019',
-      'Edit (for course coordinator)',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'Course analysis: 08/10/2019'
     ]
@@ -229,29 +203,21 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       null,
       null,
       // by each round
-      `${editLink}CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       // 'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
       'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
-      `${editLink}CMEDT1 ( Startdatum 2018-10-29, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'PDF Course analysis CMEDT1 ( Startdatum 2018-10-29, Svenska ): 04/09/2019',
-      `${editLink}CITEH1 ( Startdatum 2018-10-29, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'PDF Course analysis CITEH1 ( Startdatum 2018-10-29, Svenska ): 11/09/2019',
-      `${editLink}TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish )`,
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'PDF Course analysis TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 09/10/2019',
-      `${editLink}CMETE CSAMH ( Startdatum 2010-01-11, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
       'PDF Course analysis CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 08/10/2019',
-      `${editLink}CSAMH1 ( Startdatum 2009-01-12, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'PDF Course analysis CSAMH1 ( Startdatum 2009-01-12, Svenska ): 09/09/2019',
-      `${editLink}Med teknik ( Startdatum 2008-08-29, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'PDF Course analysis Med teknik ( Startdatum 2008-08-29, Svenska ): 03/09/2019',
-      `${editLink}CINTE CMIEL ( Startdatum 2008-08-29, Svenska )`,
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 08/10/2019'
     ]
@@ -260,33 +226,25 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
-    expect(links.length).toBe(26)
+    expect(links.length).toBe(18)
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2019_9?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       // 'http://localhost/pm-SF1624HT2019_9.pdf',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2018_9?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en',
       'http://localhost/analysis-SF1624HT2018_9.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2018_6?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en',
       'http://localhost/analysis-SF1624HT2018_6.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624VT2017_1_2?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en',
       'http://localhost/analysis-SF1624VT2017_1_2.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624VT2010_1?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20092.pdf?lang=en',
       'http://localhost/analysis-SF1624VT2010_1.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624VT2009_1?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20082.pdf?lang=en',
       'http://localhost/analysis-SF1624VT2009_1.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2008_5?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20082.pdf?lang=en',
       'http://localhost/analysis-SF1624HT2008_5.pdf',
-      'http://localhost/kursinfoadmin/kursutveckling/SF1624HT2008_1?l=en&serv=kutv&status=p&title=Algebra%20and%20Geometry_7.5',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20082.pdf?lang=en',
       'http://localhost/analysis-SF1624HT2008_1.pdf'
     ]

@@ -74,10 +74,8 @@ module.exports = {
   },
   tableHeaders: {
     info_manually_edited: '* Course data has been registered manually',
-    header_main_edit: 'Edit (for course coordinator)',
     header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
     aria_label_close_icon: 'Close',
-    aria_label_header_main_edit: 'Change published course analysis and course data. Course rounds:',
     aria_label_info_icon: 'More information',
     table_headers_with_popup: {
       examiners: {
