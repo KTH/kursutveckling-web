@@ -93,7 +93,7 @@ function ParseWebMemoName({ courseMemo, translate }) {
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`${memoNameWithCourseOfferings}`}
-      href={`kurs-pm/${courseCode}/${memoEndPoint}`}
+      href={`/kurs-pm/${courseCode}/${memoEndPoint}`}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
     />
