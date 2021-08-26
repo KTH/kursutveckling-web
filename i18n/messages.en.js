@@ -147,18 +147,6 @@ module.exports = {
     info_text:
       'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
     label_syllabus_link: 'Course syllabus',
-    alertMessages: {
-      kopps_api_down: 'Failed to get data from KOPPS or course code has been entered incorrectly',
-      kutv: {
-        save: 'Draft for course analysis and course data has been saved',
-        s_msg: 'You can find saved drafts under Course analysis and course data / Publish new',
-        pub: 'Course analysis and course data have been published',
-        delete: 'Draft for course analysis and course data has been removed'
-      },
-      see_more: 'Look at',
-      term: 'Term',
-      course_round: 'Course round'
-    },
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
