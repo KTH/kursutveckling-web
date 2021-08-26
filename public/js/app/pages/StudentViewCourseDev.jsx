@@ -8,7 +8,6 @@ import i18n from '../../../../i18n'
 
 import PageTitle from '../components/PageTitle'
 import ListYears from '../components/ListYears'
-import AlertMsg from '../components/AlertMsg'
 import { COURSE_INFO_URL } from '../util/constants'
 
 const IntroText = ({ translate, userLang }) => {
@@ -70,7 +69,6 @@ class StudentViewCourseDev extends Component {
           pageTitle={pageTitles.course_dev_title}
           translate={pageTitles}
         />
-        <AlertMsg props={this.props} userLang={userLang} translate={pageTitles} />
         <IntroText id="intro-text" key="intro-text" translate={pageTitles} userLang={userLang} />
         <ListYears
           key="list-of-course-data-for-several-years"

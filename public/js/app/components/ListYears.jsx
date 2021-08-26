@@ -1,12 +1,10 @@
 import React from 'react'
-import { KUTV_ADMIN_URL } from '../util/constants'
 import Details from './Details'
 import PdfLinksNav from './PdfLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 
 const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
   const { courseCode, koppsDataLang } = koppsData
-  const linkToCreateNew = `${KUTV_ADMIN_URL}${courseCode}?l=${koppsDataLang}&status=n&serv=kutv`
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>

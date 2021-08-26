@@ -19,15 +19,6 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const TEST_ALERT_SAVE = {
-  location: {
-    pathname: '/kursutveckling/SF1624',
-    search:
-      '?serv=kutv&event=save&id=SF1624HT2019_9&term=20192&name=CMATD1%20m.fl.%20(%20Startdatum%202019-10-28,%20Svenska%20)',
-    hash: '',
-    state: undefined
-  }
-}
 const CourseDevelopment = ({ userLang = 'en', ...rest }) => {
   return (
     <StaticRouter>
@@ -40,7 +31,7 @@ const CourseDevelopment = ({ userLang = 'en', ...rest }) => {
 
 describe('User language: English. Component <StudentViewCourseDev>', () => {
   beforeEach(() => {
-    render(<CourseDevelopment userLang="en" location={TEST_ALERT_SAVE.location} />)
+    render(<CourseDevelopment userLang="en" />)
   })
   test('renders a course development page', (done) => {
     done()
@@ -70,9 +61,8 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('renders all h4 for Alert and each round Additional information headers.', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(46)
+    expect(allH4Headers.length).toBe(45)
     const expectedhds = [
-      'Draft for course analysis and course data has been saved',
       // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
       'Examination comments',
       'Compulsory within programme',
