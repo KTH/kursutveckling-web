@@ -35,7 +35,7 @@ class ControlledPopover extends Component {
   }
 
   toggle() {
-    this.setState(state => ({ popoverOpen: !state.popoverOpen }))
+    this.setState((state) => ({ popoverOpen: !state.popoverOpen }))
   }
 
   render() {
@@ -45,9 +45,7 @@ class ControlledPopover extends Component {
     const dialogHeaderId = `${popType}-dialog-header-${cellId}`
     const dialogBodyId = `${popType}-dialog-header-${cellId}`
     const tableLang = i18n.isSwedish() ? 1 : 0
-    const { aria_label_info_icon: ariaLabel, aria_label_close_icon: closeAria } = i18n.messages[
-      tableLang
-    ].tableHeaders
+    const { aria_label_info_icon: ariaLabel, aria_label_close_icon: closeAria } = i18n.messages[tableLang].tableHeaders
 
     return (
       <span role="dialog" aria-labelledby={dialogHeaderId} aria-describedby={dialogBodyId}>
@@ -79,7 +77,7 @@ class ControlledPopover extends Component {
         >
           <PopoverHeader id={dialogHeaderId}>
             {header}{' '}
-            <Button className="close" onClick={this.toggle} aria-label={closeAria}>
+            <Button style={{ minHeight: '.75rem' }} className="close" onClick={this.toggle} aria-label={closeAria}>
               &times;
             </Button>
           </PopoverHeader>
