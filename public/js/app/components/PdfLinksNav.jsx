@@ -81,7 +81,7 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
   )
 }
 
-function ParseWebMemoName({ courseMemo, translate }) {
+function ParseWebMemoName({ courseMemo, hostUrl, translate }) {
   const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester, memoName: courseOffering, memoEndPoint } = courseMemo
 
   if (!ladokRoundIds) return null
@@ -93,7 +93,7 @@ function ParseWebMemoName({ courseMemo, translate }) {
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`${memoNameWithCourseOfferings}`}
-      href={`/kurs-pm/${courseCode}/${memoEndPoint}`}
+      href={`${hostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
     />
@@ -143,7 +143,7 @@ class PdfLinksNav extends Component {
     const { link_memo: linkMemoTexts, link_analysis: linkAnalysisTexts } = translate
     const { miniMemosPdfAndWeb } = this.props.adminStore
 
-    const { storageUri } = this.props.adminStore.browserConfig
+    const { storageUri, hostUrl } = this.props.adminStore.browserConfig
     const memoStorageUrl = resolveMemoBlobUrl() //move to domain or settings
     const {
       analysisFileName,
@@ -180,7 +180,7 @@ class PdfLinksNav extends Component {
                 translate={linkMemoTexts}
               />
             ) : (
-              <ParseWebMemoName courseMemo={memoInfo} key={index} translate={linkMemoTexts} />
+              <ParseWebMemoName hostUrl={hostUrl} courseMemo={memoInfo} key={index} translate={linkMemoTexts} />
             )
           })}
         </span>
