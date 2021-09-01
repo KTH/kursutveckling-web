@@ -47,7 +47,7 @@ function resolveMemoBlobUrl() {
 }
 
 function parseCourseOffering(ladokRoundIds, rawSemester, langAbbr) {
-  const languageIndex = langAbbr === 'en' ? 0 : 1
+  const languageIndex = typeof langAbbr === 'string' ? (langAbbr === 'en' ? 0 : 1) : lang
   const { archiveTitles: memoTitles } = i18n.messages[languageIndex].messages
 
   const { label_memo: memoLabel, course_short_semester: shortSemLabels } = memoTitles
@@ -81,8 +81,8 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
   )
 }
 
-function ParseWebMemoName({ courseMemo, hostUrl, translate }) {
-  const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester, memoName: courseOffering, memoEndPoint } = courseMemo
+function ParseWebMemoName({ courseMemo, memoHref, translate }) {
+  const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester, memoName: courseOffering } = courseMemo
 
   if (!ladokRoundIds) return null
   const courseOfferingName = parseCourseOffering(ladokRoundIds, semester, memoCommonLangAbbr)
@@ -93,7 +93,7 @@ function ParseWebMemoName({ courseMemo, hostUrl, translate }) {
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`${memoNameWithCourseOfferings}`}
-      href={`${hostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
+      href={memoHref}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
     />
@@ -111,29 +111,30 @@ class PdfLinksNav extends Component {
 
   getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
     const unfilteredRoundsMissingMemos = []
-    const resultMissingMemos = []
-    const existingMemos =
-      analysesLadokRounds
-        .filter((analysesRoundId) => {
-          const roundhasMemo = !!thisSemesterMemos[analysesRoundId]
-          if (!roundhasMemo) {
-            unfilteredRoundsMissingMemos.push(analysesRoundId)
-            return false
-          }
-          return true
-        })
-        .map((analysesRoundId) => {
-          const thisRoundMemo = thisSemesterMemos[analysesRoundId]
-          const { courseMemoFileName, memoEndPoint, isPdf } = thisRoundMemo
-          const memoUniqueId = isPdf ? courseMemoFileName : memoEndPoint
-          return {
-            [memoUniqueId ? memoUniqueId : 'noName']: thisRoundMemo
-          }
-        }) || []
-    // if (unfilteredRoundsMissingMemos.length === analysesLadokRounds.length)
-    //   // no memos at all, instead of showing empty message several times, show it once
-    //   resultMissingMemos = unfilteredRoundsMissingMemos.slice(0, 1)
-    // else resultMissingMemos = unfilteredRoundsMissingMemos
+    const tmpMemoNames = {}
+    // move rounds without a memo to a separate array
+    const roundsWithMemo = analysesLadokRounds.filter((analysesRoundId) => {
+      const hasMemo = !!thisSemesterMemos[analysesRoundId]
+      if (!hasMemo) {
+        unfilteredRoundsMissingMemos.push(analysesRoundId)
+        return false
+      }
+      return true
+    })
+    // check for duplicates and mark it
+    const existingMemosAndDuplicates =
+      roundsWithMemo.map((analysesRoundId) => {
+        const thisRoundMemo = thisSemesterMemos[analysesRoundId]
+        const { courseMemoFileName, memoEndPoint, isPdf } = thisRoundMemo
+        const memoUniqueId = isPdf ? courseMemoFileName : memoEndPoint
+        const uid = memoUniqueId ? memoUniqueId : 'noName'
+        if (!tmpMemoNames[uid]) {
+          tmpMemoNames[uid] = 'has_memo'
+          return thisRoundMemo
+        } else return 'duplicate'
+      }) || []
+
+    const existingMemos = existingMemosAndDuplicates.filter((memoInfo) => memoInfo !== 'duplicate') || []
 
     return [unfilteredRoundsMissingMemos, existingMemos]
   }
@@ -167,9 +168,8 @@ class PdfLinksNav extends Component {
             const title = `${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`
             return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemoTexts} />
           })}
-          {existingMemos.map((memo, index) => {
-            const memoInfo = Object.values(memo)[0]
-            const { isPdf } = memoInfo
+          {existingMemos.map((memoInfo, index) => {
+            const { isPdf, courseCode, memoEndPoint } = memoInfo
             return isPdf ? (
               <ParseUploadedMemo
                 key={index}
@@ -180,7 +180,12 @@ class PdfLinksNav extends Component {
                 translate={linkMemoTexts}
               />
             ) : (
-              <ParseWebMemoName hostUrl={hostUrl} courseMemo={memoInfo} key={index} translate={linkMemoTexts} />
+              <ParseWebMemoName
+                memoHref={`${hostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
+                courseMemo={memoInfo}
+                key={index}
+                translate={linkMemoTexts}
+              />
             )
           })}
         </span>
