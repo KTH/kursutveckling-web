@@ -158,7 +158,7 @@ describe('User language: English. Component <PdfLinksNav>: two ladok round ids, 
     )
 
     expect(links[2]).toHaveTextContent('Course memo EI1220 Autumn 2019-3')
-    expect(links[2].href).toStrictEqual('http://localhost/kurs-pm/EI1220/memoEI1220201923')
+    expect(links[2].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
 
     expect(links[3]).toHaveTextContent('Course analysis: 05/09/2019')
     expect(links[3].href).toStrictEqual(
@@ -179,7 +179,7 @@ describe('User language: English. Component <PdfLinksNav>: two ladok round ids, 
     expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=en')
 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2019-3')
-    expect(links[1].href).toStrictEqual('http://localhost/kurs-pm/EI1220/memoEI1220201923')
+    expect(links[1].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
 
     expect(links[2]).toHaveTextContent('Course analysis: 05/09/2019')
     expect(links[2].href).toStrictEqual(
@@ -205,7 +205,7 @@ describe('User language: Swedish. Component <PdfLinksNav>: two ladok round ids, 
     expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=sv')
 
     expect(links[1]).toHaveTextContent('Kurs-PM EI1220 Autumn 2019-3')
-    expect(links[1].href).toStrictEqual('http://localhost/kurs-pm/EI1220/memoEI1220201923')
+    expect(links[1].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
     expect(links[2]).toHaveTextContent('Kursanalys: 2019-09-05')
     expect(links[2].href).toStrictEqual(
       'https://kursinfostoragestage/kursutveckling-blob-container/analysis-EI1220HT2017_1.pdf'
