@@ -46,8 +46,8 @@ function resolveMemoBlobUrl() {
   return prodMemoStorageUrl
 }
 
-function parseCourseOffering(ladokRoundIds, rawSemester, langAbbr) {
-  const languageIndex = typeof langAbbr === 'string' ? (langAbbr === 'en' ? 0 : 1) : langAbbr
+function parseCourseOffering(ladokRoundIds, rawSemester, lang = 'sv') {
+  const languageIndex = typeof lang === 'string' ? (lang === 'en' ? 0 : 1) : lang
   const { archiveTitles: memoTitles } = i18n.messages[languageIndex].messages
 
   const { label_memo: memoLabel, course_short_semester: shortSemLabels } = memoTitles
