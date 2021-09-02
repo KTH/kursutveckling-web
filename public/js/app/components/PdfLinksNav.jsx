@@ -145,6 +145,8 @@ class PdfLinksNav extends Component {
     const { miniMemosPdfAndWeb } = this.props.adminStore
 
     const { storageUri, hostUrl } = this.props.adminStore.browserConfig
+    const cleanHostUrl = hostUrl.slice(-1) === '/' ? hostUrl.slice(0, -1) : hostUrl
+
     const memoStorageUrl = resolveMemoBlobUrl() //move to domain or settings
     const {
       analysisFileName,
@@ -181,7 +183,7 @@ class PdfLinksNav extends Component {
               />
             ) : (
               <ParseWebMemoName
-                memoHref={`${hostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
+                memoHref={`${cleanHostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
                 courseMemo={memoInfo}
                 key={index}
                 translate={linkMemoTexts}
