@@ -29,6 +29,7 @@ const mockRouterStore = (userLang = 'en') => {
       port: 3000,
       proxyPrefixPath: { uri: '/kursinfoadmin/kursutveckling' },
       storageUri: 'https://kursinfostoragestage/kursutveckling-blob-container/',
+      memoStorageUri: 'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/',
       useSsl: false
     }
   }
