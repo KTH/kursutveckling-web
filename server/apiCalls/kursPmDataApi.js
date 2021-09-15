@@ -31,7 +31,7 @@ async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
     return res.body
   } catch (err) {
     log.debug('getSortedAndPrioritizedMiniMemosWebOrPdf is not available', err)
-    return err
+    return []
   }
 }
 
