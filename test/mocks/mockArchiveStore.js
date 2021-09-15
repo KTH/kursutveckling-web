@@ -7,7 +7,7 @@ const mockArchiveStore = (mockData) => {
   const storeWithData = {
     ...realArchiveStore,
     analysisData: transformedAnalysisData,
-    browserConfig: { storageUri: '' },
+    browserConfig: { storageUri: '', hostUrl: '' },
     ...mockData
   }
 

@@ -9,7 +9,7 @@ const mockAdminStore = (userLang = 'en') => {
     ...realAdminStore,
     courseKoppsData: transformedKoppsData(userLang),
     analysisData: transformedAnalysisData,
-    browserConfig: { storageUri: '' },
+    browserConfig: { storageUri: '', hostUrl: '' },
     miniMemosPdfAndWeb: { courseCode: 'SF1624', miniMemos: {} }
   }
 

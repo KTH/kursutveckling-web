@@ -140,7 +140,7 @@ class PdfLinksNav extends Component {
     const { link_memo: linkMemoTexts, link_analysis: linkAnalysisTexts } = translate
     const { miniMemosPdfAndWeb } = this.props.adminStore
 
-    const { storageUri, hostUrl, memoStorageUri } = this.props.adminStore.browserConfig
+    const { storageUri, memoStorageUri, hostUrl } = this.props.adminStore.browserConfig
     const cleanHostUrl = hostUrl.slice(-1) === '/' ? hostUrl.slice(0, -1) : hostUrl
 
     const {
