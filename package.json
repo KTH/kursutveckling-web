@@ -28,7 +28,7 @@
   "dependencies": {
     "@kth/kth-kip-style-react-components": "^0.1.2",
     "applicationinsights": "^1.8.10",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "component-registry": "^1.3.1",
     "compression": "^1.7.3",
