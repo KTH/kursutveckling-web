@@ -126,10 +126,12 @@ class PdfLinksNav extends Component {
 
     // update original memos with ladok round id from a duplicate memo
     duplicates.forEach(({ uid, analysesRoundId, isPdf }) => {
-      const index = uniqueMemos.findIndex(({ isPdf, courseMemoFileName = 'noName', memoEndPoint = 'noName' }) =>
-        isPdf ? courseMemoFileName === uid : memoEndPoint === uid
-      )
-      uniqueMemos[index].ladokRoundIds.push(analysesRoundId)
+      if (isPdf) {
+        const index = uniqueMemos.findIndex(({ isPdf, courseMemoFileName = 'noName', memoEndPoint = 'noName' }) =>
+          isPdf ? courseMemoFileName === uid : memoEndPoint === uid
+        )
+        uniqueMemos[index].ladokRoundIds.push(analysesRoundId)
+      }
     })
 
     return [unfilteredRoundsMissingMemos, uniqueMemos]
