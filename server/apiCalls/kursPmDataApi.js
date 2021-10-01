@@ -132,18 +132,18 @@ async function getCourseMemos(courseCode, userLanguage) {
 
   const allOldMemos = await getAllMemosByCourseCodeAndType(courseCode, 'old')
 
-  const publicMemos = await getMiniMemosPdfAndWeb(courseCode)
+  const publicMemos = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
   Object.keys(publicMemos).forEach((semester) => {
     const semesterMemos = publicMemos[semester]
+    const removedRoundKeysMemos = Object.keys(semesterMemos).map((roundid) => semesterMemos[roundid])
     const oldMemos = allOldMemos.filter((o) => o.semester === semester)
-    semesterMemos.forEach((m) => {
+    removedRoundKeysMemos.forEach((m) => {
       const courseMemo = m.isPdf
         ? parseUploadedMemo(m, memoBlobUrl, userLanguage)
         : parsePublishedMemo(
             m,
             oldMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
           )
-      console.log('courseMemo', courseMemo)
       courseMemos.push(courseMemo)
     })
   })
