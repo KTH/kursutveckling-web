@@ -1,17 +1,17 @@
 import React from 'react'
 
 const row = (translation, courseCode, language, courseMemo) => {
-  const { courseOffering, isPdf, memoName, memoVersions } = courseMemo
+  const { courseOffering, isPdf, memoName, memoVersionsAndUrls } = courseMemo
   return (
     <tr key={courseOffering}>
       <td>{courseOffering}</td>
       <td>
         <ul className="link-list">
           {memoName && <li key={memoName}>{memoName + ':'}</li>}
-          {memoVersions.map((v) => (
+          {memoVersionsAndUrls.map((v) => (
             <li key={v.name}>
               <a
-                aria-label={isPdf ? `PDF ${v.label}` : `${v.label}`}
+                aria-label={isPdf ? `PDF ${memoName}` : `${v.name}`}
                 href={v.url}
                 target={isPdf ? '_blank' : null}
                 rel={isPdf ? 'noreferrer' : null}
@@ -40,9 +40,7 @@ const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
               <th scope="col">{translation.label_memo}</th>
             </tr>
           </thead>
-          <tbody>
-            {courseMemos.map((courseMemo) => row(translation, courseCode, language, courseMemo))}
-          </tbody>
+          <tbody>{courseMemos.map((courseMemo) => row(translation, courseCode, language, courseMemo))}</tbody>
         </table>
       ) : (
         <p className="inline-information">{translation.no_memos}</p>

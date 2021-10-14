@@ -9,7 +9,7 @@ const filteredKoppsData = require('../apiCalls/koppsApi')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const { getCourseMemos } = require('../apiCalls/kursPmDataApi')
+const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
 
 const serverPaths = require('../server').getPaths()
 
@@ -46,7 +46,7 @@ async function _getContent(req, res, next) {
     archiveStore.courseCode = courseCode
     archiveStore.userLang = lang
     archiveStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    archiveStore.courseMemos = await getCourseMemos(courseCode, lang)
+    archiveStore.courseMemos = await getCourseMemosVersions(courseCode, lang)
     archiveStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
 
     const html = ReactDOMServer.renderToString(renderProps)

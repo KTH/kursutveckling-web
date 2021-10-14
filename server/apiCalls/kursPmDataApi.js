@@ -9,26 +9,14 @@ const api = require('../api')
 
 const locales = { sv, en }
 
-async function getMiniMemosPdfAndWeb(courseCode) {
-  const { client, paths } = api.kursPmDataApi
-  const uri = client.resolve(paths.getPdfAndWebMemosListByCourseCode.uri, { courseCode })
-
-  try {
-    const res = await client.getAsync({ uri })
-    return res.body
-  } catch (err) {
-    log.debug('getMiniMemosPdfAndWeb is not available', err)
-    return err
-  }
-}
-
 async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
   const { client, paths } = api.kursPmDataApi
   const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
 
   try {
-    const res = await client.getAsync({ uri })
-    return res.body
+    const { body } = await client.getAsync({ uri })
+    if (!body) log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
+    return body || []
   } catch (err) {
     log.debug('getSortedAndPrioritizedMiniMemosWebOrPdf is not available', err)
     return []
@@ -40,8 +28,10 @@ async function getAllMemosByCourseCodeAndType(courseCode, type) {
   const uri = client.resolve(paths.getAllMemosByCourseCodeAndType.uri, { courseCode, type })
 
   try {
-    const res = await client.getAsync({ uri })
-    return res.body
+    const { body } = await client.getAsync({ uri })
+    if (!body) log.debug('kurs-pm-data-api is not available at the moment in getAllMemosByCourseCodeAndType ')
+
+    return body
   } catch (err) {
     log.debug('getAllMemosByCourseCodeAndType is not available', err)
     return err
@@ -57,12 +47,22 @@ function formatVersionDate(language = 'sv', date) {
   }
   return null
 }
+function getLanguageIndex(languageAbbr) {
+  return languageAbbr === 'en' ? 0 : 1
+}
 
-function memoVersion(courseMemo, archiveTitles, latest) {
-  const versionLabel = archiveTitles.label_version
-  const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
-  const versionDate = formatVersionDate(memoCommonLangAbbr, lastChangeDate)
+function formatVersionName(version, languageAbbr, date) {
+  const languageIndex = getLanguageIndex(languageAbbr)
+  const { archiveTitles } = i18n.messages[languageIndex].messages
+  const { label_version: versionLabel } = archiveTitles
+  const versionDate = formatVersionDate(languageAbbr, date)
   const versionName = `${versionLabel} ${version} – ${versionDate}`
+  return versionName
+}
+
+function memoWebBasedVersionsUrls(courseMemo, languageIndex, latest) {
+  const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
+  const versionName = formatVersionName(version, memoCommonLangAbbr, lastChangeDate)
   const url = `/kurs-pm/${latest ? '' : 'old/'}${courseCode}/${memoEndPoint}${latest ? '' : '/' + version}`
   return { name: versionName, url, latest }
 }
@@ -81,68 +81,80 @@ function resolveMemoBlobUrl() {
   return prodMemoStorageUrl
 }
 
-function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguage) {
-  const translations = i18n.messages
-  const languageIndex = userLanguage === 'en' ? 0 : 1
-  const { archiveTitles } = translations[languageIndex].messages
+function parseMemoNameAndOfferings(courseMemo, languageIndex) {
+  const {
+    courseCode,
+    ladokRoundIds,
+    semester: memoYearAndSeason,
+    // web-based memo props
+    memoName: initialMemoName
+  } = courseMemo
 
-  const semester = archiveTitles.course_short_semester[courseMemo.semester.slice(-1)]
-  const year = courseMemo.semester.slice(0, 4)
-  const offeringIds = courseMemo.ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
+  const { archiveTitles } = i18n.messages[languageIndex].messages
+  const { label_memo: memoLabel, course_short_semester: semesterLabel } = archiveTitles
 
-  const courseOffering = `${semester} ${year}${offeringIds}`
+  const semester = semesterLabel[memoYearAndSeason.slice(-1)]
+  const year = memoYearAndSeason.slice(0, 4)
+  const offeringIds = ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
 
-  const memoLabel = archiveTitles.label_memo
-  const { courseCode } = courseMemo
-  const memoFileName = courseMemo.courseMemoFileName
+  const courseOffering = initialMemoName ? initialMemoName : `${semester} ${year}${offeringIds}`
+  const memoName = `${memoLabel} ${courseCode} ${semester} ${year}${offeringIds}`
 
-  const name = `${memoLabel} ${courseCode} ${semester} ${year}${offeringIds}`
-  const url = `${memoBlobUrl}${memoFileName}`
-  const memoVersions = [{ name, url }]
-
-  return { isPdf: true, courseOffering, memoVersions }
+  return { memoName, courseOffering }
 }
+const FIRST_VERSION = 1
 
-function parsePublishedMemo(courseMemo, oldMemos) {
-  const translations = i18n.messages
-  const languageIndex = courseMemo.memoCommonLangAbbr === 'en' ? 0 : 1
-  const { archiveTitles } = translations[languageIndex].messages
+function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
+  const { courseCode, courseMemoFileName: lastestMemoFileName, isPdf, pdfMemoUploadDate, previousFileList } = courseMemo
+  const languageIndex = getLanguageIndex(userLanguageAbbr)
 
-  const memoLabel = archiveTitles.label_memo
-  const semester = archiveTitles.course_short_semester[courseMemo.semester.slice(-1)]
-  const year = courseMemo.semester.slice(0, 4)
-  const offeringIds = courseMemo.ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
+  const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
+  const latestVersionNumber = previousFileList ? previousFileList.length + 1 : FIRST_VERSION
 
-  const courseOffering = courseMemo.memoName
-  const memoName = `${memoLabel} ${courseMemo.courseCode} ${semester} ${year}${offeringIds}`
+  const latestMemo = { courseMemoFileName: lastestMemoFileName, version: latestVersionNumber, pdfMemoUploadDate }
 
-  const memoVersions = oldMemos.map((o) => {
-    return memoVersion(o, archiveTitles)
+  const allVersionsAndUrls = [latestMemo, ...previousFileList].map((memo, index) => {
+    const versionName = formatVersionName(memo.version, userLanguageAbbr, memo.pdfMemoUploadDate)
+    const url = `${memoBlobUrl}${memo.courseMemoFileName}`
+    return { name: versionName, url, latest: index === 0 }
   })
-  const latestMemoVersion = memoVersion(courseMemo, archiveTitles, true)
-  memoVersions.push(latestMemoVersion)
-  memoVersions.reverse()
 
-  return { memoName, isPdf: false, courseOffering, memoVersions }
+  return { courseOffering, isPdf, memoName, memoVersionsAndUrls: allVersionsAndUrls }
 }
 
-async function getCourseMemos(courseCode, userLanguage) {
+function parseWebBasedMemo(courseMemo, oldWebMemos) {
+  const { courseCode, ladokRoundIds, memoCommonLangAbbr, isPdf } = courseMemo
+  const languageIndex = getLanguageIndex(memoCommonLangAbbr)
+
+  const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
+
+  const memoVersionsAndUrls = oldWebMemos.map((o) => {
+    return memoWebBasedVersionsUrls(o, languageIndex)
+  })
+  const latestMemoVersionAndUrl = memoWebBasedVersionsUrls(courseMemo, languageIndex, true)
+  memoVersionsAndUrls.push(latestMemoVersionAndUrl)
+  memoVersionsAndUrls.reverse()
+
+  return { courseOffering, isPdf, memoName, memoVersionsAndUrls }
+}
+
+async function getCourseMemosVersions(courseCode, userLanguage) {
   const courseMemos = []
   const memoBlobUrl = resolveMemoBlobUrl()
 
-  const allOldMemos = await getAllMemosByCourseCodeAndType(courseCode, 'old')
+  const allOldWebBasedMemos = await getAllMemosByCourseCodeAndType(courseCode, 'old')
 
   const publicMemos = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
   Object.keys(publicMemos).forEach((semester) => {
     const semesterMemos = publicMemos[semester]
     const removedRoundKeysMemos = Object.keys(semesterMemos).map((roundid) => semesterMemos[roundid])
-    const oldMemos = allOldMemos.filter((o) => o.semester === semester)
+    const oldWebMemos = allOldWebBasedMemos.filter((o) => o.semester === semester)
     removedRoundKeysMemos.forEach((m) => {
       const courseMemo = m.isPdf
         ? parseUploadedMemo(m, memoBlobUrl, userLanguage)
-        : parsePublishedMemo(
+        : parseWebBasedMemo(
             m,
-            oldMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
+            oldWebMemos.filter((o) => o.memoEndPoint === m.memoEndPoint)
           )
       courseMemos.push(courseMemo)
     })
@@ -153,6 +165,6 @@ async function getCourseMemos(courseCode, userLanguage) {
 }
 
 module.exports = {
-  getCourseMemos,
+  getCourseMemosVersions,
   getSortedAndPrioritizedMiniMemosWebOrPdf
 }
