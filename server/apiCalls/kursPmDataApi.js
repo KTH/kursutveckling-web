@@ -105,16 +105,16 @@ function parseMemoNameAndOfferings(courseMemo, languageIndex) {
 const FIRST_VERSION = 1
 
 function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
-  const { courseCode, courseMemoFileName: lastestMemoFileName, isPdf, pdfMemoUploadDate, previousFileList } = courseMemo
+  const { courseCode, courseMemoFileName: lastestMemoFileName, isPdf, lastChangeDate, previousFileList } = courseMemo
   const languageIndex = getLanguageIndex(userLanguageAbbr)
 
   const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
   const latestVersionNumber = previousFileList ? previousFileList.length + 1 : FIRST_VERSION
 
-  const latestMemo = { courseMemoFileName: lastestMemoFileName, version: latestVersionNumber, pdfMemoUploadDate }
+  const latestMemo = { courseMemoFileName: lastestMemoFileName, version: latestVersionNumber, lastChangeDate }
 
   const allVersionsAndUrls = [latestMemo, ...previousFileList].map((memo, index) => {
-    const versionName = formatVersionName(memo.version, userLanguageAbbr, memo.pdfMemoUploadDate)
+    const versionName = formatVersionName(memo.version, userLanguageAbbr, memo.lastChangeDate)
     const url = `${memoBlobUrl}${memo.courseMemoFileName}`
     return { name: versionName, url, latest: index === 0 }
   })
