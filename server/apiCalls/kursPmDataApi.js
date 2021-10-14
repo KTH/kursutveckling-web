@@ -51,20 +51,23 @@ function getLanguageIndex(languageAbbr) {
   return languageAbbr === 'en' ? 0 : 1
 }
 
-function formatVersionName(version, languageAbbr, date) {
+function formatVersionName(memoName, versionNumber, languageAbbr, date) {
   const languageIndex = getLanguageIndex(languageAbbr)
   const { archiveTitles } = i18n.messages[languageIndex].messages
   const { label_version: versionLabel } = archiveTitles
   const versionDate = formatVersionDate(languageAbbr, date)
-  const versionName = `${versionLabel} ${version} – ${versionDate}`
-  return versionName
+  const versionNumberLabel = `${versionLabel} ${versionNumber}`
+  const versionName = `${versionNumberLabel} – ${versionDate}`
+  const versionAriaName = `${versionNumberLabel} ${memoName} ${versionDate}`
+
+  return { versionAriaName, versionName }
 }
 
-function memoWebBasedVersionsUrls(courseMemo, languageIndex, latest) {
+function memoWebBasedVersionsUrls(memoName, courseMemo, languageIndex, latest) {
   const { courseCode, version, lastChangeDate, memoEndPoint, memoCommonLangAbbr } = courseMemo
-  const versionName = formatVersionName(version, memoCommonLangAbbr, lastChangeDate)
+  const { versionAriaName, versionName } = formatVersionName(memoName, version, memoCommonLangAbbr, lastChangeDate)
   const url = `/kurs-pm/${latest ? '' : 'old/'}${courseCode}/${memoEndPoint}${latest ? '' : '/' + version}`
-  return { name: versionName, url, latest }
+  return { ariaLabel: versionAriaName, lastChangeDate, name: versionName, url, latest }
 }
 
 function resolveMemoBlobUrl() {
@@ -114,9 +117,14 @@ function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
   const latestMemo = { courseMemoFileName: lastestMemoFileName, version: latestVersionNumber, lastChangeDate }
 
   const allVersionsAndUrls = [latestMemo, ...previousFileList].map((memo, index) => {
-    const versionName = formatVersionName(memo.version, userLanguageAbbr, memo.lastChangeDate)
+    const { versionAriaName, versionName } = formatVersionName(
+      memoName,
+      memo.version,
+      userLanguageAbbr,
+      memo.lastChangeDate
+    )
     const url = `${memoBlobUrl}${memo.courseMemoFileName}`
-    return { name: versionName, url, latest: index === 0 }
+    return { ariaLabel: versionAriaName, name: versionName, url, latest: index === 0 }
   })
 
   return { courseOffering, isPdf, memoName, memoVersionsAndUrls: allVersionsAndUrls }
@@ -128,10 +136,8 @@ function parseWebBasedMemo(courseMemo, oldWebMemos) {
 
   const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
 
-  const memoVersionsAndUrls = oldWebMemos.map((o) => {
-    return memoWebBasedVersionsUrls(o, languageIndex)
-  })
-  const latestMemoVersionAndUrl = memoWebBasedVersionsUrls(courseMemo, languageIndex, true)
+  const memoVersionsAndUrls = oldWebMemos.map((o) => memoWebBasedVersionsUrls(memoName, o, languageIndex))
+  const latestMemoVersionAndUrl = memoWebBasedVersionsUrls(memoName, courseMemo, languageIndex, true)
   memoVersionsAndUrls.push(latestMemoVersionAndUrl)
   memoVersionsAndUrls.reverse()
 

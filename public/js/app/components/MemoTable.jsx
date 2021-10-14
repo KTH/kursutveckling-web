@@ -11,7 +11,7 @@ const row = (translation, courseCode, language, courseMemo) => {
           {memoVersionsAndUrls.map((v) => (
             <li key={v.name}>
               <a
-                aria-label={isPdf ? `PDF ${memoName}` : `${v.name}`}
+                aria-label={`${isPdf ? 'PDF ' : ''}${v.ariaLabel}`}
                 href={v.url}
                 target={isPdf ? '_blank' : null}
                 rel={isPdf ? 'noreferrer' : null}
