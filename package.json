@@ -2,7 +2,6 @@
   "//": "JSHint configuration - http://jshint.com/docs/options/",
   "name": "kursutveckling-web",
   "version": "2.0.0",
-  "automaticPublish": "true",
   "description": "Public pages for course development information per course and its course rounds",
   "main": "app.js",
   "license": "MIT",
