@@ -47,7 +47,7 @@ module.exports = {
       about_course: 'About course',
       sub_menu_aria_label: 'Sub menu',
       course_programme: 'Course and programme directory',
-      before_choosing_course: 'Before choosing course',
+      before_choosing_course: 'Before course selection',
       prepare_course: 'Prepare and take course',
       course_development: 'Course development',
       administration: 'Administrate About course',
@@ -86,7 +86,7 @@ module.exports = {
       examRounds: {
         header: 'Examination',
         popoverText:
-          'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before choosing course.'
+          'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before course selection.'
       },
       alterationText: {
         header: 'Changes of the course before this course offering',
