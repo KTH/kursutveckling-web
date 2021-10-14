@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 import { inject, observer } from 'mobx-react'
-import { Breadcrumbs } from '@kth/kth-kip-style-react-components'
+import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import i18n from '../../../../i18n'
 

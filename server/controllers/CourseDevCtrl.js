@@ -63,7 +63,7 @@ async function getCourseDevInfo(req, res, next) {
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
     })
   } catch (err) {
-    log.error('Error in _getCourseDevInfo', { error: err })
+    log.error('Error in getCourseDevInfo', { error: err })
     next(err)
   }
 }
