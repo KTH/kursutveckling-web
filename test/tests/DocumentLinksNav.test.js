@@ -4,14 +4,14 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import i18n from '../../i18n'
 import { StaticRouter } from 'react-router'
-import PdfLinksNav from '../../public/js/app/components/PdfLinksNav'
+import DocumentLinksNav from '../../public/js/app/components/DocumentLinksNav'
 import mockRouterStore from '../mocks/mockRouterStore'
 import mockedMiniMemosPdfAndWeb from '../mocks/mockMiniMemos'
 import mockCourseAnalysis from '../mocks/mockCourseAnalysis'
 
 const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
 
-const RenderPdfLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest }) => {
+const RenderDocumentLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest }) => {
   const rS = mockRouterStore(userLang)
   return (
     <StaticRouter>
@@ -21,7 +21,7 @@ const RenderPdfLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest })
           ...mockedMiniMemosPdfAndWeb
         }}
       >
-        <PdfLinksNav
+        <DocumentLinksNav
           {...rest}
           translate={i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders}
           staticAnalysisInfo={mockCourseAnalysis(semester, koppsRoundId)}
@@ -32,9 +32,9 @@ const RenderPdfLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest })
   )
 }
 
-describe('User language: English. Component <PdfLinksNav>: one ladok round id, one pdf memo', () => {
+describe('User language: English. Component <DocumentLinksNav>: one ladok round id, one pdf memo', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="en" semester="20172" koppsRoundId="1" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20172" koppsRoundId="1" />)
   })
   test('renders a pdf links navigation for a table', (done) => {
     done()
@@ -58,9 +58,9 @@ describe('User language: English. Component <PdfLinksNav>: one ladok round id, o
   })
 })
 
-describe('User language: Swedish. Component <PdfLinksNav>: one ladok round id, one pdf memo ', () => {
+describe('User language: Swedish. Component <DocumentLinksNav>: one ladok round id, one pdf memo ', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="sv" semester="20172" koppsRoundId="1" />)
+    render(<RenderDocumentLinksNav userLang="sv" semester="20172" koppsRoundId="1" />)
   })
   test('renders a pdf links navigation for a table', (done) => {
     done()
@@ -84,9 +84,9 @@ describe('User language: Swedish. Component <PdfLinksNav>: one ladok round id, o
   })
 })
 
-describe('User language: English. Component <PdfLinksNav>: two ladok round ids, two pdf memos', () => {
+describe('User language: English. Component <DocumentLinksNav>: two ladok round ids, two pdf memos', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="en" semester="20192" koppsRoundId="1,2" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="1,2" />)
   })
 
   test('renders 1 course syllabus link, 2 memo pdf links and one course analysis', () => {
@@ -112,9 +112,9 @@ describe('User language: English. Component <PdfLinksNav>: two ladok round ids, 
   })
 })
 
-describe('User language: Swedish. Component <PdfLinksNav>: two ladok round ids, two pdf memos', () => {
+describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round ids, two pdf memos', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="sv" semester="20192" koppsRoundId="1,2" />)
+    render(<RenderDocumentLinksNav userLang="sv" semester="20192" koppsRoundId="1,2" />)
   })
 
   test('renders 1 course syllabus link, 2 memo pdf links and one course analysis', () => {
@@ -140,9 +140,9 @@ describe('User language: Swedish. Component <PdfLinksNav>: two ladok round ids, 
   })
 })
 
-describe('User language: English. Component <PdfLinksNav>: two ladok round ids, one pdf memos and one web based', () => {
+describe('User language: English. Component <DocumentLinksNav>: two ladok round ids, one pdf memos and one web based', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="en" semester="20192" koppsRoundId="1,3" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="1,3" />)
   })
 
   test('renders 2 memo links (memo pdf and memo web based) and one course analysis', () => {
@@ -167,9 +167,9 @@ describe('User language: English. Component <PdfLinksNav>: two ladok round ids, 
   })
 })
 
-describe('User language: English. Component <PdfLinksNav>: two ladok round ids, only one web based', () => {
+describe('User language: English. Component <DocumentLinksNav>: two ladok round ids, only one web based', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="en" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="3,9" />)
   })
 
   test('renders 1 active memo link for round 3 and one course analysis', () => {
@@ -193,9 +193,9 @@ describe('User language: English. Component <PdfLinksNav>: two ladok round ids, 
   })
 })
 
-describe('User language: Swedish. Component <PdfLinksNav>: two ladok round ids, only one web based', () => {
+describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round ids, only one web based', () => {
   beforeEach(() => {
-    render(<RenderPdfLinksNav userLang="sv" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="sv" semester="20192" koppsRoundId="3,9" />)
   })
 
   test('renders 1 active memo link for round 3 and one course analysis', () => {
