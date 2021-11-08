@@ -1,6 +1,6 @@
 import React from 'react'
 import Details from './Details'
-import PdfLinksNav from './PdfLinksNav'
+import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 
 const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
@@ -30,7 +30,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLa
           <div className="h3-and-link">
             <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
           </div>
-          <PdfLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
+          <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
 
           <TableWithCourseData
             thisAnalysisObj={thisOfferingAnalysis}

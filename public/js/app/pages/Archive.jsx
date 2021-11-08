@@ -14,8 +14,6 @@ import MemoTable from '../components/MemoTable'
 import AnalysisTable from '../components/AnalysisTable'
 import Table from '../components/Table'
 
-import { getDateFormat } from '../util/helpers'
-
 function renderBreadcrumbsIntoKthHeader(courseCode, language) {
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')
   if (breadcrumbContainer)
@@ -30,7 +28,7 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
 class Archive extends Component {
   render() {
     const { archiveStore } = this.props
-    const { courseCode, userLang } = archiveStore
+    const { courseCode, courseMemos, userLang } = archiveStore
     const translation = i18n.message('archiveTitles', userLang)
     renderBreadcrumbsIntoKthHeader(courseCode, userLang)
 
@@ -56,7 +54,7 @@ class Archive extends Component {
                 translation={translation}
                 courseCode={courseCode}
                 language={userLang}
-                courseMemos={archiveStore.courseMemos}
+                courseMemos={courseMemos}
               />
               <AnalysisTable />
             </main>

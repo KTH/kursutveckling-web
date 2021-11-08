@@ -87,54 +87,54 @@ function ParseWebMemoName({ courseMemo, memoHref, translate }) {
   )
 }
 
+function getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
+  const unfilteredRoundsMissingMemos = []
+  const tmpMemoNames = {}
+  // move rounds without a memo to a separate array
+  const roundsWithMemo = analysesLadokRounds.filter((analysesLadokRoundId) => {
+    const hasMemo = !!thisSemesterMemos[analysesLadokRoundId]
+    if (!hasMemo) {
+      unfilteredRoundsMissingMemos.push(analysesLadokRoundId)
+      return false
+    }
+    return true
+  })
+  // check for duplicates and mark it
+  const existingMemosAndDuplicates =
+    roundsWithMemo.map((analysesLadokRoundId) => {
+      const thisRoundMemo = thisSemesterMemos[analysesLadokRoundId]
+      const { courseMemoFileName, memoEndPoint, isPdf } = thisRoundMemo
+      const memoUniqueId = isPdf ? courseMemoFileName : memoEndPoint
+      const uid = memoUniqueId ? memoUniqueId : 'noName'
+      if (!tmpMemoNames[uid]) {
+        tmpMemoNames[uid] = 'has_memo'
+        return { type: 'original', ...thisRoundMemo }
+      } else return { type: 'duplicate', uid, analysesLadokRoundId, isPdf }
+    }) || []
+
+  const uniqueMemos = existingMemosAndDuplicates.filter(({ type }) => type !== 'duplicate') || []
+  const duplicates = existingMemosAndDuplicates.filter(({ type }) => type === 'duplicate') || []
+
+  // update original memos with ladok round id from a duplicate memo
+  duplicates.forEach(({ uid, analysesLadokRoundId, isPdf }) => {
+    if (isPdf) {
+      const index = uniqueMemos.findIndex(({ isPdf, courseMemoFileName = 'noName', memoEndPoint = 'noName' }) =>
+        isPdf ? courseMemoFileName === uid : memoEndPoint === uid
+      )
+      uniqueMemos[index].ladokRoundIds.push(analysesLadokRoundId)
+    }
+  })
+
+  return [unfilteredRoundsMissingMemos, uniqueMemos]
+}
+
 @inject(['adminStore'])
 @observer
-class PdfLinksNav extends Component {
+class DocumentLinksNav extends Component {
   constructor(props) {
     super(props)
     this.state = {}
-    this.getMemoLinksInfo = this.getMemoLinksInfo.bind(this)
-  }
-
-  getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
-    const unfilteredRoundsMissingMemos = []
-    const tmpMemoNames = {}
-    // move rounds without a memo to a separate array
-    const roundsWithMemo = analysesLadokRounds.filter((analysesRoundId) => {
-      const hasMemo = !!thisSemesterMemos[analysesRoundId]
-      if (!hasMemo) {
-        unfilteredRoundsMissingMemos.push(analysesRoundId)
-        return false
-      }
-      return true
-    })
-    // check for duplicates and mark it
-    const existingMemosAndDuplicates =
-      roundsWithMemo.map((analysesRoundId) => {
-        const thisRoundMemo = thisSemesterMemos[analysesRoundId]
-        const { courseMemoFileName, memoEndPoint, isPdf } = thisRoundMemo
-        const memoUniqueId = isPdf ? courseMemoFileName : memoEndPoint
-        const uid = memoUniqueId ? memoUniqueId : 'noName'
-        if (!tmpMemoNames[uid]) {
-          tmpMemoNames[uid] = 'has_memo'
-          return { type: 'original', ...thisRoundMemo }
-        } else return { type: 'duplicate', uid, analysesRoundId, isPdf }
-      }) || []
-
-    const uniqueMemos = existingMemosAndDuplicates.filter(({ type }) => type !== 'duplicate') || []
-    const duplicates = existingMemosAndDuplicates.filter(({ type }) => type === 'duplicate') || []
-
-    // update original memos with ladok round id from a duplicate memo
-    duplicates.forEach(({ uid, analysesRoundId, isPdf }) => {
-      if (isPdf) {
-        const index = uniqueMemos.findIndex(({ isPdf, courseMemoFileName = 'noName', memoEndPoint = 'noName' }) =>
-          isPdf ? courseMemoFileName === uid : memoEndPoint === uid
-        )
-        uniqueMemos[index].ladokRoundIds.push(analysesRoundId)
-      }
-    })
-
-    return [unfilteredRoundsMissingMemos, uniqueMemos]
+    // this.getMemoLinksInfo = this.getMemoLinksInfo.bind(this)
   }
 
   render() {
@@ -157,7 +157,7 @@ class PdfLinksNav extends Component {
 
     const analysesLadokRounds = roundIdList.split(',') || []
     const thisSemesterMemos = miniMemosPdfAndWeb[analysisSemester] || []
-    const [unfilteredRoundsMissingMemos, existingMemos] = this.getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds)
+    const [unfilteredRoundsMissingMemos, existingMemos] = getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds)
     return (
       <span className="right-block-of-links">
         <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
@@ -202,7 +202,7 @@ class PdfLinksNav extends Component {
   }
 }
 
-PdfLinksNav.propTypes = {
+DocumentLinksNav.propTypes = {
   lang: PropTypes.oneOf(['en', 'sv']).isRequired,
   translate: PropTypes.shape({
     link_analysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
@@ -247,4 +247,4 @@ ParseWebMemoName.propTypes = {
   }).isRequired
 }
 
-export default PdfLinksNav
+export default DocumentLinksNav

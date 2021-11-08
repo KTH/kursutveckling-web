@@ -144,6 +144,20 @@ function parseWebBasedMemo(courseMemo, oldWebMemos) {
   return { courseOffering, isPdf, memoName, memoVersionsAndUrls }
 }
 
+function removeKeysAndFlattenToArray(memosWithRoundKeys) {
+  return Object.keys(memosWithRoundKeys).map((roundid) => memosWithRoundKeys[roundid])
+}
+
+function removeWebMemosDuplicates(flattenMemosList) {
+  const tmpUniqueKeys = []
+  return flattenMemosList.filter(({ memoEndPoint }) => {
+    if (memoEndPoint && tmpUniqueKeys.includes(memoEndPoint)) return false
+    if (memoEndPoint && !tmpUniqueKeys.includes(memoEndPoint)) tmpUniqueKeys.push(memoEndPoint)
+    // if web-based memo is unique or if it's pdf memo, then return grue
+    return true
+  })
+}
+
 async function getCourseMemosVersions(courseCode, userLanguage) {
   const courseMemos = []
   const memoBlobUrl = resolveMemoBlobUrl()
@@ -153,9 +167,11 @@ async function getCourseMemosVersions(courseCode, userLanguage) {
   const publicMemos = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
   Object.keys(publicMemos).forEach((semester) => {
     const semesterMemos = publicMemos[semester]
-    const removedRoundKeysMemos = Object.keys(semesterMemos).map((roundid) => semesterMemos[roundid])
+    const flattenMemosList = removeKeysAndFlattenToArray(semesterMemos)
+    const cleanFlatMemosList = removeWebMemosDuplicates(flattenMemosList)
+
     const oldWebMemos = allOldWebBasedMemos.filter((o) => o.semester === semester)
-    removedRoundKeysMemos.forEach((m) => {
+    cleanFlatMemosList.forEach((m) => {
       const courseMemo = m.isPdf
         ? parseUploadedMemo(m, memoBlobUrl, userLanguage)
         : parseWebBasedMemo(
