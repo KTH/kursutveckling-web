@@ -50,7 +50,7 @@ module.exports = {
       before_choosing_course: 'Before course selection',
       prepare_course: 'Prepare and take course',
       course_development: 'Course development',
-      administration: 'Administrate About course',
+      administration: 'Administer About course',
       label_syllabus: 'Course syllabus',
       label_syllabuses: 'Course syllabuses',
       label_semesters: 'Semesters',
@@ -141,7 +141,7 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    course_admin_title: 'Administrate About course',
+    course_admin_title: 'Administer About course',
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     info_text:

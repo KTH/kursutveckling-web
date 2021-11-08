@@ -162,7 +162,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(links.length).toBe(18)
     const expectedLinks = [
       'About course SF1624',
-      'Administrate About course',
+      'Administer About course',
       // by each round
       'Course syllabus SF1624 ( Autumn 2019 - )',
       // 'Course memo: 10/09/2019', deprecated should not be visible
