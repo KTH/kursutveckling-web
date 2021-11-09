@@ -7,25 +7,22 @@ RUN mkdir -p /npm && \
 WORKDIR /npm
 
 COPY ["package.json", "package.json"]
-#COPY ["package-lock.json", "package-lock.json"]
+COPY ["package-lock.json", "package-lock.json"]
 
-RUN apk add --no-cache --virtual .gyp-dependencies python make g++ util-linux && \
-    npm install --production --no-optional && \
-    apk del .gyp-dependencies
+RUN npm install --production --no-optional
 
 # Add the code and copy over the node_modules-catalog
 WORKDIR /application
 RUN cp -a /npm/node_modules /application && \
     rm -rf /npm
 
-# Copy files used by Gulp.
+# Copy files
 COPY ["config", "config"]
 COPY ["public", "public"]
 COPY ["i18n", "i18n"]
 COPY ["package.json", "package.json"]
-RUN apk add --no-cache bash && \
-    npm run docker && \
-    apk del bash
+RUN npm run docker
+
 
 # Copy source files, so changes does not trigger gulp.
 COPY ["app.js", "app.js"]
