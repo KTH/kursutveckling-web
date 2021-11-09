@@ -141,7 +141,7 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    course_admin_title: 'Administer About course',
+    course_admin_title: 'Administer About course',//Administrate
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     info_text:
