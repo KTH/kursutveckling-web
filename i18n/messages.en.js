@@ -133,7 +133,7 @@ module.exports = {
     header_more_info: 'Additional data about this course offering',
     link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
     link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
-    no_course_analys: 'Course analysis and course data is not inserted.',
+    no_course_analys: 'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
@@ -144,8 +144,13 @@ module.exports = {
     course_admin_title: 'Administer About course',//Administrate
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
-    info_text:
-      'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
+    regulated_link: '“Guidelines on course evaluation and course analysis”. ',
+    info_text: {
+      0: '',
+      1: 'On this page, the course coordinator or examiner will publish course analyzes with course data for a course offering. This is regulated by the ',
+      2: 'When the course analysis has been published, the course data, the course memo and course syllabus are displayed.',
+      3: 'Prospective, current and former students can take part of the information to help with course selection, or to follow up their own participation. Teachers, course coordinators, examiners etc. can use the page as a support in course development.'
+    },     
     label_syllabus_link: 'Course syllabus',
     course_short_semester: {
       1: 'Spring ',

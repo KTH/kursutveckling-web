@@ -130,7 +130,7 @@ module.exports = {
     header_more_info: 'Ytterligare data om kursomgången',
     link_analysis: { label_analysis: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
     link_memo: { label_memo: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
-    no_course_analys: 'Det finns inga publicerade kursanalyser och kursdata',
+    no_course_analys: 'När kursanalysen finns publicerad visas kursdata, kurs-PM och kursplan.',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {
       1: 'VT ',
@@ -142,8 +142,13 @@ module.exports = {
     course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling',
     course_info_title: 'Kursinformation',
-    info_text:
-      'På denna sida publicerar kursansvariga kursdata och kursanalyser. Här kan presumtiva, nuvarande och tidigare studenter ta del av informationen till hjälp vid kursval eller för att följa upp sitt eget deltagande i kursvärderingar. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.',
+    regulated_link: '”Riktlinje om kursvärdering och kursanalys”. ',
+    info_text: {
+      0: '',
+      1: 'På denna sida ska kursansvarig eller examinator publicera kursanalyser med kursdata för en kursomgång. Detta regleras av ',
+      2: 'När kursanalysen har publicerats visas kursdata, kurs-PM och kursplan.',
+      3: 'Presumtiva, nuvarande, och tidigare studenter kan ta del av informationen som hjälp vid kursval, eller för att följa upp sitt eget deltagande. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.'
+    },     
     label_syllabus_link: 'Kursplan',
     course_short_semester: {
       1: 'VT ',
