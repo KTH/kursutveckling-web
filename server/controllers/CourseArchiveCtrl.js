@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('kth-node-log')
-const language = require('kth-node-web-common/lib/language')
+const language = require('@kth/kth-node-web-common/lib/language')
 const ReactDOMServer = require('react-dom/server')
 const { toJS } = require('mobx')
 // const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
