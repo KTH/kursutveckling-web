@@ -2,17 +2,16 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom' // matchPath
+import { BrowserRouter, Route, Routes } from 'react-router-dom' // matchPath
 
-import { ArchiveContextProvider} from './context/ArchiveContext'
-import { uncompressData} from './context/compress'
-import { AdminContextProvider} from './context/AdminContext'
+import { ArchiveContextProvider } from './context/ArchiveContext'
+import { uncompressData } from './context/compress'
+import { AdminContextProvider } from './context/AdminContext'
 
 import '../../css/kursutveckling-web.scss'
 
 import StudentViewCourseDev from './pages/StudentViewCourseDev'
 import Archive from './pages/Archive'
-
 
 export default appFactory
 
@@ -40,14 +39,14 @@ function _renderOnClientSide() {
 
 function appFactory(applicationStore, context, adminContext) {
   return (
-      <Switch>
-        <ArchiveContextProvider configIn={context}>
-          <Route path="/kursutveckling/:courseCode/arkiv" component={Archive} />
-        </ArchiveContextProvider>
-        <AdminContextProvider configIn={adminContext}>
-          <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
-        </AdminContextProvider>
-      </Switch>
+    // TODO: Kanske context utanför Routes, elle inne i element
+    <Routes>
+      <ArchiveContextProvider configIn={context}>
+        <Route path="/:courseCode/arkiv" element={<Archive />} />
+      </ArchiveContextProvider>
+      <AdminContextProvider configIn={adminContext}>
+        <Route path="/:courseCode" element={<StudentViewCourseDev />} />
+      </AdminContextProvider>
+    </Routes>
   )
-
 }

@@ -47,6 +47,13 @@ class StudentViewCourseDev extends Component {
     const labelAboutRegulatedLlink = pageTitles.regulated_link
     const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
 
+    // useEffect(() => {
+    //   let isMounted = true
+    //   if (isMounted) {
+    //     renderBreadcrumbsIntoKthHeader(courseCode, userLangAbbr)
+    //   }
+    //   return () => (isMounted = false)
+    // }, [])
     renderBreadcrumbsIntoKthHeader(courseCode, userLang)
 
     return (

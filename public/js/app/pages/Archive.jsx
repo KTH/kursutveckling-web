@@ -25,40 +25,48 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
 
 const Archive = () => {
   const [archiveContext] = useArchiveContext()
-  const { courseCode, courseMemos, userLang } = archiveContext
-    const translation = i18n.message('archiveTitles', userLang)
-    renderBreadcrumbsIntoKthHeader(courseCode, userLang)
+  const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = archiveContext
+  const translation = i18n.message('archiveTitles', userLang)
 
-    return (
-      <Col>
-        <Row>
-          <ArchiveSideMenu translation={translation} courseCode={courseCode} />
-          <Col>
-            <ArchivePageHeader
+  // useEffect(() => {
+  //   let isMounted = true
+  //   if (isMounted) {
+  //     renderBreadcrumbsIntoKthHeader(courseCode, userLangAbbr)
+  //   }
+  //   return () => (isMounted = false)
+  // }, [])
+  renderBreadcrumbsIntoKthHeader(courseCode, userLang)
+
+  return (
+    <Col>
+      <Row>
+        <ArchiveSideMenu translation={translation} courseCode={courseCode} />
+        <Col>
+          <ArchivePageHeader
+            translation={translation}
+            subHeadline={subHeadline}
+            courseCode={courseCode}
+            language={userLang}
+          />
+          <main id="mainContent">
+            <SyllabusTable
               translation={translation}
-              subHeadline={archiveStore.subHeadline}
               courseCode={courseCode}
               language={userLang}
+              syllabusPeriods={courseKoppsData.syllabusPeriods}
             />
-            <main id="mainContent">
-              <SyllabusTable
-                translation={translation}
-                courseCode={courseCode}
-                language={userLang}
-                syllabusPeriods={archiveStore.courseKoppsData.syllabusPeriods}
-              />
-              <MemoTable
-                translation={translation}
-                courseCode={courseCode}
-                language={userLang}
-                courseMemos={courseMemos}
-              />
-              <AnalysisTable />
-            </main>
-          </Col>
-        </Row>
-      </Col>
-    )
+            <MemoTable
+              translation={translation}
+              courseCode={courseCode}
+              language={userLang}
+              courseMemos={courseMemos}
+            />
+            <AnalysisTable />
+          </main>
+        </Col>
+      </Row>
+    </Col>
+  )
 }
 
 export default Archive

@@ -21,26 +21,25 @@ async function getCourseDevInfo(req, res, next) {
 
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
 
-   // Browser config.
-    let adminContext = {
+    // Browser config.
+    const browser = {
       browserConfig,
       paths: serverPaths,
-      apiHost : serverConfig.hostUrl,
+      apiHost: serverConfig.hostUrl
     }
 
     // Domain data.
-    adminContext = {
-      ...adminContext,
+    const adminContext = {
+      ...browser,
+      // TODO: check that await is not skipped, ie that data is written to object even if there is delay
       courseKoppsData: await filteredKoppsData(courseCode, lang),
-      analysisData:  await sortedKursutveckligApiInfo(courseCode),
-      miniMemosPdfAndWeb: (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || [],
+      analysisData: await sortedKursutveckligApiInfo(courseCode),
+      miniMemosPdfAndWeb: (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
     }
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
 
-    const view = renderStaticPage({
-
-                                  })
+    const view = renderStaticPage({})
 
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {

@@ -22,20 +22,21 @@ async function _getContent(req, res, next) {
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
 
     // Browser config.
-    let archiveContext = {
+    const browser = {
       browserConfig,
       paths: serverPaths,
-      apiHost : serverConfig.hostUrl,
+      apiHost: serverConfig.hostUrl
     }
 
     // Domain data.
-    archiveContext = {
-      ...archiveContext,
+    const archiveContext = {
+      ...browser,
       courseCode,
       userLang: lang,
+      // TODO: check that await is not skipped, ie that data is written to object even if there is delay
       courseKoppsData: await filteredKoppsData(courseCode, lang),
       courseMemos: await getCourseMemosVersions(courseCode, lang),
-      analysisData: await sortedKursutveckligApiInfo(courseCode),
+      analysisData: await sortedKursutveckligApiInfo(courseCode)
     }
 
     const compressedData = getCompressedData(archiveContext)
@@ -47,7 +48,7 @@ async function _getContent(req, res, next) {
       location: req.url,
       basename: proxyPrefix,
       context: archiveContext
-                                  })
+    })
 
     res.render('archive/index', {
       aboutCourse: {
