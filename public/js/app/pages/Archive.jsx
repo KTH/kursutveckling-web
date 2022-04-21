@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-import { inject, observer } from 'mobx-react'
+import { useArchiveContext } from '../context/ArchiveContext'
 import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Col, Row } from 'reactstrap'
 
@@ -23,12 +23,9 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
     )
 }
 
-@inject(['archiveStore'])
-@observer
-class Archive extends Component {
-  render() {
-    const { archiveStore } = this.props
-    const { courseCode, courseMemos, userLang } = archiveStore
+const Archive = () => {
+  const [archiveContext] = useArchiveContext()
+  const { courseCode, courseMemos, userLang } = archiveContext
     const translation = i18n.message('archiveTitles', userLang)
     renderBreadcrumbsIntoKthHeader(courseCode, userLang)
 
@@ -62,7 +59,6 @@ class Archive extends Component {
         </Row>
       </Col>
     )
-  }
 }
 
 export default Archive

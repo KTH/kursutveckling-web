@@ -2,7 +2,6 @@
 const log = require('kth-node-log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const ReactDOMServer = require('react-dom/server')
-const { toJS } = require('mobx')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
@@ -12,41 +11,36 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 
 const serverPaths = require('../server').getPaths()
 
-function hydrateStores(renderProps) {
-  // This assumes that all stores are specified in a root element called Provider
-  const { props } = renderProps.props.children
-  const outp = {}
-  for (let key in props) {
-    if (typeof props[key].initializeStore === 'function') {
-      outp[key] = encodeURIComponent(JSON.stringify(toJS(props[key], true)))
-    }
-  }
-  return outp
-}
-
-function _staticRender(context, location) {
-  if (process.env.NODE_ENV === 'development') {
-    delete require.cache[require.resolve('../../dist/app.js')]
-  }
-  const { staticRender } = require('../../dist/app.js')
-  return staticRender(context, location)
-}
+const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 async function getCourseDevInfo(req, res, next) {
-  const { courseCode } = req.params
-  const lang = language.getLanguage(res) || 'sv'
-  const langIndex = lang === 'en' ? 0 : 1
-
   try {
-    // Render react app
-    // const context = {}
-    const renderProps = _staticRender()
-    renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
-    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    const { courseCode } = req.params
+    const lang = language.getLanguage(res) || 'sv'
+    const langIndex = lang === 'en' ? 0 : 1
 
-    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb =
-      (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
+    const { getCompressedData, renderStaticPage } = getServerSideFunctions()
+
+   // Browser config.
+    let adminContext = {
+      browserConfig,
+      paths: serverPaths,
+      apiHost : serverConfig.hostUrl,
+    }
+
+    // Domain data.
+    adminContext = {
+      ...adminContext,
+      courseKoppsData: await filteredKoppsData(courseCode, lang),
+      analysisData:  await sortedKursutveckligApiInfo(courseCode),
+      miniMemosPdfAndWeb: (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || [],
+    }
+
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+
+    const view = renderStaticPage({
+
+                                  })
 
     const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {

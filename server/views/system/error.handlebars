@@ -1,19 +1,19 @@
-<!-- javascript for this view. -->
-{{#extend 'scripts'}}
-<script>
-  window.StatusCode = ({{ status }} || 500)
-</script>
-{{/extend}}
+<h1>{{title}}</h1>
+{{#if text}}
+  <p>{{text}}</p>
+{{/if}}
 
-<div class="errorMain">
-  {{{blocks.image}}}
-  <h1>{{status}}</h1>
-  <h3>{{friendly}}</h3>
+{{#if text1}}
+  <p>{{text1}}</p>
+  <p>{{text2}}</p>
+  <p><a href="{{link1}}">{{linkText1}}</a></p>
+  <p><a href="{{link2}}">{{linkText2}}</a></p>
+  <p><a href="{{link3}}">{{linkText3}}</a></p>
+{{/if}}
 
+<p>({{statusCodeLabel}} {{status}})</p>
+{{#if error.stack}}
   <div class="card card-body bg-light">
-    <p class="kthLovesGeeks">HTTP {{status}}: {{message}}</p>
-    {{#if error.stack}}
     <pre>{{error.stack}}</pre>
-    {{/if}}
   </div>
-</div>
+{{/if}}

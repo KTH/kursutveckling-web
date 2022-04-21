@@ -3,55 +3,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom' // matchPath
-import { Provider } from 'mobx-react'
-import { StaticRouter } from 'react-router'
 
-import { configure } from 'mobx'
-
-import AdminStore from './stores/AdminStore'
-import ArchiveStore from './stores/ArchiveStore'
-import StudentViewCourseDev from './pages/StudentViewCourseDev'
-import Archive from './pages/Archive'
+import { ArchiveContextProvider} from './context/ArchiveContext'
+import { uncompressData} from './context/compress'
+import { AdminContextProvider} from './context/AdminContext'
 
 import '../../css/kursutveckling-web.scss'
 
-function appFactory() {
-  if (process.env.NODE_ENV !== 'production') {
-    configure({
-      isolateGlobalState: true
-    })
+import StudentViewCourseDev from './pages/StudentViewCourseDev'
+import Archive from './pages/Archive'
+
+
+export default appFactory
+
+_renderOnClientSide()
+
+function _renderOnClientSide() {
+  const isClientSide = typeof window !== 'undefined'
+  if (!isClientSide) {
+    return
   }
 
-  const adminStore = new AdminStore()
-  const archiveStore = new ArchiveStore()
-  if (typeof window !== 'undefined') {
-    adminStore.initializeStore('adminStore')
-    archiveStore.initializeStore('archiveStore')
-  }
+  const archiveContext = {}
+  uncompressData(archiveContext)
 
+  const adminContext = {}
+  uncompressData(adminContext, 'admin')
+
+  const basename = archiveContext.proxyPrefixPath.uri
+
+  const app = <BrowserRouter basename={basename}>{appFactory({}, archiveContext, adminContext)}</BrowserRouter>
+
+  const domElement = document.getElementById('kth-kursinfo')
+  ReactDOM.hydrate(app, domElement)
+}
+
+function appFactory(applicationStore, context, adminContext) {
   return (
-    <Provider adminStore={adminStore} archiveStore={archiveStore}>
       <Switch>
-        <Route path="/kursutveckling/:courseCode/arkiv" component={Archive} />
-        <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
+        <ArchiveContextProvider configIn={context}>
+          <Route path="/kursutveckling/:courseCode/arkiv" component={Archive} />
+        </ArchiveContextProvider>
+        <AdminContextProvider configIn={adminContext}>
+          <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
+        </AdminContextProvider>
       </Switch>
-    </Provider>
   )
-}
 
-function staticRender(context, location) {
-  return (
-    <StaticRouter location={location} context={context}>
-      {appFactory()}
-    </StaticRouter>
-  )
 }
-
-if (typeof window !== 'undefined') {
-  ReactDOM.render(
-    <BrowserRouter>{appFactory()}</BrowserRouter>,
-    document.getElementById('kth-kursinfo')
-  )
-}
-
-export { appFactory, staticRender }

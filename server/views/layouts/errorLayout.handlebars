@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>{{headTitle}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{headDescription}}">
+    <link rel="shortcut icon" id="favicon" href="//www.kth.se/img/icon/favicon.ico">
 
-<head>
-  <title>{{friendly}}</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{description}}">
-  <link rel="shortcut icon" id="favicon" href="//www.kth.se/img/icon/favicon.ico">
+    {{prefixStyle '/static/kth-style/css/kth-bootstrap.css' 'styles' 'screen'}}
 
-  {{prefixStyle '/static/kth-style/css/kth-bootstrap.css' 'styles' 'screen'}}
+    {{#extend 'styles'}}
+      <style>
+        @media (min-width: 768px) {
+          html, body {
+            height: 100%;
+          }
+          .header-container__top {
+            margin-bottom: 19px;
+          }
+          .main.container {
+            min-height: calc(100% - 212px);
+          }
+          .main.container .app {
+            padding: 30px;
+          }
+        }
+      </style>
+    {{/extend}}
 
-  {{#extend 'styles'}}
-    <style>
-      body.error .errorMain {
-        box-shadow: 0 0 5px 5px #aeb4ae;
-        background-color: #fff;
-        transform: rotate(-5deg);
-        padding: 30px 40px 40px;
-        max-width: 750px;
-        margin: 30px auto;
-        margin-top: 5rem;
-      }
+    {{{render 'styles'}}}
 
-      body.error .kthLovesGeeks {
-        color: #b9bbbd;
-      }
+    {{#extend 'head-scripts'}}
+      <script src="//www.kth.se/social/toolbar/widget.js"></script>
+    {{/extend}}
 
-      .logo {
-        margin-bottom: 1rem;
-      }
-    </style>
-  {{/extend}}
+    {{{render 'head-scripts'}}}
+  </head>
 
-  {{{render 'styles'}}}
+  <body class="use-personal-menu">
+    <a class="skipToMainContent" href="#mainContent" tabindex="1">Skip to main content</a>
 
-  {{!-- {{prefixScript '/static/js/vendor.js' 'head-scripts'}} --}}
-  {{#extend 'head-scripts'}}
-    <script src="//www.kth.se/social/toolbar/widget.js"></script>
-  {{/extend}}
-
-  {{{render 'head-scripts'}}}
-</head>
-
-<body class="error code{{status}} use-personal-menu">
-  {{{body}}}
-  {{{render 'scripts'}}}
-</body>
-
+    <header>
+      <div class="container-fluid">
+        <div class="container">
+          <div class="header-container__top">
+            <figure class="block figure defaultTheme mainLogo">
+              <a href="https://www.kth.se"><img class="figure-img img-fluid" src="https://www.kth.se/polopoly_fs/1.77259.1610365240!/KTH_Logotyp_RGB_2013-2.svg" alt="To KTH startpage" title="KTH_Logotyp_RGB_2013-2.svg" height="70" width="70"></a>
+            </figure>
+          </div>
+          <div class="header-container__bottom"></div>
+        </div>
+      </div>
+      <div id="gradientBorder"></div>
+    </header>
+    <div class="container main">
+      <div class="row">
+        <div class="col app">
+          <div id="app">
+            <main id="mainContent" class="a">
+              {{{body}}}
+              {{{render 'scripts'}}}
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="container"></footer>
+  </body>
 </html>
