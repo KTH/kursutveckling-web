@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 import { useArchiveContext } from '../context/ArchiveContext'
@@ -28,14 +28,13 @@ const Archive = () => {
   const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = archiveContext
   const translation = i18n.message('archiveTitles', userLang)
 
-  // useEffect(() => {
-  //   let isMounted = true
-  //   if (isMounted) {
-  //     renderBreadcrumbsIntoKthHeader(courseCode, userLangAbbr)
-  //   }
-  //   return () => (isMounted = false)
-  // }, [])
-  renderBreadcrumbsIntoKthHeader(courseCode, userLang)
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      renderBreadcrumbsIntoKthHeader(courseCode, userLang)
+    }
+    return () => (isMounted = false)
+  }, [])
 
   return (
     <Col>

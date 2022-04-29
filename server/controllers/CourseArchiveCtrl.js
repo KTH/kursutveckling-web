@@ -13,6 +13,21 @@ const serverPaths = require('../server').getPaths()
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
+function getFormattedSubHeadline(courseKoppsData) {
+  const unit = {
+    en: 'credits',
+    sv: 'hp'
+  }
+  const { courseCredits } = this.courseKoppsData
+  const credits = this.userLang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
+  const formattedCredits = `${credits} ${unit[this.userLang]}`
+
+  const { courseCode, courseTitle } = this.courseKoppsData
+  const subHeadline = `${courseCode} ${courseTitle}, ${this.formattedCredits}`
+
+  return subHeadline
+}
+
 async function _getContent(req, res, next) {
   try {
     const { courseCode: cc } = req.params
@@ -24,9 +39,15 @@ async function _getContent(req, res, next) {
     // Browser config.
     const browser = {
       browserConfig,
+      proxyPrefixPath: serverConfig.proxyPrefixPath,
       paths: serverPaths,
       apiHost: serverConfig.hostUrl
     }
+
+    const courseKoppsData = await filteredKoppsData(courseCode, lang)
+    //console.log('===============================================')
+    //console.log(`KOPPSDATA:${JSON.stringify(courseKoppsData)}`)
+    //console.log('-----------------------------------------------')
 
     // Domain data.
     const archiveContext = {
@@ -34,9 +55,10 @@ async function _getContent(req, res, next) {
       courseCode,
       userLang: lang,
       // TODO: check that await is not skipped, ie that data is written to object even if there is delay
-      courseKoppsData: await filteredKoppsData(courseCode, lang),
+      courseKoppsData,
       courseMemos: await getCourseMemosVersions(courseCode, lang),
-      analysisData: await sortedKursutveckligApiInfo(courseCode)
+      analysisData: await sortedKursutveckligApiInfo(courseCode),
+      subHeadline: getFormattedSubHeadline(courseKoppsData),
     }
 
     const compressedData = getCompressedData(archiveContext)

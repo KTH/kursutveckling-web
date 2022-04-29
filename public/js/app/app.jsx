@@ -10,7 +10,7 @@ import { AdminContextProvider } from './context/AdminContext'
 
 import '../../css/kursutveckling-web.scss'
 
-import StudentViewCourseDev from './pages/StudentViewCourseDev'
+//import StudentViewCourseDev from './pages/StudentViewCourseDev'
 import Archive from './pages/Archive'
 
 export default appFactory
@@ -39,14 +39,9 @@ function _renderOnClientSide() {
 
 function appFactory(applicationStore, context, adminContext) {
   return (
-    // TODO: Kanske context utanför Routes, elle inne i element
     <Routes>
-      <ArchiveContextProvider configIn={context}>
-        <Route path="/:courseCode/arkiv" element={<Archive />} />
-      </ArchiveContextProvider>
-      <AdminContextProvider configIn={adminContext}>
-        <Route path="/:courseCode" element={<StudentViewCourseDev />} />
-      </AdminContextProvider>
+        <Route path="/:courseCode/arkiv" element={<ArchiveContextProvider configIn={context}><Archive /></ArchiveContextProvider>} />
     </Routes>
-  )
+  //<Route path="/:courseCode" element={<AdminContextProvider configIn={adminContext}><StudentViewCourseDev /></AdminContextProvider>} />
+)
 }
