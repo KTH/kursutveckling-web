@@ -1,29 +1,27 @@
 'use strict'
 
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const ReactDOMServer = require('react-dom/server')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const paths = require('../server').getPaths()
 const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
-
-const serverPaths = require('../server').getPaths()
-
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
-function getFormattedSubHeadline(courseKoppsData) {
+function getFormattedSubHeadline(courseKoppsData, lang) {
   const unit = {
     en: 'credits',
     sv: 'hp'
   }
-  const { courseCredits } = this.courseKoppsData
-  const credits = this.userLang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
-  const formattedCredits = `${credits} ${unit[this.userLang]}`
+  const { courseCredits } = courseKoppsData
+  const credits = lang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
+  const formattedCredits = `${credits} ${unit[lang]}`
 
-  const { courseCode, courseTitle } = this.courseKoppsData
-  const subHeadline = `${courseCode} ${courseTitle}, ${this.formattedCredits}`
+  const { courseCode, courseTitle } = courseKoppsData
+  const subHeadline = `${courseCode} ${courseTitle}, ${formattedCredits}`
 
   return subHeadline
 }
@@ -36,40 +34,25 @@ async function _getContent(req, res, next) {
 
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
 
-    // Browser config.
-    const browser = {
-      browserConfig,
-      proxyPrefixPath: serverConfig.proxyPrefixPath,
-      paths: serverPaths,
-      apiHost: serverConfig.hostUrl
-    }
+    const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
-    const courseKoppsData = await filteredKoppsData(courseCode, lang)
-    //console.log('===============================================')
-    //console.log(`KOPPSDATA:${JSON.stringify(courseKoppsData)}`)
-    //console.log('-----------------------------------------------')
+    webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
+    webContext.courseCode = courseCode
+    webContext.userLang = lang
+    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
+    webContext.subHeadline = getFormattedSubHeadline(webContext.courseKoppsData, lang)
 
-    // Domain data.
-    const archiveContext = {
-      ...browser,
-      courseCode,
-      userLang: lang,
-      // TODO: check that await is not skipped, ie that data is written to object even if there is delay
-      courseKoppsData,
-      courseMemos: await getCourseMemosVersions(courseCode, lang),
-      analysisData: await sortedKursutveckligApiInfo(courseCode),
-      subHeadline: getFormattedSubHeadline(courseKoppsData),
-    }
-
-    const compressedData = getCompressedData(archiveContext)
-
+    const compressedData = getCompressedData(webContext)
+    
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
 
     const view = renderStaticPage({
       applicationStore: {},
       location: req.url,
       basename: proxyPrefix,
-      context: archiveContext
+      context: webContext
     })
 
     res.render('archive/index', {

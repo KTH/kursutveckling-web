@@ -2,7 +2,7 @@
 const registerHeaderContentHelper = require('@kth/kth-node-web-common/lib/handlebars/helpers/headerContent')
 const config = require('../../configuration').server
 const packageFile = require('../../../package.json')
-const log = require('kth-node-log')
+const log = require('@kth/log')
 
 let version = packageFile.version
 

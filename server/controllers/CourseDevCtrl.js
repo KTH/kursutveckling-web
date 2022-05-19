@@ -1,59 +1,56 @@
 'use strict'
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const ReactDOMServer = require('react-dom/server')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
-
-const serverPaths = require('../server').getPaths()
-
+const browserConfig = require('../configuration').browser
+const serverConfig = require('../configuration').server
+const paths = require('../server').getPaths()
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
 async function getCourseDevInfo(req, res, next) {
-  try {
+
     const { courseCode } = req.params
     const lang = language.getLanguage(res) || 'sv'
     const langIndex = lang === 'en' ? 0 : 1
 
-    const { getCompressedData, renderStaticPage } = getServerSideFunctions()
+  try {
+    const { getCompressedData, renderStaticPage } = getServerSideFunctions()  
+    const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
-    // Browser config.
-    const browser = {
-      browserConfig,
-      paths: serverPaths,
-      apiHost: serverConfig.hostUrl
-    }
+    webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
+    webContext.courseCode = courseCode
+    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    webContext.miniMemosPdfAndWeb = (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
 
-    // Domain data.
-    const adminContext = {
-      ...browser,
-      // TODO: check that await is not skipped, ie that data is written to object even if there is delay
-      courseKoppsData: await filteredKoppsData(courseCode, lang),
-      analysisData: await sortedKursutveckligApiInfo(courseCode),
-      miniMemosPdfAndWeb: (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
-    }
+    const compressedData = getCompressedData(webContext)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
 
-    const view = renderStaticPage({})
+    const view = renderStaticPage({
+      applicationStore: {},
+      location: req.url,
+      basename: proxyPrefix,
+      context: webContext
+    })
 
-    const html = ReactDOMServer.renderToString(renderProps)
     res.render('course/index', {
+      compressedData,
       aboutCourse: {
         siteName: `${i18n.messages[langIndex].messages.page_about_course} ${courseCode}`,
         siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,
-      html,
-      initialState: JSON.stringify(hydrateStores(renderProps)),
+      html: view,
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
-      title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
+      title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
     })
   } catch (err) {
     log.error('Error in getCourseDevInfo', { error: err })

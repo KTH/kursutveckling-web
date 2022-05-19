@@ -8,7 +8,7 @@ const mockLogger = {}
 mockLogger.debug = mockLogger.info = mockLogger.error = mockLogger.warn = () => {}
 mockLogger.init = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnReplace: false,
   warnOnUnregistered: false

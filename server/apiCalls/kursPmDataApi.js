@@ -1,6 +1,6 @@
 'use strict'
 
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const { sv, en } = require('date-fns/locale')
 const { utcToZonedTime, format } = require('date-fns-tz')
 

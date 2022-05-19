@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-import { useArchiveContext } from '../context/ArchiveContext'
+import { useWebContext } from '../context/WebContext'
 import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Col, Row } from 'reactstrap'
 
@@ -24,8 +24,8 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
 }
 
 const Archive = () => {
-  const [archiveContext] = useArchiveContext()
-  const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = archiveContext
+  const [ context ] = useWebContext()
+  const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
 
   useEffect(() => {

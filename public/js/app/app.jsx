@@ -2,46 +2,44 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Routes } from 'react-router-dom' // matchPath
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { ArchiveContextProvider } from './context/ArchiveContext'
+import { WebContextProvider } from './context/WebContext'
 import { uncompressData } from './context/compress'
-import { AdminContextProvider } from './context/AdminContext'
+import StudentViewCourseDev from './pages/StudentViewCourseDev'
+import Archive from './pages/Archive'
 
 import '../../css/kursutveckling-web.scss'
 
-//import StudentViewCourseDev from './pages/StudentViewCourseDev'
-import Archive from './pages/Archive'
-
-export default appFactory
-
-_renderOnClientSide()
+function appFactory(applicationStore, context) {
+  return (
+    <WebContextProvider configIn={context}>
+      <Routes>
+        <Route exact path="/:courseCode" element={<StudentViewCourseDev />} />
+        <Route exact path="/:courseCode/arkiv" element={<Archive />} />        
+      </Routes>
+    </WebContextProvider> 
+  )
+}
 
 function _renderOnClientSide() {
   const isClientSide = typeof window !== 'undefined'
+
   if (!isClientSide) {
     return
   }
 
-  const archiveContext = {}
-  uncompressData(archiveContext)
+  const webContext = {}
+  uncompressData(webContext)
 
-  const adminContext = {}
-  uncompressData(adminContext, 'admin')
+  const basename = webContext.proxyPrefixPath.uri
 
-  const basename = archiveContext.proxyPrefixPath.uri
+  const app = <BrowserRouter basename={basename}>{appFactory({}, webContext)}</BrowserRouter>
 
-  const app = <BrowserRouter basename={basename}>{appFactory({}, archiveContext, adminContext)}</BrowserRouter>
-
-  const domElement = document.getElementById('kth-kursinfo')
+  const domElement = document.getElementById('app')
   ReactDOM.hydrate(app, domElement)
 }
 
-function appFactory(applicationStore, context, adminContext) {
-  return (
-    <Routes>
-        <Route path="/:courseCode/arkiv" element={<ArchiveContextProvider configIn={context}><Archive /></ArchiveContextProvider>} />
-    </Routes>
-  //<Route path="/:courseCode" element={<AdminContextProvider configIn={adminContext}><StudentViewCourseDev /></AdminContextProvider>} />
-)
-}
+_renderOnClientSide()
+
+export default appFactory

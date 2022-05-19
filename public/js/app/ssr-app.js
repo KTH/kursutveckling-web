@@ -10,8 +10,6 @@ import { compressData } from './context/compress'
 
 import appFactory from './app'
 
-export default _getServerSideFunctions()
-
 function _getServerSideFunctions() {
   return {
     getCompressedData(data, dataId) {
@@ -29,3 +27,5 @@ function _getServerSideFunctions() {
     },
   }
 }
+
+export default _getServerSideFunctions()

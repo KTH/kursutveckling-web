@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useArchiveContext } from '../context/ArchiveContext'
+import { useWebContext } from '../context/WebContext'
 import Table from '../components/Table'
 import i18n from '../../../../i18n'
 import { getDateFormat } from '../util/helpers'
@@ -35,9 +35,9 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
 // NOTE: uses state from & is hard coded to archive page.
 // So less a 'component' and more a part of a page.
 const AnalysisTable = () => {
-  const [archiveContext] = useArchiveContext()
-  const { userLang, courseCode, analysisData } = archiveContext
-  const { storageUri } = archiveContext.browserConfig
+  const [context, setWebContext] = useWebContext()
+  const { userLang, courseCode, analysisData } = context
+  const { storageUri } = context.browserConfig
   const translations = i18n.message('archiveTitles', userLang)
 
   const yearsDescending = Object.keys(analysisData).reverse()

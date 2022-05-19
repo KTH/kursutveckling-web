@@ -28,7 +28,7 @@ module.exports.getPaths = () => getPaths()
  * ******* LOGGING *******
  * ***********************
  */
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const packageFile = require('../package.json')
 
 const logConfiguration = {
