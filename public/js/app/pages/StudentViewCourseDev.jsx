@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
+import { v4 as uuidv4 } from 'uuid'
 
 import i18n from '../../../../i18n'
 
@@ -77,8 +78,8 @@ function StudentViewCourseDev(props) {
           {pageTitles.info_text[2]}
         </p>
       </span>
-      <IntroText id="intro-text" key="intro-text" translate={pageTitles} phrase="0" userLang={userLang} />
-      <IntroText id="intro-text" key="intro-text" translate={pageTitles} phrase="3" userLang={userLang} />
+      <IntroText id="intro-text" key={uuidv4()} translate={pageTitles} phrase="0" userLang={userLang} />
+      <IntroText id="intro-text" key={uuidv4()} translate={pageTitles} phrase="3" userLang={userLang} />
       <ListYears
         key="list-of-course-data-for-several-years"
         koppsData={courseKoppsData}

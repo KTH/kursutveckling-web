@@ -1,19 +1,18 @@
-import AdminStore from '../../public/js/app/stores/AdminStore'
 import transformedAnalysisData from './transformedAnalysisData'
 import transformedKoppsData from './transformedKoppsData'
 
-const realAdminStore = new AdminStore()
 
-const mockAdminStore = (userLang = 'en') => {
-  const routerWithData = {
-    ...realAdminStore,
-    courseKoppsData: transformedKoppsData(userLang),
+const mockAdminStore = (lang = 'en') => {
+  const context = {
+    userLang: lang,
+    courseCode: 'SF1624',
+    courseKoppsData: transformedKoppsData(lang),
     analysisData: transformedAnalysisData,
     browserConfig: { storageUri: '', hostUrl: '' },
     miniMemosPdfAndWeb: { courseCode: 'SF1624', miniMemos: {} }
   }
 
-  return routerWithData
+  return context
 }
 
 export default mockAdminStore

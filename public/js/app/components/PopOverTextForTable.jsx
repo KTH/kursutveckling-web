@@ -29,10 +29,10 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, ariaPressed, popUpHeader, id, onCli
 }
 function ControlledPopover(props) {
 
-  const [ popoverOpen, setPopoverOpen ] = useState({ popoverOpen: false })
+  const [ popoverOpen, setPopoverOpen ] = useState(false)
 
   function toggle() {
-    setPopoverOpen({popoverOpen: !popoverOpen})
+    setPopoverOpen(!popoverOpen)
   }
 
   const { cellId, describesId, header, popoverText, popType } = props

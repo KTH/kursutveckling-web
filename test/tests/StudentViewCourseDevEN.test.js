@@ -1,12 +1,14 @@
 import React from 'react'
-import { Provider } from 'mobx-react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { StaticRouter } from 'react-router'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
+import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
 const { getAllByRole, getAllByText, getByText } = screen
+const userLang = 'en'
+const context = mockAdminStore(userLang)
 
 const ROUNDS = [
   'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
@@ -19,19 +21,19 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const CourseDevelopment = ({ userLang = 'en', ...rest }) => {
+const CourseDevelopment = () => {
   return (
     <StaticRouter>
-      <Provider adminStore={mockAdminStore(userLang)}>
-        <StudentViewCourseDev {...rest} />
-      </Provider>
+      <WebContextProvider configIn={context}>
+        <StudentViewCourseDev />
+      </WebContextProvider>
     </StaticRouter>
   )
 }
 
 describe('User language: English. Component <StudentViewCourseDev>', () => {
   beforeEach(() => {
-    render(<CourseDevelopment userLang="en" />)
+    render(<CourseDevelopment />)
   })
   test('renders a course development page', (done) => {
     done()

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Provider } from 'mobx-react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import i18n from '../../i18n'
@@ -8,26 +7,23 @@ import DocumentLinksNav from '../../public/js/app/components/DocumentLinksNav'
 import mockRouterStore from '../mocks/mockRouterStore'
 import mockedMiniMemosPdfAndWeb from '../mocks/mockMiniMemos'
 import mockCourseAnalysis from '../mocks/mockCourseAnalysis'
+import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
 const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
 
 const RenderDocumentLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest }) => {
-  const rS = mockRouterStore(userLang)
+  const context = mockRouterStore(userLang)
+  
   return (
     <StaticRouter>
-      <Provider
-        adminStore={{
-          ...rS,
-          ...mockedMiniMemosPdfAndWeb
-        }}
-      >
+      <WebContextProvider configIn={context}>
         <DocumentLinksNav
           {...rest}
           translate={i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders}
           staticAnalysisInfo={mockCourseAnalysis(semester, koppsRoundId)}
           lang={userLang}
         />
-      </Provider>
+      </WebContextProvider>
     </StaticRouter>
   )
 }

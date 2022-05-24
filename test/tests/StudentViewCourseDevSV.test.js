@@ -1,13 +1,15 @@
 import React from 'react'
-import { Provider } from 'mobx-react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import i18n from '../../i18n'
 import { StaticRouter } from 'react-router'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
+import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
 const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
+const userLang = 'sv'
+const context = mockAdminStore(userLang)
 
 const ROUNDS = [
   'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
@@ -20,19 +22,19 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const CourseDevelopment = ({ userLang = 'en', ...rest }) => {
+const CourseDevelopment = () => {
   return (
     <StaticRouter>
-      <Provider adminStore={mockAdminStore(userLang)}>
-        <StudentViewCourseDev {...rest} />
-      </Provider>
+      <WebContextProvider configIn={context}>
+        <StudentViewCourseDev />
+      </WebContextProvider>
     </StaticRouter>
   )
 }
 
 describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   beforeEach(() => {
-    render(<CourseDevelopment userLang="sv" />)
+    render(<CourseDevelopment />)
   })
   test('renders a course development page', (done) => {
     done()
@@ -162,6 +164,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
+    
     expect(links.length).toBe(19)
     const expectedLinks = [
       'Om kursen SF1624',
