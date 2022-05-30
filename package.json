@@ -59,7 +59,7 @@
     "react-icons": "^4.3.1",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "reactstrap": "^9.0.2",
+    "reactstrap": "^8.10.1",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
@@ -132,14 +132,5 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 120
-  },
-  "jest": {
-    "clearMocks": true,
-    "notifyMode": "failure-change",
-    "setupFilesAfterEnv": [
-      "jest-extended"
-    ],
-    "testEnvironment": "jsdom",
-    "verbose": true
   }
 }
