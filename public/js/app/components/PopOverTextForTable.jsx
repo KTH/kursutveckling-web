@@ -8,7 +8,7 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, ariaPressed, popUpHeader, id, onCli
     <span
       className="mobile-header-popovers"
       key={'onlyForMobileView' + popUpHeader + id}
-      role="info icon button"
+      role="dialog"
       aria-labelledby={mobilePopoverId}
     >
       <label id={mobilePopoverId} className="d-none d-sm-block d-md-nonee">
@@ -28,14 +28,13 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, ariaPressed, popUpHeader, id, onCli
   )
 }
 function ControlledPopover(props) {
-
-  const [ popoverOpen, setPopoverOpen ] = useState(false)
+  const [popoverOpen, setPopoverOpen] = useState(false)
 
   function toggle() {
     setPopoverOpen(!popoverOpen)
   }
 
-  const { cellId, describesId, header, popoverText, popType } = props
+  const { cellId, header, popoverText, popType } = props
   const triggerId = `${popType}-popover-${cellId}`
   const dialogHeaderId = `${popType}-dialog-header-${cellId}`
   const dialogBodyId = `${popType}-dialog-header-${cellId}`

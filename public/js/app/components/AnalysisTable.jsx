@@ -10,6 +10,7 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
   return (
     <p>
       {fileName === '' ? (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
           aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`}
           className="pdf-link btn-link disabled"
@@ -23,7 +24,7 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
-          target="_blank"
+          target="_blank" rel="noreferrer"
         >
           {`${linkTitle}: ${validFrom}`}
         </a>
@@ -35,7 +36,7 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
 // NOTE: uses state from & is hard coded to archive page.
 // So less a 'component' and more a part of a page.
 const AnalysisTable = () => {
-  const [context, setWebContext] = useWebContext()
+  const [context] = useWebContext()
   const { userLang, courseCode, analysisData } = context
   const { storageUri } = context.browserConfig
   const translations = i18n.message('archiveTitles', userLang)
@@ -47,6 +48,7 @@ const AnalysisTable = () => {
     return [
       courseOffering,
       <ActiveOrDisabledLink
+        key={analysisFileName}
         fileName={analysisFileName}
         storageUri={storageUri}
         linkTitle={translations.label_analysis + ' ' + courseCode}

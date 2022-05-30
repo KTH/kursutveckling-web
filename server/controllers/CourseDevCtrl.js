@@ -1,4 +1,5 @@
 'use strict'
+
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
@@ -13,13 +14,12 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
 async function getCourseDevInfo(req, res, next) {
-
-    const { courseCode } = req.params
-    const lang = language.getLanguage(res) || 'sv'
-    const langIndex = lang === 'en' ? 0 : 1
+  const { courseCode } = req.params
+  const lang = language.getLanguage(res) || 'sv'
+  const langIndex = lang === 'en' ? 0 : 1
 
   try {
-    const { getCompressedData, renderStaticPage } = getServerSideFunctions()  
+    const { getCompressedData, renderStaticPage } = getServerSideFunctions()
     const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
@@ -50,7 +50,7 @@ async function getCourseDevInfo(req, res, next) {
       html: view,
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
-      title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
+      title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
     })
   } catch (err) {
     log.error('Error in getCourseDevInfo', { error: err })
@@ -69,7 +69,7 @@ function getErrorPage(req, res) {
   res.render('noCourse/index', {
     html,
     lang,
-    initialState: 'Ingen kurskod'
+    title: 'Ingen kurskod'
   })
 }
 

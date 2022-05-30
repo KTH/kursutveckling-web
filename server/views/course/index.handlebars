@@ -1,9 +1,12 @@
 <script>{{{compressedData}}}</script>
 
 {{#if error}}
-<p>Error: {{error}}</p>
+  <main id="mainContent">
+    <p>Error: {{error}}</p>
+  </main>
 {{else}}
-<div id="app">{{html}}</div>
+  <div id="app">{{{html}}}</div>
 {{/if}}
+
 
 {{prefixScript '/static/app.js' 'scripts'}}

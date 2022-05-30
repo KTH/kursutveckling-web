@@ -45,7 +45,7 @@ async function _getContent(req, res, next) {
     webContext.subHeadline = getFormattedSubHeadline(webContext.courseKoppsData, lang)
 
     const compressedData = getCompressedData(webContext)
-    
+
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
 
     const view = renderStaticPage({

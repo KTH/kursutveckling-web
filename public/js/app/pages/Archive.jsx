@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-import { useWebContext } from '../context/WebContext'
 import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Col, Row } from 'reactstrap'
 
 import ArchiveSideMenu from '../components/ArchiveSideMenu'
 import ArchivePageHeader from '../components/ArchivePageHeader'
+import { useWebContext } from '../context/WebContext'
 
 import i18n from '../../../../i18n'
 import SyllabusTable from '../components/SyllabusTable'
 import MemoTable from '../components/MemoTable'
 import AnalysisTable from '../components/AnalysisTable'
-import Table from '../components/Table'
 
 function renderBreadcrumbsIntoKthHeader(courseCode, language) {
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')
@@ -24,7 +23,7 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
 }
 
 const Archive = () => {
-  const [ context ] = useWebContext()
+  const [context] = useWebContext()
   const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
 

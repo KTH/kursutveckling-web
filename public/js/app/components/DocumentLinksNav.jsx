@@ -1,16 +1,17 @@
 import React from 'react'
-import { SYLLABUS_URL } from '../util/constants'
-import { getDateFormat } from '../util/helpers'
-import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
-import i18n from '../../../../i18n'
+import PropTypes from 'prop-types'
 
+import { getDateFormat } from '../util/helpers'
 import { useWebContext } from '../context/WebContext'
+import i18n from '../../../../i18n'
+import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 
 const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTitle, translate, validFrom = '' }) => {
   const { no_added_doc } = translate
   return (
     <p key={linkTitle}>
       {href === '' ? (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
           aria-label={`${ariaLabel}: ${no_added_doc}`}
           className={`${className} btn-link disabled`}
@@ -24,6 +25,7 @@ const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTit
           href={href}
           className={className}
           target="_blank"
+          rel="noreferrer"
         >
           {`${linkTitle}${validFrom ? ': ' + validFrom : ''}`}
         </a>
@@ -36,7 +38,7 @@ function parseCourseOffering(ladokRoundIds, rawSemester, lang = 'sv') {
   const languageIndex = typeof lang === 'string' ? (lang === 'en' ? 0 : 1) : lang
   const { archiveTitles: memoTitles } = i18n.messages[languageIndex].messages
 
-  const { label_memo: memoLabel, course_short_semester: shortSemLabels } = memoTitles
+  const { course_short_semester: shortSemLabels } = memoTitles
 
   const semester = shortSemLabels[rawSemester.toString().slice(-1)]
   const year = rawSemester.toString().slice(0, 4)
@@ -68,7 +70,7 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 }
 
 function ParseWebMemoName({ courseMemo, memoHref, translate }) {
-  const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester, memoName: courseOffering } = courseMemo
+  const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester } = courseMemo
 
   if (!ladokRoundIds) return null
   const courseOfferingName = parseCourseOffering(ladokRoundIds, semester, memoCommonLangAbbr)
@@ -128,7 +130,6 @@ function getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
 }
 
 function DocumentLinksNav(props) {
-
   const [context] = useWebContext()
 
   const { translate, staticAnalysisInfo, lang } = props
@@ -162,7 +163,7 @@ function DocumentLinksNav(props) {
           return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemoTexts} />
         })}
         {existingMemos.map((memoInfo, index) => {
-          const { isPdf, courseCode, memoEndPoint } = memoInfo
+          const { isPdf, memoEndPoint } = memoInfo
           return isPdf ? (
             <ParseUploadedMemo
               key={index}
@@ -195,3 +196,34 @@ function DocumentLinksNav(props) {
 }
 
 export default DocumentLinksNav
+
+DocumentLinksNav.propTypes = {
+  lang: PropTypes.oneOf(['en', 'sv']).isRequired,
+  translate: PropTypes.shape({
+    link_analysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
+    link_memo: PropTypes.shape({ label_memo: PropTypes.string, no_added_doc: PropTypes.string }).isRequired
+  }).isRequired,
+  staticAnalysisInfo: PropTypes.shape({
+    analysisFileName: PropTypes.string,
+    analysisName: PropTypes.string,
+    courseCode: PropTypes.string,
+    pdfAnalysisDate: PropTypes.string,
+    syllabusStartTerm: PropTypes.string,
+    roundIdList: PropTypes.string,
+    semester: PropTypes.string
+  })
+}
+
+ParseWebMemoName.propTypes = {
+  courseMemo: PropTypes.shape({
+    courseCode: PropTypes.string.isRequired,
+    ladokRoundIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    memoCommonLangAbbr: PropTypes.oneOf(['en', 'sv']),
+    semester: PropTypes.string.isRequired,
+    memoName: PropTypes.string,
+    memoEndPoint: PropTypes.string
+  }).isRequired,
+  translate: PropTypes.shape({
+    label_memo: PropTypes.string.isRequired
+  }).isRequired
+}

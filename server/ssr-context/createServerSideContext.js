@@ -12,20 +12,20 @@ function createServerSideContext() {
     courseTitle: '',
     courseCredits: 0,
     userLang: 'sv',
-    courseKoppsData: { //kopps-api
-        courseCode: '',
-        courseTitle: '',
-        courseCredits: 0,
-        koppsDataLang: 'sv'
-      },
+    courseKoppsData: {
+      // kopps-api
+      courseCode: '',
+      courseTitle: '',
+      courseCredits: 0,
+      koppsDataLang: 'sv'
+    },
     analysisData: undefined, // kursutveckling-api
     miniMemosPdfAndWeb: [], // kurs-pm-data-api
     courseMemos: [],
     subHeadline: '',
-    setBrowserConfig,
+    setBrowserConfig
   }
   return context
 }
 
 module.exports = { createServerSideContext }
-
