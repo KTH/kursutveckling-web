@@ -1,15 +1,10 @@
 import React from 'react'
-import { Alert } from 'reactstrap'
 
 import { SYLLABUS_URL } from '../util/constants'
 
 const row = (translation, courseCode, language, startDate, endDate) => {
-  const startTermLabel = `${
-    translation.course_short_semester[startDate.substring(4, 5)]
-  } ${startDate.substring(0, 4)}`
-  const endTermLabel = `${
-    translation.course_short_semester[endDate.substring(4, 5)] || ''
-  } ${endDate.substring(0, 4)}`
+  const startTermLabel = `${translation.course_short_semester[startDate.substring(4, 5)]} ${startDate.substring(0, 4)}`
+  const endTermLabel = `${translation.course_short_semester[endDate.substring(4, 5)] || ''} ${endDate.substring(0, 4)}`
   const semestersLabel = `${startTermLabel} – ${endTermLabel.trim() || translation.ongoing_label}`
   const courseSyllabusLabel = `${translation.label_syllabus} ${courseCode} (${startTermLabel} – ${endTermLabel})`
 

@@ -1,4 +1,4 @@
-const server = require('kth-node-server')
+const server = require('@kth/server')
 
 // Now read the server config etc.
 const config = require('./configuration').server
@@ -28,7 +28,7 @@ module.exports.getPaths = () => getPaths()
  * ******* LOGGING *******
  * ***********************
  */
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const packageFile = require('../package.json')
 
 const logConfiguration = {
@@ -53,7 +53,7 @@ server.set('layouts', path.join(__dirname, '/views/layouts'))
 server.set('partials', path.join(__dirname, '/views/partials'))
 server.engine(
   'handlebars',
-  exphbs({
+  exphbs.engine({
     defaultLayout: 'publicLayout',
     layoutsDir: server.settings.layouts,
     partialsDir: server.settings.partials
@@ -128,7 +128,7 @@ server.use(cookieParser())
  * ******* SESSION *******
  * ***********************
  */
-const session = require('kth-node-session')
+const session = require('@kth/session')
 const options = config.session
 options.sessionOptions.secret = config.sessionSecret
 server.use(session(options))

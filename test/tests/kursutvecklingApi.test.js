@@ -8,7 +8,7 @@ const mockLogger = {}
 mockLogger.debug = mockLogger.info = mockLogger.error = mockLogger.warn = () => {}
 mockLogger.init = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnReplace: false,
   warnOnUnregistered: false
@@ -24,9 +24,8 @@ jest.mock('../../server/configuration', () => ({
 jest.mock('../../server/api', () => ({ kursutvecklingApi: {} }))
 
 describe('Test functions in kopps api to filter raw data', () => {
-  test('if sortedKursutveckligApiInfo function is returning a correct data on correct order', async (done) => {
+  test('if sortedKursutveckligApiInfo function is returning a correct data on correct order', async () => {
     const sortedData = await sortedKursutveckligApiInfo('SF1624', mockRawAnalysisData)
     expect(sortedData).toStrictEqual(transformedAnalysisData)
-    done()
   })
 })

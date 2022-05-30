@@ -6,11 +6,8 @@ function PageTitle({ courseKoppsData: titleData, pageTitle, translate }) {
   const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${koppsDataLang}`
 
   const credits =
-    courseCredits !== EMPTY && courseCredits.toString().indexOf('.') < 0
-      ? courseCredits + '.0'
-      : courseCredits
-  const creditUnit =
-    koppsDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
+    courseCredits !== EMPTY && courseCredits.toString().indexOf('.') < 0 ? courseCredits + '.0' : courseCredits
+  const creditUnit = koppsDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
 
   const courseName = `${courseCode} ${courseTitle} ${creditUnit}`
   return (

@@ -2,7 +2,16 @@ import React from 'react'
 import { formatISODate } from '../util/helpers'
 
 const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
+  const [finishedServerSideRendering, setFinishedServerSideRendering] = React.useState(false) // to make sure csv can use blob href and work properly
+
   const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
+
+  React.useEffect(() => {
+    let isMounted = true
+    if (isMounted) setFinishedServerSideRendering(true)
+    return () => (isMounted = false)
+  }, [])
+
   return (
     <span className="extra-kopps-info-from-kutv-api">
       {orderedTitles.map((infoTitle) => (
@@ -14,11 +23,13 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
               <i>{translate.no_added}</i>
             </p>
           ) : (
-            <p
-              className="textBlock"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: thisAnalysisObj[infoTitle] }}
-            />
+            finishedServerSideRendering && (
+              <p
+                className="textBlock"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: thisAnalysisObj[infoTitle] }}
+              />
+            )
           )}
         </span>
       ))}
@@ -30,30 +41,22 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   const { page_lang: pageLang, commentChange: labelAboutChanges } = translate
   return (
     <span>
-      <h4>
-        {translate.publishedDate}
-      </h4>
+      <h4>{translate.publishedDate}</h4>
       <p className="textBlock">{formatISODate(publishedDate, pageLang)}</p>
-      
+
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
         <>
-          <h4>
-            {translate.changedAfterPublishedDate}
-          </h4>
-          <p className="textBlock">
-            {formatISODate(changedAfterPublishedDate, pageLang)}
-          </p>
-          <h4>
-            {labelAboutChanges}
-          </h4>
+          <h4>{translate.changedAfterPublishedDate}</h4>
+          <p className="textBlock">{formatISODate(changedAfterPublishedDate, pageLang)}</p>
+          <h4>{labelAboutChanges}</h4>
           <p className="textBlock">{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
         </>
       ) : (
         <>
-          <h4>
-            {translate.changedAfterPublishedDate}
-          </h4>
-          <p className="textBlock"><i>{translate.no_date_last_changed}</i></p>
+          <h4>{translate.changedAfterPublishedDate}</h4>
+          <p className="textBlock">
+            <i>{translate.no_date_last_changed}</i>
+          </p>
         </>
       )}
     </span>
@@ -64,20 +67,15 @@ const Details = ({ thisAnalysisObj, translate }) => {
   const { header_more_info: headerMoreInfo } = translate
   return (
     <details className="extra-info">
-      <summary className="white" aria-label={`${headerMoreInfo}: ${analysisName}`}>{headerMoreInfo}</summary>
+      <summary className="white" aria-label={`${headerMoreInfo}: ${analysisName}`}>
+        {headerMoreInfo}
+      </summary>
       <div>
-        <ExtraKoppsInfo
-          translate={translate.extra_kopps_info}
-          thisAnalysisObj={thisAnalysisObj}
-        />
-        <ExtraDatesAndComment
-          translate={translate.extra_dates_and_comments}
-          thisAnalysisObj={thisAnalysisObj}
-        />
+        <ExtraKoppsInfo translate={translate.extra_kopps_info} thisAnalysisObj={thisAnalysisObj} />
+        <ExtraDatesAndComment translate={translate.extra_dates_and_comments} thisAnalysisObj={thisAnalysisObj} />
       </div>
     </details>
   )
 }
-
 
 export default Details

@@ -1,36 +1,17 @@
 'use strict'
-const log = require('kth-node-log')
+
+const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const ReactDOMServer = require('react-dom/server')
-const { toJS } = require('mobx')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const filteredKoppsData = require('../apiCalls/koppsApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
-
-const serverPaths = require('../server').getPaths()
-
-function hydrateStores(renderProps) {
-  // This assumes that all stores are specified in a root element called Provider
-  const { props } = renderProps.props.children
-  const outp = {}
-  for (let key in props) {
-    if (typeof props[key].initializeStore === 'function') {
-      outp[key] = encodeURIComponent(JSON.stringify(toJS(props[key], true)))
-    }
-  }
-  return outp
-}
-
-function _staticRender(context, location) {
-  if (process.env.NODE_ENV === 'development') {
-    delete require.cache[require.resolve('../../dist/app.js')]
-  }
-  const { staticRender } = require('../../dist/app.js')
-  return staticRender(context, location)
-}
+const browserConfig = require('../configuration').browser
+const serverConfig = require('../configuration').server
+const paths = require('../server').getPaths()
+const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
@@ -38,26 +19,35 @@ async function getCourseDevInfo(req, res, next) {
   const langIndex = lang === 'en' ? 0 : 1
 
   try {
-    // Render react app
-    // const context = {}
-    const renderProps = _staticRender()
-    renderProps.props.children.props.adminStore.setBrowserConfig(browserConfig, serverPaths, serverConfig.hostUrl)
-    renderProps.props.children.props.adminStore.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    renderProps.props.children.props.adminStore.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    const { getCompressedData, renderStaticPage } = getServerSideFunctions()
+    const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
-    renderProps.props.children.props.adminStore.miniMemosPdfAndWeb =
-      (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
+    webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
+    webContext.courseCode = courseCode
+    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    webContext.miniMemosPdfAndWeb = (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
 
-    const html = ReactDOMServer.renderToString(renderProps)
+    const compressedData = getCompressedData(webContext)
+
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+
+    const view = renderStaticPage({
+      applicationStore: {},
+      location: req.url,
+      basename: proxyPrefix,
+      context: webContext
+    })
+
     res.render('course/index', {
+      compressedData,
       aboutCourse: {
         siteName: `${i18n.messages[langIndex].messages.page_about_course} ${courseCode}`,
         siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,
-      html,
-      initialState: JSON.stringify(hydrateStores(renderProps)),
+      html: view,
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title
@@ -79,7 +69,7 @@ function getErrorPage(req, res) {
   res.render('noCourse/index', {
     html,
     lang,
-    initialState: 'Ingen kurskod'
+    title: 'Ingen kurskod'
   })
 }
 

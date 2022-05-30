@@ -2,56 +2,44 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom' // matchPath
-import { Provider } from 'mobx-react'
-import { StaticRouter } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { configure } from 'mobx'
-
-import AdminStore from './stores/AdminStore'
-import ArchiveStore from './stores/ArchiveStore'
+import { WebContextProvider } from './context/WebContext'
+import { uncompressData } from './context/compress'
 import StudentViewCourseDev from './pages/StudentViewCourseDev'
 import Archive from './pages/Archive'
 
 import '../../css/kursutveckling-web.scss'
 
-function appFactory() {
-  if (process.env.NODE_ENV !== 'production') {
-    configure({
-      isolateGlobalState: true
-    })
+function appFactory(applicationStore, context) {
+  return (
+    <WebContextProvider configIn={context}>
+      <Routes>
+        <Route exact path="/:courseCode" element={<StudentViewCourseDev />} />
+        <Route exact path="/:courseCode/arkiv" element={<Archive />} />        
+      </Routes>
+    </WebContextProvider> 
+  )
+}
+
+function _renderOnClientSide() {
+  const isClientSide = typeof window !== 'undefined'
+
+  if (!isClientSide) {
+    return
   }
 
-  const adminStore = new AdminStore()
-  const archiveStore = new ArchiveStore()
-  if (typeof window !== 'undefined') {
-    adminStore.initializeStore('adminStore')
-    archiveStore.initializeStore('archiveStore')
-  }
+  const webContext = {}
+  uncompressData(webContext)
 
-  return (
-    <Provider adminStore={adminStore} archiveStore={archiveStore}>
-      <Switch>
-        <Route path="/kursutveckling/:courseCode/arkiv" component={Archive} />
-        <Route path="/kursutveckling/:courseCode" component={StudentViewCourseDev} />
-      </Switch>
-    </Provider>
-  )
+  const basename = webContext.proxyPrefixPath.uri
+
+  const app = <BrowserRouter basename={basename}>{appFactory({}, webContext)}</BrowserRouter>
+
+  const domElement = document.getElementById('app')
+  ReactDOM.hydrate(app, domElement)
 }
 
-function staticRender(context, location) {
-  return (
-    <StaticRouter location={location} context={context}>
-      {appFactory()}
-    </StaticRouter>
-  )
-}
+_renderOnClientSide()
 
-if (typeof window !== 'undefined') {
-  ReactDOM.render(
-    <BrowserRouter>{appFactory()}</BrowserRouter>,
-    document.getElementById('kth-kursinfo')
-  )
-}
-
-export { appFactory, staticRender }
+export default appFactory

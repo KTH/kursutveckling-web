@@ -3,8 +3,8 @@ import Details from './Details'
 import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 
-const SectionPerYear = ({ thisYearAnalyses, koppsData, year, pageLabels, tableLabels }) => {
-  const { courseCode, koppsDataLang } = koppsData
+const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels }) => {
+  const { koppsDataLang } = koppsData
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>

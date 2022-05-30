@@ -1,16 +1,13 @@
-import AdminStore from '../../public/js/app/stores/AdminStore'
-// import transformedAnalysisData from '../mocks/transformedAnalysisData'
-// import transformedKoppsData from '../mocks/transformedKoppsData'
+import mockedMiniMemosPdfAndWeb from '../mocks/mockMiniMemos'
 
-const realRouterStore = new AdminStore()
-
-const mockRouterStore = (userLang = 'en') => {
-  const routerWithData = {
-    ...realRouterStore,
+const mockWebContext = (lang = 'en') => {
+  const context = {
+    userLang: lang,
+    courseCode: 'EI1220',
     courseKoppsData: {
       courseCode: 'EI1220',
       gradeScale: { PF: 'P, F' },
-      courseTitle: userLang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',
+      courseTitle: lang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',
       sortedSyllabusStart: ['', 20192, 20102, 20092, 20082],
       syllabusPeriods: {
         20082: { endDate: 20091 },
@@ -19,7 +16,7 @@ const mockRouterStore = (userLang = 'en') => {
         20192: { endDate: '' }
       },
       courseCredits: 7.5,
-      koppsDataLang: userLang,
+      koppsDataLang: lang,
       koppsLangIndex: 0,
       semesterObjectList: {}
     },
@@ -31,10 +28,11 @@ const mockRouterStore = (userLang = 'en') => {
       storageUri: 'https://kursinfostoragestage/kursutveckling-blob-container/',
       memoStorageUri: 'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/',
       useSsl: false
-    }
+    },
+    ...mockedMiniMemosPdfAndWeb
   }
 
-  return routerWithData
+  return context
 }
 
-export default mockRouterStore
+export default mockWebContext
