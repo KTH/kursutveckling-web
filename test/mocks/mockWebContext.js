@@ -1,6 +1,6 @@
 import mockedMiniMemosPdfAndWeb from '../mocks/mockMiniMemos'
 
-const mockRouterStore = (lang = 'en') => {
+const mockWebContext = (lang = 'en') => {
   const context = {
     userLang: lang,
     courseCode: 'EI1220',
@@ -35,4 +35,4 @@ const mockRouterStore = (lang = 'en') => {
   return context
 }
 
-export default mockRouterStore
+export default mockWebContext

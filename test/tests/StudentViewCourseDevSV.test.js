@@ -1,13 +1,11 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import i18n from '../../i18n'
-import { StaticRouter } from 'react-router'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
 import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
-const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
+const { getAllByRole, getAllByText, getByText } = screen
 const userLang = 'sv'
 const context = mockAdminStore(userLang)
 
@@ -22,20 +20,14 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const CourseDevelopment = () => {
-  return (
-    <StaticRouter>
-      <WebContextProvider configIn={context}>
-        <StudentViewCourseDev />
-      </WebContextProvider>
-    </StaticRouter>
-  )
-}
+const CourseDevelopment = () => (
+  <WebContextProvider configIn={context}>
+    <StudentViewCourseDev />
+  </WebContextProvider>
+)
 
 describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
-  beforeEach(() => {
-    render(<CourseDevelopment />)
-  })
+  beforeEach(() => render(<CourseDevelopment />))
   test('renders a course development page', (done) => {
     done()
   })
@@ -45,7 +37,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(allH1Headers.length).toBe(1)
     expect(allH1Headers[0]).toHaveTextContent('Kursens utveckling')
     const subHeader = getByText('SF1624 Algebra och geometri 7,5 hp')
-    expect(subHeader).toBeTruthy()
+    expect(subHeader).toBeInTheDocument()
   })
 
   //
@@ -64,60 +56,60 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
   })
 
-  test('renders all h4 for Alert and each round Additional information headers, ', () => {
+  test('renders all h4 for Alert and each round Additional information headers,', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
     expect(allH4Headers.length).toBe(45)
     const expectedhds = [
-      //first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
+      // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
-      //next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
+      // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
-      //next round CITEH1 ( Startdatum 2018-10-29, Svenska )
+      // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
-      //next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
+      // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
-      //next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
+      // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
-      //no 'Kommentar till gjorda ändringar',
-      //next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
+      // no 'Kommentar till gjorda ändringar',
+      // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
-      //no 'Kommentar till gjorda ändringar',
-      //next round Med teknik ( Startdatum 2008-08-29, Svenska )
+      // no 'Kommentar till gjorda ändringar',
+      // next round Med teknik ( Startdatum 2008-08-29, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
-      //no 'Kommentar till gjorda ändringar',
-      //next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
+      // no 'Kommentar till gjorda ändringar',
+      // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
       'Kommentar till examination',
       'Obligatorisk inom program',
       'Kurstillfällen som ingår i kursomgång',
@@ -157,20 +149,20 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
     const rounds = ROUNDS
-    rounds.map((roundName, index) =>
+    rounds.map((roundName) =>
       expect(screen.getByLabelText(`Ytterligare data om kursomgången: ${roundName}`)).toBeInTheDocument()
     )
   })
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    
+
     expect(links.length).toBe(19)
     const expectedLinks = [
       'Om kursen SF1624',
       'Administrera Om kursen',
       '”Riktlinje om kursvärdering och kursanalys”',
-      //by each round
+      // by each round
       'Kursplan SF1624 ( HT 2019 - )',
       // 'Kurs-PM: 2019-09-10',
       'Kursanalys: 2019-09-10',
@@ -195,12 +187,10 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for PDF links', async () => {
     const links = screen.getAllByRole('link')
-    const editLink = 'Ändra publicerad kursanalys och kursdata för kursomgång: '
+    const linksWithAriaLabels = links.slice(3)
+
     const expectedAriaLabels = [
-      null,
-      null,
-      null,
-      //by each round
+      // by each round
       'PDF Kursplan SF1624 ( HT 2019 -  )',
       // 'PDF Kurs-PM CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
       'PDF Kursanalys CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
@@ -219,7 +209,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
       'PDF Kursanalys CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 2019-10-08'
     ]
-    links.map((link, index) => expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index]))
+    linksWithAriaLabels.map((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
   })
 
   test('Links have a correct href', async () => {

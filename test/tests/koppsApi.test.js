@@ -27,19 +27,22 @@ jest.mock('../../server/configuration', () => ({
 }))
 
 describe('Test functions in kopps api to filter raw data', () => {
-  test('function to filter data is working', async (done) => {
-    const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData)
-    done()
-  })
-
-  test('if filteredKoppsData function is returning a correct data', async (done) => {
+  test('if filteredKoppsData function is returning a correct data', async () => {
     const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData)
     expect(filteredData).toStrictEqual(transformedKoppsData('en'))
-    done()
   })
 
-  test('if filteredKoppsData function handles empty data', async (done) => {
+  test('if filteredKoppsData function handles empty data', async () => {
     const filteredData = await filteredKoppsData('SF1624', 'en', mockEmptyRawKoppsData)
-    done()
+    const result = {
+      courseCode: 'SF1624',
+      courseTitle: ' ',
+      sortedSyllabusStart: [],
+      syllabusPeriods: {},
+      courseCredits: ' ',
+      koppsDataLang: 'en',
+      koppsLangIndex: 0
+    }
+    expect(filteredData).toStrictEqual(result)
   })
 })

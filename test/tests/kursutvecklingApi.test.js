@@ -24,9 +24,8 @@ jest.mock('../../server/configuration', () => ({
 jest.mock('../../server/api', () => ({ kursutvecklingApi: {} }))
 
 describe('Test functions in kopps api to filter raw data', () => {
-  test('if sortedKursutveckligApiInfo function is returning a correct data on correct order', async (done) => {
+  test('if sortedKursutveckligApiInfo function is returning a correct data on correct order', async () => {
     const sortedData = await sortedKursutveckligApiInfo('SF1624', mockRawAnalysisData)
     expect(sortedData).toStrictEqual(transformedAnalysisData)
-    done()
   })
 })

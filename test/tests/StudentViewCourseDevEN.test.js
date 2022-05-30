@@ -1,7 +1,7 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import { StaticRouter } from 'react-router'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
 import { WebContextProvider } from '../../public/js/app/context/WebContext'
@@ -21,22 +21,15 @@ const ROUNDS = [
   'CINTE CMIEL ( Startdatum 2008-08-29, Svenska )'
 ]
 
-const CourseDevelopment = () => {
-  return (
-    <StaticRouter>
-      <WebContextProvider configIn={context}>
-        <StudentViewCourseDev />
-      </WebContextProvider>
-    </StaticRouter>
-  )
-}
+const CourseDevelopment = () => (
+  <WebContextProvider configIn={context}>
+    <StudentViewCourseDev />
+  </WebContextProvider>
+)
 
 describe('User language: English. Component <StudentViewCourseDev>', () => {
   beforeEach(() => {
     render(<CourseDevelopment />)
-  })
-  test('renders a course development page', (done) => {
-    done()
   })
 
   test('renders and check all headers on the place', () => {
@@ -44,7 +37,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(allH1Headers.length).toBe(1)
     expect(allH1Headers[0]).toHaveTextContent('Course development')
     const subHeader = getByText('SF1624 Algebra and Geometry 7.5 credits')
-    expect(subHeader).toBeTruthy()
+    expect(subHeader).toBeInTheDocument()
   })
 
   test('renders h2 for all years', () => {
@@ -191,11 +184,9 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for PDF links', async () => {
     const links = screen.getAllByRole('link')
-    const editLink = 'Change published course analysis and course data. Course rounds: '
+    const linksWithAriaLabels = links.slice(3)
+
     const expectedAriaLabels = [
-      null,
-      null,
-      null,
       // by each round
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       // 'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
@@ -215,7 +206,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
       'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 08/10/2019'
     ]
-    links.map((link, index) => expect(link.getAttribute('aria-label')).toBe(expectedAriaLabels[index]))
+    linksWithAriaLabels.forEach((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
   })
 
   test('Links have a correct href', async () => {
