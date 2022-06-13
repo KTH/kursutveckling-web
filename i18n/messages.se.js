@@ -64,6 +64,7 @@ module.exports = {
       label_latest_version: 'senaste versionen',
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
+      no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
       label_analyses: 'Kursanalyser',
       label_analysis: 'Kursanalys',
       analysis_table_heading1: 'Kursomgång',
@@ -148,7 +149,7 @@ module.exports = {
       1: 'På denna sida ska kursansvarig eller examinator publicera kursanalyser med kursdata för en kursomgång. Detta regleras av ',
       2: 'När kursanalysen har publicerats visas kursdata, kurs-PM och kursplan.',
       3: 'Presumtiva, nuvarande, och tidigare studenter kan ta del av informationen som hjälp vid kursval, eller för att följa upp sitt eget deltagande. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.'
-    },     
+    },
     label_syllabus_link: 'Kursplan',
     course_short_semester: {
       1: 'VT ',

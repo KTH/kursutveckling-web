@@ -24,7 +24,8 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
           href={`${storageUri}${fileName}`}
           className="pdf-link"
           key={linkTitle}
-          target="_blank" rel="noreferrer"
+          target="_blank"
+          rel="noreferrer"
         >
           {`${linkTitle}: ${validFrom}`}
         </a>
@@ -61,11 +62,15 @@ const AnalysisTable = () => {
   return (
     <>
       <h2>{translations.label_analyses}</h2>
-      <Table
-        headings={[translations.analysis_table_heading1, translations.analysis_table_heading2]}
-        rows={analysisDataRows}
-        tableClasses={['table', 'archive-table']}
-      />
+      {analysisDataRows.length ? (
+        <Table
+          headings={[translations.analysis_table_heading1, translations.analysis_table_heading2]}
+          rows={analysisDataRows}
+          tableClasses={['table', 'archive-table']}
+        />
+      ) : (
+        <p className="inline-information">{translations.no_analyses}</p>
+      )}
     </>
   )
 }

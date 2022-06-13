@@ -66,6 +66,7 @@ module.exports = {
       label_latest_version: 'latest version',
       no_syllabuses: 'This course doesn´t have an approved course syllabus.',
       no_memos: 'This course has no published course memos.',
+      no_analyses: 'This course has no published Course Analyses.',
       label_analyses: 'Course Analyses',
       label_analysis: 'Course Analysis',
       analysis_table_heading1: 'Course Offering',
@@ -133,7 +134,8 @@ module.exports = {
     header_more_info: 'Additional data about this course offering',
     link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
     link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
-    no_course_analys: 'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
+    no_course_analys:
+      'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
@@ -141,7 +143,7 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    course_admin_title: 'Administer About course',//Administrate
+    course_admin_title: 'Administer About course', //Administrate
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',
@@ -150,7 +152,7 @@ module.exports = {
       1: 'On this page, the course coordinator or examiner will publish course analyzes with course data for a course offering. This is regulated by the ',
       2: 'When the course analysis has been published, the course data, the course memo and course syllabus are displayed.',
       3: 'Prospective, current and former students can take part of the information to help with course selection, or to follow up their own participation. Teachers, course coordinators, examiners etc. can use the page as a support in course development.'
-    },     
+    },
     label_syllabus_link: 'Course syllabus',
     course_short_semester: {
       1: 'Spring ',
