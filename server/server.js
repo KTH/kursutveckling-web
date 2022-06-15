@@ -77,8 +77,6 @@ server.use(accessLog(config.logging.accessLog))
 const browserConfig = require('./configuration').browser
 const browserConfigHandler = require('kth-node-configuration').getHandler(browserConfig, getPaths())
 const express = require('express')
-const compression = require('compression')
-server.use(compression())
 
 // helper
 function setCustomCacheControl(res, path) {
