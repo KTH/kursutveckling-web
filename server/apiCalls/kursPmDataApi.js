@@ -11,9 +11,10 @@ const locales = { sv, en }
 
 async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
   const { client, paths } = api.kursPmDataApi
-  const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
 
   try {
+    const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
+
     const { body } = await client.getAsync({ uri })
     if (!body) log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
     return body || []
@@ -25,9 +26,10 @@ async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
 
 async function getAllMemosByCourseCodeAndType(courseCode, type) {
   const { client, paths } = api.kursPmDataApi
-  const uri = client.resolve(paths.getAllMemosByCourseCodeAndType.uri, { courseCode, type })
 
   try {
+    const uri = client.resolve(paths.getAllMemosByCourseCodeAndType.uri, { courseCode, type })
+
     const { body } = await client.getAsync({ uri })
     if (!body) log.debug('kurs-pm-data-api is not available at the moment in getAllMemosByCourseCodeAndType ')
 
