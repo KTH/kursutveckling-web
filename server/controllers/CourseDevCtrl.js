@@ -24,9 +24,10 @@ async function getCourseDevInfo(req, res, next) {
 
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
+    webContext.userLang = lang
     webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
-    webContext.miniMemosPdfAndWeb = (await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)) || []
+    webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
 
     const compressedData = getCompressedData(webContext)
 
