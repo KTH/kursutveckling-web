@@ -43,7 +43,7 @@ const combineStartEndDates = async (syllabusStartDates) => {
 const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
     const { course = {}, termsWithCourseRounds } = testCourse || (await rawKoppsCourseData(courseCode))
-    const { credits = null, title = null } = course
+    const { credits = null, title = {} } = course
     const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(termsWithCourseRounds)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
 
