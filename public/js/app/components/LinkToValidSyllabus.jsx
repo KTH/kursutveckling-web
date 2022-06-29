@@ -6,9 +6,9 @@ import { useWebContext } from '../context/WebContext'
 function LinkToValidSyllabusPdf(props) {
   const { startDate, lang } = props
 
-  const [context] = useWebContext()
+  const [{ courseKoppsData }] = useWebContext()
 
-  const { courseCode, syllabusPeriods } = context.courseKoppsData
+  const { courseCode, syllabusPeriods } = courseKoppsData
 
   const { course_short_semester: courseShortSemester, label_syllabus_link: labelSyllabusLink } =
     i18n.messages[lang === 'en' ? 0 : 1].pageTitles

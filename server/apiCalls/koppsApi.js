@@ -7,13 +7,13 @@ function parseOrSetEmpty(value) {
   return value ? value : ' '
 }
 
-function getListOfValidFromSyllabusTerms(roundsInfo = []) {
+function getListOfValidFromSyllabusTerms(terms = []) {
   const startYears = []
   let validFrom,
     prev = 0
-  if (roundsInfo.length > 0) {
-    for (const termObj of roundsInfo) {
-      validFrom = parseInt(termObj.courseSyllabus.validFromTerm)
+  if (terms.length > 0) {
+    for (const term of terms) {
+      validFrom = parseInt(term.courseSyllabus.validFromTerm)
       if (validFrom !== prev && validFrom) {
         startYears.push(validFrom)
         prev = validFrom
@@ -30,11 +30,11 @@ const combineStartEndDates = async (syllabusStartDates) => {
   let periods = {}
   await syllabusStartDates.forEach((nextSyllabusDate, index, startDates) => {
     if (startDates[index + 1]) {
-      const start = startDates[index + 1]
+      const startDate = startDates[index + 1]
       const lastTerm = nextSyllabusDate.toString().substring(4, 5)
       if (lastTerm === '2') nextSyllabusDate -= 1
       else if (lastTerm === '1') nextSyllabusDate -= 9
-      periods = { ...periods, ...{ [start]: { endDate: nextSyllabusDate } } }
+      periods = { ...periods, ...{ [startDate]: { endDate: nextSyllabusDate } } }
     }
   })
   return periods
@@ -44,13 +44,13 @@ const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
     const { course = {}, termsWithCourseRounds } = testCourse || (await rawKoppsCourseData(courseCode))
     const { credits = null, title = {} } = course
-    const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(termsWithCourseRounds)
-    const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
+    const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(termsWithCourseRounds)
+    const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
 
     return {
       courseCode: courseCode.toUpperCase(),
       courseTitle: parseOrSetEmpty(title[lang]),
-      sortedSyllabusStart,
+      sortedSyllabusStart: sortedSyllabusStartDates,
       syllabusPeriods,
       courseCredits: parseOrSetEmpty(credits),
       koppsDataLang: lang,
