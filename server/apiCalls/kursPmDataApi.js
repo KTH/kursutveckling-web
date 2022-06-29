@@ -110,7 +110,7 @@ function parseMemoNameAndOfferings(courseMemo, languageIndex) {
 const FIRST_VERSION = 1
 
 function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
-  const { courseCode, courseMemoFileName: lastestMemoFileName, isPdf, lastChangeDate, previousFileList } = courseMemo
+  const { courseMemoFileName: lastestMemoFileName, isPdf, lastChangeDate, previousFileList } = courseMemo
   const languageIndex = getLanguageIndex(userLanguageAbbr)
 
   const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
@@ -133,7 +133,7 @@ function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
 }
 
 function parseWebBasedMemo(courseMemo, oldWebMemos) {
-  const { courseCode, ladokRoundIds, memoCommonLangAbbr, isPdf } = courseMemo
+  const { memoCommonLangAbbr, isPdf } = courseMemo
   const languageIndex = getLanguageIndex(memoCommonLangAbbr)
 
   const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)

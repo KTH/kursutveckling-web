@@ -3,8 +3,8 @@
 const log = require('@kth/log')
 const rawKoppsCourseData = require('./getRawKoppsData')
 
-function isValidData(dataObject) {
-  return !dataObject ? ' ' : dataObject
+function parseOrSetEmpty(value) {
+  return value ? value : ' '
 }
 
 function getListOfValidFromSyllabusTerms(roundsInfo = []) {
@@ -28,7 +28,7 @@ function getListOfValidFromSyllabusTerms(roundsInfo = []) {
 const combineStartEndDates = async (syllabusStartDates) => {
   if (!syllabusStartDates.length > 0) return {} // {20182}
   let periods = {}
-  await syllabusStartDates.map((nextSyllabusDate, index, startDates) => {
+  await syllabusStartDates.forEach((nextSyllabusDate, index, startDates) => {
     if (startDates[index + 1]) {
       const start = startDates[index + 1]
       const lastTerm = nextSyllabusDate.toString().substring(4, 5)
@@ -40,18 +40,18 @@ const combineStartEndDates = async (syllabusStartDates) => {
   return periods
 }
 
-const filteredKoppsData = async (courseCode, lang, testCourseObj = null) => {
+const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
-    const courseObj = testCourseObj || (await rawKoppsCourseData(courseCode))
-    const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(courseObj.termsWithCourseRounds)
+    const course = testCourse || (await rawKoppsCourseData(courseCode))
+    const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(course.termsWithCourseRounds)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
 
     return {
       courseCode: courseCode.toUpperCase(),
-      courseTitle: isValidData(courseObj.course ? courseObj.course.title[lang] : null),
+      courseTitle: parseOrSetEmpty(course.course ? course.course.title[lang] : null),
       sortedSyllabusStart,
       syllabusPeriods,
-      courseCredits: isValidData(courseObj.course ? courseObj.course.credits : null),
+      courseCredits: parseOrSetEmpty(course.course ? course.course.credits : null),
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
