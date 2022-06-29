@@ -42,16 +42,17 @@ const combineStartEndDates = async (syllabusStartDates) => {
 
 const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
-    const { course, termsWithCourseRounds } = testCourse || (await rawKoppsCourseData(courseCode))
+    const { course = {}, termsWithCourseRounds } = testCourse || (await rawKoppsCourseData(courseCode))
+    const { credits = null, title = null } = course
     const sortedSyllabusStart = await getListOfValidFromSyllabusTerms(termsWithCourseRounds)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStart)
 
     return {
       courseCode: courseCode.toUpperCase(),
-      courseTitle: parseOrSetEmpty(course ? course.title[lang] : null),
+      courseTitle: parseOrSetEmpty(title[lang]),
       sortedSyllabusStart,
       syllabusPeriods,
-      courseCredits: parseOrSetEmpty(course ? course.credits : null),
+      courseCredits: parseOrSetEmpty(credits),
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }
