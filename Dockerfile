@@ -25,7 +25,6 @@ RUN apk stats && \
     npm ci --unsafe-perm && \
     npm run build && \
     npm prune --production && \
-    apk del .gyp-dependencies && \
     apk stats
 
 EXPOSE 3000
