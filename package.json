@@ -27,7 +27,7 @@
   "dependencies": {
     "@kth/api-call": "^4.0.38",
     "@kth/kth-node-response": "^1.0.6",
-    "@kth/kth-node-web-common": "^7.0.11",
+    "@kth/kth-node-web-common": "^7.0.12",
     "@kth/kth-reactstrap": "^0.4.54",
     "@kth/log": "^4.0.4",
     "@kth/monitor": "^3.0.24",
