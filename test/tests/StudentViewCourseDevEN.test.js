@@ -215,7 +215,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
-      'https://intra.kth.se/en/styrning/styrdokument/regler/utbildning-overgripande-1.660834',
+      'https://intra.kth.se/en/styrning/styrdokument/regler/utbildning-1.1117452',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       // 'http://localhost/pm-SF1624HT2019_9.pdf',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
