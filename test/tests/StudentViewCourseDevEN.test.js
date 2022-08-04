@@ -56,61 +56,53 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('renders all h4 for Alert and each round Additional information headers.', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(45)
+    expect(allH4Headers.length).toBe(37)
     const expectedhds = [
       // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
       // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
       // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
       // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing',
       // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       // no 'Comments to changes in course data or course analysis after publishing',
       // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       // no 'Comments to changes in course data or course analysis after publishing',
       // next round Med teknik ( Startdatum 2008-08-29, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       // no 'Comments to changes in course data or course analysis after publishing',
       // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
-      'Examination comments',
+      'The course analysis applies to following course offerings',
       'Compulsory within programme',
-      'Administrative course instances included in the course offering',
       'Published first time',
       'Last time changed',
       'Comments to changes in course data or course analysis after publishing'
@@ -140,15 +132,15 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(changeDates.length).toBe(2)
   })
 
-  test('Get Additional data about this course offering if it renders', async () => {
-    const extraInfo = getAllByText('Additional data about this course offering')
+  test('Get Additional data about this course analysis if it renders', async () => {
+    const extraInfo = getAllByText('Additional data about this course analysis')
     expect(extraInfo.length).toBe(8)
   })
 
-  test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
+  test('Check if aria-label is correct for Additional data about this course analysis if it renders', async () => {
     const rounds = ROUNDS
     rounds.map((roundName) =>
-      expect(screen.getByLabelText(`Additional data about this course offering: ${roundName}`)).toBeInTheDocument()
+      expect(screen.getByLabelText(`Additional data about this course analysis: ${roundName}`)).toBeInTheDocument()
     )
   })
 

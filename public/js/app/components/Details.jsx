@@ -4,7 +4,7 @@ import { formatISODate } from '../util/helpers'
 const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
   const [finishedServerSideRendering, setFinishedServerSideRendering] = React.useState(false) // to make sure csv can use blob href and work properly
 
-  const orderedTitles = ['commentExam', 'programmeCodes', 'analysisName']
+  const orderedTitles = [ 'analysisName', 'programmeCodes']
 
   React.useEffect(() => {
     let isMounted = true

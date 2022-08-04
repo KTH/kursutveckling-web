@@ -118,7 +118,7 @@ module.exports = {
       },
       programmeCodes: { header: 'Compulsory within programme', popoverText: '' },
       analysisName: {
-        header: 'Administrative course instances included in the course offering',
+        header: 'The course analysis applies to following course offerings',
         popoverText:
           'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
       }
@@ -131,7 +131,7 @@ module.exports = {
       no_date_last_changed: 'No changes since first published.',
       page_lang: 'en'
     },
-    header_more_info: 'Additional data about this course offering',
+    header_more_info: 'Additional data about this course analysis',
     link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
     link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
     no_course_analys:

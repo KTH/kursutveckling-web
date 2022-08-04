@@ -3,7 +3,7 @@ import Details from './Details'
 import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 
-const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels }) => {
+const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLang }) => {
   const { koppsDataLang } = koppsData
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
@@ -36,7 +36,9 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels }) => {
             thisAnalysisObj={thisOfferingAnalysis}
             translate={tableLabels.table_headers_with_popup}
           />
-
+          <div>
+            <p className="float-right" lang={userLang}>{tableLabels.info_manually_edited}</p>
+          </div>
           <Details thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
         </section>
       )
@@ -48,7 +50,6 @@ const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeader
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
     <div className="list-section-per-year col">
-      <p lang={userLang}>{tableHeaders.info_manually_edited}</p>
       {yearsDescending.map((year, index) => (
         <SectionPerYear
           key={index}
@@ -57,6 +58,7 @@ const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeader
           year={year}
           pageLabels={pageTitles}
           tableLabels={tableHeaders}
+          userLang={userLang}
         />
       ))}
     </div>

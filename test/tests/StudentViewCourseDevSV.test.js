@@ -58,61 +58,53 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('renders all h4 for Alert and each round Additional information headers,', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(45)
+    expect(allH4Headers.length).toBe(37)
     const expectedhds = [
       // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
       // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
       // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
       // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar',
       // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       // no 'Kommentar till gjorda ändringar',
       // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       // no 'Kommentar till gjorda ändringar',
       // next round Med teknik ( Startdatum 2008-08-29, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       // no 'Kommentar till gjorda ändringar',
       // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
-      'Kommentar till examination',
+      'Kursanalysen gäller för följande kursomgångar',
       'Obligatorisk inom program',
-      'Kurstillfällen som ingår i kursomgång',
       'Publicerad första gången',
       'Senaste ändrad',
       'Kommentar till gjorda ändringar'
@@ -142,15 +134,15 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(changeDates.length).toBe(2)
   })
 
-  test('Get Additional data about this course offering if it renders', async () => {
-    const extraInfo = getAllByText('Ytterligare data om kursomgången')
+  test('Get Additional data about this course analysis if it renders', async () => {
+    const extraInfo = getAllByText('Ytterligare data om kursanalysen')
     expect(extraInfo.length).toBe(8)
   })
 
-  test('Check if aria-label is correct for Additional data about this course offering if it renders', async () => {
+  test('Check if aria-label is correct for Additional data about this course analysis if it renders', async () => {
     const rounds = ROUNDS
     rounds.map((roundName) =>
-      expect(screen.getByLabelText(`Ytterligare data om kursomgången: ${roundName}`)).toBeInTheDocument()
+      expect(screen.getByLabelText(`Ytterligare data om kursanalysen: ${roundName}`)).toBeInTheDocument()
     )
   })
 
