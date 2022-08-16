@@ -133,14 +133,14 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('Get Additional data about this course analysis if it renders', async () => {
-    const extraInfo = getAllByText('Additional data about this course analysis')
+    const extraInfo = getAllByText('Additional data about the course analysis')
     expect(extraInfo.length).toBe(8)
   })
 
   test('Check if aria-label is correct for Additional data about this course analysis if it renders', async () => {
     const rounds = ROUNDS
     rounds.map((roundName) =>
-      expect(screen.getByLabelText(`Additional data about this course analysis: ${roundName}`)).toBeInTheDocument()
+      expect(screen.getByLabelText(`Additional data about the course analysis: ${roundName}`)).toBeInTheDocument()
     )
   })
 

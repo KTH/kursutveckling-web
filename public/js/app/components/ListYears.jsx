@@ -36,8 +36,9 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLa
             thisAnalysisObj={thisOfferingAnalysis}
             translate={tableLabels.table_headers_with_popup}
           />
-          <div>
-            <p className="float-right" lang={userLang}>{tableLabels.info_manually_edited}</p>
+          <div className="float-right inline-flex" lang={userLang}>
+            <p className="icon-asterisk-black" />
+            <p>{tableLabels.info_manually_edited}</p>
           </div>
           <Details thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
         </section>

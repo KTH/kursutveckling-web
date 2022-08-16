@@ -74,7 +74,7 @@ module.exports = {
     }
   },
   tableHeaders: {
-    info_manually_edited: '* Course data has been registered manually',
+    info_manually_edited: 'Course data has been registered manually',
     header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
     aria_label_close_icon: 'Close',
     aria_label_info_icon: 'More information',
@@ -131,7 +131,7 @@ module.exports = {
       no_date_last_changed: 'No changes since first published.',
       page_lang: 'en'
     },
-    header_more_info: 'Additional data about this course analysis',
+    header_more_info: 'Additional data about the course analysis',
     link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
     link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
     no_course_analys:
