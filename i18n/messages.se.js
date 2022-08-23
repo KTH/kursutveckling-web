@@ -147,7 +147,7 @@ module.exports = {
     info_text: {
       0: '',
       1: 'På denna sida ska kursansvarig eller examinator publicera kursanalyser med kursdata för en kursomgång. Detta regleras av ',
-      2: 'När kursanalysen är publicerats visas kursdata, kurs-PM och kursplan.',
+      2: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
       3: 'Presumtiva, nuvarande, och tidigare studenter kan ta del av informationen som hjälp vid kursval, eller för att följa upp sitt eget deltagande. Lärare, kursansvariga, examinatorer m.fl. kan använda sidan som ett stöd vid kursutveckling.'
     },
     label_syllabus_link: 'Kursplan',
