@@ -26,11 +26,17 @@ function renderBreadcrumbsIntoKthHeader(courseCode, language) {
     )
 }
 
+function linkToArchive(courseCode, language) {
+  const languageParameter = language === 'en' ? '?l=en' : ''
+  return `/kursutveckling/${courseCode ? courseCode + '/arkiv' : ''}${languageParameter}`
+}
+
 function StudentViewCourseDev() {
   const [context] = useWebContext()
 
   const { courseCode, courseKoppsData, analysisData, userLang } = context
-  const { pageTitles, tableHeaders } = i18n.messages[userLang === 'en' ? 0 : 1]
+  const { pageTitles, tableHeaders, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
+  const { archiveTitles } = messages
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
   const regulatedLink = userLang === 'en' ? REGULATED_URL_EN : REGULATED_URL_SV
   const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
@@ -72,6 +78,7 @@ function StudentViewCourseDev() {
             {labelAboutRegulatedLlink}
           </a>
           {pageTitles.info_text[2]}
+          <a href={linkToArchive(courseCode, userLang)}>{archiveTitles.archive}.</a>
         </p>
       </span>
       <IntroText id="intro-text-0" key="intro-text-0" translate={pageTitles} phrase="0" userLang={userLang} />

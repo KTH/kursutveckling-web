@@ -150,7 +150,7 @@ module.exports = {
     info_text: {
       0: '',
       1: 'On this page, the course coordinator or examiner will publish course analyzes with course data for a course offering. This is regulated by the ',
-      2: 'When the course analysis has been published, the course data, the course memo and course syllabus are displayed.',
+      2: 'When the course analysis has been published, the course data, the course memo and course syllabus are displayed. All course syllabuses and course memos are shown on the page ',
       3: 'Prospective, current and former students can take part of the information to help with course selection, or to follow up their own participation. Teachers, course coordinators, examiners etc. can use the page as a support in course development.'
     },
     label_syllabus_link: 'Course syllabus',
