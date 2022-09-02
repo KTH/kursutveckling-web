@@ -13,7 +13,7 @@ function getListOfValidFromSyllabusTerms(terms = []) {
     prev = 0
   if (terms.length > 0) {
     for (const term of terms) {
-      validFrom = parseInt(term.courseSyllabus.validFromTerm)
+      validFrom = parseInt(term.validFromTerm.term)
       if (validFrom !== prev && validFrom) {
         startYears.push(validFrom)
         prev = validFrom
@@ -42,14 +42,13 @@ const combineStartEndDates = async (syllabusStartDates) => {
 
 const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
-    const { course = {}, termsWithCourseRounds } = testCourse || (await rawKoppsCourseData(courseCode))
-    const { credits = null, title = {} } = course
-    const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(termsWithCourseRounds)
+    const { course = {}, publicSyllabusVersions } = testCourse || (await rawKoppsCourseData(courseCode, lang))
+    const { credits = null, title = null } = course
+    const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
-
     return {
       courseCode: courseCode.toUpperCase(),
-      courseTitle: parseOrSetEmpty(title[lang]),
+      courseTitle: parseOrSetEmpty(title),
       sortedSyllabusStart: sortedSyllabusStartDates,
       syllabusPeriods,
       courseCredits: parseOrSetEmpty(credits),
