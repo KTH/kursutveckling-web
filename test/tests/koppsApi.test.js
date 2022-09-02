@@ -1,7 +1,7 @@
 /* eslint-disable jest/expect-expect */
 const mockery = require('mockery')
 const filteredKoppsData = require('../../server/apiCalls/koppsApi')
-const { mockRawKoppsData, mockEmptyRawKoppsData } = require('../mocks/rawKoppsData')
+const mockRawKoppsData = require('../mocks/rawKoppsData')
 const transformedKoppsData = require('../mocks/transformedKoppsData')
 
 const mockLogger = {}
@@ -27,13 +27,18 @@ jest.mock('../../server/configuration', () => ({
 }))
 
 describe('Test functions in kopps api to filter raw data', () => {
-  test('if filteredKoppsData function is returning a correct data', async () => {
-    const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData)
-    expect(filteredData).toStrictEqual(transformedKoppsData('en'))
+  test('if filteredKoppsData function is returning a correct data in english', async () => {
+    const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData.en)
+    expect(filteredData).toStrictEqual(transformedKoppsData.en)
+  })
+
+  test('if filteredKoppsData function is returning a correct data in swedish', async () => {
+    const filteredData = await filteredKoppsData('SF1624', 'sv', mockRawKoppsData.sv)
+    expect(filteredData).toStrictEqual(transformedKoppsData.sv)
   })
 
   test('if filteredKoppsData function handles empty data', async () => {
-    const filteredData = await filteredKoppsData('SF1624', 'en', mockEmptyRawKoppsData)
+    const filteredData = await filteredKoppsData('SF1624', 'en', {})
     const result = {
       courseCode: 'SF1624',
       courseTitle: ' ',
