@@ -1,5 +1,4 @@
 import transformedAnalysisData from './transformedAnalysisData'
-import i18n from '../../i18n'
 
 const mockArchiveStore = (lang) => {
   const context = {
@@ -8,34 +7,32 @@ const mockArchiveStore = (lang) => {
     courseTitle: '',
     courseCredits: 0,
     userLang: lang,
-    courseKoppsData: { 
-        courseCode: '',
-        courseTitle: '',
-        courseCredits: 0,
-        koppsDataLang: 'sv',
-        syllabusPeriods: { 19701: { endDate: 20372 } }
-      },
+    courseKoppsData: {
+      courseCode: '',
+      courseTitle: '',
+      courseCredits: 0,
+      koppsDataLang: 'sv',
+      syllabusPeriods: { 19701: { endDate: 20372 } }
+    },
     miniMemosPdfAndWeb: [],
     subHeadline: 'SF1624 Algebra and Geometry, 7,5 credits',
     courseMemos: [
-        {
-          courseOffering: 'Course Offering',
-          isPdf: false,
-          memoName: 'Memo Name',
-          memoVersionsAndUrls: [
-            {
-              name: 'Ver 1 – 2020-07-01 15:37:34 (senaste versionen)',
-              url: '/kurs-pm/SF1624/SF162420202-5-7'
-            }
-          ]
-        }
-      ],
+      {
+        courseOffering: 'Course Offering',
+        isPdf: false,
+        memoName: 'Memo Name',
+        memoVersionsAndUrls: [
+          {
+            name: 'Ver 1 – 2020-07-01 15:37:34 (senaste versionen)',
+            url: '/kurs-pm/SF1624/SF162420202-5-7'
+          }
+        ]
+      }
+    ],
     analysisData: transformedAnalysisData,
-    browserConfig: { storageUri: '', hostUrl: '' },
-    
+    browserConfig: { storageUri: '', hostUrl: '' }
   }
   return context
 }
 
 export default mockArchiveStore
-

@@ -25,12 +25,12 @@ const mockCourseAnalysis = (semester = '20172', roundIdList = '1') => ({
   examinationRounds: [
     'KONE;Kontrollskrivning E;3,5;hp;Betygsskala;P, F              \n                         ',
     'KONM;Kontrollskrivning M;4,0;hp;Betygsskala;P, F              \n                         ',
-    'TEN1;Tentamina;3,0;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         ',
+    'TEN1;Tentamina;3,0;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
   ],
   responsibles: 'SA Jonsson',
   examiners: 'SA Jonsson',
   programmeCodes: 'CELTE',
   analysisName: `Fake name ${semester}-${roundIdList} ( Startdatum 20xx-09-18, Svenska )`,
-  __v: 0,
+  __v: 0
 })
 export default mockCourseAnalysis
