@@ -17,7 +17,7 @@ async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
   const lang = language.getLanguage(res) || 'sv'
   const langIndex = lang === 'en' ? 0 : 1
-  let klaroConsentCookie = false
+  let klaroAnalyticsConsentCookie = false
   if (req.cookies.klaro) {
     const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
     // eslint-disable-next-line prefer-destructuring
@@ -25,7 +25,7 @@ async function getCourseDevInfo(req, res, next) {
       .find((cookie) => cookie.includes('analytics-consent'))
       .split(':')[1]
     // eslint-disable-next-line no-const-assign
-    klaroConsentCookie = analyticsConsentCookieString === 'true'
+    klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
   }
 
   try {
@@ -62,7 +62,7 @@ async function getCourseDevInfo(req, res, next) {
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
-      cookies: klaroConsentCookie
+      klaroAnalyticsConsentCookie
     })
   } catch (err) {
     log.error('Error in getCourseDevInfo', { error: err })
