@@ -95,7 +95,7 @@
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.54.5",
-    "sass-loader": "^13.0.2",
+    "sass-loader": "^13.2.0",
     "set-value": "^4.1.0",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.74.0",
