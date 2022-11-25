@@ -74,9 +74,6 @@ function StudentViewCourseDev() {
       <span className="intro-text">
         <p className="col" lang={userLang}>
           {pageTitles.info_text[1]}
-          <a href={regulatedLink} className="link mt-15 mb-15">
-            {labelAboutRegulatedLlink}
-          </a>
           {pageTitles.info_text[2]}
           <a href={linkToArchive(courseCode, userLang)}>{archiveTitles.archive}.</a>
         </p>

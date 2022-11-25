@@ -149,11 +149,11 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
 
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(19)
     const expectedLinks = [
       'Om kursen SF1624',
       'Administrera Om kursen',
-      '”Riktlinje om kursvärdering och kursanalys”',
+      // '”Riktlinje om kursvärdering och kursanalys”',
       'Arkiv',
       // by each round
       'Kursplan SF1624 ( HT 2019 - )',
@@ -180,7 +180,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for PDF links', async () => {
     const links = screen.getAllByRole('link')
-    const linksWithAriaLabels = links.slice(4)
+    const linksWithAriaLabels = links.slice(3)
 
     const expectedAriaLabels = [
       // by each round
@@ -210,7 +210,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=sv',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=sv',
-      'https://intra.kth.se/styrning/styrdokument/regler/utbildning-overgripande-1.660834',
+      // 'https://intra.kth.se/styrning/styrdokument/regler/utbildning-overgripande-1.660834',
       'http://localhost/kursutveckling/SF1624/arkiv',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
       // 'http://localhost/pm-SF1624HT2019_9.pdf',

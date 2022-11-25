@@ -149,9 +149,9 @@ module.exports = {
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',
     info_text: {
       0: '',
-      1: 'On this page, the course coordinator or examiner will publish course analyzes with course data for a course offering. This is regulated by the ',
-      2: 'When the course analysis has been published, the course data, the course memo and course syllabus are displayed. All course syllabuses and course memos are shown on the page ',
-      3: 'Prospective, current and former students can take part of the information to help with course selection, or to follow up their own participation. Teachers, course coordinators, examiners etc. can use the page as a support in course development.'
+      1: 'On this page, the course coordinator or examiner will publish course analyses with course data for a course offering. ',
+      2: 'When the course analysis has been published, the course data, the course memo, and the course syllabus are displayed. All course syllabuses and course memos are shown on the page ',
+      3: 'The information can help prospective, current, and former students with course selection, or to follow up on their own participation. Teachers, course coordinators, examiners, etc. can use the page as support in course development.'
     },
     label_syllabus_link: 'Course syllabus',
     course_short_semester: {

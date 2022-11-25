@@ -146,11 +146,11 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(19)
     const expectedLinks = [
       'About course SF1624',
       'Administer About course',
-      '“Guidelines on course evaluation and course analysis”',
+      // '“Guidelines on course evaluation and course analysis”',
       'Archive',
       // by each round
       'Course syllabus SF1624 ( Autumn 2019 - )',
@@ -177,7 +177,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Check if aria-label is correct for PDF links', async () => {
     const links = screen.getAllByRole('link')
-    const linksWithAriaLabels = links.slice(4)
+    const linksWithAriaLabels = links.slice(3)
 
     const expectedAriaLabels = [
       // by each round
@@ -204,11 +204,11 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(19)
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
-      'https://intra.kth.se/en/styrning/styrdokument/regler/utbildning-1.1117452',
+      // 'https://intra.kth.se/en/styrning/styrdokument/regler/utbildning-1.1117452',
       'http://localhost/kursutveckling/SF1624/arkiv?l=en',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       // 'http://localhost/pm-SF1624HT2019_9.pdf',
