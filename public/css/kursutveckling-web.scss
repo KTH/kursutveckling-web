@@ -12,15 +12,17 @@ $dark-grey: #65656c;
   padding-bottom: 1em;
 }
 
-%grey-icon-for-table-header {
+%icon-for-table-header {
+  background-color: #f6f6f6;
   height: 1.2em;
   width: 1.2em;
-  border: 0.8px solid #fff;
-  -webkit-filter: grayscale(1) brightness(88%) contrast(2);
-  filter: grayscale(1) brightness(88%) contrast(2);
+  border: 0.4px solid #fff;
+  // -webkit-filter: grayscale(1) brightness(88%) contrast(2);
+  // filter: grayscale(10) brightness(88%) contrast(2);
   margin-left: 0;
   vertical-align: middle;
   visibility: visible;
+  top: -0.3em;
 }
 //****ICONS*****//
 
@@ -191,7 +193,7 @@ div.popover.show {
 
 button.desktop.btn-info-modal,
 button.mobile.btn-info-modal {
-  @extend %grey-icon-for-table-header;
+  @extend %icon-for-table-header;
   min-height: 0.75rem;
 }
 
