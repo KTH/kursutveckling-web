@@ -130,7 +130,8 @@ span.intro-text {
     }
     .pdf-link {
       &:before {
-        height: 1em;
+        height: 20px;
+        width: 20px;
         margin: 0 0.3em 0 0;
         vertical-align: -9%;
       }
