@@ -45,7 +45,12 @@ function formatVersionDate(language = 'sv', date) {
   if (unixTime) {
     const timeZone = 'Europe/Berlin'
     const zonedDate = utcToZonedTime(new Date(unixTime), timeZone)
-    return format(zonedDate, 'Ppp', { locale: locales[language] })
+    if (language === 'sv') {
+      return format(zonedDate, 'Ppp', { locale: locales[language] })
+    } else {
+      const options = { day: 'numeric', month: 'short', year: 'numeric' }
+      return zonedDate.toLocaleDateString('en-GB', options)
+    }
   }
   return null
 }

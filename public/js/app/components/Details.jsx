@@ -1,10 +1,10 @@
 import React from 'react'
-import { formatISODate } from '../util/helpers'
+import { getDateFormat } from '../util/helpers'
 
 const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
   const [finishedServerSideRendering, setFinishedServerSideRendering] = React.useState(false) // to make sure csv can use blob href and work properly
 
-  const orderedTitles = [ 'analysisName', 'programmeCodes']
+  const orderedTitles = ['analysisName', 'programmeCodes']
 
   React.useEffect(() => {
     let isMounted = true
@@ -42,12 +42,12 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
   return (
     <span>
       <h4>{translate.publishedDate}</h4>
-      <p className="textBlock">{formatISODate(publishedDate, pageLang)}</p>
+      <p className="textBlock">{getDateFormat(publishedDate, pageLang)}</p>
 
       {changedAfterPublishedDate && changedAfterPublishedDate !== '' ? (
         <>
           <h4>{translate.changedAfterPublishedDate}</h4>
-          <p className="textBlock">{formatISODate(changedAfterPublishedDate, pageLang)}</p>
+          <p className="textBlock">{getDateFormat(changedAfterPublishedDate, pageLang)}</p>
           <h4>{labelAboutChanges}</h4>
           <p className="textBlock">{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
         </>
