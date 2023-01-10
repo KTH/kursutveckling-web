@@ -123,8 +123,8 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('Get some dates of data changes in course data or course analysis after publishing if it renders', async () => {
-    const changeDates = getAllByText('9/11/2019')
-    expect(changeDates.length).toBe(3)
+    const changeDates = getAllByText('10 Sept 2019')
+    expect(changeDates.length).toBe(1)
   })
 
   test('Get No information inserted if no data changes in course data or course analysis after publishing if it renders', async () => {
@@ -155,21 +155,21 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       // by each round
       'Course syllabus SF1624 ( Autumn 2019 - )',
       // 'Course memo: 10/09/2019', deprecated should not be visible
-      'Course analysis: 10/09/2019',
+      'Course analysis: 10 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 04/09/2019',
+      'Course analysis: 4 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 11/09/2019',
+      'Course analysis: 11 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 09/10/2019',
+      'Course analysis: 9 Oct 2019',
       'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'Course analysis: 08/10/2019',
+      'Course analysis: 8 Oct 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 09/09/2019',
+      'Course analysis: 9 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 03/09/2019',
+      'Course analysis: 3 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 08/10/2019'
+      'Course analysis: 8 Oct 2019'
     ]
 
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
@@ -183,21 +183,21 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       // by each round
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       // 'PDF Course memo CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
-      'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10/09/2019',
+      'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis CMEDT1 ( Startdatum 2018-10-29, Svenska ): 04/09/2019',
+      'PDF Course analysis CMEDT1 ( Startdatum 2018-10-29, Svenska ): 4 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis CITEH1 ( Startdatum 2018-10-29, Svenska ): 11/09/2019',
+      'PDF Course analysis CITEH1 ( Startdatum 2018-10-29, Svenska ): 11 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 09/10/2019',
+      'PDF Course analysis TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 9 Oct 2019',
       'PDF Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'PDF Course analysis CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 08/10/2019',
+      'PDF Course analysis CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 8 Oct 2019',
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis CSAMH1 ( Startdatum 2009-01-12, Svenska ): 09/09/2019',
+      'PDF Course analysis CSAMH1 ( Startdatum 2009-01-12, Svenska ): 9 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis Med teknik ( Startdatum 2008-08-29, Svenska ): 03/09/2019',
+      'PDF Course analysis Med teknik ( Startdatum 2008-08-29, Svenska ): 3 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 08/10/2019'
+      'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 8 Oct 2019'
     ]
     linksWithAriaLabels.forEach((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
   })

@@ -47,7 +47,7 @@ describe('User language: English. Component <DocumentLinksNav>: one ladok round 
       'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/pm-EI1220HT2017_1.pdf'
     )
 
-    expect(links[2]).toHaveTextContent('Course analysis: 05/09/2019')
+    expect(links[2]).toHaveTextContent('Course analysis: 5 Sept 2019')
     expect(links[2].href).toStrictEqual(
       'https://kursinfostoragestage/kursutveckling-blob-container/analysis-EI1220HT2017_1.pdf'
     )
@@ -97,7 +97,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
       'https://kursinfostoragestage.blob.core.windows.net/memo-blob-container/pm-EI1220HT2019_2.pdf'
     )
 
-    expect(links[3]).toHaveTextContent('Course analysis: 05/09/2019')
+    expect(links[3]).toHaveTextContent('Course analysis: 5 Sept 2019')
     expect(links[3].href).toStrictEqual(
       'https://kursinfostoragestage/kursutveckling-blob-container/analysis-EI1220HT2017_1.pdf'
     )
@@ -147,7 +147,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
     expect(links[2]).toHaveTextContent('Course memo EI1220 Autumn 2019-3')
     expect(links[2].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
 
-    expect(links[3]).toHaveTextContent('Course analysis: 05/09/2019')
+    expect(links[3]).toHaveTextContent('Course analysis: 5 Sept 2019')
     expect(links[3].href).toStrictEqual(
       'https://kursinfostoragestage/kursutveckling-blob-container/analysis-EI1220HT2017_1.pdf'
     )
@@ -166,7 +166,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2019-3')
     expect(links[1].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
 
-    expect(links[2]).toHaveTextContent('Course analysis: 05/09/2019')
+    expect(links[2]).toHaveTextContent('Course analysis: 5 Sept 2019')
     expect(links[2].href).toStrictEqual(
       'https://kursinfostoragestage/kursutveckling-blob-container/analysis-EI1220HT2017_1.pdf'
     )
