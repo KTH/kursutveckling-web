@@ -48,8 +48,15 @@ function formatVersionDate(language = 'sv', date) {
     if (language === 'sv') {
       return format(zonedDate, 'Ppp', { locale: locales[language] })
     } else {
-      const options = { day: 'numeric', month: 'short', year: 'numeric' }
-      return zonedDate.toLocaleDateString('en-GB', options)
+      const options = {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }
+      return zonedDate.toLocaleString('en-GB', options)
     }
   }
   return null

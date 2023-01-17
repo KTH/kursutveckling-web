@@ -6,6 +6,10 @@ export const getDateFormat = (date, language) => {
   }
   const timestamp = Date.parse(date)
   const parsedDate = new Date(timestamp)
-  const options = { day: 'numeric', month: 'short', year: 'numeric' }
-  return parsedDate.toLocaleDateString('en-GB', options)
+  const options = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }
+  return parsedDate.toLocaleString('en-GB', options)
 }
