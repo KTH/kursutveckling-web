@@ -15,9 +15,10 @@ async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
   try {
     const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
 
-    const { body } = await client.getAsync({ uri })
-    if (!body) log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
-    return body || []
+    const res = await client.getAsync({ uri })
+    if (!res.body)
+      log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
+    return res.body || []
   } catch (err) {
     log.debug('getSortedAndPrioritizedMiniMemosWebOrPdf is not available', err)
     return []
@@ -101,7 +102,7 @@ function resolveMemoBlobUrl() {
 function parseMemoNameAndOfferings(courseMemo, languageIndex) {
   const {
     courseCode,
-    ladokRoundIds,
+    applicationCodes,
     semester: memoYearAndSeason,
     // web-based memo props
     memoName: initialMemoName
@@ -112,7 +113,7 @@ function parseMemoNameAndOfferings(courseMemo, languageIndex) {
 
   const semester = semesterLabel[memoYearAndSeason.slice(-1)]
   const year = memoYearAndSeason.slice(0, 4)
-  const offeringIds = ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
+  const offeringIds = applicationCodes.reduce((label, id) => `${label}-${id}`, '')
 
   const courseOffering = initialMemoName ? initialMemoName : `${semester} ${year}${offeringIds}`
   const memoName = `${memoLabel} ${courseCode} ${semester} ${year}${offeringIds}`

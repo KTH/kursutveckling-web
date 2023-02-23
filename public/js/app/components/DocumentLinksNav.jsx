@@ -34,7 +34,7 @@ const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTit
   )
 }
 
-function parseCourseOffering(ladokRoundIds, rawSemester, lang = 'sv') {
+function parseCourseOffering(applicationCodes, rawSemester, lang = 'sv') {
   const languageIndex = typeof lang === 'string' ? (lang === 'en' ? 0 : 1) : lang
   const { archiveTitles: memoTitles } = i18n.messages[languageIndex].messages
 
@@ -43,16 +43,16 @@ function parseCourseOffering(ladokRoundIds, rawSemester, lang = 'sv') {
   const semester = shortSemLabels[rawSemester.toString().slice(-1)]
   const year = rawSemester.toString().slice(0, 4)
 
-  const offeringIds = ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
+  const offeringIds = applicationCodes.reduce((label, id) => `${label}-${id}`, '')
 
   const courseOfferings = `${semester} ${year}${offeringIds}`
   return courseOfferings
 }
 
 function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate }) {
-  const { courseCode, courseMemoFileName, ladokRoundIds, semester: memoSemester } = fileInfo
+  const { courseCode, courseMemoFileName, semester: memoSemester, applicationCodes } = fileInfo
 
-  const courseOfferingName = parseCourseOffering(ladokRoundIds, memoSemester, userLanguageAbbr)
+  const courseOfferingName = parseCourseOffering(applicationCodes, memoSemester, userLanguageAbbr)
 
   const { label_memo: memoLabel } = translate
 
@@ -70,10 +70,10 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 }
 
 function ParseWebMemoName({ courseMemo, memoHref, translate }) {
-  const { courseCode, ladokRoundIds, memoCommonLangAbbr, semester } = courseMemo
+  const { courseCode, applicationCodes, memoCommonLangAbbr, semester } = courseMemo
 
-  if (!ladokRoundIds) return null
-  const courseOfferingName = parseCourseOffering(ladokRoundIds, semester, memoCommonLangAbbr)
+  if (!applicationCodes) return null
+  const courseOfferingName = parseCourseOffering(applicationCodes, semester, memoCommonLangAbbr)
   const { label_memo: memoLabel } = translate
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`

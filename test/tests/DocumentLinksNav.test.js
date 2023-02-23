@@ -11,7 +11,7 @@ import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
 const { getAllByRole, getByText } = screen
 
-const RenderDocumentLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...rest }) => {
+const RenderDocumentLinksNav = ({ userLang = 'en', semester, applicationCodes, ...rest }) => {
   const context = mockWebContext(userLang)
 
   return (
@@ -19,21 +19,22 @@ const RenderDocumentLinksNav = ({ userLang = 'en', semester, koppsRoundId, ...re
       <DocumentLinksNav
         {...rest}
         translate={i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders}
-        staticAnalysisInfo={mockCourseAnalysis(semester, koppsRoundId)}
+        staticAnalysisInfo={mockCourseAnalysis(semester, applicationCodes)}
         lang={userLang}
       />
     </WebContextProvider>
   )
 }
-const setupOneRoundInEnglish = () => render(<RenderDocumentLinksNav userLang="en" semester="20172" koppsRoundId="1" />)
-const setupOneRoundInSwedish = () => render(<RenderDocumentLinksNav userLang="sv" semester="20172" koppsRoundId="1" />)
+const setupOneRoundInEnglish = () =>
+  render(<RenderDocumentLinksNav userLang="en" semester="20172" applicationCodes="1" />)
+const setupOneRoundInSwedish = () =>
+  render(<RenderDocumentLinksNav userLang="sv" semester="20172" applicationCodes="1" />)
 const setupTwoRoundsInEnglish = () =>
-  render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="1,2" />)
+  render(<RenderDocumentLinksNav userLang="en" semester="20192" applicationCodes="1,2" />)
 const setupTwoRoundsInSwedish = () =>
-  render(<RenderDocumentLinksNav userLang="sv" semester="20192" koppsRoundId="1,2" />)
+  render(<RenderDocumentLinksNav userLang="sv" semester="20192" applicationCodes="1,2" />)
 
 describe('User language: English. Component <DocumentLinksNav>: one ladok round id, one pdf memo', () => {
-
   test('renders links all three links', () => {
     setupOneRoundInEnglish()
 
@@ -131,7 +132,7 @@ describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round 
 
 describe('User language: English. Component <DocumentLinksNav>: two ladok round ids, one pdf memos and one web based', () => {
   test('renders 2 memo links (memo pdf and memo web based) and one course analysis', () => {
-    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="1,3" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" applicationCodes="1,3" />)
 
     const links = getAllByRole('link')
     expect(links.length).toBe(4)
@@ -156,7 +157,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
 
 describe('User language: English. Component <DocumentLinksNav>: two ladok round ids, only one web based', () => {
   test('renders 1 active memo link for round 3 and one course analysis', () => {
-    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" applicationCodes="3,9" />)
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
@@ -173,7 +174,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
   })
 
   test('renders disabled link for non-existing course memo for round 9', () => {
-    render(<RenderDocumentLinksNav userLang="en" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="en" semester="20192" applicationCodes="3,9" />)
 
     const disabledLink = getByText('No course memo added')
     expect(disabledLink).toBeInTheDocument()
@@ -182,7 +183,7 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
 
 describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round ids, only one web based', () => {
   test('renders 1 active memo link for round 3 and one course analysis', () => {
-    render(<RenderDocumentLinksNav userLang="sv" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="sv" semester="20192" applicationCodes="3,9" />)
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
@@ -198,7 +199,7 @@ describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round 
   })
 
   test('renders disabled link for non-existing course memo for round 9', () => {
-    render(<RenderDocumentLinksNav userLang="sv" semester="20192" koppsRoundId="3,9" />)
+    render(<RenderDocumentLinksNav userLang="sv" semester="20192" applicationCodes="3,9" />)
 
     const disabledLink = getByText('Inget kurs-PM tillagt')
     expect(disabledLink).toBeInTheDocument()
