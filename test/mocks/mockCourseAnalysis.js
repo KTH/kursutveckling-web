@@ -1,4 +1,4 @@
-const mockCourseAnalysis = (semester = '20172', roundIdList = '1', applicationCodes = '1') => ({
+const mockCourseAnalysis = (semester = '20172', applicationCodes = '1') => ({
   _id: 'EI1220HT2017_1',
   courseCode: 'EI1220',
   registeredStudentsFromLadok: false,
@@ -8,7 +8,6 @@ const mockCourseAnalysis = (semester = '20172', roundIdList = '1', applicationCo
   ugKeys: ['EI1220.examiner', 'EI1220.20172.1.courseresponsible'],
   pmFileName: 'pm-EI1220HT2017_1.pdf',
   analysisFileName: 'analysis-EI1220HT2017_1.pdf', // prev file from api
-  roundIdList,
   applicationCodes,
   semester,
   changedBy: 'sajonsson',
