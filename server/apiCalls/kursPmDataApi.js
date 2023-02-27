@@ -15,10 +15,9 @@ async function getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode) {
   try {
     const uri = client.resolve(paths.getPrioritizedWebOrPdfMemosByCourseCode.uri, { courseCode })
 
-    const res = await client.getAsync({ uri })
-    if (!res.body)
-      log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
-    return res.body || []
+    const { body } = await client.getAsync({ uri })
+    if (!body) log.debug('kurs-pm-data-api is not available at the moment in getSortedAndPrioritizedMiniMemosWebOrPdf')
+    return body || []
   } catch (err) {
     log.debug('getSortedAndPrioritizedMiniMemosWebOrPdf is not available', err)
     return []
