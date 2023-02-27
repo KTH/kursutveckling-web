@@ -92,37 +92,37 @@ function getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds) {
   const unfilteredRoundsMissingMemos = []
   const tmpMemoNames = {}
   // move rounds without a memo to a separate array
-  const roundsWithMemo = analysesLadokRounds.filter((analysesLadokRoundId) => {
-    const hasMemo = !!thisSemesterMemos[analysesLadokRoundId]
+  const roundsWithMemo = analysesLadokRounds.filter((analysesApplicationCode) => {
+    const hasMemo = !!thisSemesterMemos[analysesApplicationCode]
     if (!hasMemo) {
-      unfilteredRoundsMissingMemos.push(analysesLadokRoundId)
+      unfilteredRoundsMissingMemos.push(analysesApplicationCode)
       return false
     }
     return true
   })
   // check for duplicates and mark it
   const existingMemosAndDuplicates =
-    roundsWithMemo.map((analysesLadokRoundId) => {
-      const thisRoundMemo = thisSemesterMemos[analysesLadokRoundId]
+    roundsWithMemo.map((analysesApplicationCode) => {
+      const thisRoundMemo = thisSemesterMemos[analysesApplicationCode]
       const { courseMemoFileName, memoEndPoint, isPdf } = thisRoundMemo
       const memoUniqueId = isPdf ? courseMemoFileName : memoEndPoint
       const uid = memoUniqueId ? memoUniqueId : 'noName'
       if (!tmpMemoNames[uid]) {
         tmpMemoNames[uid] = 'has_memo'
         return { type: 'original', ...thisRoundMemo }
-      } else return { type: 'duplicate', uid, analysesLadokRoundId, isPdf }
+      } else return { type: 'duplicate', uid, analysesApplicationCode, isPdf }
     }) || []
 
   const uniqueMemos = existingMemosAndDuplicates.filter(({ type }) => type !== 'duplicate') || []
   const duplicates = existingMemosAndDuplicates.filter(({ type }) => type === 'duplicate') || []
 
   // update original memos with ladok round id from a duplicate memo
-  duplicates.forEach(({ uid, analysesLadokRoundId, isPdf }) => {
+  duplicates.forEach(({ uid, analysesApplicationCode, isPdf }) => {
     if (isPdf) {
       const index = uniqueMemos.findIndex(({ isPdf, courseMemoFileName = 'noName', memoEndPoint = 'noName' }) =>
         isPdf ? courseMemoFileName === uid : memoEndPoint === uid
       )
-      uniqueMemos[index].ladokRoundIds.push(analysesLadokRoundId)
+      uniqueMemos[index].applicationCodes.push(analysesApplicationCode)
     }
   })
 
@@ -145,11 +145,11 @@ function DocumentLinksNav(props) {
     courseCode,
     pdfAnalysisDate,
     syllabusStartTerm,
-    roundIdList,
+    applicationCodes,
     semester: analysisSemester
   } = staticAnalysisInfo
 
-  const analysesLadokRounds = roundIdList.split(',') || []
+  const analysesLadokRounds = applicationCodes.split(',') || []
   const thisSemesterMemos = miniMemosPdfAndWeb[analysisSemester] || []
   const [unfilteredRoundsMissingMemos, existingMemos] = getMemoLinksInfo(thisSemesterMemos, analysesLadokRounds)
 
@@ -157,8 +157,8 @@ function DocumentLinksNav(props) {
     <span className="right-block-of-links">
       <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
       <span className="vertical-block-of-links">
-        {unfilteredRoundsMissingMemos.map((ladokRoundId) => {
-          const missingMemoOfferingName = parseCourseOffering([ladokRoundId], analysisSemester, lang)
+        {unfilteredRoundsMissingMemos.map((applicationCode) => {
+          const missingMemoOfferingName = parseCourseOffering([applicationCode], analysisSemester, lang)
           const title = `${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`
           return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemoTexts} />
         })}
@@ -209,7 +209,7 @@ DocumentLinksNav.propTypes = {
     courseCode: PropTypes.string,
     pdfAnalysisDate: PropTypes.string,
     syllabusStartTerm: PropTypes.string,
-    roundIdList: PropTypes.string,
+    applicationCodes: PropTypes.string,
     semester: PropTypes.string
   })
 }
@@ -217,7 +217,7 @@ DocumentLinksNav.propTypes = {
 ParseWebMemoName.propTypes = {
   courseMemo: PropTypes.shape({
     courseCode: PropTypes.string.isRequired,
-    ladokRoundIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    applicationCodes: PropTypes.arrayOf(PropTypes.string).isRequired,
     memoCommonLangAbbr: PropTypes.oneOf(['en', 'sv']),
     semester: PropTypes.string.isRequired,
     memoName: PropTypes.string,
