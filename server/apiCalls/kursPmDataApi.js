@@ -101,7 +101,7 @@ function resolveMemoBlobUrl() {
 function parseMemoNameAndOfferings(courseMemo, languageIndex) {
   const {
     courseCode,
-    ladokRoundIds,
+    applicationCodes,
     semester: memoYearAndSeason,
     // web-based memo props
     memoName: initialMemoName
@@ -112,7 +112,7 @@ function parseMemoNameAndOfferings(courseMemo, languageIndex) {
 
   const semester = semesterLabel[memoYearAndSeason.slice(-1)]
   const year = memoYearAndSeason.slice(0, 4)
-  const offeringIds = ladokRoundIds.reduce((label, id) => `${label}-${id}`, '')
+  const offeringIds = applicationCodes.reduce((label, id) => `${label}-${id}`, '')
 
   const courseOffering = initialMemoName ? initialMemoName : `${semester} ${year}${offeringIds}`
   const memoName = `${memoLabel} ${courseCode} ${semester} ${year}${offeringIds}`
