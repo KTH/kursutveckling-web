@@ -28,7 +28,8 @@ function getListOfValidFromSyllabusTerms(terms = []) {
 const combineStartEndDates = async (syllabusStartDates) => {
   if (!syllabusStartDates.length > 0) return {} // {20182}
   let periods = {}
-  await syllabusStartDates.forEach((nextSyllabusDate, index, startDates) => {
+  await syllabusStartDates.forEach((syllabusDate, index, startDates) => {
+    let nextSyllabusDate = syllabusDate
     if (startDates[index + 1]) {
       const startDate = startDates[index + 1]
       const lastTerm = nextSyllabusDate.toString().substring(4, 5)
