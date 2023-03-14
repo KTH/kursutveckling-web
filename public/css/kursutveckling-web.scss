@@ -345,3 +345,11 @@ and also iPads specifically.
     color: black;
   }
 }
+
+.memo-link-container {
+  width: 89%;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

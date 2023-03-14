@@ -26,6 +26,7 @@ const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTit
           className={className}
           target="_blank"
           rel="noreferrer"
+          title={`${linkTitle}${validFrom ? ': ' + validFrom : ''}`}
         >
           {`${linkTitle}${validFrom ? ': ' + validFrom : ''}`}
         </a>
@@ -84,6 +85,7 @@ function ParseWebMemoName({ courseMemo, memoHref, translate }) {
       href={memoHref}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
+      className="memo-link-container"
     />
   )
 }
