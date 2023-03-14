@@ -6,7 +6,7 @@ import i18n from '../../../../i18n'
 
 import PageTitle from '../components/PageTitle'
 import ListYears from '../components/ListYears'
-import { COURSE_INFO_URL, REGULATED_URL_SV, REGULATED_URL_EN } from '../util/constants'
+import { COURSE_INFO_URL } from '../util/constants'
 
 import { useWebContext } from '../context/WebContext'
 
@@ -38,9 +38,7 @@ function StudentViewCourseDev() {
   const { pageTitles, tableHeaders, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
   const { archiveTitles } = messages
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
-  const regulatedLink = userLang === 'en' ? REGULATED_URL_EN : REGULATED_URL_SV
   const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
-  const labelAboutRegulatedLlink = pageTitles.regulated_link
   const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
 
   useEffect(() => {
