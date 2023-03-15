@@ -346,8 +346,15 @@ and also iPads specifically.
   }
 }
 
-.memo-link-container {
-  width: 89%;
+.pdf-link-width {
+  width: 22.5rem;
+}
+
+.memo-link-width {
+  width: 18.4rem;
+}
+
+.pdf-memo-link-container {
   display: block;
   white-space: nowrap;
   text-overflow: ellipsis;

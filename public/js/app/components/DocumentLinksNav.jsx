@@ -62,7 +62,7 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`PDF ${memoNameWithCourseOfferings}`}
-      className="pdf-link memo-link-container"
+      className="pdf-link pdf-link-width pdf-memo-link-container"
       href={`${memoBlobUrl}${courseMemoFileName}`}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
@@ -85,7 +85,7 @@ function ParseWebMemoName({ courseMemo, memoHref, translate }) {
       href={memoHref}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
-      className="memo-link-container"
+      className="memo-link-width pdf-memo-link-container"
     />
   )
 }
