@@ -57,12 +57,14 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 
   const { label_memo: memoLabel } = translate
 
+  const className = `pdf-link pdf-memo-link-container pdf-link-width-${userLanguageAbbr}`
+
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`PDF ${memoNameWithCourseOfferings}`}
-      className="pdf-link pdf-link-width pdf-memo-link-container"
+      className={className}
       href={`${memoBlobUrl}${courseMemoFileName}`}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
@@ -70,12 +72,14 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
   )
 }
 
-function ParseWebMemoName({ courseMemo, memoHref, translate }) {
+function ParseWebMemoName({ courseMemo, memoHref, translate, language }) {
   const { courseCode, applicationCodes, memoCommonLangAbbr, semester } = courseMemo
 
   if (!applicationCodes) return null
   const courseOfferingName = parseCourseOffering(applicationCodes, semester, memoCommonLangAbbr)
   const { label_memo: memoLabel } = translate
+
+  const className = `pdf-memo-link-container memo-link-width-${language}`
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 
@@ -85,7 +89,7 @@ function ParseWebMemoName({ courseMemo, memoHref, translate }) {
       href={memoHref}
       linkTitle={memoNameWithCourseOfferings}
       translate={translate}
-      className="memo-link-width pdf-memo-link-container"
+      className={className}
     />
   )
 }
@@ -180,6 +184,7 @@ function DocumentLinksNav(props) {
               courseMemo={memoInfo}
               key={index}
               translate={linkMemoTexts}
+              language={lang}
             />
           )
         })}
