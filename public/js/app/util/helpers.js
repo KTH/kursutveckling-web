@@ -1,11 +1,15 @@
 'use strict'
 
 export const getDateFormat = (date, language) => {
-  if (language === 'Svenska' || language === 1 || language === 'sv' || date.length === 0) {
-    return date
-  }
   const timestamp = Date.parse(date)
   const parsedDate = new Date(timestamp)
+
+  if (language === 'Svenska' || language === 1 || language === 'sv' || date.length === 0) {
+    const options = {
+      dateStyle: 'short'
+    }
+    return parsedDate.toLocaleString('sv-SE', options)
+  }
   const options = {
     day: 'numeric',
     month: 'short',
