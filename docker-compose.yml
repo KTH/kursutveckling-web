@@ -4,8 +4,6 @@ services:
 
   web:
     environment:
-      WEB_VERSION: "^0.1.0"
-      LOGGING_USER: "kursutveckling-web"
       SERVICE_PUBLISH: "/kursutveckling"
       SERVER_HOST_URL: "https://www-r-new.referens.sys.kth.se/"
       SERVER_PORT: 3000
