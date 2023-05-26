@@ -61,10 +61,6 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 
-  console.log(
-    `[KUI-1047]: fileInfo.courseCode: ${fileInfo.courseCode}, fileInfo.applicationCodes: ${fileInfo.applicationCodes}, fileInfo.semester: ${fileInfo.semester}, memoStorageUri: ${memoBlobUrl}`
-  )
-
   return (
     <ActiveOrDisabledPdfLink
       ariaLabel={`PDF ${memoNameWithCourseOfferings}`}

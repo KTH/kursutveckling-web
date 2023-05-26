@@ -39,8 +39,6 @@ async function getCourseDevInfo(req, res, next) {
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
 
-    log.debug(`[KUI-1047]: memoStorageUri: ${browserConfig.memoStorageUri}`)
-
     const compressedData = getCompressedData(webContext)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
