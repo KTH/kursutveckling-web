@@ -43,3 +43,9 @@ dist
 
 # slask file
 slask_delete.txt
+
+# cypress files
+cypress.env.json
+cypress/videos
+cypress/screenshots
+cypress/downloads
