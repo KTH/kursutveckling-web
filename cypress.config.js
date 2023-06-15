@@ -6,6 +6,7 @@ module.exports = defineConfig({
     // baseUrl: 'http://localhost:3000/kursutveckling',
     baseUrl: 'https://www-r.referens.sys.kth.se/kursutveckling',
     env: {
+      mobileViewportWidthBreakpoint: 992,
       COURSE_CODE: 'SF1624'
     },
     watchForFileChanges: false,

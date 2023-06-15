@@ -1,6 +1,8 @@
 /* eslint-disable jest/expect-expect */
 /// <reference types="cypress" />
 
+const { isMobile } = require('../support/utils')
+
 const courseCode = Cypress.env('COURSE_CODE')
 
 describe('course page', () => {
@@ -10,7 +12,14 @@ describe('course page', () => {
   })
 
   it('displays a clickable link to the course analyses', () => {
-    cy.get('#mainMenu a:contains(Kursens utveckling)').click()
+    let id = 'mainMenu'
+    if (isMobile()) {
+      cy.log('Mobile viewport, opening hamburger menu')
+      id = 'mobileMenu'
+      cy.get('button[title^="Öppna"]').click()
+    }
+
+    cy.get(`#${id} a:contains(Kursens utveckling)`).click()
 
     cy.location().should((location) => {
       expect(location.pathname).to.contain(`/${courseCode}`)
