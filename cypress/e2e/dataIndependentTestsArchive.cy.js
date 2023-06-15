@@ -1,11 +1,10 @@
 /* eslint-disable jest/expect-expect */
 /// <reference types="cypress" />
 
-const courseCode = 'SF1624'
+const courseCode = Cypress.env('COURSE_CODE')
 
 describe('course page', () => {
   beforeEach(() => {
-    Cypress.Cookies.debug(true)
     cy.visit(`/${courseCode}/arkiv?l=sv`)
     cy.get('.cm-btn-success').click()
   })
@@ -37,8 +36,8 @@ describe('course page', () => {
 
   it('displays a link to an older course PM', () => {
     // removeAttr target is needed, because cypress cannot handle new tabs/windows
-    // The first child is the title, the second the current version and the third an older
-    cy.get('ul.link-list > li:nth-child(3)').first().invoke('removeAttr', 'target').click()
+    // The first child is the title, the second the current version and the third an older version
+    cy.get('ul.link-list > li:nth-child(3) > a[aria-label^="Ver"]').first().click()
 
     cy.url().should('include', `kurs-pm/old/${courseCode}/${courseCode}`)
     cy.get('#page-heading').should('contain.text', 'Kurs-PM')
