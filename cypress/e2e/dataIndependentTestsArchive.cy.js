@@ -1,5 +1,8 @@
 /* eslint-disable jest/expect-expect */
 /// <reference types="cypress" />
+// const parse = impor'date-fns/parse')
+
+import parse from 'date-fns/parse'
 
 const { isMobile } = require('../support/utils')
 
@@ -72,5 +75,31 @@ describe('course page', () => {
     cy.get('a[aria-label^="Ver"]').should('have.length.at.least', 1)
     cy.get(`a[aria-label^="PDF Ver"]`).should('have.length.at.least', 1)
     cy.get('a[aria-label^="PDF Kursanalys"]').should('have.length.at.least', 1)
+  })
+
+  it('should display course PM versions in the order newest to oldest', () => {
+    cy.document().then((doc) => {
+      const allLinkLists = doc.querySelectorAll('ul.link-list')
+
+      const allLinkArr = Array.prototype.map.call(allLinkLists, (list) => list.querySelectorAll('a'))
+
+      const allPMsWithMultipleVersions = allLinkArr.filter((links) => links.length > 1)
+
+      const allTitleArr = allPMsWithMultipleVersions.map((links) =>
+        Array.prototype.map.call(links, (link) => link.innerHTML)
+      )
+
+      allTitleArr.forEach((titles) => {
+        const dates = titles.map((title) => {
+          const [, stringDate] = title.split('– ')
+          const date = parse(stringDate, 'yyyy-MM-dd HH:mm:ss', new Date())
+          return date
+        })
+
+        for (let index = 1; index < dates.length; index++) {
+          chai.expect(dates[index - 1]).to.be.greaterThan(dates[index])
+        }
+      })
+    })
   })
 })
