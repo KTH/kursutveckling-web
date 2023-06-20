@@ -54,7 +54,7 @@ async function getCourseDevInfo(req, res, next) {
       compressedData,
       aboutCourse: {
         siteName: `${i18n.messages[langIndex].messages.page_about_course} ${courseCode}`,
-        siteUrl: serverConfig.hostUrl + 'student/kurser/kurs/' + courseCode
+        siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,

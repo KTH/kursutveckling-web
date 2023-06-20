@@ -58,7 +58,7 @@ async function _getContent(req, res, next) {
     res.render('archive/index', {
       aboutCourse: {
         siteName: `${i18n.message('page_about_course', lang)} ${courseCode}`,
-        siteUrl: serverConfig.hostUrl + 'student/kurser/kurs/' + courseCode
+        siteUrl: serverConfig.hostUrl + '/student/kurser/kurs/' + courseCode
       },
       debug: 'debug' in req.query,
       description: i18n.message('description', lang),
