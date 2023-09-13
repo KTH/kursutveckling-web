@@ -1,4 +1,4 @@
-FROM kthregistry.azurecr.io/kth-nodejs-16:latest
+FROM kthregistry.azurecr.io/kth-nodejs-20:latest
 
 RUN mkdir mkdir -p /application
 
