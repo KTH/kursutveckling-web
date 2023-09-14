@@ -1,4 +1,8 @@
-# kursutveckling-web
+# Welcome to kursutveckling-web 👋
+
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000)
+![Prerequisite](https://img.shields.io/badge/node-18-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
 ## Course development and history web
 
@@ -55,15 +59,18 @@ REDIS_URI=[redis azure connection string]
 ### Install
 
 First time you might need to use options `--ignore-scripts` because of npm resolutions:
+
 ```sh
 npm install --ignore-scripts
 ```
-or 
+
+or
 
 ```sh
 npm install
 
 ```
+
 You might need to install as well:
 
 ```sh
@@ -79,43 +86,47 @@ Start the service on [http://localhost:3000/kursutveckling/:courseCode](http://l
 npm run start-dev
 ```
 
-
 ### Debug in Visual Studio Code
+
 It's possible to use debugging options available in Visual Studio Code
 Add a file `launch.json` to `.vscode` directory :
-- *Microsoft*
+
+- _Microsoft_
+
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",           
-            "request": "launch",
-            "name": "Debug kursutveckling-web",
-            "program": "${workspaceFolder}\\app.js",
-            "envFile": "${workspaceFolder}\\.env",
-            "env": {
-              "NODE_ENV": "development"
-            }
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug kursutveckling-web",
+      "program": "${workspaceFolder}\\app.js",
+      "envFile": "${workspaceFolder}\\.env",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
 }
 ```
+
 - _Mac, Unix and so on_
+
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",           
-            "request": "launch",
-            "name": "Debug kursutveckling-web",
-            "program": "${workspaceFolder}/app.js",
-            "envFile": "${workspaceFolder}/.env",
-            "env": {
-              "NODE_ENV": "development"
-            }
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug kursutveckling-web",
+      "program": "${workspaceFolder}/app.js",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
 }
 ```
