@@ -95,10 +95,7 @@ server.use(
 // Expose browser configurations
 server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
 // Map kth-style.
-server.use(
-  config.proxyPrefixPath.uri + '/static/kth-style',
-  express.static('./node_modules/kth-style/dist')
-)
+server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
 // Map static content like images, css and js.
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
@@ -148,7 +145,10 @@ server.use(
     blockUrl: config.blockApi.blockUrl,
     proxyPrefixPath: config.proxyPrefixPath.uri,
     hostUrl: config.hostUrl,
-    redisConfig: config.cache.cortinaBlock.redis
+    redisConfig: config.cache.cortinaBlock.redis,
+    globalLink: config.blockApi.globalLink,
+    addBlocks: config.blockApi.addBlocks,
+    redisKey: config.cache.cortinaBlock.redisKey
   })
 )
 
@@ -181,16 +181,8 @@ server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get(
-  'course.getCourseDevelopment',
-  config.proxyPrefixPath.uri + '/:courseCode',
-  CourseDevCtrl.getCourseDevInfo
-)
-appRoute.get(
-  'course.getCourseArchive',
-  config.proxyPrefixPath.uri + '/:courseCode/arkiv',
-  CourseArchiveCtrl.getContent
-)
+appRoute.get('course.getCourseDevelopment', config.proxyPrefixPath.uri + '/:courseCode', CourseDevCtrl.getCourseDevInfo)
+appRoute.get('course.getCourseArchive', config.proxyPrefixPath.uri + '/:courseCode/arkiv', CourseArchiveCtrl.getContent)
 appRoute.get('course.noCourseCode', config.proxyPrefixPath.uri + '/', CourseDevCtrl.getErrorPage)
 
 server.use('/', appRoute.getRouter())
