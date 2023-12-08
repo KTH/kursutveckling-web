@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom'
 import StudentViewCourseDev from '../../public/js/app/pages/StudentViewCourseDev'
 import mockAdminStore from '../mocks/mockAdminStore'
 import { WebContextProvider } from '../../public/js/app/context/WebContext'

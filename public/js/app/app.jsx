@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrateRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { WebContextProvider } from './context/WebContext'
@@ -37,7 +37,7 @@ function _renderOnClientSide() {
   const app = <BrowserRouter basename={basename}>{appFactory({}, webContext)}</BrowserRouter>
 
   const domElement = document.getElementById('app')
-  ReactDOM.hydrate(app, domElement)
+  hydrateRoot(domElement, app)
 }
 
 _renderOnClientSide()
