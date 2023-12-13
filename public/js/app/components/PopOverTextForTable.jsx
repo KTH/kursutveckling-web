@@ -22,7 +22,7 @@ const OnlyMobileVisiblePopup = ({ ariaLabel, ariaPressed, popUpHeader, id, onCli
         aria-label={ariaLabel}
         aria-pressed={ariaPressed}
       >
-        <span className="sr-only">{ariaLabel}</span>
+        <span className="visually-hidden">{ariaLabel}</span>
       </Button>
     </span>
   )
@@ -60,7 +60,7 @@ function ControlledPopover(props) {
           aria-label={ariaLabel}
           aria-pressed={popoverOpen}
         >
-          <span className="sr-only">{ariaLabel}</span>
+          <span className="visually-hidden">{ariaLabel}</span>
         </Button>
       )}
       <Popover

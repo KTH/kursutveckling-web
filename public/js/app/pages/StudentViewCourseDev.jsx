@@ -9,6 +9,7 @@ import ListYears from '../components/ListYears'
 import { COURSE_INFO_URL } from '../util/constants'
 
 import { useWebContext } from '../context/WebContext'
+import { renderBreadcrumbsIntoKthHeader } from '../util/breadcrumbs'
 
 const IntroText = ({ translate, phrase, userLang }) => (
   <span className="intro-text">
@@ -17,14 +18,6 @@ const IntroText = ({ translate, phrase, userLang }) => (
     </p>
   </span>
 )
-function renderBreadcrumbsIntoKthHeader(courseCode, language) {
-  const breadcrumbContainer = document.getElementById('breadcrumbs-header')
-  if (breadcrumbContainer)
-    ReactDOM.render(
-      <Breadcrumbs include="aboutCourse" courseCode={courseCode} language={language} />,
-      breadcrumbContainer
-    )
-}
 
 function linkToArchive(courseCode, language) {
   const languageParameter = language === 'en' ? '?l=en' : ''

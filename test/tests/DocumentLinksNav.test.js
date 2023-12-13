@@ -2,7 +2,7 @@
 import React from 'react'
 // eslint-disable-next-line no-shadow
 import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom'
 import i18n from '../../i18n'
 import DocumentLinksNav from '../../public/js/app/components/DocumentLinksNav'
 import mockWebContext from '../mocks/mockWebContext'

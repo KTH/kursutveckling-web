@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
 
-import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Col, Row } from 'reactstrap'
 
 import ArchiveSideMenu from '../components/ArchiveSideMenu'
@@ -12,15 +10,7 @@ import i18n from '../../../../i18n'
 import SyllabusTable from '../components/SyllabusTable'
 import MemoTable from '../components/MemoTable'
 import AnalysisTable from '../components/AnalysisTable'
-
-function renderBreadcrumbsIntoKthHeader(courseCode, language) {
-  const breadcrumbContainer = document.getElementById('breadcrumbs-header')
-  if (breadcrumbContainer)
-    ReactDOM.render(
-      <Breadcrumbs include="aboutCourse" courseCode={courseCode} language={language} />,
-      breadcrumbContainer
-    )
-}
+import { renderBreadcrumbsIntoKthHeader } from '../util/breadcrumbs'
 
 const Archive = () => {
   const [context] = useWebContext()
