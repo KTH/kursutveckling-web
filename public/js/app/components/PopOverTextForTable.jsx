@@ -43,41 +43,70 @@ function ControlledPopover(props) {
 
   return (
     <span role="dialog" aria-labelledby={dialogHeaderId} aria-describedby={dialogBodyId}>
-      {(popType === 'mobile' && (
-        <OnlyMobileVisiblePopup
-          popUpHeader={header}
-          id={triggerId}
-          onClick={toggle}
-          ariaLabel={ariaLabel}
-          ariaPressed={popoverOpen}
-        />
-      )) || (
-        <Button
-          id={triggerId}
-          type="button"
-          className="desktop btn-info-modal"
-          onClick={toggle}
-          aria-label={ariaLabel}
-          aria-pressed={popoverOpen}
-        >
-          <span className="visually-hidden">{ariaLabel}</span>
-        </Button>
-      )}
+      <PopoverButton
+        popType={popType}
+        header={header}
+        triggerId={triggerId}
+        toggle={toggle}
+        ariaLabel={ariaLabel}
+        popoverOpen={popoverOpen}
+      />
       <Popover
         isOpen={popoverOpen}
         placement={popType === 'mobile' ? 'left' : 'top'}
         target={triggerId}
         key={triggerId}
       >
-        <PopoverHeader id={dialogHeaderId}>
-          {header}{' '}
-          <Button style={{ minHeight: '.75rem' }} className="close" onClick={toggle} aria-label={closeAria}>
-            &times;
-          </Button>
-        </PopoverHeader>
+        <PopoverHeaderWithCloseButton id={dialogHeaderId} toggle={toggle} closeAria={closeAria}>
+          {header}
+        </PopoverHeaderWithCloseButton>
         <PopoverBody id={dialogBodyId}>{popoverText}</PopoverBody>
       </Popover>
     </span>
+  )
+}
+
+const PopoverButton = ({ popType, header, triggerId, toggle, ariaLabel, popoverOpen }) => {
+  if (popType === 'mobile') {
+    return (
+      <OnlyMobileVisiblePopup
+        popUpHeader={header}
+        id={triggerId}
+        onClick={toggle}
+        ariaLabel={ariaLabel}
+        ariaPressed={popoverOpen}
+      />
+    )
+  }
+  return (
+    <Button
+      id={triggerId}
+      type="button"
+      className="desktop btn-info-modal"
+      onClick={toggle}
+      aria-label={ariaLabel}
+      aria-pressed={popoverOpen}
+    >
+      <span className="visually-hidden">{ariaLabel}</span>
+    </Button>
+  )
+}
+
+const PopoverHeaderWithCloseButton = ({ id: dialogHeaderId, children, toggle, closeAria }) => {
+  return (
+    <PopoverHeader
+      id={dialogHeaderId}
+      style={{ display: 'grid', gridTemplateColumns: 'auto auto', alignItems: 'start' }}
+    >
+      {children}{' '}
+      <Button
+        style={{ justifySelf: 'end', minHeight: '0.75rem', backgroundColor: 'inherit' }}
+        className="btn-close btn-sm"
+        onClick={toggle}
+        aria-label={closeAria}
+        secon
+      />
+    </PopoverHeader>
   )
 }
 
