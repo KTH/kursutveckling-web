@@ -8,6 +8,7 @@ const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const paths = require('../server').getPaths()
 const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
@@ -55,6 +56,8 @@ async function _getContent(req, res, next) {
       context: webContext
     })
 
+    const breadcrumbsList = createBreadcrumbs(lang, courseCode)
+
     res.render('archive/index', {
       aboutCourse: {
         siteName: `${i18n.message('page_about_course', lang)} ${courseCode}`,
@@ -66,7 +69,8 @@ async function _getContent(req, res, next) {
       compressedData,
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
-      title: courseCode + ' | ' + i18n.message('title', lang)
+      title: courseCode + ' | ' + i18n.message('title', lang),
+      breadcrumbsList
     })
   } catch (err) {
     log.error('Error in _getContent in CourseArchiveCtrl', { error: err })

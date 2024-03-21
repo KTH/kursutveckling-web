@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Col, Row } from 'reactstrap'
 
@@ -10,21 +10,11 @@ import i18n from '../../../../i18n'
 import SyllabusTable from '../components/SyllabusTable'
 import MemoTable from '../components/MemoTable'
 import AnalysisTable from '../components/AnalysisTable'
-import { renderBreadcrumbsIntoKthHeader } from '../util/breadcrumbs'
 
 const Archive = () => {
   const [context] = useWebContext()
   const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
-
-  useEffect(() => {
-    let isMounted = true
-    if (isMounted) {
-      renderBreadcrumbsIntoKthHeader(courseCode, userLang)
-    }
-    return () => (isMounted = false)
-  }, [])
-
   return (
     <Col>
       <Row>
