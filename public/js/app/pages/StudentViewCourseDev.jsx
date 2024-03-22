@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import i18n from '../../../../i18n'
 
@@ -9,7 +7,6 @@ import ListYears from '../components/ListYears'
 import { COURSE_INFO_URL } from '../util/constants'
 
 import { useWebContext } from '../context/WebContext'
-import { renderBreadcrumbsIntoKthHeader } from '../util/breadcrumbs'
 
 const IntroText = ({ translate, phrase, userLang }) => (
   <span className="intro-text">
@@ -33,14 +30,6 @@ function StudentViewCourseDev() {
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
   const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
   const navLabel = `${userLang === 'en' ? 'Go to' : 'Gå till'} ${labelAboutCoursePage}`
-
-  useEffect(() => {
-    let isMounted = true
-    if (isMounted) {
-      renderBreadcrumbsIntoKthHeader(courseCode, userLang)
-    }
-    return () => (isMounted = false)
-  }, [])
 
   return (
     <main

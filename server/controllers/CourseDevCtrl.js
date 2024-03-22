@@ -10,6 +10,7 @@ const i18n = require('../../i18n')
 const browserConfig = require('../configuration').browser
 const serverConfig = require('../configuration').server
 const paths = require('../server').getPaths()
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 
@@ -50,6 +51,8 @@ async function getCourseDevInfo(req, res, next) {
       context: webContext
     })
 
+    const breadcrumbsList = createBreadcrumbs(lang, courseCode)
+
     res.render('course/index', {
       compressedData,
       aboutCourse: {
@@ -62,7 +65,8 @@ async function getCourseDevInfo(req, res, next) {
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
-      klaroAnalyticsConsentCookie
+      klaroAnalyticsConsentCookie,
+      breadcrumbsList
     })
   } catch (err) {
     log.error('Error in getCourseDevInfo', { error: err })
@@ -78,10 +82,13 @@ function getErrorPage(req, res) {
       ? 'No course code was entered. Try to add a course code to the existing web browser addresss'
       : 'Web addressen saknar en kurskod. Försöka med att lägga till en kurskod till addressen.'
 
+  const breadcrumbsList = createBreadcrumbs(lang, courseCode)
+
   res.render('noCourse/index', {
     html,
     lang,
-    title: 'Ingen kurskod'
+    title: 'Ingen kurskod',
+    breadcrumbsList
   })
 }
 
