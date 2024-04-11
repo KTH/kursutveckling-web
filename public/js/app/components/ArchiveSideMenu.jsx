@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { MainMenu } from '../components-shared/MainMenu'
+
 const courseProgrammeLink = () => '/student/kurser/kurser-inom-program'
 
 const aboutCourseLink = (courseCode) => `/student/kurser/kurs/${courseCode}`
@@ -12,43 +14,34 @@ const courseArchiveLink = (courseCode) => `/kursutveckling/${courseCode}/arkiv`
 
 const courseDevelopmentLink = (courseCode) => `/kursutveckling/${courseCode}`
 
-const ArchiveSideMenu = ({ translation, courseCode }) => (
-  <nav id="mainMenu" aria-label={translation.sub_menu_aria_label} className="col navbar navbar-expand-lg navbar-light">
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="nav">
-        <li className="parentLink">
-          <a href={courseProgrammeLink()}>{translation.course_programme}</a>
+const ArchiveSideMenu = ({ translation, courseCode }) => {
+  const title = `${translation.about_course} ${courseCode}`
+  const ancestorItem = {
+    label: translation.course_programme,
+    href: courseProgrammeLink()
+  }
+  return (
+    <MainMenu title={title} ancestorItem={ancestorItem}>
+      <ul>
+        <li>
+          <a href={beforeChoosingCourseLink(courseCode)}>{translation.before_choosing_course}</a>
         </li>
-      </ul>
-      <ul className="nav nav-list expandable">
-        <li className="nav-item ancestor">
-          <a aria-current="page" className="nav-link active" href={aboutCourseLink(courseCode)}>
-            {`${translation.about_course} ${courseCode}`}
-          </a>
-        </li>
-        <li className="nav-item leaf">
-          <a className="nav-link" href={beforeChoosingCourseLink(courseCode)}>
-            {translation.before_choosing_course}
-          </a>
-        </li>
-        <li className="nav-item node">
-          <a className="nav-link" href={prepareCourseLink(courseCode)}>
+        <li>
+          <a href={prepareCourseLink(courseCode)} className="expandable">
             {translation.prepare_course}
           </a>
         </li>
-        <li className="nav-item leaf">
-          <a className="nav-link" href={courseDevelopmentLink(courseCode)}>
-            {translation.course_development}
-          </a>
+        <li>
+          <a href={courseDevelopmentLink(courseCode)}>{translation.course_development}</a>
         </li>
-        <li className="nav-item leaf">
-          <a className="nav-link active" href={courseArchiveLink(courseCode)}>
+        <li>
+          <a aria-current="page" href={courseArchiveLink(courseCode)}>
             {translation.archive}
           </a>
         </li>
       </ul>
-    </div>
-  </nav>
-)
+    </MainMenu>
+  )
+}
 
 export default ArchiveSideMenu

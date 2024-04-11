@@ -40,8 +40,8 @@ function StudentViewCourseDev() {
       aria-labelledby="page-course-title"
       aria-describedby="intro-text"
     >
-      <nav className="navigation main" aria-label={navLabel} lang={userLang}>
-        <a href={linkToAboutCourse} className="link-back mt-15 mb-15">
+      <nav className="navigation main" aria-label={navLabel}>
+        <a href={linkToAboutCourse} className="kth-button back">
           {labelAboutCoursePage}
         </a>
       </nav>
