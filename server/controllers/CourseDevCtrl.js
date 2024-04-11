@@ -66,6 +66,7 @@ async function getCourseDevInfo(req, res, next) {
       lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
       klaroAnalyticsConsentCookie,
+      toolbarUrl: serverConfig.toolbar.url,
       breadcrumbsList,
       proxyPrefix,
       theme: 'student-web'
@@ -90,6 +91,7 @@ function getErrorPage(req, res) {
     html,
     lang,
     title: 'Ingen kurskod',
+    toolbarUrl: serverConfig.toolbar.url,
     breadcrumbsList,
     proxyPrefix,
     theme: 'student-web'

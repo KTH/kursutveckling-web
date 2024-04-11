@@ -70,6 +70,7 @@ async function _getContent(req, res, next) {
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.message('title', lang),
+      toolbarUrl: serverConfig.toolbar.url,
       breadcrumbsList,
       proxyPrefix,
       theme: 'student-web'
