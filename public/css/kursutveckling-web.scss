@@ -19,6 +19,7 @@
 @use '~@kth/style/scss/components/content.scss';
 @use '~@kth/style/scss/components/local-navigation.scss';
 
+@import 'shared';
 
 $black: #000000;
 $white: #ffffff;
@@ -58,26 +59,6 @@ $dark-grey: #65656c;
   display: inline-flex;
 }
 
-#app {
-  width: 100%;
-}
-.kursinfo-main-page {
-  padding-bottom: 3em;
-  width: 100%;
-}
-nav.main {
-  a.link-back::before {
-    margin-left: 10px;
-  }
-}
-
-header[role='presentation'] {
-  margin-top: 20px;
-  margin-bottom: 16px;
-  .alert {
-    margin-left: 0;
-  }
-}
 
 //INTRODUCTION TEXT UNDER KIP-MENU
 span.intro-text {
@@ -304,20 +285,6 @@ and also iPads specifically.
 
 /* Archive Page */
 
-#page-sub-heading-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-#page-sub-heading-admin-link {
-  font-size: 1rem;
-  line-height: 1.375;
-  margin-bottom: 14px;
-  margin-top: 0.325rem;
-  text-align: right;
-}
-
 .archive-table {
   .pdf-link {
     margin-left: 0;
@@ -337,33 +304,6 @@ and also iPads specifically.
 
 .inline-information {
   font-style: italic;
-}
-
-@media (max-width: 991.98px) {
-  #page-sub-heading-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: normal;
-  }
-  #page-sub-heading-admin-link {
-    text-align: left;
-  }
-}
-
-@media (min-width: 992px) {
-  .container.main {
-    padding-top: 2rem;
-  }
-  #mainMenu.col.navbar {
-    padding: 0 35px 15px 30px;
-  }
-  #mainMenu.col.navbar .nav-link.active {
-    font-weight: 700;
-  }
-  .nav-link.active {
-    color: black;
-  }
 }
 
 .pdf-link-width-sv {
