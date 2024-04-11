@@ -18,14 +18,14 @@ const Archive = () => {
   return (
     <Row>
       <ArchiveSideMenu translation={translation} courseCode={courseCode} />
-      <Col>
+      <Col id="mainContent" className="archive-page">
         <ArchivePageHeader
           translation={translation}
           subHeadline={subHeadline}
           courseCode={courseCode}
           language={userLang}
         />
-        <main id="mainContent">
+        <main>
           <SyllabusTable
             translation={translation}
             courseCode={courseCode}
