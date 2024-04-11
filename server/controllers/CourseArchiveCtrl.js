@@ -70,7 +70,9 @@ async function _getContent(req, res, next) {
       instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.message('title', lang),
-      breadcrumbsList
+      breadcrumbsList,
+      proxyPrefix,
+      theme: 'student-web'
     })
   } catch (err) {
     log.error('Error in _getContent in CourseArchiveCtrl', { error: err })
