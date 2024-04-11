@@ -59,49 +59,12 @@ $dark-grey: #65656c;
   display: inline-flex;
 }
 
-//INTRODUCTION TEXT UNDER KIP-MENU
-span.intro-text {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  p {
-    width: 100%;
-  }
-}
-
 //== LIST OF COLLAPSIBLE TABLES ==
 .list-section-per-year {
+  @include prose.prose;
+
   margin: 0;
-  h2 {
-    margin-top: 38px;
-    margin-bottom: 26px;
-  }
 
-  .h3-and-link {
-    h3 {
-      margin-top: 0;
-    }
-    display: flex;
-    flex-direction: column;
-    a {
-      align-self: flex-start;
-      margin: 0.7em 1em;
-    }
-
-    @media (min-width: 768px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      a {
-        margin: 0;
-      }
-    }
-  }
-
-  & > section:first-of-type > h2 {
-    margin-top: 0.7em;
-  }
   .vertical-block-of-links {
     display: flex;
     flex-direction: column;
@@ -279,6 +242,12 @@ and also iPads specifically.
         }
       }
     }
+  }
+}
+
+.course-development-page {
+  .intro-text {
+    @include prose.prose;
   }
 }
 
