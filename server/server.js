@@ -98,7 +98,6 @@ server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHa
 server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
 // @kth/style assets
 server.use(config.proxyPrefixPath.uri + '/assets', express.static('./node_modules/@kth/style/assets'))
-server.use(config.proxyPrefixPath.uri + '/assets/js', express.static('./node_modules/@kth/style/dist/esm'))
 
 // Map static content like images, css and js.
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
