@@ -9,16 +9,11 @@ import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTitle, translate, validFrom = '' }) => {
   const { no_added_doc } = translate
   return (
-    <p key={linkTitle}>
+    <>
       {href === '' ? (
-        // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <a
-          aria-label={`${ariaLabel}: ${no_added_doc}`}
-          className={`${className} btn-link disabled`}
-          style={{ paddingLeft: 0 }}
-        >
+        <span className={`${className} disabled-link`}>
           <i>{no_added_doc}</i>
-        </a>
+        </span>
       ) : (
         <a
           aria-label={`${ariaLabel}${validFrom ? ': ' + validFrom : ''}`}
@@ -31,7 +26,7 @@ const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTit
           {`${linkTitle}${validFrom ? ': ' + validFrom : ''}`}
         </a>
       )}
-    </p>
+    </>
   )
 }
 
@@ -57,7 +52,7 @@ function ParseUploadedMemo({ fileInfo, memoBlobUrl, userLanguageAbbr, translate 
 
   const { label_memo: memoLabel } = translate
 
-  const className = `pdf-link pdf-memo-link-container pdf-link-width-${userLanguageAbbr}`
+  const className = `pdf-link pdf-memo-link-container`
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 
@@ -79,7 +74,7 @@ function ParseWebMemoName({ courseMemo, memoHref, translate, language }) {
   const courseOfferingName = parseCourseOffering(applicationCodes, semester, memoCommonLangAbbr)
   const { label_memo: memoLabel } = translate
 
-  const className = `pdf-memo-link-container memo-link-width-${language}`
+  const className = `pdf-memo-link-container`
 
   const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
 

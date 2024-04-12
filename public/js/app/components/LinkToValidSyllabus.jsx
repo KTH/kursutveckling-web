@@ -25,17 +25,15 @@ function LinkToValidSyllabusPdf(props) {
   const coursePlanLabel = `${labelSyllabusLink} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (
-    <p key={'link-syllabus-from-' + startDate}>
-      <a
-        aria-label={`PDF ${coursePlanLabel}`}
-        href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
-        target="_blank"
-        rel="noreferrer"
-        className="pdf-link"
-      >
-        {coursePlanLabel}
-      </a>
-    </p>
+    <a
+      aria-label={`PDF ${coursePlanLabel}`}
+      href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${lang}`}
+      target="_blank"
+      rel="noreferrer"
+      className="pdf-link"
+    >
+      {coursePlanLabel}
+    </a>
   )
 }
 

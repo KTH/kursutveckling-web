@@ -47,9 +47,10 @@ $dark-grey: #65656c;
 
 .icon-asterisk-black {
   background-image: url('https://app.kth.se/style/static/kth-style/img/kth-style/icons/asterisk-black.svg');
-  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 10px;
-  height: 10px;
+  height: 1.5rem;
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -68,7 +69,6 @@ $dark-grey: #65656c;
   .vertical-block-of-links {
     display: flex;
     flex-direction: column;
-    margin: 0 0.2em 0;
 
     @media (min-width: 768px) {
       justify-content: flex-end;
@@ -78,27 +78,22 @@ $dark-grey: #65656c;
   }
 
   .right-block-of-links {
-    float: left;
-    text-align: left;
-    margin: 0 0.2em 0;
-    @media (min-width: 768px) {
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      float: right;
-      text-align: right;
-      margin: 0;
-      p:last-of-type > a {
-        margin-right: 0;
-      }
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    a,
+    .disabled-link {
+      height: 1.75rem;
     }
-    .pdf-link {
-      &:before {
-        height: 20px;
-        width: 20px;
-        margin: 0 0.3em 0 0;
-        vertical-align: -9%;
-      }
+
+    @media (min-width: 768px) {
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: end;
     }
   }
 }
@@ -260,17 +255,6 @@ and also iPads specifically.
   }
 }
 
-.archive-table {
-  .pdf-link {
-    margin-left: 0;
-    margin-right: 0;
-    &::before {
-      display: inline-block;
-      margin-left: 0;
-    }
-  }
-}
-
 .syllabus-table {
   th {
     width: 50%;
@@ -281,22 +265,6 @@ and also iPads specifically.
   font-style: italic;
 }
 
-.pdf-link-width-sv {
-  width: 17.4rem;
-}
-
-.pdf-link-width-en {
-  width: 22.4rem;
-}
-
-.memo-link-width-en {
-  width: 18.4rem;
-}
-
-.memo-link-width-sv {
-  width: 15.7rem;
-}
-
 .pdf-memo-link-container {
   display: block;
   white-space: nowrap;
@@ -304,10 +272,12 @@ and also iPads specifically.
   overflow: hidden;
 }
 
-.btn-link:disabled,
-.btn-link.disabled {
-  color: #6c757d;
-  pointer-events: none;
+.disabled-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: 1.75rem;
+  color: colors.$color-gray-medium;
 }
 
 .popover {

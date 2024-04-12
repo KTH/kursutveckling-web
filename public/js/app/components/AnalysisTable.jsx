@@ -10,14 +10,9 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
   return (
     <p>
       {fileName === '' ? (
-        // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <a
-          aria-label={`PDF ${linkTitle} ${roundName}: ${no_added}`}
-          className="pdf-link btn-link disabled"
-          key={linkTitle}
-        >
+        <span className={`${className} disabled-link`}>
           {linkTitle}: {no_added}
-        </a>
+        </span>
       ) : (
         <a
           aria-label={`PDF ${linkTitle} ${roundName}: ${validFrom}`}
