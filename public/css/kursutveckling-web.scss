@@ -19,20 +19,9 @@
 @use '~@kth/style/scss/components/content.scss';
 @use '~@kth/style/scss/components/local-navigation.scss';
 
+@use '~kth-style/public/sass/variables/_colors.scss' as old-kth-style-colors;
+
 @import 'shared';
-
-$black: #000000;
-$white: #ffffff;
-$light-grey: #d4d4d4;
-$dark-grey: #65656c;
-
-%bordered-area {
-  border: 1px solid $light-grey;
-  border-radius: 0.25rem;
-  border-top: 0;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
 
 //****ICONS*****//
 
@@ -217,8 +206,8 @@ and also iPads specifically.
       border-bottom: 1px solid #fff;
       position: relative;
       span.mobile-header-popovers {
-        background: $dark-grey;
-        color: $white;
+        background: old-kth-style-colors.$grey;
+        color: #fff;
         display: flex;
         flex-direction: row;
         font-size: 1rem;
@@ -293,5 +282,12 @@ and also iPads specifically.
     align-items: center;
     justify-content: space-between;
     padding-right: 0;
+
+    span {
+      padding: 0.5rem 0;
+    }
+    button {
+      flex-shrink: 0;
+    }
   }
 }
