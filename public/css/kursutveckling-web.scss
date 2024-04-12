@@ -149,8 +149,10 @@ $dark-grey: #65656c;
   }
 }
 
-div.popover.show {
-  top: -40px !important;
+body.use-personal-menu {
+  div.popover.show {
+    top: -40px !important;
+  }
 }
 
 button.desktop.btn-info-modal,
@@ -309,8 +311,17 @@ and also iPads specifically.
 }
 
 .popover {
-  --bs-popover-header-padding-y: 0.5rem;
+  --bs-popover-header-padding-y: 0;
   --bs-popover-header-padding-x: 0.75rem;
   --bs-popover-body-padding-y: 0.5rem;
   --bs-popover-body-padding-x: 0.75rem;
+
+  .popover-header {
+    @include typography.font-heading-xs;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0;
+  }
 }
