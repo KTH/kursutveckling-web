@@ -1,16 +1,28 @@
-// @import "kth-style/public/sass/variables/sizes";
-$black: #000000;
-$white: #ffffff;
-$light-grey: #d4d4d4;
-$dark-grey: #65656c;
+@use '~@kth/style/scss/utils/layers.scss';
+@use '~@kth/style/scss/utils/reset.scss';
+@use '~@kth/style/scss/utils/mixins.scss';
+@use '~@kth/style/scss/utils/prose.scss';
 
-%bordered-area {
-  border: 1px solid $light-grey;
-  border-radius: 0.25rem;
-  border-top: 0;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
+@use '~@kth/style/scss/tokens/typography.scss';
+@use '~@kth/style/scss/tokens/colors.scss';
+
+@use '~@kth/style/scss/components/logotype.scss';
+@use '~@kth/style/scss/components/search.scss';
+@use '~@kth/style/scss/components/alert.scss';
+@use '~@kth/style/scss/components/footer.scss';
+@use '~@kth/style/scss/components/mega-menu.scss';
+@use '~@kth/style/scss/components/visually-hidden.scss';
+@use '~@kth/style/scss/components/button.scss';
+@use '~@kth/style/scss/components/header.scss';
+@use '~@kth/style/scss/components/mobile-menu.scss';
+@use '~@kth/style/scss/components/menu-item.scss';
+@use '~@kth/style/scss/components/menu-panel.scss';
+@use '~@kth/style/scss/components/content.scss';
+@use '~@kth/style/scss/components/local-navigation.scss';
+
+@use '~kth-style/public/sass/variables/_colors.scss' as old-kth-style-colors;
+
+@import 'shared';
 
 //****ICONS*****//
 
@@ -25,9 +37,10 @@ $dark-grey: #65656c;
 
 .icon-asterisk-black {
   background-image: url('https://app.kth.se/style/static/kth-style/img/kth-style/icons/asterisk-black.svg');
-  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 10px;
-  height: 10px;
+  height: 1.5rem;
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -37,74 +50,15 @@ $dark-grey: #65656c;
   display: inline-flex;
 }
 
-#app {
-  width: 100%;
-}
-.kursinfo-main-page {
-  padding-bottom: 3em;
-  width: 100%;
-}
-nav.main {
-  a.link-back::before {
-    margin-left: 10px;
-  }
-}
-
-header[role='presentation'] {
-  margin-top: 20px;
-  margin-bottom: 16px;
-  .alert {
-    margin-left: 0;
-  }
-}
-
-//INTRODUCTION TEXT UNDER KIP-MENU
-span.intro-text {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  p {
-    width: 100%;
-  }
-}
-
 //== LIST OF COLLAPSIBLE TABLES ==
 .list-section-per-year {
+  @include prose.prose;
+
   margin: 0;
-  h2 {
-    margin-top: 38px;
-    margin-bottom: 26px;
-  }
 
-  .h3-and-link {
-    h3 {
-      margin-top: 0;
-    }
-    display: flex;
-    flex-direction: column;
-    a {
-      align-self: flex-start;
-      margin: 0.7em 1em;
-    }
-
-    @media (min-width: 768px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      a {
-        margin: 0;
-      }
-    }
-  }
-
-  & > section:first-of-type > h2 {
-    margin-top: 0.7em;
-  }
   .vertical-block-of-links {
     display: flex;
     flex-direction: column;
-    margin: 0 0.2em 0;
 
     @media (min-width: 768px) {
       justify-content: flex-end;
@@ -114,27 +68,22 @@ span.intro-text {
   }
 
   .right-block-of-links {
-    float: left;
-    text-align: left;
-    margin: 0 0.2em 0;
-    @media (min-width: 768px) {
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      float: right;
-      text-align: right;
-      margin: 0;
-      p:last-of-type > a {
-        margin-right: 0;
-      }
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    a,
+    .disabled-link {
+      height: 1.75rem;
     }
-    .pdf-link {
-      &:before {
-        height: 20px;
-        width: 20px;
-        margin: 0 0.3em 0 0;
-        vertical-align: -9%;
-      }
+
+    @media (min-width: 768px) {
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: end;
     }
   }
 }
@@ -185,8 +134,10 @@ span.intro-text {
   }
 }
 
-div.popover.show {
-  top: -40px !important;
+body.use-personal-menu {
+  div.popover.show {
+    top: -40px !important;
+  }
 }
 
 button.desktop.btn-info-modal,
@@ -256,8 +207,8 @@ and also iPads specifically.
       border-bottom: 1px solid #fff;
       position: relative;
       span.mobile-header-popovers {
-        background: $dark-grey;
-        color: $white;
+        background: old-kth-style-colors.$grey;
+        color: #fff;
         display: flex;
         flex-direction: row;
         font-size: 1rem;
@@ -281,30 +232,16 @@ and also iPads specifically.
   }
 }
 
+.course-development-page {
+  .intro-text {
+    @include prose.prose;
+  }
+}
+
 /* Archive Page */
-
-#page-sub-heading-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-#page-sub-heading-admin-link {
-  font-size: 1rem;
-  line-height: 1.375;
-  margin-bottom: 14px;
-  margin-top: 0.325rem;
-  text-align: right;
-}
-
-.archive-table {
-  .pdf-link {
-    margin-left: 0;
-    margin-right: 0;
-    &::before {
-      display: inline-block;
-      margin-left: 0;
-    }
+.archive-page {
+  main {
+    @include prose.prose;
   }
 }
 
@@ -318,49 +255,6 @@ and also iPads specifically.
   font-style: italic;
 }
 
-@media (max-width: 991.98px) {
-  #page-sub-heading-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: normal;
-  }
-  #page-sub-heading-admin-link {
-    text-align: left;
-  }
-}
-
-@media (min-width: 992px) {
-  .container.main {
-    padding-top: 2rem;
-  }
-  #mainMenu.col.navbar {
-    padding: 0 35px 15px 30px;
-  }
-  #mainMenu.col.navbar .nav-link.active {
-    font-weight: 700;
-  }
-  .nav-link.active {
-    color: black;
-  }
-}
-
-.pdf-link-width-sv {
-  width: 17.4rem;
-}
-
-.pdf-link-width-en {
-  width: 22.4rem;
-}
-
-.memo-link-width-en {
-  width: 18.4rem;
-}
-
-.memo-link-width-sv {
-  width: 15.7rem;
-}
-
 .pdf-memo-link-container {
   display: block;
   white-space: nowrap;
@@ -368,15 +262,33 @@ and also iPads specifically.
   overflow: hidden;
 }
 
-.btn-link:disabled,
-.btn-link.disabled {
-  color: #6c757d;
-  pointer-events: none;
+.disabled-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: 1.75rem;
+  color: colors.$color-gray-medium;
 }
 
 .popover {
-  --bs-popover-header-padding-y: 0.5rem;
+  --bs-popover-header-padding-y: 0;
   --bs-popover-header-padding-x: 0.75rem;
   --bs-popover-body-padding-y: 0.5rem;
   --bs-popover-body-padding-x: 0.75rem;
+
+  .popover-header {
+    @include typography.font-heading-xs;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0;
+
+    span {
+      padding: 0.5rem 0;
+    }
+    button {
+      flex-shrink: 0;
+    }
+  }
 }

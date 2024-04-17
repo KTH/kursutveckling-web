@@ -7,6 +7,10 @@ module.exports = {
      * General stuff
      */
     date_format_short: '%Y-%m-%d',
+    language_link_lang_en: 'English',
+    menu_panel_search: 'Sök',
+    menu_panel_close: 'Stäng',
+    menu_panel_menu: 'Meny',
 
     /**
      * Error messages

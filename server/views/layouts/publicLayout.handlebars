@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={{lang}}>
+<html lang="{{lang}}">
 
 <head>
   <title>KTH | {{title}}</title>
@@ -7,11 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{description}}">
-  <link rel="shortcut icon" href="https://www.kth.se/polopoly_fs/1.871948.1550155901!/favicon.ico">
+  <link rel="shortcut icon" id="favicon" href="{{proxyPrefix}}/static/icon/favicon">
+
   {{#if canonicalUrl}}
-  <link rel='preload' href="{{canonicalUrl}}" rel="canonical">
+    <link href="{{canonicalUrl}}" rel="canonical">
   {{/if}}
   {{prefixStyle '/static/kth-style/css/kth-bootstrap.css' 'styles' 'screen'}}
+  {{prefixStyle '/assets/fonts.css' 'styles' 'screen'}}
   {{prefixStyle '/static/app.css' 'styles' 'screen'}}
 
   {{{render 'styles'}}}
@@ -20,21 +22,14 @@
     {{{blocks.klaroConfig}}}
     {{prefixScript '/static/kth-style/js/klaro-no-css.js' 'head-scripts'}}
   {{/if}}
-
-  {{prefixScript '/static/vendor.js' 'head-scripts'}}
-  {{prefixScript '/static/browserConfig' 'head-scripts'}}
-  {{prefixScript '/static/kth-style/js/menus.js' 'head-scripts'}}
-  {{prefixScript '/static/kth-style/js/backtotop.js' 'head-scripts'}}
   
-  {{#extend 'head-scripts'}}
-  <script rel='preload' src="//www.kth.se/social/toolbar/widget.js"></script>
-  {{/extend}}
-
-  {{#if debug}}
-  {{prefixScript '/static/js/lib/firebug-lite/build/firebug-lite.js' 'head-scripts'}}
-  {{/if}}
+  {{prefixScript '/static/browserConfig' 'head-scripts'}}
+  {{prefixScript '/static/kth-style/js/backtotop.js' 'head-scripts'}}
 
   {{{render 'head-scripts'}}}
+  
+  <script src="{{toolbarUrl}}"></script>
+  
   {{#if instrumentationKey}}
     {{#if klaroAnalyticsConsentCookie}}
       <script type="text/javascript">
@@ -58,16 +53,10 @@
     <!-- analytics end -->
   {{/if}}
 </head>
-
-<body lang={{lang}}>
-  {{#if lang}}
+<body>
   <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
-  {{else}}
-  <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' 'en'}}</a>
-  {{/if}}
-
   {{> kthHeader }}
-  <div class="container main">
+  <div class="kth-content">
     <div class="row">
       {{{body}}}
     </div>

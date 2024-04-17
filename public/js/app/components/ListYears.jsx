@@ -27,9 +27,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLa
           key={'section-for-analys-' + courseAnalysDataId}
         >
           {index === 0 && <h2 id={headerId}>{year}</h2>}
-          <div className="h3-and-link">
-            <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
-          </div>
+          <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
           <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
 
           <TableWithCourseData
@@ -50,7 +48,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLa
 const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders, userLang }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
-    <div className="list-section-per-year col">
+    <div className="list-section-per-year">
       {yearsDescending.map((year, index) => (
         <SectionPerYear
           key={index}

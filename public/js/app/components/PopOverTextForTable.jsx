@@ -94,18 +94,9 @@ const PopoverButton = ({ popType, header, triggerId, toggle, ariaLabel, popoverO
 
 const PopoverHeaderWithCloseButton = ({ id: dialogHeaderId, children, toggle, closeAria }) => {
   return (
-    <PopoverHeader
-      id={dialogHeaderId}
-      style={{ display: 'grid', gridTemplateColumns: 'auto auto', alignItems: 'start' }}
-    >
-      {children}{' '}
-      <Button
-        style={{ justifySelf: 'end', minHeight: '0.75rem', backgroundColor: 'inherit' }}
-        className="btn-close btn-sm"
-        onClick={toggle}
-        aria-label={closeAria}
-        secon
-      />
+    <PopoverHeader id={dialogHeaderId}>
+      <span>{children}</span>
+      <button className="kth-icon-button close" onClick={toggle} aria-label={closeAria} />
     </PopoverHeader>
   )
 }

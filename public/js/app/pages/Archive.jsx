@@ -16,34 +16,27 @@ const Archive = () => {
   const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
   return (
-    <Col>
-      <Row>
-        <ArchiveSideMenu translation={translation} courseCode={courseCode} />
-        <Col>
-          <ArchivePageHeader
+    <Row>
+      <ArchiveSideMenu translation={translation} courseCode={courseCode} />
+      <Col id="mainContent" className="archive-page">
+        <ArchivePageHeader
+          translation={translation}
+          subHeadline={subHeadline}
+          courseCode={courseCode}
+          language={userLang}
+        />
+        <main>
+          <SyllabusTable
             translation={translation}
-            subHeadline={subHeadline}
             courseCode={courseCode}
             language={userLang}
+            syllabusPeriods={courseKoppsData.syllabusPeriods}
           />
-          <main id="mainContent">
-            <SyllabusTable
-              translation={translation}
-              courseCode={courseCode}
-              language={userLang}
-              syllabusPeriods={courseKoppsData.syllabusPeriods}
-            />
-            <MemoTable
-              translation={translation}
-              courseCode={courseCode}
-              language={userLang}
-              courseMemos={courseMemos}
-            />
-            <AnalysisTable />
-          </main>
-        </Col>
-      </Row>
-    </Col>
+          <MemoTable translation={translation} courseCode={courseCode} language={userLang} courseMemos={courseMemos} />
+          <AnalysisTable />
+        </main>
+      </Col>
+    </Row>
   )
 }
 

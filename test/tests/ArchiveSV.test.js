@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { WebContextProvider } from '../../public/js/app/context/WebContext'
 
 import Archive from '../../public/js/app/pages/Archive'
@@ -30,7 +30,8 @@ describe(`User language: ${userLang}. Component <Archive>`, () => {
     const allSubHeaders = getAllByLabelText(context.subHeaderText)
     expect(allSubHeaders.length).toBe(1)
 
-    const allH2Headers = getAllByRole('heading', { level: 2 })
+    const mainContent = screen.getByRole('main')
+    const allH2Headers = within(mainContent).getAllByRole('heading', { level: 2 })
     expect(allH2Headers.length).toBe(3)
     expect(allH2Headers[0]).toHaveTextContent(translation.label_syllabuses)
     expect(allH2Headers[1]).toHaveTextContent(translation.label_memos)
