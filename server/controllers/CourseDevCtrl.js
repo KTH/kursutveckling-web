@@ -62,7 +62,6 @@ async function getCourseDevInfo(req, res, next) {
       debug: 'debug' in req.query,
       description: i18n.messages[langIndex].messages.description,
       html: view,
-      instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.messages[langIndex].messages.title,
       klaroAnalyticsConsentCookie,
