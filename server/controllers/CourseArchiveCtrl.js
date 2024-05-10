@@ -67,7 +67,6 @@ async function _getContent(req, res, next) {
       description: i18n.message('description', lang),
       html: view,
       compressedData,
-      instrumentationKey: serverConfig.appInsights.instrumentationKey,
       lang,
       title: courseCode + ' | ' + i18n.message('title', lang),
       toolbarUrl: serverConfig.toolbar.url,
