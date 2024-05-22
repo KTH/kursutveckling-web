@@ -44,17 +44,9 @@ Web pages is public for everyone.
 - [https://github.com/KTH/kursinfo-api](https://github.com/KTH/kursinfo-api)
 - [https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
 
-###Where do you keep you secrets?
-Secrets during local development are ALWAYS stored in a `.env`-file in the root of your project. This file should be in .gitignore.
+### Secrets for Development
 
-```
-API_URI=[https://api-r.referens.sys.kth.se/api/kursutveckling]
-API_KEY=[password the same as in api itself]
-KOPPS_URI=[https://api-r.referens.sys.kth.se/api/kopps/v2/]
-SESSION_SECRET=[session secret]
-SESSION_KEY=kutv.sid
-REDIS_URI=[redis azure connection string]
-```
+Secrets during local development are stored in a gitignored `.env` file (`env.in` can be used as template for your `.env` file). More details about environment variable setup and secrets can be found in [confluence](https://confluence.sys.kth.se/confluence/x/OYKBDQ).
 
 ### Install
 
