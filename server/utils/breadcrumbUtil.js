@@ -2,13 +2,13 @@
 // Be aware that this entire file is replicated in multiple apps, so changes here should probably be synced to the other apps.
 // See https://confluence.sys.kth.se/confluence/x/6wYJDQ for more information.
 const baseItems = {
-  university: {
-    en: { url: '/en', label: 'KTH' },
-    sv: { url: '/', label: 'KTH' }
-  },
   student: {
-    en: { url: '/en/student', label: 'Student at KTH' },
-    sv: { url: '/student', label: 'Student på KTH' }
+    en: { url: '/en/student', label: 'Student web' },
+    sv: { url: '/student', label: 'Studentwebben' }
+  },
+  studies: {
+    en: { url: '/en/studier', label: 'Studies' },
+    sv: { url: '/studier', label: 'Studier' }
   },
   directory: {
     en: { url: '/student/kurser/kurser-inom-program?l=en', label: 'Course and programme directory' },
@@ -25,7 +25,7 @@ function createAboutCourseItem(language, courseCode) {
 }
 
 function createBreadcrumbs(language, courseCode) {
-  const items = [baseItems.university[language], baseItems.student[language], baseItems.directory[language]]
+  const items = [baseItems.student[language], baseItems.studies[language], baseItems.directory[language]]
   if (courseCode) {
     items.push(createAboutCourseItem(language, courseCode))
   }
