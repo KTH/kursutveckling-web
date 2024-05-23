@@ -166,5 +166,10 @@ module.exports = {
       start_link_back: 'To course information page',
       button_cancel: 'Cancel and go back to admin start page'
     }
+  },
+  breadCrumbs: {
+    student: 'Student web',
+    studies: 'Studies',
+    directory: 'Course and programme directory'
   }
 }

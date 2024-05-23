@@ -163,5 +163,10 @@ module.exports = {
       start_link_back: 'Till kursinformationssida',
       button_cancel: 'Avbryt och gå till admin startsida'
     }
+  },
+  breadCrumbs: {
+    student: 'Studentwebben',
+    studies: 'Studier',
+    directory: 'Kurs- och programkatalogen'
   }
 }
