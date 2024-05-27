@@ -57,7 +57,7 @@ module.exports = {
       administration: 'Administer About course',
       label_syllabus: 'Course syllabus',
       label_syllabuses: 'Course syllabuses',
-      label_semesters: 'Semesters',
+      label_semesters: 'Semester',
       course_short_semester: {
         1: 'Spring',
         2: 'Autumn'

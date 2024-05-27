@@ -55,7 +55,7 @@ module.exports = {
       administration: 'Administrera Om kursen',
       label_syllabus: 'Kursplan',
       label_syllabuses: 'Kursplaner',
-      label_semesters: 'Terminer',
+      label_semesters: 'Termin',
       course_short_semester: {
         1: 'VT',
         2: 'HT'

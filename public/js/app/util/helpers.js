@@ -17,3 +17,8 @@ export const getDateFormat = (date, language) => {
   }
   return parsedDate.toLocaleString('en-GB', options)
 }
+
+export const seasonStr = (translate, semesterCode = '') => {
+  //TODO: look up why some objects are missing the semester prop
+  return semesterCode ? `${translate[semesterCode.toString()[4]]} ${semesterCode.toString().slice(0, 4)}` : ''
+}
