@@ -46,15 +46,12 @@ function formatVersionDate(language = 'sv', date) {
     const timeZone = 'Europe/Berlin'
     const zonedDate = utcToZonedTime(new Date(unixTime), timeZone)
     if (language === 'sv') {
-      return format(zonedDate, 'Ppp', { locale: locales[language] })
+      return format(zonedDate, 'Ppp', { locale: locales[language] }).slice(0, -9)
     } else {
       const options = {
         day: 'numeric',
         month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
+        year: 'numeric'
       }
       return zonedDate.toLocaleString('en-GB', options)
     }
@@ -73,7 +70,6 @@ function formatVersionName(memoName, versionNumber, languageAbbr, date) {
   const versionNumberLabel = `${versionLabel} ${versionNumber}`
   const versionName = `${versionNumberLabel} – ${versionDate}`
   const versionAriaName = `${versionNumberLabel} ${memoName} ${versionDate}`
-
   return { versionAriaName, versionName }
 }
 
@@ -122,7 +118,7 @@ function parseMemoNameAndOfferings(courseMemo, languageIndex) {
 const FIRST_VERSION = 1
 
 function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
-  const { courseMemoFileName: lastestMemoFileName, isPdf, lastChangeDate, previousFileList } = courseMemo
+  const { semester, courseMemoFileName: lastestMemoFileName, isPdf, lastChangeDate, previousFileList } = courseMemo
   const languageIndex = getLanguageIndex(userLanguageAbbr)
 
   const { memoName, courseOffering } = parseMemoNameAndOfferings(courseMemo, languageIndex)
@@ -141,7 +137,7 @@ function parseUploadedMemo(courseMemo, memoBlobUrl, userLanguageAbbr) {
     return { ariaLabel: versionAriaName, name: versionName, url, latest: index === 0 }
   })
 
-  return { courseOffering, isPdf, memoName, memoVersionsAndUrls: allVersionsAndUrls }
+  return { semester, courseOffering, isPdf, memoName, memoVersionsAndUrls: allVersionsAndUrls }
 }
 
 function parseWebBasedMemo(courseMemo, oldWebMemos) {
@@ -167,7 +163,7 @@ function removeWebMemosDuplicates(flattenMemosList) {
   return flattenMemosList.filter(({ memoEndPoint }) => {
     if (memoEndPoint && tmpUniqueKeys.includes(memoEndPoint)) return false
     if (memoEndPoint && !tmpUniqueKeys.includes(memoEndPoint)) tmpUniqueKeys.push(memoEndPoint)
-    // if web-based memo is unique or if it's pdf memo, then return grue
+    // if web-based memo is unique or if it's pdf memo, then return true
     return true
   })
 }
@@ -195,7 +191,6 @@ async function getCourseMemosVersions(courseCode, userLanguage) {
       courseMemos.push(courseMemo)
     })
   })
-
   courseMemos.reverse()
   return courseMemos
 }

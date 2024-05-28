@@ -3,7 +3,6 @@ import { seasonStr } from '../util/helpers'
 
 const row = (translation, courseCode, language, courseMemo) => {
   const { semester, courseOffering, isPdf, memoName, memoVersionsAndUrls } = courseMemo
-  console.log('COURSE MEMO: ', courseMemo)
   return (
     <tr key={courseOffering}>
       <td>{seasonStr(translation.course_short_semester, semester)}</td>
