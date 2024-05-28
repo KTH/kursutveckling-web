@@ -33,7 +33,7 @@ const Archive = () => {
             syllabusPeriods={courseKoppsData.syllabusPeriods}
           />
           <MemoTable translation={translation} courseCode={courseCode} language={userLang} courseMemos={courseMemos} />
-          <AnalysisTable />
+          <AnalysisTable translation={translation} />
         </main>
       </Col>
     </Row>
