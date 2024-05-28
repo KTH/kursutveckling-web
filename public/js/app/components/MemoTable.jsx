@@ -36,7 +36,7 @@ const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
     <>
       <h2>{translation.label_memos}</h2>
       {courseMemos.length ? (
-        <table className="table archive-table syllabus-table">
+        <table className="table archive-table">
           <thead>
             <tr>
               <th scope="col">{translation.label_semesters}</th>
