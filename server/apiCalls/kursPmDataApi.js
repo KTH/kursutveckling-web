@@ -46,7 +46,7 @@ function formatVersionDate(language = 'sv', date) {
     const timeZone = 'Europe/Berlin'
     const zonedDate = utcToZonedTime(new Date(unixTime), timeZone)
     if (language === 'sv') {
-      return format(zonedDate, 'Ppp', { locale: locales[language] }).slice(0, -9)
+      return format(zonedDate, 'yyyy-MM-dd', { locale: locales[language] })
     } else {
       const options = {
         day: 'numeric',
