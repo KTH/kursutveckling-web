@@ -9,8 +9,8 @@ const row = (translation, courseCode, language, courseMemo) => {
     courseOffering,
     <ul className="link-list">
       {memoName && <li key={memoName}>{memoName + ':'}</li>}
-      {memoVersionsAndUrls.map((v) => (
-        <li key={v.name}>
+      {memoVersionsAndUrls.map((v, index) => (
+        <li key={index}>
           {/* eslint-disable-next-line react/jsx-no-target-blank*/}
           <a
             aria-label={`${isPdf ? 'PDF ' : ''}${v.ariaLabel}`}

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const renderRow = (row) => {
+const renderRow = (row, rowIndex) => {
   return (
     //TODO: unique ID for key
-    <tr key={row.semester}>
-      {row.map((cell, index) => (
-        <td key={index}>{typeof cell === 'function' ? cell() : cell}</td>
+    <tr key={rowIndex}>
+      {row.map((cell, cellIndex) => (
+        <td key={cellIndex}>{typeof cell === 'function' ? cell() : cell}</td>
       ))}
     </tr>
   )
@@ -17,14 +17,14 @@ const Table = ({ headings, rows, tableClasses }) => {
       <table className={tableClasses.join(' ')}>
         <thead>
           <tr>
-            {headings.map((heading) => (
-              <th key={heading} scope="col">
+            {headings.map((heading, index) => (
+              <th key={index} scope="col">
                 {heading}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>{rows.map((row) => renderRow(row))}</tbody>
+        <tbody>{rows.map((row, index) => renderRow(row, index))}</tbody>
       </table>
     </>
   )
