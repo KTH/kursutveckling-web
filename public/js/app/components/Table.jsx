@@ -2,7 +2,8 @@ import React from 'react'
 
 const renderRow = (row) => {
   return (
-    <tr key={row[0]}>
+    //TODO: unique ID for key
+    <tr key={row.semester}>
       {row.map((cell, index) => (
         <td key={index}>{typeof cell === 'function' ? cell() : cell}</td>
       ))}
@@ -16,14 +17,14 @@ const Table = ({ headings, rows, tableClasses }) => {
       <table className={tableClasses.join(' ')}>
         <thead>
           <tr>
-            {headings.map((h) => (
-              <th key={h} scope="col">
-                {h}
+            {headings.map((heading) => (
+              <th key={heading} scope="col">
+                {heading}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>{rows.map((r) => renderRow(r))}</tbody>
+        <tbody>{rows.map((row) => renderRow(row))}</tbody>
       </table>
     </>
   )
