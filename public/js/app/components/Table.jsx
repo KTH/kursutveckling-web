@@ -18,7 +18,7 @@ const Table = ({ headings, rows, tableClasses }) => {
         <thead>
           <tr>
             {headings.map((heading, index) => (
-              <th key={index} scope="col">
+              <th key={index} scope="col" className="semester-column">
                 {heading}
               </th>
             ))}
