@@ -57,7 +57,7 @@ module.exports = {
       administration: 'Administer About course',
       label_syllabus: 'Course Syllabus',
       label_syllabuses: 'Course Syllabuses',
-      label_semesters: 'Semester',
+      label_semester: 'Semester',
       course_short_semester: {
         1: 'Spring',
         2: 'Autumn'
@@ -71,10 +71,8 @@ module.exports = {
       no_syllabuses: 'This course doesn´t have an approved course syllabus.',
       no_memos: 'This course has no published course memos.',
       no_analyses: 'This course has no published Course Analyses.',
-      label_analyses: 'Course Analyses',
-      label_analysis: 'Course Analysis',
-      analysis_table_heading1: 'Course Offering',
-      analysis_table_heading2: 'Course Analysis'
+      label_course_analyses: 'Course Analyses',
+      label_course_analysis: 'Course Analysis'
     }
   },
   tableHeaders: {

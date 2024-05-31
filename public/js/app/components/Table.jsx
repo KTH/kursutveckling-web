@@ -2,23 +2,22 @@ import React from 'react'
 
 const renderRow = (row, rowIndex) => {
   return (
-    //TODO: unique ID for key
     <tr key={rowIndex}>
       {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{typeof cell === 'function' ? cell() : cell}</td>
+        <td key={cellIndex}>{cell}</td>
       ))}
     </tr>
   )
 }
 
-const Table = ({ headings, rows, tableClasses }) => {
+const Table = ({ headings, rows, tableClasses, columnClass = '' }) => {
   return (
     <>
       <table className={tableClasses.join(' ')}>
         <thead>
           <tr>
             {headings.map((heading, index) => (
-              <th key={index} scope="col" className="semester-column">
+              <th key={index} scope="col" className={columnClass}>
                 {heading}
               </th>
             ))}

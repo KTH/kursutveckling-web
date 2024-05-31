@@ -3,7 +3,7 @@ import React from 'react'
 import { SYLLABUS_URL } from '../util/constants'
 import Table from './Table'
 
-const row = (translation, courseCode, language, startDate, endDate) => {
+const createRow = (translation, courseCode, language, startDate, endDate) => {
   const startTermLabel = `${translation.course_short_semester[startDate.substring(4, 5)]} ${startDate.substring(0, 4)}`
   const endTermLabel = `${translation.course_short_semester[endDate.substring(4, 5)] || ''} ${endDate.substring(0, 4)}`
   const semestersLabel = `${startTermLabel} – ${endTermLabel.trim() || translation.ongoing_label}`
@@ -30,7 +30,7 @@ const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {}
   const syllabusDataRows = startDates.map((startDate) => {
     const { endDate: ed } = syllabusPeriods[startDate]
     const endDate = ed.toString()
-    return row(translation, courseCode, language, startDate, endDate)
+    return createRow(translation, courseCode, language, startDate, endDate)
   })
 
   return (
@@ -38,7 +38,7 @@ const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {}
       <h2>{translation.label_syllabuses}</h2>
       {syllabusDataRows.length ? (
         <Table
-          headings={[translation.label_semesters, translation.label_syllabus]}
+          headings={[translation.label_semester, translation.label_syllabus]}
           rows={syllabusDataRows}
           tableClasses={['table', 'archive-table']}
         />

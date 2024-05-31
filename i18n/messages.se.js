@@ -55,7 +55,7 @@ module.exports = {
       administration: 'Administrera Om kursen',
       label_syllabus: 'Kursplan',
       label_syllabuses: 'Kursplaner',
-      label_semesters: 'Termin',
+      label_semester: 'Termin',
       course_short_semester: {
         1: 'VT',
         2: 'HT'
@@ -69,10 +69,8 @@ module.exports = {
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
       no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
-      label_analyses: 'Kursanalyser',
-      label_analysis: 'Kursanalys',
-      analysis_table_heading1: 'Kursomgång',
-      analysis_table_heading2: 'Kursanalys'
+      label_course_analyses: 'Kursanalyser',
+      label_course_analysis: 'Kursanalys'
     }
   },
   tableHeaders: {
