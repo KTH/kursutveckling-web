@@ -7,7 +7,7 @@ const createRow = (translation, courseCode, language, courseMemo) => {
   return [
     seasonStr(translation.course_short_semester, semester),
     courseOffering,
-    <ul className="link-list">
+    <ul className="link-list" style={{ padding: '0px' }}>
       {memoName && <li key={memoName}>{memoName + ':'}</li>}
       {memoVersionsAndUrls.map((memoEntry, index) => (
         <li key={index}>
