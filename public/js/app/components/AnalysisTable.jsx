@@ -4,6 +4,23 @@ import { useWebContext } from '../context/WebContext'
 import Table from '../components/Table'
 import { getDateFormat, seasonStr } from '../util/helpers'
 
+const createRow = (translation, storageUri, userLang, courseCode, semesterData) => {
+  const { semester, analysisFileName, pdfAnalysisDate, analysisName: courseOffering } = semesterData
+  return [
+    seasonStr(translation.course_short_semester, semester),
+    courseOffering,
+    <ActiveOrDisabledLink
+      key={analysisFileName}
+      semester={semester}
+      fileName={analysisFileName}
+      storageUri={storageUri}
+      linkTitle={translation.label_course_analysis + ' ' + courseCode}
+      roundName={courseOffering}
+      validFrom={getDateFormat(pdfAnalysisDate, userLang)}
+    />
+  ]
+}
+
 const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, validFrom }) => {
   const no_added = 'no_added'
   return (
@@ -37,35 +54,20 @@ const AnalysisTable = ({ translation }) => {
 
   const yearsDescending = Object.keys(analysisData).reverse()
   const analysisPerSemester = yearsDescending.flatMap((year) => analysisData[year])
-  const analysisDataRows = analysisPerSemester.map((semesterData) => {
-    const { semester, analysisFileName, pdfAnalysisDate, analysisName: courseOffering } = semesterData
-    return [
-      seasonStr(translation.course_short_semester, semester),
-      courseOffering,
-      <ActiveOrDisabledLink
-        key={analysisFileName}
-        semester={semester}
-        fileName={analysisFileName}
-        storageUri={storageUri}
-        linkTitle={translation.label_analysis + ' ' + courseCode}
-        roundName={courseOffering}
-        validFrom={getDateFormat(pdfAnalysisDate, userLang)}
-      />
-    ]
-  })
+
+  const analysisDataRows = analysisPerSemester.map((semesterData) =>
+    createRow(translation, storageUri, userLang, courseCode, semesterData)
+  )
 
   return (
     <>
-      <h2>{translation.label_analyses}</h2>
+      <h2>{translation.label_course_analyses}</h2>
       {analysisDataRows.length ? (
         <Table
-          headings={[
-            translation.label_semesters,
-            translation.analysis_table_heading1,
-            translation.analysis_table_heading2
-          ]}
+          headings={[translation.label_semester, translation.label_course_offering, translation.label_course_analysis]}
           rows={analysisDataRows}
           tableClasses={['table', 'archive-table']}
+          columnClass="semester-column"
         />
       ) : (
         <p className="inline-information">{translation.no_analyses}</p>
