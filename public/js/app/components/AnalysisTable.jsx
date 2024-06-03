@@ -67,7 +67,6 @@ const AnalysisTable = ({ translation }) => {
           headings={[translation.label_semester, translation.label_course_offering, translation.label_course_analysis]}
           rows={analysisDataRows}
           tableClasses={['table', 'archive-table']}
-          columnClass="semester-column"
         />
       ) : (
         <p className="inline-information">{translation.no_analyses}</p>

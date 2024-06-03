@@ -37,7 +37,6 @@ const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
           headings={[translation.label_semester, translation.label_course_offering, translation.label_memo]}
           rows={memoDataRows}
           tableClasses={['table', 'archive-table']}
-          columnClass="semester-column"
         />
       ) : (
         <p className="inline-information">{translation.no_memos}</p>
