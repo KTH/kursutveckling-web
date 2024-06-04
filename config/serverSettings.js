@@ -40,12 +40,12 @@ module.exports = {
 
   // API keys
   apiKey: {
-    kursutvecklingApi: getEnv('KURSINFO_API_KEY', devDefaults('1234')),
+    kursutvecklingApi: getEnv('KURSUTVECKLING_API_KEY', devDefaults('1234')),
     kursPmDataApi: getEnv('KURS_PM_DATA_API_KEY', devDefaults('1234'))
   },
   // Service API's
   nodeApi: {
-    kursutvecklingApi: unpackNodeApiConfig('KURSINFO_API_URI', devKursutvecklingApi),
+    kursutvecklingApi: unpackNodeApiConfig('KURSUTVECKLING_API_URI', devKursutvecklingApi),
     kursPmDataApi: unpackNodeApiConfig('KURS_PM_DATA_API_URI', devKursPmDataApi)
   },
   koppsApi: unpackKOPPSConfig('KOPPS_URI', devKoppsApi),
