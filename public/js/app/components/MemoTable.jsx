@@ -29,15 +29,15 @@ const createRow = (translation, courseCode, language, courseMemo) => {
 
 const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
   const memoDataRows = courseMemos.map((courseMemo) => createRow(translation, courseCode, language, courseMemo))
+  const headings = {
+    labels: [translation.label_semester, translation.label_course_offering, translation.label_memo],
+    classes: ['semester', 'heading', 'heading']
+  }
   return (
     <>
       <h2>{translation.label_memos}</h2>
       {courseMemos.length ? (
-        <Table
-          headings={[translation.label_semester, translation.label_course_offering, translation.label_memo]}
-          rows={memoDataRows}
-          tableClasses={['table', 'archive-table']}
-        />
+        <Table headings={headings} rows={memoDataRows} tableClasses={['table', 'archive-table']} />
       ) : (
         <p className="inline-information">{translation.no_memos}</p>
       )}

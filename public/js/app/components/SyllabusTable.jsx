@@ -32,16 +32,13 @@ const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {}
     const endDate = ed.toString()
     return createRow(translation, courseCode, language, startDate, endDate)
   })
+  const headings = { labels: [translation.label_semester, translation.label_syllabus], classes: ['semester', ''] }
 
   return (
     <>
       <h2>{translation.label_syllabuses}</h2>
       {syllabusDataRows.length ? (
-        <Table
-          headings={[translation.label_semester, translation.label_syllabus]}
-          rows={syllabusDataRows}
-          tableClasses={['table', 'archive-table']}
-        />
+        <Table headings={headings} rows={syllabusDataRows} tableClasses={['table', 'archive-table']} />
       ) : (
         <p className="inline-information">{translation.no_syllabuses}</p>
       )}
