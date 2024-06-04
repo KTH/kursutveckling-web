@@ -11,7 +11,14 @@ const renderRow = (row, rowIndex) => {
 }
 
 const getHeadingClass = (nrOfColumns, columnIndex) => {
-  const settings = nrOfColumns === 3 ? 'heading' : nrOfColumns === 2 && columnIndex === 0 ? 'heading' : ''
+  const settings =
+    nrOfColumns === 2 && columnIndex === 0
+      ? 'semester'
+      : nrOfColumns === 3 && columnIndex === 0
+        ? 'semester'
+        : nrOfColumns === 3 && columnIndex != 0
+          ? 'heading'
+          : ''
   return settings
 }
 
