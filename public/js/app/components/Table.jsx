@@ -10,27 +10,15 @@ const renderRow = (row, rowIndex) => {
   )
 }
 
-const getHeadingClass = (nrOfColumns, columnIndex) => {
-  const settings =
-    nrOfColumns === 2 && columnIndex === 0
-      ? 'semester'
-      : nrOfColumns === 3 && columnIndex === 0
-        ? 'semester'
-        : nrOfColumns === 3 && columnIndex != 0
-          ? 'heading'
-          : ''
-  return settings
-}
-
 const Table = ({ headings, rows, tableClasses }) => {
   return (
     <>
       <table className={tableClasses.join(' ')}>
         <thead>
           <tr>
-            {headings.map((heading, index) => (
-              <th key={index} scope="col" className={getHeadingClass(headings.length, index)}>
-                {heading}
+            {headings.labels.map((label, index) => (
+              <th key={index} scope="col" className={headings.classes ? headings.classes[index] : ''}>
+                {label}
               </th>
             ))}
           </tr>

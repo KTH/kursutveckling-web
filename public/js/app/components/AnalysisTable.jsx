@@ -58,16 +58,16 @@ const AnalysisTable = ({ translation }) => {
   const analysisDataRows = analysisPerSemester.map((semesterData) =>
     createRow(translation, storageUri, userLang, courseCode, semesterData)
   )
+  const headings = {
+    labels: [translation.label_semester, translation.label_course_offering, translation.label_course_analysis],
+    classes: ['semester', 'heading', 'heading']
+  }
 
   return (
     <>
       <h2>{translation.label_course_analyses}</h2>
       {analysisDataRows.length ? (
-        <Table
-          headings={[translation.label_semester, translation.label_course_offering, translation.label_course_analysis]}
-          rows={analysisDataRows}
-          tableClasses={['table', 'archive-table']}
-        />
+        <Table headings={headings} rows={analysisDataRows} tableClasses={['table', 'archive-table']} />
       ) : (
         <p className="inline-information">{translation.no_analyses}</p>
       )}
