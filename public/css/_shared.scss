@@ -16,7 +16,11 @@
       }
     }
   }
-  
+
+  .kth-local-navigation--mobile {
+    padding: 0;
+  }
+
   label:has(+ .form-group),
   label:has(+ input) {
     @include typography.font-heading-xs;
