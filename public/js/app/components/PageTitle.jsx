@@ -1,7 +1,7 @@
 import React from 'react'
 import { EMPTY, KURSINFO_ADMIN_URL } from '../util/constants'
 
-function PageTitle({ courseKoppsData: titleData, pageTitle, translate }) {
+function PageTitle({ courseData: titleData, pageTitle, translate }) {
   const { courseCode, courseCredits, courseTitle, koppsDataLang } = titleData
   const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${koppsDataLang}`
 

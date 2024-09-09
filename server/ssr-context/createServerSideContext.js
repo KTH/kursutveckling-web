@@ -12,7 +12,7 @@ function createServerSideContext() {
     courseTitle: '',
     courseCredits: 0,
     userLang: 'sv',
-    courseKoppsData: {
+    courseData: {
       // kopps-api
       courseCode: '',
       courseTitle: '',

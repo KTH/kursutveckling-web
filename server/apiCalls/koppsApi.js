@@ -3,10 +3,6 @@
 const log = require('@kth/log')
 const rawKoppsCourseData = require('./getRawKoppsData')
 
-function parseOrSetEmpty(value) {
-  return value ? value : ' '
-}
-
 function getListOfValidFromSyllabusTerms(terms = []) {
   const startYears = []
   let validFrom,
@@ -43,16 +39,13 @@ const combineStartEndDates = async (syllabusStartDates) => {
 
 const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
   try {
-    const { course = {}, publicSyllabusVersions } = testCourse || (await rawKoppsCourseData(courseCode, lang))
-    const { credits = null, title = null } = course
+    const { publicSyllabusVersions } = testCourse || (await rawKoppsCourseData(courseCode, lang))
     const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
     return {
       courseCode: courseCode.toUpperCase(),
-      courseTitle: parseOrSetEmpty(title),
       sortedSyllabusStart: sortedSyllabusStartDates,
       syllabusPeriods,
-      courseCredits: parseOrSetEmpty(credits),
       koppsDataLang: lang,
       koppsLangIndex: lang === 'en' ? 0 : 1
     }

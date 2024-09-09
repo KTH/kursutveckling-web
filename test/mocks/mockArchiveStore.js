@@ -7,7 +7,7 @@ const mockArchiveStore = (lang) => {
     courseTitle: '',
     courseCredits: 0,
     userLang: lang,
-    courseKoppsData: {
+    courseData: {
       courseCode: '',
       courseTitle: '',
       courseCredits: 0,
