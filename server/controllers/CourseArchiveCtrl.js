@@ -3,6 +3,7 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const filteredKoppsData = require('../apiCalls/koppsApi')
+const { getLadokCourseData } = require('../apiCalls/ladokApi')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
@@ -11,17 +12,19 @@ const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
+const { parseOrSetEmpty } = require('./ctrlHelper')
+const { getNameInLanguageOrSetEmpty } = require('../utils/languageUtil')
 
-function getFormattedSubHeadline(courseKoppsData, lang) {
+function getFormattedSubHeadline(courseData, lang) {
   const unit = {
     en: 'credits',
     sv: 'hp'
   }
-  const { courseCredits } = courseKoppsData
+  const { courseCredits } = courseData
   const credits = lang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
   const formattedCredits = `${credits} ${unit[lang]}`
 
-  const { courseCode, courseTitle } = courseKoppsData
+  const { courseCode, courseTitle } = courseData
   const subHeadline = `${courseCode} ${courseTitle}, ${formattedCredits}`
 
   return subHeadline
@@ -37,13 +40,19 @@ async function _getContent(req, res, next) {
 
     const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
+    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = getLadokCourseData(courseCode, lang)
+
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
-    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.courseData = {
+      ...(await filteredKoppsData(courseCode, lang)),
+      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle),
+      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+    }
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
-    webContext.subHeadline = getFormattedSubHeadline(webContext.courseKoppsData, lang)
+    webContext.subHeadline = getFormattedSubHeadline(webContext.courseData, lang)
 
     const compressedData = getCompressedData(webContext)
 

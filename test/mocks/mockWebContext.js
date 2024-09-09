@@ -4,7 +4,7 @@ const mockWebContext = (lang = 'en') => {
   const context = {
     userLang: lang,
     courseCode: 'EI1220',
-    courseKoppsData: {
+    courseData: {
       courseCode: 'EI1220',
       gradeScale: { PF: 'P, F' },
       courseTitle: lang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',

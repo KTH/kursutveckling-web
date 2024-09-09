@@ -13,6 +13,9 @@ const paths = require('../server').getPaths()
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
+const { getLadokCourseData } = require('../apiCalls/ladokApi')
+const { parseOrSetEmpty } = require('./ctrlHelper')
+const { getNameInLanguageOrSetEmpty } = require('../utils/languageUtil')
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
@@ -33,10 +36,16 @@ async function getCourseDevInfo(req, res, next) {
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
     const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
+    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(courseCode, lang)
+
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
-    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.courseData = {
+      ...(await filteredKoppsData(courseCode, lang)),
+      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle),
+      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+    }
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
 
