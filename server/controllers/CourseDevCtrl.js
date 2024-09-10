@@ -36,14 +36,14 @@ async function getCourseDevInfo(req, res, next) {
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
     const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
-    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(courseCode, lang)
+    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(courseCode)
 
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
     webContext.courseData = {
       ...(await filteredKoppsData(courseCode, lang)),
-      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle),
+      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, lang),
       courseCredits: parseOrSetEmpty(ladokCourseCredits)
     }
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
