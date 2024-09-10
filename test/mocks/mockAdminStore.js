@@ -1,11 +1,11 @@
 import transformedAnalysisData from './transformedAnalysisData'
-import transformedKoppsData from './transformedKoppsData'
+import transformedCourseData from './transformedCourseData'
 
 const mockAdminStore = (lang = 'en') => {
   const context = {
     userLang: lang,
     courseCode: 'SF1624',
-    courseData: transformedKoppsData[lang],
+    courseData: transformedCourseData[lang],
     analysisData: transformedAnalysisData,
     browserConfig: { storageUri: '', hostUrl: '' },
     miniMemosPdfAndWeb: { courseCode: 'SF1624', miniMemos: {} }

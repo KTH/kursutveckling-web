@@ -1,8 +1,11 @@
 /* eslint-disable jest/expect-expect */
 const mockery = require('mockery')
 const filteredKoppsData = require('../../server/apiCalls/koppsApi')
-const mockRawKoppsData = require('../mocks/rawKoppsData')
-const transformedKoppsData = require('../mocks/transformedKoppsData')
+const { mockRawKoppsData, mockRawLadokData } = require('../mocks/rawCourseData')
+const transformedCourseData = require('../mocks/transformedCourseData')
+const { getNameInLanguageOrSetEmpty } = require('../../server/utils/languageUtil')
+const { parseOrSetEmpty } = require('../../server/controllers/ctrlHelper')
+const { getLadokCourseData } = require('../../server/apiCalls/ladokApi')
 
 const mockLogger = {}
 // eslint-disable-next-line no-multi-assign
@@ -28,23 +31,39 @@ jest.mock('../../server/configuration', () => ({
 
 describe('Test functions in kopps api to filter raw data', () => {
   test('if filteredKoppsData function is returning a correct data in english', async () => {
-    const filteredData = await filteredKoppsData('SF1624', 'en', mockRawKoppsData.en)
-    expect(filteredData).toStrictEqual(transformedKoppsData.en)
+    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(
+      'SF1624',
+      mockRawLadokData
+    )
+    const filteredData = {
+      ...(await filteredKoppsData('SF1624', 'en', mockRawKoppsData.en)),
+      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, 'en'),
+      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+    }
+
+    expect(filteredData).toStrictEqual(transformedCourseData.en)
   })
 
   test('if filteredKoppsData function is returning a correct data in swedish', async () => {
-    const filteredData = await filteredKoppsData('SF1624', 'sv', mockRawKoppsData.sv)
-    expect(filteredData).toStrictEqual(transformedKoppsData.sv)
+    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(
+      'SF1624',
+      mockRawLadokData
+    )
+
+    const filteredData = {
+      ...(await filteredKoppsData('SF1624', 'sv', mockRawKoppsData.en)),
+      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, 'sv'),
+      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+    }
+    expect(filteredData).toStrictEqual(transformedCourseData.sv)
   })
 
   test('if filteredKoppsData function handles empty data', async () => {
     const filteredData = await filteredKoppsData('SF1624', 'en', {})
     const result = {
       courseCode: 'SF1624',
-      courseTitle: ' ',
       sortedSyllabusStart: [],
       syllabusPeriods: {},
-      courseCredits: ' ',
       koppsDataLang: 'en',
       koppsLangIndex: 0
     }

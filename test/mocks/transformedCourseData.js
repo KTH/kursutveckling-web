@@ -1,4 +1,4 @@
-const transformedKoppsData = {
+const transformedCourseData = {
   sv: {
     courseCode: 'SF1624',
     courseTitle: 'Algebra och geometri',
@@ -17,7 +17,7 @@ const transformedKoppsData = {
         endDate: ''
       }
     },
-    courseCredits: 7.5,
+    courseCredits: '7.5',
     koppsDataLang: 'sv',
     koppsLangIndex: 1
   },
@@ -39,10 +39,10 @@ const transformedKoppsData = {
         endDate: ''
       }
     },
-    courseCredits: 7.5,
+    courseCredits: '7.5',
     koppsDataLang: 'en',
     koppsLangIndex: 0
   }
 }
-export default transformedKoppsData
-module.exports = transformedKoppsData
+export default transformedCourseData
+module.exports = transformedCourseData

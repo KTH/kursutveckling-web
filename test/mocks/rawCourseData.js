@@ -72,4 +72,15 @@ const mockRawKoppsData = {
     ]
   }
 }
-module.exports = mockRawKoppsData
+const mockRawLadokData = {
+  benamning: {
+    en: 'Algebra and Geometry',
+    sv: 'Algebra och geometri'
+  },
+  omfattning: '7.5'
+}
+
+module.exports = {
+  mockRawKoppsData,
+  mockRawLadokData
+}
