@@ -73,11 +73,14 @@ const mockRawKoppsData = {
   }
 }
 const mockRawLadokData = {
-  benamning: {
-    en: 'Algebra and Geometry',
-    sv: 'Algebra och geometri'
+  en: {
+    benamning: 'Algebra and Geometry',
+    omfattning: '7.5'
   },
-  omfattning: '7.5'
+  sv: {
+    benamning: 'Algebra och geometri',
+    omfattning: '7.5'
+  }
 }
 
 module.exports = {
