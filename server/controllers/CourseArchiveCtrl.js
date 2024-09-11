@@ -2,8 +2,6 @@
 
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const filteredKoppsData = require('../apiCalls/koppsApi')
-const { getLadokCourseData } = require('../apiCalls/ladokApi')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
