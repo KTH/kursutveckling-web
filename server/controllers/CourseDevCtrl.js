@@ -3,7 +3,6 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
-const filteredKoppsData = require('../apiCalls/koppsApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
@@ -13,7 +12,7 @@ const paths = require('../server').getPaths()
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
-const { getLadokCourseData } = require('../apiCalls/ladokApi')
+const { createCourseData } = require('./helperFunctions')
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
@@ -34,20 +33,10 @@ async function getCourseDevInfo(req, res, next) {
     const { getCompressedData, renderStaticPage } = getServerSideFunctions()
     const webContext = { lang, proxyPrefixPath: serverConfig.proxyPrefixPath, ...createServerSideContext() }
 
-    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = await getLadokCourseData(courseCode)
-
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
-    webContext.courseData = {
-      ...(await filteredKoppsData(courseCode, lang)),
-      courseCode: courseCode.toUpperCase(),
-      courseDataLang: lang,
-      courseDataLangIndex: lang === 'en' ? 0 : 1,
-      courseTitle: ladokCourseTitle,
-      lang,
-      courseCredits: ladokCourseCredits ?? ''
-    }
+    webContext.courseData = await createCourseData(courseCode, lang)
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
 
