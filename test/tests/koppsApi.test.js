@@ -58,7 +58,6 @@ describe('Test functions in kopps api to filter raw data', () => {
   test('if filteredKoppsData function handles empty data', async () => {
     const filteredData = await filteredKoppsData('SF1624', 'en', {})
     const result = {
-      sortedSyllabusStart: [],
       syllabusPeriods: {}
     }
     expect(filteredData).toStrictEqual(result)

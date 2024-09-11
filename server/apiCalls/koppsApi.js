@@ -43,7 +43,6 @@ const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
     const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
     return {
-      sortedSyllabusStart: sortedSyllabusStartDates,
       syllabusPeriods
     }
   } catch (error) {
