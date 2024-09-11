@@ -43,11 +43,8 @@ const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
     const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
     return {
-      courseCode: courseCode.toUpperCase(),
       sortedSyllabusStart: sortedSyllabusStartDates,
-      syllabusPeriods,
-      koppsDataLang: lang,
-      koppsLangIndex: lang === 'en' ? 0 : 1
+      syllabusPeriods
     }
   } catch (error) {
     log.error('Error in filteredKoppsData while trying to filter data from KOPPS', { error })

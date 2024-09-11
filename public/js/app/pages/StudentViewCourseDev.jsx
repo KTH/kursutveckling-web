@@ -45,7 +45,7 @@ function StudentViewCourseDev() {
 
         <ListYears
           key="list-of-course-data-for-several-years"
-          koppsData={courseData}
+          courseData={courseData}
           allYearsAnalysisDataObj={analysisData}
           tableHeaders={tableHeaders}
           pageTitles={pageTitles}
