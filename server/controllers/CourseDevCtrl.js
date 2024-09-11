@@ -14,8 +14,6 @@ const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 const { getLadokCourseData } = require('../apiCalls/ladokApi')
-const { parseOrSetEmpty } = require('./ctrlHelper')
-const { getNameInLanguageOrSetEmpty } = require('../utils/languageUtil')
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
@@ -46,8 +44,9 @@ async function getCourseDevInfo(req, res, next) {
       courseCode: courseCode.toUpperCase(),
       courseDataLang: lang,
       courseDataLangIndex: lang === 'en' ? 0 : 1,
-      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, lang),
-      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+      courseTitle: ladokCourseTitle,
+      lang,
+      courseCredits: ladokCourseCredits ?? ''
     }
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)

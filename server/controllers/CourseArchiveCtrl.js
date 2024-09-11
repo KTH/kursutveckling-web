@@ -12,8 +12,6 @@ const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
-const { parseOrSetEmpty } = require('./ctrlHelper')
-const { getNameInLanguageOrSetEmpty } = require('../utils/languageUtil')
 
 function getFormattedSubHeadline(courseData, lang) {
   const unit = {
@@ -50,8 +48,8 @@ async function _getContent(req, res, next) {
       courseCode: courseCode.toUpperCase(),
       courseDataLang: lang,
       courseDataLangIndex: lang === 'en' ? 0 : 1,
-      courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, lang),
-      courseCredits: parseOrSetEmpty(ladokCourseCredits)
+      courseTitle: ladokCourseTitle,
+      courseCredits: ladokCourseCredits ?? ''
     }
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
