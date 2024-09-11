@@ -11,7 +11,7 @@ const mockArchiveStore = (lang) => {
       courseCode: '',
       courseTitle: '',
       courseCredits: 0,
-      koppsDataLang: 'sv',
+      courseDataLang: 'sv',
       syllabusPeriods: { 19701: { endDate: 20372 } }
     },
     miniMemosPdfAndWeb: [],

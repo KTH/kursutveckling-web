@@ -18,8 +18,8 @@ const transformedCourseData = {
       }
     },
     courseCredits: '7.5',
-    koppsDataLang: 'sv',
-    koppsLangIndex: 1
+    courseDataLang: 'sv',
+    courseDataLangIndex: 1
   },
   en: {
     courseCode: 'SF1624',
@@ -40,8 +40,8 @@ const transformedCourseData = {
       }
     },
     courseCredits: '7.5',
-    koppsDataLang: 'en',
-    koppsLangIndex: 0
+    courseDataLang: 'en',
+    courseDataLangIndex: 0
   }
 }
 export default transformedCourseData

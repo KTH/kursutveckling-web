@@ -37,6 +37,9 @@ describe('Test functions in kopps api to filter raw data', () => {
     )
     const filteredData = {
       ...(await filteredKoppsData('SF1624', 'en', mockRawKoppsData.en)),
+      courseCode: 'SF1624',
+      courseDataLang: 'en',
+      courseDataLangIndex: 0,
       courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, 'en'),
       courseCredits: parseOrSetEmpty(ladokCourseCredits)
     }
@@ -52,6 +55,9 @@ describe('Test functions in kopps api to filter raw data', () => {
 
     const filteredData = {
       ...(await filteredKoppsData('SF1624', 'sv', mockRawKoppsData.en)),
+      courseCode: 'SF1624',
+      courseDataLang: 'sv',
+      courseDataLangIndex: 1,
       courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, 'sv'),
       courseCredits: parseOrSetEmpty(ladokCourseCredits)
     }
@@ -61,11 +67,8 @@ describe('Test functions in kopps api to filter raw data', () => {
   test('if filteredKoppsData function handles empty data', async () => {
     const filteredData = await filteredKoppsData('SF1624', 'en', {})
     const result = {
-      courseCode: 'SF1624',
       sortedSyllabusStart: [],
-      syllabusPeriods: {},
-      koppsDataLang: 'en',
-      koppsLangIndex: 0
+      syllabusPeriods: {}
     }
     expect(filteredData).toStrictEqual(result)
   })

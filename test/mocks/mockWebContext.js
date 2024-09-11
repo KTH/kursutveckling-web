@@ -16,8 +16,8 @@ const mockWebContext = (lang = 'en') => {
         20192: { endDate: '' }
       },
       courseCredits: 7.5,
-      koppsDataLang: lang,
-      koppsLangIndex: 0,
+      courseDataLang: lang,
+      courseDataLangIndex: 0,
       semesterObjectList: {}
     },
     browserConfig: {

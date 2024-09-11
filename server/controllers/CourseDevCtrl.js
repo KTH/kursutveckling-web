@@ -43,6 +43,9 @@ async function getCourseDevInfo(req, res, next) {
     webContext.userLang = lang
     webContext.courseData = {
       ...(await filteredKoppsData(courseCode, lang)),
+      courseCode: courseCode.toUpperCase(),
+      courseDataLang: lang,
+      courseDataLangIndex: lang === 'en' ? 0 : 1,
       courseTitle: getNameInLanguageOrSetEmpty(ladokCourseTitle, lang),
       courseCredits: parseOrSetEmpty(ladokCourseCredits)
     }

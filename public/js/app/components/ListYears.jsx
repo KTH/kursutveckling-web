@@ -3,8 +3,8 @@ import Details from './Details'
 import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 
-const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLang }) => {
-  const { koppsDataLang } = koppsData
+const SectionPerYear = ({ thisYearAnalyses, courseData, year, tableLabels, userLang }) => {
+  const { courseDataLang } = courseData
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
   thisYearAnalyses.sort((firstEl, secondEl) =>
@@ -28,7 +28,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLa
         >
           {index === 0 && <h2 id={headerId}>{year}</h2>}
           <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
-          <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
+          <DocumentLinksNav lang={courseDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
 
           <TableWithCourseData
             thisAnalysisObj={thisOfferingAnalysis}
@@ -45,7 +45,7 @@ const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLa
   )
 }
 
-const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders, userLang }) => {
+const ListYears = ({ allYearsAnalysisDataObj, courseData, pageTitles, tableHeaders, userLang }) => {
   const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
   return (
     <div className="list-section-per-year">
@@ -53,7 +53,7 @@ const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeader
         <SectionPerYear
           key={index}
           thisYearAnalyses={allYearsAnalysisDataObj[year]}
-          koppsData={koppsData}
+          courseData={courseData}
           year={year}
           pageLabels={pageTitles}
           tableLabels={tableHeaders}

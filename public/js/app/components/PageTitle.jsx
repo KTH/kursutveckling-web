@@ -2,12 +2,12 @@ import React from 'react'
 import { EMPTY, KURSINFO_ADMIN_URL } from '../util/constants'
 
 function PageTitle({ courseData: titleData, pageTitle, translate }) {
-  const { courseCode, courseCredits, courseTitle, koppsDataLang } = titleData
-  const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${koppsDataLang}`
+  const { courseCode, courseCredits, courseTitle, courseDataLang } = titleData
+  const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${courseDataLang}`
 
   const credits =
     courseCredits !== EMPTY && courseCredits.toString().indexOf('.') < 0 ? courseCredits + '.0' : courseCredits
-  const creditUnit = koppsDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
+  const creditUnit = courseDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
 
   const courseName = `${courseCode} ${courseTitle} ${creditUnit}`
   return (
