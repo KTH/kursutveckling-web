@@ -1,7 +1,7 @@
 'use strict'
 
 const log = require('@kth/log')
-const rawKoppsCourseData = require('./getRawKoppsData')
+const getRawKoppsData = require('./getRawKoppsData')
 
 function getListOfValidFromSyllabusTerms(terms = []) {
   const startYears = []
@@ -37,10 +37,10 @@ const combineStartEndDates = async (syllabusStartDates) => {
   return periods
 }
 
-const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
+const filteredKoppsData = async (courseCode, lang) => {
   try {
-    const { publicSyllabusVersions } = testCourse || (await rawKoppsCourseData(courseCode, lang))
-    const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
+    const { publicSyllabusVersions } = await getRawKoppsData(courseCode, lang)
+    const sortedSyllabusStartDates = getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
     return {
       syllabusPeriods

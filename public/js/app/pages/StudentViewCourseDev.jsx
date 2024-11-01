@@ -32,7 +32,7 @@ function StudentViewCourseDev() {
             {labelAboutCoursePage}
           </a>
         </nav>
-        <PageTitle key="title" courseData={courseData} pageTitle={pageTitles.course_dev_title} translate={pageTitles} />
+        <PageTitle courseData={courseData} pageTitle={pageTitles.course_dev_title} />
         <div className="intro-text">
           <p>
             {pageTitles.info_text[1]}

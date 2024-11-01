@@ -6,7 +6,6 @@ const mockWebContext = (lang = 'en') => {
     courseCode: 'EI1220',
     courseData: {
       courseCode: 'EI1220',
-      gradeScale: { PF: 'P, F' },
       courseTitle: lang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',
       syllabusPeriods: {
         20082: { endDate: 20091 },
@@ -14,10 +13,7 @@ const mockWebContext = (lang = 'en') => {
         20102: { endDate: 20191 },
         20192: { endDate: '' }
       },
-      courseCredits: 7.5,
-      courseDataLang: lang,
-      courseDataLangIndex: 0,
-      semesterObjectList: {}
+      courseDataLang: lang
     },
     browserConfig: {
       env: 'dev',

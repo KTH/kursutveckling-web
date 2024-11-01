@@ -46,6 +46,8 @@ module.exports = {
     page_course_programme: 'Course and programme directory',
     page_student: 'Student at KTH',
 
+    admin_link_title: 'Administer About course', //Administrate
+
     archiveTitles: {
       archive: 'Archive',
       about_course: 'About course',
@@ -54,7 +56,6 @@ module.exports = {
       before_choosing_course: 'Before course selection',
       prepare_course: 'Prepare and take course',
       course_development: 'Course development',
-      administration: 'Administer About course',
       label_syllabus: 'Course Syllabus',
       label_syllabuses: 'Course Syllabuses',
       label_semester: 'Semester',
@@ -145,7 +146,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    course_admin_title: 'Administer About course', //Administrate
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',

@@ -3,7 +3,7 @@ import React from 'react'
 import { Col, Row } from 'reactstrap'
 
 import ArchiveSideMenu from '../components/ArchiveSideMenu'
-import ArchivePageHeader from '../components/ArchivePageHeader'
+import PageTitle from '../components/PageTitle'
 import { useWebContext } from '../context/WebContext'
 
 import i18n from '../../../../i18n'
@@ -13,18 +13,13 @@ import AnalysisTable from '../components/AnalysisTable'
 
 const Archive = () => {
   const [context] = useWebContext()
-  const { courseCode, courseData, courseMemos, subHeadline, userLang } = context
+  const { courseCode, courseData, courseMemos, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
   return (
     <Row>
       <ArchiveSideMenu translation={translation} courseCode={courseCode} />
       <Col id="mainContent" className="archive-page">
-        <ArchivePageHeader
-          translation={translation}
-          subHeadline={subHeadline}
-          courseCode={courseCode}
-          language={userLang}
-        />
+        <PageTitle courseData={courseData} pageTitle={translation.archive} />
         <main>
           <SyllabusTable
             translation={translation}

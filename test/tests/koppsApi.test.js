@@ -1,19 +1,17 @@
 /* eslint-disable jest/expect-expect */
-const mockery = require('mockery')
 const filteredKoppsData = require('../../server/apiCalls/koppsApi')
-const { mockRawKoppsData, mockRawLadokData } = require('../mocks/rawCourseData')
-const transformedCourseData = require('../mocks/transformedCourseData')
+const getRawKoppsData = require('../../server/apiCalls/getRawKoppsData')
+const transformedCourseData = require('../mocks/transformedKoppsData')
+const { mockRawKoppsData } = require('../mocks/rawCourseData')
 
-const mockLogger = {}
-// eslint-disable-next-line no-multi-assign
-mockLogger.debug = mockLogger.info = mockLogger.error = mockLogger.warn = () => {}
-mockLogger.init = () => {}
+jest.mock('@kth/log', () => ({
+  debug: jest.fn(),
+  info: jest.fn(),
+  error: jest.fn(),
+  warn: jest.fn(),
+  init: jest.fn()
+}))
 
-mockery.registerMock('@kth/log', mockLogger)
-mockery.enable({
-  warnOnReplace: false,
-  warnOnUnregistered: false
-})
 jest.mock('../../server/configuration', () => ({
   server: {
     logging: { log: { level: 'info' } },
@@ -26,37 +24,23 @@ jest.mock('../../server/configuration', () => ({
   }
 }))
 
-describe('Test functions in kopps api to filter raw data', () => {
-  test('if filteredKoppsData function is returning a correct data in english', async () => {
-    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = mockRawLadokData.en
-    const filteredData = {
-      ...(await filteredKoppsData('SF1624', 'en', mockRawKoppsData.en)),
-      courseCode: 'SF1624',
-      courseDataLang: 'en',
-      courseDataLangIndex: 0,
-      courseTitle: ladokCourseTitle,
-      courseCredits: ladokCourseCredits ?? ''
-    }
+jest.mock('../../server/apiCalls/getRawKoppsData')
 
+describe('filteredKoppsData', () => {
+  test('should return transformed data in english', async () => {
+    getRawKoppsData.mockResolvedValueOnce(mockRawKoppsData.en)
+    const filteredData = await filteredKoppsData('SF1624', 'en')
     expect(filteredData).toStrictEqual(transformedCourseData.en)
   })
-
-  test('if filteredKoppsData function is returning a correct data in swedish', async () => {
-    const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = mockRawLadokData.sv
-
-    const filteredData = {
-      ...(await filteredKoppsData('SF1624', 'sv', mockRawKoppsData.en)),
-      courseCode: 'SF1624',
-      courseDataLang: 'sv',
-      courseDataLangIndex: 1,
-      courseTitle: ladokCourseTitle,
-      courseCredits: ladokCourseCredits ?? ''
-    }
+  test('should return transformed data in swedish', async () => {
+    getRawKoppsData.mockResolvedValueOnce(mockRawKoppsData.sv)
+    const filteredData = await filteredKoppsData('SF1624', 'sv')
     expect(filteredData).toStrictEqual(transformedCourseData.sv)
   })
 
   test('if filteredKoppsData function handles empty data', async () => {
-    const filteredData = await filteredKoppsData('SF1624', 'en', {})
+    getRawKoppsData.mockResolvedValueOnce({})
+    const filteredData = await filteredKoppsData('SF1624', 'en')
     const result = {
       syllabusPeriods: {}
     }

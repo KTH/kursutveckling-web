@@ -1,28 +1,22 @@
 import React from 'react'
-import { EMPTY, KURSINFO_ADMIN_URL } from '../util/constants'
+import { KURSINFO_ADMIN_URL } from '../util/constants'
+import i18n from '../../../../i18n'
 
-function PageTitle({ courseData: titleData, pageTitle, translate }) {
-  const { courseCode, courseCredits, courseTitle, courseDataLang } = titleData
-  const adminPageLink = `${KURSINFO_ADMIN_URL}${courseCode}?l=${courseDataLang}`
+function PageTitle({ courseData, pageTitle, language }) {
+  const { courseCode, courseTitle, courseFormattedCredits, courseDataLang } = courseData
+  const adminPageLinkHref = `${KURSINFO_ADMIN_URL}${courseCode}?l=${courseDataLang}`
+  const adminPageLinkTitle = i18n.message('admin_link_title', courseDataLang)
+  const subHeading = `${courseCode} ${courseTitle} ${courseFormattedCredits}`
 
-  const credits =
-    courseCredits !== EMPTY && courseCredits.toString().indexOf('.') < 0 ? courseCredits + '.0' : courseCredits
-  const creditUnit = courseDataLang === 'en' ? `${credits} credits` : `${credits.toString().replace('.', ',')} hp`
-
-  const courseName = `${courseCode} ${courseTitle} ${creditUnit}`
   return (
     <header role="presentation" className="col">
       <h1 id="page-heading" aria-labelledby="page-heading page-sub-heading">
         {pageTitle}
       </h1>
       <div id="page-sub-heading-wrapper">
-        <p id="page-sub-heading" aria-hidden="true">
-          {courseCode && courseName}
-        </p>
+        <p id="page-sub-heading">{subHeading}</p>
         <p id="page-sub-heading-admin-link" className="d-none d-sm-block">
-          <a title={translate.course_admin_title} href={adminPageLink}>
-            {translate.course_admin_title}
-          </a>
+          <a href={adminPageLinkHref}>{adminPageLinkTitle}</a>
         </p>
       </div>
     </header>
