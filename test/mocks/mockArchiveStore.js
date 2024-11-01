@@ -3,19 +3,15 @@ import transformedAnalysisData from './transformedAnalysisData'
 const mockArchiveStore = (lang) => {
   const context = {
     courseCode: 'SF1624',
-    subHeaderText: 'SF1624 Algebra and Geometry, 7,5 credits',
-    courseTitle: '',
-    courseCredits: 0,
     userLang: lang,
     courseData: {
-      courseCode: '',
-      courseTitle: '',
-      courseCredits: 0,
-      courseDataLang: 'sv',
+      courseCode: 'SF1624',
+      courseTitle: lang === 'sv' ? 'Algebra och geometri' : 'Algebra and Geometry',
+      courseFormattedCredits: lang === 'sv' ? '7,5 hp' : '7.5 credits',
+      courseDataLang: lang,
       syllabusPeriods: { 19701: { endDate: 20372 } }
     },
     miniMemosPdfAndWeb: [],
-    subHeadline: 'SF1624 Algebra and Geometry, 7,5 credits',
     courseMemos: [
       {
         courseOffering: 'Course Offering',

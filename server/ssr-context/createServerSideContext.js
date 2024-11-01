@@ -9,20 +9,16 @@ function setBrowserConfig(config, paths, hostUrl) {
 function createServerSideContext() {
   const context = {
     courseCode: '',
-    courseTitle: '',
-    courseCredits: 0,
     userLang: 'sv',
     courseData: {
-      // kopps-api
       courseCode: '',
       courseTitle: '',
-      courseCredits: 0,
+      courseFormattedCredits: '',
       courseDataLang: 'sv'
     },
     analysisData: undefined, // kursutveckling-api
     miniMemosPdfAndWeb: [], // kurs-pm-data-api
     courseMemos: [],
-    subHeadline: '',
     setBrowserConfig
   }
   return context

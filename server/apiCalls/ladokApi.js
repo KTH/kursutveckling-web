@@ -9,7 +9,7 @@ async function getLadokCourseData(courseCode, lang) {
   const { benamning: ladokCourseTitle, omfattning: ladokCourseCredits } = course
   return {
     courseTitle: ladokCourseTitle ?? '',
-    courseCredits: ladokCourseCredits ?? ''
+    courseFormattedCredits: ladokCourseCredits.formattedWithUnit ?? ''
   }
 }
 

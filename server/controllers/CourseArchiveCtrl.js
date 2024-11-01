@@ -12,21 +12,6 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
 const { createCourseData } = require('./helperFunctions')
 
-function getFormattedSubHeadline(courseData, lang) {
-  const unit = {
-    en: 'credits',
-    sv: 'hp'
-  }
-  const { courseCredits } = courseData
-  const credits = lang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
-  const formattedCredits = `${credits} ${unit[lang]}`
-
-  const { courseCode, courseTitle } = courseData
-  const subHeadline = `${courseCode} ${courseTitle}, ${formattedCredits}`
-
-  return subHeadline
-}
-
 async function _getContent(req, res, next) {
   try {
     const { courseCode: cc } = req.params
@@ -43,7 +28,6 @@ async function _getContent(req, res, next) {
     webContext.courseData = await createCourseData(courseCode, lang)
     webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
     webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
-    webContext.subHeadline = getFormattedSubHeadline(webContext.courseData, lang)
 
     const compressedData = getCompressedData(webContext)
 
