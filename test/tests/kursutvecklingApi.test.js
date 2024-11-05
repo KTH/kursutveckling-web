@@ -1,18 +1,17 @@
-const mockery = require('mockery')
 const sortedKursutveckligApiInfo = require('../../server/apiCalls/kursutvecklingApi')
 const mockRawAnalysisData = require('../mocks/rawAnalysisData')
 const transformedAnalysisData = require('../mocks/transformedAnalysisData')
 
-const mockLogger = {}
 // eslint-disable-next-line no-multi-assign
-mockLogger.debug = mockLogger.info = mockLogger.error = mockLogger.warn = () => {}
-mockLogger.init = () => {}
 
-mockery.registerMock('@kth/log', mockLogger)
-mockery.enable({
-  warnOnReplace: false,
-  warnOnUnregistered: false
-})
+jest.mock('@kth/log', () => ({
+  debug: jest.fn(),
+  info: jest.fn(),
+  error: jest.fn(),
+  warn: jest.fn(),
+  init: jest.fn()
+}))
+
 jest.mock('../../server/configuration', () => ({
   server: {
     logging: { log: { level: 'info' } },
