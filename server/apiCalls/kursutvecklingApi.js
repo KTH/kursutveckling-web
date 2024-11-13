@@ -1,9 +1,38 @@
 const log = require('@kth/log')
-const rawAnalysisData = require('./getRawAnalysisData')
+const { rawAnalysisDataFromCanvas, rawAnalysisDataFromKursinfoadmin } = require('./getRawAnalysisData')
 
-async function sortedKursutveckligApiInfo(courseCode, testApiObj = null) {
+async function sortedAnalysisDataFromCanvas(courseCode) {
   try {
-    const arrOfNonSortedObj = testApiObj || (await rawAnalysisData(courseCode))
+    const unsortedData = await rawAnalysisDataFromCanvas(courseCode)
+    const currentYear = new Date().getFullYear()
+
+    // Initialize sorted structure with empty arrays for each of the last 6 years
+    const sortedByYear = Array.from({ length: 6 }, (_, i) => currentYear - i).reduce(
+      (acc, year) => ({ ...acc, [year]: [] }),
+      {}
+    )
+
+    // Sort analyses into their respective year
+    unsortedData.forEach((analysis) => {
+      const year = analysis.semester.slice(0, 4)
+      if (sortedByYear[year]) {
+        sortedByYear[year].push(analysis)
+      } else {
+        sortedByYear[year] = [analysis]
+      }
+    })
+
+    return sortedByYear
+  } catch (error) {
+    const apiError = new Error('sortedRecentAnalysisDataFromCanvas är inte tillgänglig för nu, försök senare')
+    log.error('Error in getKursutvecklingApiInfo', { error })
+    throw apiError
+  }
+}
+
+async function sortedAnalysisDataFromKursinfoadmin(courseCode, testApiObj = null) {
+  try {
+    const arrOfNonSortedObj = testApiObj || (await rawAnalysisDataFromKursinfoadmin(courseCode))
     const thisYear = testApiObj ? '2021' : new Date().getFullYear()
     // let year
     let sortedByYear = {}
@@ -39,16 +68,11 @@ async function sortedKursutveckligApiInfo(courseCode, testApiObj = null) {
 
     return sortedByYear
   } catch (error) {
-    const apiError = new Error('sortedKursutveckligApiInfo är inte tillgänlig för nu, försöker senare')
+    const apiError = new Error('sortedRecentAnalysisDataFromKursinfoadmin är inte tillgänlig för nu, försöker senare')
     // apiError.status = 500
     log.error('Error in getKursutvecklingApiInfo', { error })
     throw apiError
   }
 }
 
-module.exports = sortedKursutveckligApiInfo
-
-// 2019
-// 2018
-// ....
-// earliestYear in kursutvAPi
+module.exports = { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromKursinfoadmin }

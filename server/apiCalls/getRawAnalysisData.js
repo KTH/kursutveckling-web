@@ -2,18 +2,36 @@
 const log = require('@kth/log')
 const api = require('../api')
 
-
-async function rawAnalysisData (courseCode) {
+async function rawAnalysisDataFromCanvas(courseCode) {
   try {
     const { client, paths } = api.kursutvecklingApi
-    const kursutvApiResponse = await client.getAsync(client.resolve(paths.getAnalysisListByCourseCode.uri, { courseCode }), { useCache: true })
+    const kursutvApiResponse = await client.getAsync(
+      client.resolve(paths.getCanvasAnalysisListByCourseCode.uri, { courseCode }),
+      { useCache: true }
+    )
     return kursutvApiResponse.body
   } catch (error) {
     const apiError = new Error('Kursutvecklingsinformation är inte tillgänlig för nu, försöker senare')
     // apiError.status = 500
-    log.error('Error in getKursutvecklingApiInfo', {error})
+    log.error('Error in getKursutvecklingApiInfo', { error })
     throw apiError
   }
 }
 
-module.exports = rawAnalysisData
+async function rawAnalysisDataFromKursinfoadmin(courseCode) {
+  try {
+    const { client, paths } = api.kursutvecklingApi
+    const kursutvApiResponse = await client.getAsync(
+      client.resolve(paths.getKursinfoadminAnalysisListByCourseCode.uri, { courseCode }),
+      { useCache: true }
+    )
+    return kursutvApiResponse.body
+  } catch (error) {
+    const apiError = new Error('Kursutvecklingsinformation är inte tillgänlig för nu, försöker senare')
+    // apiError.status = 500
+    log.error('Error in getKursutvecklingApiInfo', { error })
+    throw apiError
+  }
+}
+
+module.exports = { rawAnalysisDataFromCanvas, rawAnalysisDataFromKursinfoadmin }
