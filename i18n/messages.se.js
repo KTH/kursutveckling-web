@@ -70,7 +70,8 @@ module.exports = {
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
       no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
       label_course_analyses: 'Kursanalyser',
-      label_course_analysis: 'Kursanalys'
+      label_course_analysis: 'Kursanalys',
+      analysis_in_canvas: 'Se kursanalys i Canvas.'
     }
   },
   tableHeaders: {

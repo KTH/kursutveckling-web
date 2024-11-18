@@ -72,7 +72,8 @@ module.exports = {
       no_memos: 'This course has no published course memos.',
       no_analyses: 'This course has no published Course Analyses.',
       label_course_analyses: 'Course Analyses',
-      label_course_analysis: 'Course Analysis'
+      label_course_analysis: 'Course Analysis',
+      analysis_in_canvas: 'See course analysis in Canvas.'
     }
   },
   tableHeaders: {

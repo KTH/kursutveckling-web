@@ -122,8 +122,8 @@ const ListYears = ({
   tableHeaders,
   userLang
 }) => {
-  const yearsKursinfoadmin = Object.keys(allYearsAnalysisDataObjKursinfoadmin)
-  const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas)
+  const yearsKursinfoadmin = Object.keys(allYearsAnalysisDataObjKursinfoadmin ?? {})
+  const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas ?? {})
   const yearsDescending = Array.from(new Set([...yearsKursinfoadmin, ...yearsCanvas]))
     .sort((a, b) => a - b)
     .reverse()

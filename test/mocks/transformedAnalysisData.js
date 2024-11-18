@@ -1,4 +1,4 @@
-const transformedAnalysisData = {
+const transformedAnalysisDataFromKursinfoadmin = {
   2008: [
     {
       _id: 'SF1624HT2008_5',
@@ -291,5 +291,47 @@ const transformedAnalysisData = {
   2021: []
 }
 
-export default transformedAnalysisData
-module.exports = transformedAnalysisData
+const transformedAnalysisDataFromCanvas = {
+  2019: [],
+  2020: [],
+  2021: [],
+  2022: [],
+  2023: [],
+  2024: [
+    {
+      _id: {
+        $oid: '6711178a1353f5e3af556077'
+      },
+      id: '39b5624f-7f0f-11ef-90b2-54c43689408b',
+      alterationText: 'Hej hej!!!',
+      analysisName: 'doktorand 2024-51460 ( Start date 28 Oct 2024, English )',
+      applicationCodes: '51460',
+      courseCode: 'AI1527',
+      endDate: '2025-01-13',
+      examinationRounds: [
+        'LAB1;Laboratory;1.0;credits;Grading scale;P, F',
+        'LAB2;Laboratory;1.0;credits;Grading scale;P, F',
+        'LAB3;Laboratory;1.0;credits;Grading scale;P, F',
+        'PRO1;Project;4.5;credits;Grading scale;A, B, C, D, E, FX, F'
+      ],
+      examiners: 'Test Person Testovich Von Test',
+      gradingDistribution: {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0,
+        E: 0,
+        FX: 0,
+        F: 0
+      },
+      ladokUIDs: ['39b5624f-7f0f-11ef-90b2-54c43689408b'],
+      programmeCodes: '',
+      registeredStudents: 1,
+      responsibles: 'Test Person Testovich',
+      semester: '20242',
+      startDate: '2024-10-28'
+    }
+  ]
+}
+
+module.exports = { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromKursinfoadmin }

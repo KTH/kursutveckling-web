@@ -1,64 +1,76 @@
 import React from 'react'
-
 import { useWebContext } from '../context/WebContext'
 import Table from '../components/Table'
 import { getDateFormat, seasonStr } from '../util/helpers'
 
-const createRow = (translation, storageUri, userLang, courseCode, semesterData) => {
-  const { semester, analysisFileName, pdfAnalysisDate, analysisName: courseOffering } = semesterData
+const createRowCanvas = (translation, storageUri, userLang, courseCode, analysisData) => {
+  const { semester, analysisName } = analysisData
+  return [seasonStr(translation.course_short_semester, semester), analysisName, translation.analysis_in_canvas]
+}
+
+const createRowKursinfoadmin = (translation, storageUri, userLang, courseCode, analysisData) => {
+  const { semester, analysisFileName, pdfAnalysisDate, analysisName } = analysisData
   return [
     seasonStr(translation.course_short_semester, semester),
-    courseOffering,
+    analysisName,
     <ActiveOrDisabledLink
       key={analysisFileName}
       semester={semester}
       fileName={analysisFileName}
       storageUri={storageUri}
-      linkTitle={translation.label_course_analysis + ' ' + courseCode}
-      roundName={courseOffering}
+      linkTitle={`${translation.label_course_analysis} ${courseCode}`}
+      roundName={analysisName}
       validFrom={getDateFormat(pdfAnalysisDate, userLang)}
     />
   ]
 }
 
 const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, validFrom }) => {
-  const no_added = 'no_added'
+  const noAddedText = 'no_added'
+  const linkClassName = fileName ? 'pdf-link' : 'disabled-link'
+  const linkContent = fileName ? `${linkTitle}: ${validFrom}` : `${linkTitle}: ${noAddedText}`
+
   return (
     <p>
-      {fileName === '' ? (
-        <span className={`${className} disabled-link`}>
-          {linkTitle}: {no_added}
-        </span>
-      ) : (
+      {fileName ? (
         <a
           aria-label={`PDF ${linkTitle} ${roundName}: ${validFrom}`}
           href={`${storageUri}${fileName}`}
-          className="pdf-link"
-          key={linkTitle}
+          className={linkClassName}
           target="_blank"
           rel="noreferrer"
         >
-          {`${linkTitle}: ${validFrom}`}
+          {linkContent}
         </a>
+      ) : (
+        <span className={linkClassName}>{linkContent}</span>
       )}
     </p>
   )
 }
 
-// NOTE: uses state from & is hard coded to archive page.
-// So less a 'component' and more a part of a page.
 const AnalysisTable = ({ translation }) => {
   const [context] = useWebContext()
-  const { userLang, courseCode, analysisData } = context
+  const { userLang, courseCode, analysisDataCanvas, analysisDataKursinfoadmin } = context
   const { storageUri } = context.browserConfig
 
-  const yearsDescending = Object.keys(analysisData).reverse()
-  const analysisPerSemester = yearsDescending.flatMap((year) => analysisData[year])
+  const yearsCanvas = Object.keys(analysisDataCanvas ?? {})
+  const yearsKursinfoadmin = Object.keys(analysisDataKursinfoadmin ?? {})
+  const yearsDescending = Array.from(new Set([...yearsKursinfoadmin, ...yearsCanvas])).sort((a, b) => b - a)
 
-  const analysisDataRows = analysisPerSemester.map((semesterData) =>
-    createRow(translation, storageUri, userLang, courseCode, semesterData)
-  )
-  const headings = {
+  const combinedAnalysisDataRows = yearsDescending.flatMap((year) => {
+    const canvasRows = (analysisDataCanvas[year] || []).map((analysisData) =>
+      createRowCanvas(translation, storageUri, userLang, courseCode, analysisData)
+    )
+
+    const kursinfoRows = (analysisDataKursinfoadmin[year] || []).map((analysisData) =>
+      createRowKursinfoadmin(translation, storageUri, userLang, courseCode, analysisData)
+    )
+
+    return [...canvasRows, ...kursinfoRows]
+  })
+
+  const tableHeadings = {
     labels: [translation.label_semester, translation.label_course_offering, translation.label_course_analysis],
     classes: ['semester', 'heading', 'heading']
   }
@@ -66,8 +78,8 @@ const AnalysisTable = ({ translation }) => {
   return (
     <>
       <h2>{translation.label_course_analyses}</h2>
-      {analysisDataRows.length ? (
-        <Table headings={headings} rows={analysisDataRows} tableClasses={['table', 'archive-table']} />
+      {combinedAnalysisDataRows.length > 0 ? (
+        <Table headings={tableHeadings} rows={combinedAnalysisDataRows} tableClasses={['table', 'archive-table']} />
       ) : (
         <p className="inline-information">{translation.no_analyses}</p>
       )}
