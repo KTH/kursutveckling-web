@@ -18,11 +18,11 @@ async function rawAnalysisDataFromCanvas(courseCode) {
   }
 }
 
-async function rawAnalysisDataFromKursinfoadmin(courseCode) {
+async function rawAnalysisDataFromAdminWeb(courseCode) {
   try {
     const { client, paths } = api.kursutvecklingApi
     const kursutvApiResponse = await client.getAsync(
-      client.resolve(paths.getKursinfoadminAnalysisListByCourseCode.uri, { courseCode }),
+      client.resolve(paths.getAdminWebAnalysisListByCourseCode.uri, { courseCode }),
       { useCache: true }
     )
     return kursutvApiResponse.body
@@ -34,4 +34,4 @@ async function rawAnalysisDataFromKursinfoadmin(courseCode) {
   }
 }
 
-module.exports = { rawAnalysisDataFromCanvas, rawAnalysisDataFromKursinfoadmin }
+module.exports = { rawAnalysisDataFromCanvas, rawAnalysisDataFromAdminWeb }

@@ -19,7 +19,7 @@ function createServerSideContext() {
       courseCredits: 0,
       koppsDataLang: 'sv'
     },
-    analysisDataKursinfoadmin: undefined, // kursutveckling-api
+    analysisDataAdminWeb: undefined, // kursutveckling-api
     analysisDataCanvas: undefined, // kursutveckling-api
     miniMemosPdfAndWeb: [], // kurs-pm-data-api
     courseMemos: [],

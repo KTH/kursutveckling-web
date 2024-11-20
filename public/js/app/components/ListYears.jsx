@@ -48,7 +48,7 @@ const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData, tableLabels, userLang
   })
 }
 
-const AnalysesFromKursinfoadmin = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
+const AnalysesFromAdminWeb = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
   const { koppsDataLang } = koppsData
   return thisYearAnalyses?.map((thisOfferingAnalysis) => {
     const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
@@ -72,8 +72,12 @@ const AnalysesFromKursinfoadmin = ({ thisYearAnalyses, koppsData, tableLabels, u
   })
 }
 
+const sortBySemester = (analyses) => {
+  return analyses?.sort((a, b) => (b.semester > a.semester ? 1 : a.semester > b.semester ? -1 : 0))
+}
+
 const SectionPerYear = ({
-  thisYearAnalysesKursinfoadmin,
+  thisYearAnalysesAdminWeb,
   thisYearAnalysesCanvas,
   koppsData,
   year,
@@ -82,17 +86,14 @@ const SectionPerYear = ({
 }) => {
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
-  thisYearAnalysesKursinfoadmin?.sort((firstEl, secondEl) =>
-    secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
-  )
-  thisYearAnalysesCanvas?.sort((firstEl, secondEl) =>
-    secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
-  )
-  return thisYearAnalysesKursinfoadmin?.length === 0 && thisYearAnalysesCanvas?.length === 0 ? (
+  const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
+  const sortedAnalysesCanvas = sortBySemester(thisYearAnalysesCanvas)
+
+  return sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0 ? (
     <section aria-describedby={headerId}>
       <h2 id={headerId}>{year}</h2>
       <p>
-        <i>{tableLabels.no_course_analys}</i>
+        <i>{tableLabels.no_course_analysis}</i>
       </p>
     </section>
   ) : (
@@ -104,8 +105,8 @@ const SectionPerYear = ({
         tableLabels={tableLabels}
         userLang={userLang}
       />
-      <AnalysesFromKursinfoadmin
-        thisYearAnalyses={thisYearAnalysesKursinfoadmin}
+      <AnalysesFromAdminWeb
+        thisYearAnalyses={thisYearAnalysesAdminWeb}
         koppsData={koppsData}
         tableLabels={tableLabels}
         userLang={userLang}
@@ -115,16 +116,16 @@ const SectionPerYear = ({
 }
 
 const ListYears = ({
-  allYearsAnalysisDataObjKursinfoadmin,
+  allYearsAnalysisDataObjAdminWeb,
   allYearsAnalysisDataObjCanvas,
   koppsData,
   pageTitles,
   tableHeaders,
   userLang
 }) => {
-  const yearsKursinfoadmin = Object.keys(allYearsAnalysisDataObjKursinfoadmin ?? {})
+  const yearsAdminWeb = Object.keys(allYearsAnalysisDataObjAdminWeb ?? {})
   const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas ?? {})
-  const yearsDescending = Array.from(new Set([...yearsKursinfoadmin, ...yearsCanvas]))
+  const yearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas]))
     .sort((a, b) => a - b)
     .reverse()
   return (
@@ -132,7 +133,7 @@ const ListYears = ({
       {yearsDescending.map((year, index) => (
         <SectionPerYear
           key={index}
-          thisYearAnalysesKursinfoadmin={allYearsAnalysisDataObjKursinfoadmin[year]}
+          thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
           thisYearAnalysesCanvas={allYearsAnalysisDataObjCanvas[year]}
           koppsData={koppsData}
           year={year}
