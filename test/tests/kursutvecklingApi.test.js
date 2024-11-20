@@ -2,6 +2,8 @@ const {
   sortedAnalysisDataFromAdminWeb,
   sortedAnalysisDataFromCanvas
 } = require('../../server/apiCalls/kursutvecklingApi')
+const { rawAnalysisDataFromCanvas, rawAnalysisDataFromAdminWeb } = require('./../../server/apiCalls/getRawAnalysisData')
+
 const { mockRawAnalysisDataFromCanvas, mockRawAnalysisDataFromAdminWeb } = require('../mocks/rawAnalysisData')
 const {
   transformedAnalysisDataFromCanvas,
@@ -28,14 +30,37 @@ jest.mock('../../server/configuration', () => ({
 
 jest.mock('../../server/api', () => ({ kursutvecklingApi: {} }))
 
+jest.mock('./../../server/apiCalls/getRawAnalysisData', () => ({
+  rawAnalysisDataFromAdminWeb: jest.fn(),
+  rawAnalysisDataFromCanvas: jest.fn()
+}))
+
 describe('Test functions in kursutveckling web api to filter raw data', () => {
   test('if sortedAnalysisDataFromAdminWeb function is returning a correct data on correct order', async () => {
-    const sortedData = await sortedAnalysisDataFromAdminWeb('SF1624', mockRawAnalysisDataFromAdminWeb)
+    const courseCode = 'SF1624'
+    const mockedCurrentYear = '2021'
+
+    rawAnalysisDataFromAdminWeb.mockResolvedValue(mockRawAnalysisDataFromAdminWeb)
+    // Spy on `Date` and mock `getFullYear` to return the mocked current year
+    jest.spyOn(global.Date.prototype, 'getFullYear').mockReturnValue(mockedCurrentYear)
+
+    const sortedData = await sortedAnalysisDataFromAdminWeb(courseCode)
+
+    expect(rawAnalysisDataFromAdminWeb).toHaveBeenCalledWith(courseCode)
     expect(sortedData).toStrictEqual(transformedAnalysisDataFromAdminWeb)
   })
 
   test('if sortedAnalysisDataFromCanvas function is returning a correct data on correct order', async () => {
-    const sortedData = await sortedAnalysisDataFromCanvas('AI1527', mockRawAnalysisDataFromCanvas)
+    const courseCode = 'AI1527'
+    const mockedCurrentYear = 2024
+
+    rawAnalysisDataFromCanvas.mockResolvedValue(mockRawAnalysisDataFromCanvas)
+    // Spy on `Date` and mock `getFullYear` to return the mocked current year
+    jest.spyOn(global.Date.prototype, 'getFullYear').mockReturnValue(mockedCurrentYear)
+
+    const sortedData = await sortedAnalysisDataFromCanvas(courseCode)
+
+    expect(rawAnalysisDataFromCanvas).toHaveBeenCalledWith(courseCode)
     expect(sortedData).toStrictEqual(transformedAnalysisDataFromCanvas)
   })
 })
