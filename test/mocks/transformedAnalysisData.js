@@ -1,4 +1,4 @@
-const transformedAnalysisDataFromKursinfoadmin = {
+const transformedAnalysisDataFromAdminWeb = {
   2008: [
     {
       _id: 'SF1624HT2008_5',
@@ -329,9 +329,10 @@ const transformedAnalysisDataFromCanvas = {
       registeredStudents: 1,
       responsibles: 'Test Person Testovich',
       semester: '20242',
-      startDate: '2024-10-28'
+      startDate: '2024-10-28',
+      analysisType: 'canvas'
     }
   ]
 }
 
-module.exports = { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromKursinfoadmin }
+module.exports = { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromAdminWeb }

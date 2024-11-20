@@ -1,11 +1,11 @@
 const {
-  sortedAnalysisDataFromKursinfoadmin,
+  sortedAnalysisDataFromAdminWeb,
   sortedAnalysisDataFromCanvas
 } = require('../../server/apiCalls/kursutvecklingApi')
-const { mockRawAnalysisDataFromCanvas, mockRawAnalysisDataFromKursinfoadmin } = require('../mocks/rawAnalysisData')
+const { mockRawAnalysisDataFromCanvas, mockRawAnalysisDataFromAdminWeb } = require('../mocks/rawAnalysisData')
 const {
   transformedAnalysisDataFromCanvas,
-  transformedAnalysisDataFromKursinfoadmin
+  transformedAnalysisDataFromAdminWeb
 } = require('../mocks/transformedAnalysisData')
 
 // eslint-disable-next-line no-multi-assign
@@ -29,9 +29,9 @@ jest.mock('../../server/configuration', () => ({
 jest.mock('../../server/api', () => ({ kursutvecklingApi: {} }))
 
 describe('Test functions in kursutveckling web api to filter raw data', () => {
-  test('if sortedAnalysisDataFromKursinfoadmin function is returning a correct data on correct order', async () => {
-    const sortedData = await sortedAnalysisDataFromKursinfoadmin('SF1624', mockRawAnalysisDataFromKursinfoadmin)
-    expect(sortedData).toStrictEqual(transformedAnalysisDataFromKursinfoadmin)
+  test('if sortedAnalysisDataFromAdminWeb function is returning a correct data on correct order', async () => {
+    const sortedData = await sortedAnalysisDataFromAdminWeb('SF1624', mockRawAnalysisDataFromAdminWeb)
+    expect(sortedData).toStrictEqual(transformedAnalysisDataFromAdminWeb)
   })
 
   test('if sortedAnalysisDataFromCanvas function is returning a correct data on correct order', async () => {

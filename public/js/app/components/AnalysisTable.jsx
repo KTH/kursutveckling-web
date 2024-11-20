@@ -8,7 +8,7 @@ const createRowCanvas = (translation, storageUri, userLang, courseCode, analysis
   return [seasonStr(translation.course_short_semester, semester), analysisName, translation.analysis_in_canvas]
 }
 
-const createRowKursinfoadmin = (translation, storageUri, userLang, courseCode, analysisData) => {
+const createRowAdminWeb = (translation, storageUri, userLang, courseCode, analysisData) => {
   const { semester, analysisFileName, pdfAnalysisDate, analysisName } = analysisData
   return [
     seasonStr(translation.course_short_semester, semester),
@@ -51,20 +51,20 @@ const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, vali
 
 const AnalysisTable = ({ translation }) => {
   const [context] = useWebContext()
-  const { userLang, courseCode, analysisDataCanvas, analysisDataKursinfoadmin } = context
+  const { userLang, courseCode, analysisDataCanvas, analysisDataAdminWeb } = context
   const { storageUri } = context.browserConfig
 
   const yearsCanvas = Object.keys(analysisDataCanvas ?? {})
-  const yearsKursinfoadmin = Object.keys(analysisDataKursinfoadmin ?? {})
-  const yearsDescending = Array.from(new Set([...yearsKursinfoadmin, ...yearsCanvas])).sort((a, b) => b - a)
+  const yearsAdminWeb = Object.keys(analysisDataAdminWeb ?? {})
+  const yearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas])).sort((a, b) => b - a)
 
   const combinedAnalysisDataRows = yearsDescending.flatMap((year) => {
     const canvasRows = (analysisDataCanvas[year] || []).map((analysisData) =>
       createRowCanvas(translation, storageUri, userLang, courseCode, analysisData)
     )
 
-    const kursinfoRows = (analysisDataKursinfoadmin[year] || []).map((analysisData) =>
-      createRowKursinfoadmin(translation, storageUri, userLang, courseCode, analysisData)
+    const kursinfoRows = (analysisDataAdminWeb[year] || []).map((analysisData) =>
+      createRowAdminWeb(translation, storageUri, userLang, courseCode, analysisData)
     )
 
     return [...canvasRows, ...kursinfoRows]

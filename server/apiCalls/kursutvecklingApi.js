@@ -1,5 +1,5 @@
 const log = require('@kth/log')
-const { rawAnalysisDataFromCanvas, rawAnalysisDataFromKursinfoadmin } = require('./getRawAnalysisData')
+const { rawAnalysisDataFromCanvas, rawAnalysisDataFromAdminWeb } = require('./getRawAnalysisData')
 
 // Helper function to initialize sorted data structure for the last 5 years
 const initializeYearlyDataObject = (currentYear) =>
@@ -35,9 +35,9 @@ async function sortedAnalysisDataFromCanvas(courseCode, testApiObj = null) {
   }
 }
 
-async function sortedAnalysisDataFromKursinfoadmin(courseCode, testApiObj = null) {
+async function sortedAnalysisDataFromAdminWeb(courseCode, testApiObj = null) {
   try {
-    const unsortedData = testApiObj || (await rawAnalysisDataFromKursinfoadmin(courseCode))
+    const unsortedData = testApiObj || (await rawAnalysisDataFromAdminWeb(courseCode))
     const currentYear = testApiObj ? '2021' : new Date().getFullYear()
     const sortedByYear = initializeYearlyDataObject(currentYear)
 
@@ -69,10 +69,10 @@ async function sortedAnalysisDataFromKursinfoadmin(courseCode, testApiObj = null
 
     return sortedByYear
   } catch (error) {
-    const apiError = new Error('sortedAnalysisDataFromKursinfoadmin är inte tillgänglig för nu, försök senare')
-    log.error('Error in sortedAnalysisDataFromKursinfoadmin', { error })
+    const apiError = new Error('sortedAnalysisDataFromAdminWeb är inte tillgänglig för nu, försök senare')
+    log.error('Error in sortedAnalysisDataFromAdminWeb', { error })
     throw apiError
   }
 }
 
-module.exports = { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromKursinfoadmin }
+module.exports = { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromAdminWeb }
