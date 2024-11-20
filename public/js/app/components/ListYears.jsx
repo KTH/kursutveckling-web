@@ -72,6 +72,10 @@ const AnalysesFromAdminWeb = ({ thisYearAnalyses, koppsData, tableLabels, userLa
   })
 }
 
+const sortBySemester = (analyses) => {
+  return analyses?.sort((a, b) => (b.semester > a.semester ? 1 : a.semester > b.semester ? -1 : 0))
+}
+
 const SectionPerYear = ({
   thisYearAnalysesAdminWeb,
   thisYearAnalysesCanvas,
@@ -82,17 +86,14 @@ const SectionPerYear = ({
 }) => {
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
-  thisYearAnalysesAdminWeb?.sort((firstEl, secondEl) =>
-    secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
-  )
-  thisYearAnalysesCanvas?.sort((firstEl, secondEl) =>
-    secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
-  )
-  return thisYearAnalysesAdminWeb?.length === 0 && thisYearAnalysesCanvas?.length === 0 ? (
+  const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
+  const sortedAnalysesCanvas = sortBySemester(thisYearAnalysesCanvas)
+
+  return sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0 ? (
     <section aria-describedby={headerId}>
       <h2 id={headerId}>{year}</h2>
       <p>
-        <i>{tableLabels.no_course_analys}</i>
+        <i>{tableLabels.no_course_analysis}</i>
       </p>
     </section>
   ) : (

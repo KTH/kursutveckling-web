@@ -134,7 +134,7 @@ module.exports = {
     header_more_info: 'Ytterligare data om kursanalysen',
     link_analysis: { label_analysis: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
     link_memo: { label_memo: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
-    no_course_analys: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+    no_course_analysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {
       1: 'VT ',
