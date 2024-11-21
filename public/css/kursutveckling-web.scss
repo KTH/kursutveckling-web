@@ -21,9 +21,40 @@
 @use '~@kth/style/scss/components/local-navigation.scss';
 @use '~@kth/style/scss/components/kpm.scss';
 
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+
 @use '~kth-style/public/sass/variables/_colors.scss' as old-kth-style-colors;
 
 @import 'shared';
+
+.round-analysis {
+  .grid-cell {
+    display: flex;
+    flex-direction: column;
+    
+    .mb-8 {
+      margin-bottom: space.$space-8;
+    }
+  
+    .mb-32 {
+      margin-bottom: space.$space-32;
+    }
+    
+    .horizontal {
+      flex-direction: row;
+    }
+  }
+  
+  .cell-header {
+    margin-bottom: space.$space-8;
+    @include typography.font-heading-xs;
+  }
+
+  .result {
+    flex-grow: 0;
+  }
+}
+
 
 //****ICONS*****//
 

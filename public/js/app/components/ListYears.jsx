@@ -2,11 +2,12 @@ import React from 'react'
 import Details from './Details'
 import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
+import Analysis from './Analysis'
 
-const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
-  const { koppsDataLang } = koppsData
+const AnalysesFromCanvas = ({ thisYearAnalyses }) => {
   return thisYearAnalyses?.map((thisOfferingAnalysis) => {
     const {
+      id,
       analysisName,
       alterationText,
       responsibles,
@@ -14,36 +15,20 @@ const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData, tableLabels, userLang
       registeredStudents,
       programmeCodes,
       totalReportedResults,
-      gradingDistribution,
-      semester,
-      startDate,
-      _id: courseAnalysDataId
+      gradingDistribution
     } = thisOfferingAnalysis
     return (
-      <section
-        className="course-data-for-round"
-        aria-describedby={'h3' + courseAnalysDataId}
-        key={'section-for-analys-' + courseAnalysDataId}
-      >
-        <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
-        <br />
-        {'Förändringar som införs till nästa kursomgång: ' + alterationText}
-        <br />
-        {'Kursansvarig: ' + responsibles}
-        <br />
-        {'Examiners: ' + examiners}
-        <br />
-        {'Studenter: ' + registeredStudents}
-        <br />
-        {'Obligatoriska inom program: ' + programmeCodes}
-        <br />
-        <br />
-        {'Resultat på kurs'}
-        <br />
-        {`Totalt:  ${totalReportedResults} (${Math.round(((100 * totalReportedResults) / registeredStudents) * 10) / 10}%)`}
-        <br />
-        {Object.keys(gradingDistribution).map((grade) => `${grade}: ${gradingDistribution[grade]} `)}
-      </section>
+      <Analysis
+        key={id}
+        analysisName={analysisName}
+        alterationText={alterationText}
+        responsibles={responsibles}
+        examiners={examiners}
+        registeredStudents={registeredStudents}
+        gradingDistribution={gradingDistribution}
+        totalReportedResults={totalReportedResults}
+        programmeCodes={programmeCodes}
+      />
     )
   })
 }
