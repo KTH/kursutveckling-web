@@ -113,15 +113,6 @@
   "engines": {
     "node": "18"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-transform-runtime"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-push": "npm run test"
