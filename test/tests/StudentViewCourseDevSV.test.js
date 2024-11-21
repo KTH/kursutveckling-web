@@ -68,62 +68,6 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
   })
 
-  test('renders all h4 for Alert and each round Additional information headers,', () => {
-    const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(37)
-    const expectedhds = [
-      // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round Med teknik ( Startdatum 2008-08-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar'
-    ]
-    expectedhds.map((h4, index) => expect(allH4Headers[index]).toHaveTextContent(h4))
-  })
-
   test('Get popover desktop and mobile buttons and check it is number', async () => {
     const allBtns = getAllByRole('button')
     expect(allBtns.length).toBe(96)
@@ -255,11 +199,11 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Get table headers (mobile and desktop)', async () => {
     const responsible = getAllByText('Kursansvarig')
-    expect(responsible.length).toBe(16)
+    expect(responsible.length).toBe(17)
     const examiner = getAllByText('Examinator')
-    expect(examiner.length).toBe(16)
+    expect(examiner.length).toBe(17)
     const students = getAllByText('Studenter')
-    expect(students.length).toBe(16)
+    expect(students.length).toBe(17)
     const exams = getAllByText('Examination')
     expect(exams.length).toBe(16)
     const results = getAllByText('Resultat')

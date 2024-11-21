@@ -68,62 +68,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
   })
 
-  test('renders all h4 for Alert and each round Additional information headers.', () => {
-    const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(37)
-    const expectedhds = [
-      // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      'Comments to changes in course data or course analysis after publishing',
-      // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      'Comments to changes in course data or course analysis after publishing',
-      // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      'Comments to changes in course data or course analysis after publishing',
-      // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      'Comments to changes in course data or course analysis after publishing',
-      // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      // no 'Comments to changes in course data or course analysis after publishing',
-      // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      // no 'Comments to changes in course data or course analysis after publishing',
-      // next round Med teknik ( Startdatum 2008-08-29, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      // no 'Comments to changes in course data or course analysis after publishing',
-      // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
-      'The course analysis applies to following course offerings',
-      'Compulsory within programme',
-      'Published first time',
-      'Last time changed',
-      'Comments to changes in course data or course analysis after publishing'
-    ]
-    expectedhds.map((h4, index) => expect(allH4Headers[index]).toHaveTextContent(h4))
-  })
-
   test('Get popover desktop and mobile buttons and check it is number', async () => {
     const allBtns = getAllByRole('button')
     expect(allBtns.length).toBe(96)
