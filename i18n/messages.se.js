@@ -70,7 +70,8 @@ module.exports = {
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
       no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
       label_course_analyses: 'Kursanalyser',
-      label_course_analysis: 'Kursanalys'
+      label_course_analysis: 'Kursanalys',
+      analysis_in_canvas: 'Se kursanalys i Canvas.'
     }
   },
   tableHeaders: {
@@ -133,7 +134,7 @@ module.exports = {
     header_more_info: 'Ytterligare data om kursanalysen',
     link_analysis: { label_analysis: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
     link_memo: { label_memo: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
-    no_course_analys: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+    no_course_analysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {
       1: 'VT ',

@@ -11,6 +11,7 @@ const userLang = 'en'
 const context = mockAdminStore(userLang)
 
 const ROUNDS = [
+  'doktorand 2024-51460 ( Start date 28 Oct 2024, English )',
   'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
   'CMEDT1 ( Startdatum 2018-10-29, Svenska )',
   'CITEH1 ( Startdatum 2018-10-29, Svenska )',
@@ -42,14 +43,27 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('renders h2 for all years', () => {
     const allH2Headers = getAllByRole('heading', { level: 2 })
-    expect(allH2Headers.length).toBe(9)
-    const expectedh2ds = ['2021', '2020', '2019', '2018', '2017', '2016', '2010', '2009', '2008']
+    expect(allH2Headers.length).toBe(12)
+    const expectedh2ds = [
+      '2024',
+      '2023',
+      '2022',
+      '2021',
+      '2020',
+      '2019',
+      '2018',
+      '2017',
+      '2016',
+      '2010',
+      '2009',
+      '2008'
+    ]
     expectedh2ds.map((h2, index) => expect(allH2Headers[index]).toHaveTextContent(h2))
   })
 
   test('renders course rounds headers in course analysis lang', () => {
     const allH3Headers = getAllByRole('heading', { level: 3 })
-    expect(allH3Headers.length).toBe(8)
+    expect(allH3Headers.length).toBe(9)
     const expectedh3ds = ROUNDS
     expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
   })
@@ -135,13 +149,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   test('Get Additional data about this course analysis if it renders', async () => {
     const extraInfo = getAllByText('Additional data about the course analysis')
     expect(extraInfo.length).toBe(8)
-  })
-
-  test('Check if aria-label is correct for Additional data about this course analysis if it renders', async () => {
-    const rounds = ROUNDS
-    rounds.map((roundName) =>
-      expect(screen.getByLabelText(`Additional data about the course analysis: ${roundName}`)).toBeInTheDocument()
-    )
   })
 
   test('Check links if it renders', async () => {

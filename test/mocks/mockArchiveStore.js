@@ -1,4 +1,4 @@
-import transformedAnalysisData from './transformedAnalysisData'
+import { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromAdminWeb } from './transformedAnalysisData'
 
 const mockArchiveStore = (lang) => {
   const context = {
@@ -29,7 +29,8 @@ const mockArchiveStore = (lang) => {
         ]
       }
     ],
-    analysisData: transformedAnalysisData,
+    analysisDataAdminWeb: transformedAnalysisDataFromAdminWeb,
+    analysisDataCanvas: transformedAnalysisDataFromCanvas,
     browserConfig: { storageUri: '', hostUrl: '' }
   }
   return context

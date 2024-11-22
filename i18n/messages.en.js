@@ -72,7 +72,8 @@ module.exports = {
       no_memos: 'This course has no published course memos.',
       no_analyses: 'This course has no published Course Analyses.',
       label_course_analyses: 'Course Analyses',
-      label_course_analysis: 'Course Analysis'
+      label_course_analysis: 'Course Analysis',
+      analysis_in_canvas: 'See course analysis in Canvas.'
     }
   },
   tableHeaders: {
@@ -136,7 +137,7 @@ module.exports = {
     header_more_info: 'Additional data about the course analysis',
     link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
     link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
-    no_course_analys:
+    no_course_analysis:
       'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
     course_short_semester: {
       1: 'Spring ',
