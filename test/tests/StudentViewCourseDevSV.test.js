@@ -98,7 +98,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
 
-    expect(links.length).toBe(19)
+    expect(links.length).toBe(20)
     const expectedLinks = [
       'Om kursen SF1624',
       'Administrera Om kursen',
@@ -106,7 +106,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'Arkiv',
       // by each round
       'Kursplan SF1624 ( HT 2019 - )',
-      // 'Kurs-PM: 2019-09-10',
+      'Kursplan SF1624 ( HT 2019 - )',
       'Kursanalys: 2019-09-10',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
       'Kursanalys: 2019-09-04',
@@ -134,7 +134,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     const expectedAriaLabels = [
       // by each round
       'PDF Kursplan SF1624 ( HT 2019 -  )',
-      // 'PDF Kurs-PM CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
+      'PDF Kursplan SF1624 ( HT 2019 -  )',
       'PDF Kursanalys CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
       'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
       'PDF Kursanalys CMEDT1 ( Startdatum 2018-10-29, Svenska ): 2019-09-04',
@@ -163,6 +163,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'http://localhost/kursutveckling/SF1624/arkiv',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
       // 'http://localhost/pm-SF1624HT2019_9.pdf',
+      'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=sv',
       'http://localhost/analysis-SF1624HT2018_9.pdf',
