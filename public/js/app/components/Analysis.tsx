@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 import HtmlWrapper from './HtmlWrapper'
+import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
 
 interface AlterationTextProps {
   alterationText: string
@@ -72,7 +73,9 @@ export interface AnalysisProps {
   registeredStudents: number
   programmeCodes: string
   totalReportedResults: number
-  gradingDistribution: Record<string, number>
+  gradingDistribution: Record<string, number>,
+  syllabusPeriodStart: string,
+  userLang: string
 }
 
 const Analysis: React.FC<AnalysisProps> = ({
@@ -83,7 +86,9 @@ const Analysis: React.FC<AnalysisProps> = ({
   registeredStudents,
   programmeCodes,
   totalReportedResults,
-  gradingDistribution
+  gradingDistribution,
+  syllabusPeriodStart,
+  userLang
 }) => {
   const percentage = Math.round((100 * totalReportedResults) / registeredStudents)
 
@@ -94,7 +99,7 @@ const Analysis: React.FC<AnalysisProps> = ({
       <Row>
         <FlexColumn>
           <GridCell header="Kursansvarig" content={responsibles} />
-          <GridCell header="Kursplan" content={'-'} />
+          <GridCell header="Kursplan" content={<LinkToValidSyllabusPdf startDate={syllabusPeriodStart} lang={userLang} />} />
         </FlexColumn>
         <FlexColumn>
           <GridCell header="Examinator" content={examiners} />

@@ -4,7 +4,20 @@ import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
 import Analysis from './Analysis'
 
-const AnalysesFromCanvas = ({ thisYearAnalyses }) => {
+function getSyllabusPeriodStart(semesters, targetSemester) {
+  for (const [key, value] of Object.entries(semesters)) {
+    const keyAsNumber = parseInt(key, 10) // Convert the key to a number
+    const endDate = value.endDate === '' ? Infinity : Number(value.endDate)
+
+    if (targetSemester >= keyAsNumber && targetSemester <= endDate) {
+      return key // Return the key if targetSemester is between key and endDate
+    }
+  }
+  return null // Return null if no match is found
+}
+
+const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
+  const { koppsDataLang, syllabusPeriods } = koppsData
   return thisYearAnalyses?.map((thisOfferingAnalysis) => {
     const {
       id,
@@ -15,8 +28,10 @@ const AnalysesFromCanvas = ({ thisYearAnalyses }) => {
       registeredStudents,
       programmeCodes,
       totalReportedResults,
-      gradingDistribution
+      gradingDistribution,
+      semester
     } = thisOfferingAnalysis
+    const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
     return (
       <Analysis
         key={id}
@@ -28,6 +43,8 @@ const AnalysesFromCanvas = ({ thisYearAnalyses }) => {
         gradingDistribution={gradingDistribution}
         totalReportedResults={totalReportedResults}
         programmeCodes={programmeCodes}
+        syllabusPeriodStart={syllabusPeriodStart}
+        userLang={koppsDataLang}
       />
     )
   })
