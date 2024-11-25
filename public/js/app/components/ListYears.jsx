@@ -2,51 +2,12 @@ import React from 'react'
 import Details from './Details'
 import DocumentLinksNav from './DocumentLinksNav'
 import TableWithCourseData from './TableWithCourseData'
-import Analysis from './Analysis'
+import AnalysisListItem from './AnalysisListItem'
 
-function getSyllabusPeriodStart(semesters, targetSemester) {
-  for (const [key, value] of Object.entries(semesters)) {
-    const keyAsNumber = parseInt(key, 10) // Convert the key to a number
-    const endDate = value.endDate === '' ? Infinity : Number(value.endDate)
-
-    if (targetSemester >= keyAsNumber && targetSemester <= endDate) {
-      return key // Return the key if targetSemester is between key and endDate
-    }
-  }
-  return null // Return null if no match is found
-}
-
-const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
-  const { koppsDataLang, syllabusPeriods } = koppsData
+const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData }) => {
   return thisYearAnalyses?.map((thisOfferingAnalysis) => {
-    const {
-      id,
-      analysisName,
-      alterationText,
-      responsibles,
-      examiners,
-      registeredStudents,
-      programmeCodes,
-      totalReportedResults,
-      gradingDistribution,
-      semester
-    } = thisOfferingAnalysis
-    const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
-    return (
-      <Analysis
-        key={id}
-        analysisName={analysisName}
-        alterationText={alterationText}
-        responsibles={responsibles}
-        examiners={examiners}
-        registeredStudents={registeredStudents}
-        gradingDistribution={gradingDistribution}
-        totalReportedResults={totalReportedResults}
-        programmeCodes={programmeCodes}
-        syllabusPeriodStart={syllabusPeriodStart}
-        userLang={koppsDataLang}
-      />
-    )
+    const { id } = thisOfferingAnalysis
+    return <AnalysisListItem key={id} analysis={thisOfferingAnalysis} koppsData={koppsData} />
   })
 }
 
