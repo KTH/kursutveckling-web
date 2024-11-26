@@ -1,23 +1,8 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
-import LinkToValidSyllabusPdf from '../LinkToValidSyllabus'
-import { RoundAnalysisCanvas, KoppsCourseData, SyllabusPeriods } from './types'
-
-const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): string | null => {
-  const semesterAsNumber = Number(semester)
-
-  for (const [key, value] of Object.entries(periods)) {
-    const keyAsNumber = parseInt(key, 10)
-    const endDate = value.endDate ? Number(value.endDate) : Infinity
-
-    if (semesterAsNumber >= keyAsNumber && semesterAsNumber <= endDate) {
-      return key
-    }
-  }
-
-  return null
-}
+import { RoundAnalysisCanvas, KoppsCourseData } from './types'
+import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
 
 const AlterationTextBox: React.FC<{ htmlContent: string }> = ({ htmlContent }) => (
   <div className="info-box">
@@ -81,9 +66,6 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: Ko
     analysisType
   } = analysis
 
-  const { koppsDataLang, syllabusPeriods } = koppsData
-
-  const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
   const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
 
   const isCanvasType = analysisType === 'canvas';
@@ -102,7 +84,7 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: Ko
           <Row className="mb-4">
             <GridCell
               header="Kursplan"
-              content={<LinkToValidSyllabusPdf startDate={syllabusPeriodStart} lang={koppsDataLang} />}
+              content={<LinkToValidSyllabusPdf semester={semester}/>}
             />
             <GridCell header="Kurs-PM" content="-" />
             <GridCell header="Obligatorisk inom program" content={programmeCodes} />

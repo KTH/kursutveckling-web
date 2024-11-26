@@ -20,8 +20,6 @@ export interface RoundAnalysisAdminWeb extends RoundAnalysis {
   
 }
 
-
-
 export interface KoppsCourseData {
   koppsDataLang: 'sv' | 'en'
   syllabusPeriods: SyllabusPeriods

@@ -40,8 +40,8 @@ describe('User language: English. Component <DocumentLinksNav>: one ladok round 
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
-    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=en')
+    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2010 - Spring 2019 )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20102.pdf?lang=en')
 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2017-1')
     expect(links[1].href).toStrictEqual(
@@ -65,8 +65,8 @@ describe('User language: Swedish. Component <DocumentLinksNav>: one ladok round 
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
-    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=sv')
+    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2010 - VT 2019 )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20102.pdf?lang=sv')
 
     expect(links[1]).toHaveTextContent('Kurs-PM EI1220 HT 2017-1')
     expect(links[1].href).toStrictEqual(
@@ -85,8 +85,8 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
     setupTwoRoundsInEnglish()
     const links = getAllByRole('link')
     expect(links.length).toBe(4)
-    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=en')
+    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2019 - )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20192.pdf?lang=en')
 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2019-1')
     expect(links[1].href).toStrictEqual(
@@ -110,8 +110,8 @@ describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round 
     setupTwoRoundsInSwedish()
     const links = getAllByRole('link')
     expect(links.length).toBe(4)
-    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=sv')
+    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2019 - )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20192.pdf?lang=sv')
 
     expect(links[1]).toHaveTextContent('Kurs-PM EI1220 HT 2019-1')
     expect(links[1].href).toStrictEqual(
@@ -137,8 +137,8 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
     const links = getAllByRole('link')
     expect(links.length).toBe(4)
 
-    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=en')
+    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2019 - )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20192.pdf?lang=en')
 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2019-1')
     expect(links[1].href).toStrictEqual(
@@ -161,8 +161,8 @@ describe('User language: English. Component <DocumentLinksNav>: two ladok round 
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
-    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=en')
+    expect(links[0]).toHaveTextContent('Course syllabus EI1220 ( Autumn 2019 - )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20192.pdf?lang=en')
 
     expect(links[1]).toHaveTextContent('Course memo EI1220 Autumn 2019-3')
     expect(links[1].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')
@@ -187,8 +187,8 @@ describe('User language: Swedish. Component <DocumentLinksNav>: two ladok round 
 
     const links = getAllByRole('link')
     expect(links.length).toBe(3)
-    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2014 - )')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20142.pdf?lang=sv')
+    expect(links[0]).toHaveTextContent('Kursplan EI1220 ( HT 2019 - )')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/EI1220-20192.pdf?lang=sv')
 
     expect(links[1]).toHaveTextContent('Kurs-PM EI1220 Autumn 2019-3')
     expect(links[1].href).toStrictEqual('https://localhost:3000/kurs-pm/EI1220/memoEI1220201923')

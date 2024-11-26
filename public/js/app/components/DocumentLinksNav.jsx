@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { getDateFormat } from '../util/helpers'
 import { useWebContext } from '../context/WebContext'
 import i18n from '../../../../i18n'
-import LinkToValidSyllabusPdf from './LinkToValidSyllabus'
+import LinkToValidSyllabusPdf from './LinkToValidSyllabusPdf'
 
 const ActiveOrDisabledPdfLink = ({ ariaLabel, href = '', className = '', linkTitle, translate, validFrom = '' }) => {
   const { no_added_doc } = translate
@@ -156,7 +156,7 @@ function DocumentLinksNav(props) {
 
   return (
     <span className="right-block-of-links">
-      <LinkToValidSyllabusPdf startDate={syllabusStartTerm} lang={lang} key={syllabusStartTerm} />
+      <LinkToValidSyllabusPdf semester={analysisSemester} />
       <span className="vertical-block-of-links">
         {unfilteredRoundsMissingMemos.map((applicationCode) => {
           const missingMemoOfferingName = parseCourseOffering([applicationCode], analysisSemester, lang)
