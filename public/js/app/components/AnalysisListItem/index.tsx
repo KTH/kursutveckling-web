@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabus'
-import { Analysis , KoppsCourseData, SyllabusPeriods } from './types'
+import { Analysis, KoppsCourseData, SyllabusPeriods } from './types'
 
 const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): string | null => {
   const semesterAsNumber = Number(semester)
@@ -26,16 +26,14 @@ const AlterationTextBox: React.FC<{ alterationText: string }> = ({ alterationTex
   </div>
 )
 
-const GridCell: React.FC<{ header: string; content: React.ReactNode }> = ({ header, content }) => (
-  <Col className="grid-cell mb-32">
+const GridCell: React.FC<{ header: string; content: React.ReactNode; md?: string }> = ({
+  header,
+  content,
+  md = '4'
+}) => (
+  <Col md={md} className="grid-cell">
     <span className="cell-header">{header}</span>
     <span>{content}</span>
-  </Col>
-)
-
-const FlexColumn: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <Col md="3" className="grid-cell">
-    {children}
   </Col>
 )
 
@@ -46,7 +44,7 @@ const ResultsSection: React.FC<{
 }> = ({ totalResults, percentage, grades }) => (
   <Col className="grid-cell result">
     <span className="cell-header">Resultat på kurs</span>
-    <Col className="grid-cell horizontal mb-8">
+    <Col className="grid-cell horizontal mb-2">
       <Col md="3">
         <span className="cell-header">Totalt</span>
       </Col>
@@ -85,34 +83,42 @@ const AnalysisListItem: React.FC<{ analysis: Analysis; koppsData: KoppsCourseDat
   const { koppsDataLang, syllabusPeriods } = koppsData
 
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
-  const percentage = Math.round((100 * totalReportedResults) / registeredStudents)
+  const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
 
   return (
     <div className="round-analysis">
       <h3>{analysisName}</h3>
       <AlterationTextBox alterationText={alterationText} />
       <Row>
-        <FlexColumn>
-          <GridCell header="Kursansvarig" content={responsibles} />
-          <GridCell
-            header="Kursplan"
-            content={<LinkToValidSyllabusPdf startDate={syllabusPeriodStart} lang={koppsDataLang} />}
+        <Col md="9">
+          <Row className="mb-4">
+            <GridCell header="Kursansvarig" content={responsibles} />
+            <GridCell header="Examinator" content={examiners} />
+            <GridCell header="Studenter" content={registeredStudents} />
+          </Row>
+          <Row className="mb-4">
+            <GridCell
+              header="Kursplan"
+              content={<LinkToValidSyllabusPdf startDate={syllabusPeriodStart} lang={koppsDataLang} />}
+            />
+            <GridCell header="Kurs-PM" content="-" />
+            <GridCell header="Obligatorisk inom program" content={programmeCodes} />
+          </Row>
+          {/* <Row className="mb-4">
+            <GridCell header="Kursanalys" content="-"/>
+            <GridCell header="Förändringar som införts till den här kursomgången" content={alterationText} md="8"/>
+          </Row> */}
+        </Col>
+        <Col md="3">
+          <ResultsSection
+            totalResults={totalReportedResults}
+            percentage={resultsPercentage}
+            grades={gradingDistribution}
           />
-        </FlexColumn>
-        <FlexColumn>
-          <GridCell header="Examinator" content={examiners} />
-          <GridCell header="Kurs-PM" content="-" />
-        </FlexColumn>
-        <FlexColumn>
-          <GridCell header="Studenter" content={registeredStudents} />
-          <GridCell header="Obligatorisk inom program" content={programmeCodes} />
-        </FlexColumn>
-        <FlexColumn>
-          <ResultsSection totalResults={totalReportedResults} percentage={percentage} grades={gradingDistribution} />
-        </FlexColumn>
+        </Col>
       </Row>
     </div>
   )
 }
 
-export default AnalysisListItem;
+export default AnalysisListItem

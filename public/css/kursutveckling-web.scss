@@ -32,14 +32,6 @@
     display: flex;
     flex-direction: column;
     
-    .mb-8 {
-      margin-bottom: space.$space-8;
-    }
-  
-    .mb-32 {
-      margin-bottom: space.$space-32;
-    }
-    
     .horizontal {
       flex-direction: row;
     }
