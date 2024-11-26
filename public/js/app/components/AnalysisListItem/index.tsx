@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabus'
-import { Analysis, KoppsCourseData, SyllabusPeriods } from './types'
+import { RoundAnalysisCanvas, KoppsCourseData, SyllabusPeriods } from './types'
 
 const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): string | null => {
   const semesterAsNumber = Number(semester)
@@ -19,10 +19,10 @@ const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): str
   return null
 }
 
-const AlterationTextBox: React.FC<{ alterationText: string }> = ({ alterationText }) => (
+const AlterationTextBox: React.FC<{ htmlContent: string }> = ({ htmlContent }) => (
   <div className="info-box">
     <h4>Förändringar som införs till nästa kursomgång</h4>
-    <HtmlWrapper id="alteration-text" html={alterationText} />
+    <HtmlWrapper id="alteration-text" html={htmlContent} />
   </div>
 )
 
@@ -67,7 +67,7 @@ const ResultsSection: React.FC<{
   </Col>
 )
 
-const AnalysisListItem: React.FC<{ analysis: Analysis; koppsData: KoppsCourseData }> = ({ analysis, koppsData }) => {
+const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: KoppsCourseData }> = ({ analysis, koppsData }) => {
   const {
     analysisName,
     alterationText,
@@ -77,7 +77,8 @@ const AnalysisListItem: React.FC<{ analysis: Analysis; koppsData: KoppsCourseDat
     programmeCodes,
     totalReportedResults,
     gradingDistribution,
-    semester
+    semester,
+    analysisType
   } = analysis
 
   const { koppsDataLang, syllabusPeriods } = koppsData
@@ -85,10 +86,12 @@ const AnalysisListItem: React.FC<{ analysis: Analysis; koppsData: KoppsCourseDat
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
   const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
 
+  const isCanvasType = analysisType === 'canvas';
+
   return (
     <div className="round-analysis">
       <h3>{analysisName}</h3>
-      <AlterationTextBox alterationText={alterationText} />
+      <AlterationTextBox htmlContent={isCanvasType ? alterationText : 'Inga planerade förändringar.'} />
       <Row>
         <Col md="9">
           <Row className="mb-4">
@@ -104,10 +107,12 @@ const AnalysisListItem: React.FC<{ analysis: Analysis; koppsData: KoppsCourseDat
             <GridCell header="Kurs-PM" content="-" />
             <GridCell header="Obligatorisk inom program" content={programmeCodes} />
           </Row>
-          {/* <Row className="mb-4">
-            <GridCell header="Kursanalys" content="-"/>
-            <GridCell header="Förändringar som införts till den här kursomgången" content={alterationText} md="8"/>
-          </Row> */}
+          {!isCanvasType && (
+            <Row className="mb-4">
+              <GridCell header="Kursanalys" content="-" />
+              <GridCell header="Förändringar som införts till den här kursomgången" content={alterationText} md="8" />
+            </Row>
+          )}
         </Col>
         <Col md="3">
           <ResultsSection

@@ -40,8 +40,8 @@ const sortBySemester = (analyses) => {
 }
 
 const SectionPerYear = ({
-  thisYearAnalysesAdminWeb,
   thisYearAnalysesCanvas,
+  thisYearAnalysesAdminWeb,
   koppsData,
   year,
   tableLabels,
@@ -49,10 +49,12 @@ const SectionPerYear = ({
 }) => {
   const headerId = 'header-year' + year
   // Sort analyses, so fall semester courses come before spring semester courses
-  const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
   const sortedAnalysesCanvas = sortBySemester(thisYearAnalysesCanvas)
+  const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
 
-  return sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0 ? (
+  const yearHasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
+
+  return yearHasNoAnalyses ? (
     <section aria-describedby={headerId}>
       <h2 id={headerId}>{year}</h2>
       <p>
@@ -62,12 +64,7 @@ const SectionPerYear = ({
   ) : (
     <>
       <h2 id={headerId}>{year}</h2>
-      <AnalysesFromCanvas
-        thisYearAnalyses={thisYearAnalysesCanvas}
-        koppsData={koppsData}
-        tableLabels={tableLabels}
-        userLang={userLang}
-      />
+      <AnalysesFromCanvas thisYearAnalyses={thisYearAnalysesCanvas} koppsData={koppsData} />
       <AnalysesFromAdminWeb
         thisYearAnalyses={thisYearAnalysesAdminWeb}
         koppsData={koppsData}
@@ -79,25 +76,25 @@ const SectionPerYear = ({
 }
 
 const ListYears = ({
-  allYearsAnalysisDataObjAdminWeb,
   allYearsAnalysisDataObjCanvas,
+  allYearsAnalysisDataObjAdminWeb,
   koppsData,
   pageTitles,
   tableHeaders,
   userLang
 }) => {
-  const yearsAdminWeb = Object.keys(allYearsAnalysisDataObjAdminWeb ?? {})
   const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas ?? {})
-  const yearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas]))
+  const yearsAdminWeb = Object.keys(allYearsAnalysisDataObjAdminWeb ?? {})
+  const allYearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas]))
     .sort((a, b) => a - b)
     .reverse()
   return (
     <div className="list-section-per-year">
-      {yearsDescending.map((year, index) => (
+      {allYearsDescending.map((year) => (
         <SectionPerYear
-          key={index}
-          thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
+          key={year}
           thisYearAnalysesCanvas={allYearsAnalysisDataObjCanvas[year]}
+          thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
           koppsData={koppsData}
           year={year}
           pageLabels={pageTitles}
