@@ -3,6 +3,7 @@ import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
 import { RoundAnalysisCanvas, KoppsCourseData } from './types'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
+import LinkToCourseMemo from '../LinkToCourseMemo'
 
 const AlterationTextBox: React.FC<{ htmlContent: string }> = ({ htmlContent }) => (
   <div className="info-box">
@@ -24,9 +25,9 @@ const GridCell: React.FC<{ header: string; content: React.ReactNode; md?: string
 
 const ResultsSection: React.FC<{
   totalResults: number
-  percentage: number
-  grades: Record<string, number>
-}> = ({ totalResults, percentage, grades }) => (
+  resultsPercentage: number
+  gradingDistribution: Record<string, number>
+}> = ({ totalResults, resultsPercentage, gradingDistribution }) => (
   <Col className="grid-cell result">
     <span className="cell-header">Resultat på kurs</span>
     <Col className="grid-cell horizontal mb-2">
@@ -34,11 +35,11 @@ const ResultsSection: React.FC<{
         <span className="cell-header">Totalt</span>
       </Col>
       <Col md="9">
-        <span>{`${totalResults} (${percentage}%)`}</span>
+        <span>{`${totalResults} (${resultsPercentage}%)`}</span>
       </Col>
     </Col>
     <Col>
-      {Object.entries(grades).map(([grade, count]) => (
+      {Object.entries(gradingDistribution).map(([grade, count]) => (
         <Col className="grid-cell horizontal" key={grade}>
           <Col md="3">
             <span className="cell-header">{grade}</span>
@@ -52,7 +53,7 @@ const ResultsSection: React.FC<{
   </Col>
 )
 
-const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: KoppsCourseData }> = ({ analysis, koppsData }) => {
+const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysis }) => {
   const {
     analysisName,
     alterationText,
@@ -63,12 +64,13 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: Ko
     totalReportedResults,
     gradingDistribution,
     semester,
+    applicationCodes,
     analysisType
   } = analysis
 
   const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
 
-  const isCanvasType = analysisType === 'canvas';
+  const isCanvasType = analysisType === 'canvas'
 
   return (
     <div className="round-analysis">
@@ -82,11 +84,11 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: Ko
             <GridCell header="Studenter" content={registeredStudents} />
           </Row>
           <Row className="mb-4">
+            <GridCell header="Kursplan" content={<LinkToValidSyllabusPdf semester={semester} />} />
             <GridCell
-              header="Kursplan"
-              content={<LinkToValidSyllabusPdf semester={semester}/>}
+              header="Kurs-PM"
+              content={<LinkToCourseMemo semester={semester} applicationCodes={applicationCodes} />}
             />
-            <GridCell header="Kurs-PM" content="-" />
             <GridCell header="Obligatorisk inom program" content={programmeCodes} />
           </Row>
           {!isCanvasType && (
@@ -99,8 +101,8 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas ; koppsData: Ko
         <Col md="3">
           <ResultsSection
             totalResults={totalReportedResults}
-            percentage={resultsPercentage}
-            grades={gradingDistribution}
+            resultsPercentage={resultsPercentage}
+            gradingDistribution={gradingDistribution}
           />
         </Col>
       </Row>

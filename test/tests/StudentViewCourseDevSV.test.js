@@ -185,7 +185,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('check how behave memo link when no memo is added', async () => {
     const memoNotAdded = screen.getAllByText('Inget kurs-PM tillagt')
-    expect(memoNotAdded.length).toBe(9)
+    expect(memoNotAdded.length).toBe(10)
   })
 
   test('Get grade scale if it renders', async () => {
