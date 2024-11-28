@@ -20,7 +20,7 @@ const ExtraKoppsInfo = ({ translate, thisAnalysisObj }) => {
           {thisAnalysisObj[infoTitle] === '' ? (
             <p className="textBlock">
               {' '}
-              <i>{translate.no_added}</i>
+              <i>{translate.noAdded}</i>
             </p>
           ) : (
             finishedServerSideRendering && (
@@ -49,7 +49,7 @@ const ExtraDatesAndComment = ({ translate, thisAnalysisObj }) => {
           <h4>{translate.changedAfterPublishedDate}</h4>
           <p className="textBlock">{getDateFormat(changedAfterPublishedDate, pageLang)}</p>
           <h4>{labelAboutChanges}</h4>
-          <p className="textBlock">{commentChange === '' ? <i>{translate.no_added}</i> : commentChange}</p>
+          <p className="textBlock">{commentChange === '' ? <i>{translate.noAdded}</i> : commentChange}</p>
         </>
       ) : (
         <>
@@ -71,7 +71,7 @@ const Details = ({ thisAnalysisObj, translate }) => {
         {headerMoreInfo}
       </summary>
       <div>
-        <ExtraKoppsInfo translate={translate.extra_kopps_info} thisAnalysisObj={thisAnalysisObj} />
+        <ExtraKoppsInfo translate={translate} thisAnalysisObj={thisAnalysisObj} />
         <ExtraDatesAndComment translate={translate.extra_dates_and_comments} thisAnalysisObj={thisAnalysisObj} />
       </div>
     </details>

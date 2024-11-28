@@ -26,7 +26,7 @@ const createRowAdminWeb = (translation, storageUri, userLang, courseCode, analys
 }
 
 const ActiveOrDisabledLink = ({ fileName, linkTitle, storageUri, roundName, validFrom }) => {
-  const noAddedText = 'no_added'
+  const noAddedText = 'noAdded'
   const linkClassName = fileName ? 'pdf-link' : 'disabled-link'
   const linkContent = fileName ? `${linkTitle}: ${validFrom}` : `${linkTitle}: ${noAddedText}`
 

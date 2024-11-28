@@ -17,7 +17,6 @@ export interface RoundAnalysisCanvas extends RoundAnalysis {
 }
 
 export interface RoundAnalysisAdminWeb extends RoundAnalysis {
-  
 }
 
 export interface KoppsCourseData {

@@ -24,7 +24,7 @@ const AnalysesFromAdminWeb = ({ thisYearAnalyses, koppsData, tableLabels, userLa
         <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
         <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
 
-        <TableWithCourseData thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels.table_headers_with_popup} />
+        <TableWithCourseData thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
         <div className="float-right inline-flex" lang={userLang}>
           <p className="icon-asterisk-black" />
           <p>{tableLabels.info_manually_edited}</p>
