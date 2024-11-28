@@ -134,7 +134,7 @@ function DocumentLinksNav(props) {
   const [context] = useWebContext()
 
   const { translate, staticAnalysisInfo, lang } = props
-  const { link_memo: linkMemoTexts, link_analysis: linkAnalysisTexts } = translate
+  const { linkMemo, linkAnalysis } = translate
   const { miniMemosPdfAndWeb } = context
 
   const { storageUri, memoStorageUri, hostUrl } = context.browserConfig
@@ -160,15 +160,15 @@ function DocumentLinksNav(props) {
       <span className="vertical-block-of-links">
         {unfilteredRoundsMissingMemos.map((applicationCode) => {
           const missingMemoOfferingName = parseCourseOffering([applicationCode], analysisSemester, lang)
-          const title = `${linkMemoTexts.label_memo} ${courseCode} ${missingMemoOfferingName}`
-          return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemoTexts} />
+          const title = `${linkMemo.label_memo} ${courseCode} ${missingMemoOfferingName}`
+          return <ActiveOrDisabledPdfLink ariaLabel={title} key={title} linkTitle={title} translate={linkMemo} />
         })}
         {existingMemos.map((memoInfo, index) => {
           const { isPdf, memoEndPoint } = memoInfo
           return isPdf ? (
             <ParseUploadedMemo
               key={index}
-              translate={linkMemoTexts}
+              translate={linkMemo}
               fileInfo={memoInfo}
               memoBlobUrl={memoStorageUri}
               userLanguageAbbr={lang}
@@ -178,7 +178,7 @@ function DocumentLinksNav(props) {
               memoHref={`${cleanHostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
               courseMemo={memoInfo}
               key={index}
-              translate={linkMemoTexts}
+              translate={linkMemo}
               language={lang}
             />
           )
@@ -186,11 +186,11 @@ function DocumentLinksNav(props) {
       </span>
 
       <ActiveOrDisabledPdfLink
-        ariaLabel={`PDF ${linkAnalysisTexts.label_analysis} ${analysisName}`}
+        ariaLabel={`PDF ${linkAnalysis.label_analysis} ${analysisName}`}
         href={`${storageUri}${analysisFileName}`}
         className="pdf-link"
-        linkTitle={`${linkAnalysisTexts.label_analysis}`}
-        translate={linkAnalysisTexts}
+        linkTitle={`${linkAnalysis.label_analysis}`}
+        translate={linkAnalysis}
         validFrom={getDateFormat(pdfAnalysisDate, lang)}
       />
     </span>
@@ -202,8 +202,8 @@ export default DocumentLinksNav
 DocumentLinksNav.propTypes = {
   lang: PropTypes.oneOf(['en', 'sv']).isRequired,
   translate: PropTypes.shape({
-    link_analysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
-    link_memo: PropTypes.shape({ label_memo: PropTypes.string, no_added_doc: PropTypes.string }).isRequired
+    linkAnalysis: PropTypes.shape({ label_analysis: PropTypes.string, no_added_doc: PropTypes.string }).isRequired,
+    linkMemo: PropTypes.shape({ label_memo: PropTypes.string, no_added_doc: PropTypes.string }).isRequired
   }).isRequired,
   staticAnalysisInfo: PropTypes.shape({
     analysisFileName: PropTypes.string,

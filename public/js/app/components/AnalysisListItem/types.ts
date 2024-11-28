@@ -17,11 +17,6 @@ export interface RoundAnalysisCanvas extends RoundAnalysis {
 }
 
 export interface RoundAnalysisAdminWeb extends RoundAnalysis {
+  examinationGrade: string,
 }
 
-export interface KoppsCourseData {
-  koppsDataLang: 'sv' | 'en'
-  syllabusPeriods: SyllabusPeriods
-}
-
-export interface SyllabusPeriods extends Record<string, { endDate: string }> {}

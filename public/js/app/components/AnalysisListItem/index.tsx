@@ -1,11 +1,15 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
-import { RoundAnalysisCanvas } from './types'
+import { RoundAnalysisAdminWeb, RoundAnalysisCanvas } from './types'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
 import LinkToCourseMemo from '../LinkToCourseMemo'
 import { useWebContext } from '../../context/WebContext'
 import i18n from '../../../../../i18n'
+
+const isCanvasAnalysis = (analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb): analysis is RoundAnalysisCanvas => {
+  return (analysis as RoundAnalysisCanvas).analysisType === 'canvas'
+}
 
 const AlterationTextBox: React.FC<{ header: string; htmlContent: string }> = ({ header, htmlContent }) => (
   <div className="info-box">
@@ -21,42 +25,67 @@ const GridCell: React.FC<{ header: string; content: React.ReactNode; md?: string
 }) => (
   <Col md={md} className="grid-cell">
     <span className="cell-header">{header}</span>
-    <span>{content}</span>
+    <span className="cell-content">{content}</span>
   </Col>
 )
 
 const ResultsSection: React.FC<{
-  totalResults: number
-  resultsPercentage: number
-  gradingDistribution: Record<string, number>
-  gradingDistributionHeader: { header: string; total: string }
-}> = ({ totalResults, resultsPercentage, gradingDistribution, gradingDistributionHeader }) => (
-  <Col className="grid-cell result">
-    <span className="cell-header">{gradingDistributionHeader.header}</span>
-    <Col className="grid-cell horizontal mb-2">
-      <Col md="3">
-        <span className="cell-header">{gradingDistributionHeader.total}</span>
-      </Col>
-      <Col md="9">
-        <span>{`${totalResults} (${resultsPercentage}%)`}</span>
-      </Col>
-    </Col>
-    <Col>
-      {Object.entries(gradingDistribution).map(([grade, count]) => (
-        <Col className="grid-cell horizontal" key={grade}>
-          <Col md="3">
-            <span className="cell-header">{grade}</span>
-          </Col>
-          <Col md="9">
-            <span>{count}</span>
-          </Col>
-        </Col>
-      ))}
-    </Col>
+  header: string
+  content: React.ReactNode
+}> = ({ header, content }) => (
+  <Col className="grid-cell">
+    <span className="cell-header">{header}</span>
+    {content}
   </Col>
 )
 
-const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysis }) => {
+const ResultsSectionContent: React.FC<{
+  subHeader: string
+  analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb
+}> = ({ subHeader, analysis }): React.ReactNode => {
+  if (isCanvasAnalysis(analysis)) {
+    const { registeredStudents, totalReportedResults, gradingDistribution } = analysis
+    const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
+    return (
+      <>
+        <Col className="grid-cell horizontal mb-4">
+          <Col md="3">
+            <span className="cell-header">{subHeader}</span>
+          </Col>
+          <Col md="9">
+            <span>{`${totalReportedResults} (${resultsPercentage}%)`}</span>
+          </Col>
+        </Col>
+        <Col>
+          {Object.entries(gradingDistribution).map(([grade, count]) => (
+            <Col className="grid-cell horizontal" key={grade}>
+              <Col md="3">
+                <span className="cell-header">{grade}</span>
+              </Col>
+              <Col md="9">
+                <span>{count}</span>
+              </Col>
+            </Col>
+          ))}
+        </Col>
+      </>
+    )
+  } else {
+    const { examinationGrade } = analysis
+    return (
+      <Col className="grid-cell horizontal mb-2">
+        <Col md="3">
+          <span className="cell-header">{subHeader}</span>
+        </Col>
+        <Col md="9">
+          <span>{examinationGrade}</span>
+        </Col>
+      </Col>
+    )
+  }
+}
+
+const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb }> = ({ analysis }) => {
   const {
     analysisName,
     alterationText,
@@ -64,17 +93,10 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysi
     examiners,
     registeredStudents,
     programmeCodes,
-    totalReportedResults,
-    gradingDistribution,
     semester,
-    applicationCodes,
-    analysisType
+    applicationCodes
   } = analysis
   const [{ userLang }] = useWebContext()
-
-  const resultsPercentage = registeredStudents ? Math.round((totalReportedResults / registeredStudents) * 100) : 0
-
-  const isCanvasType = analysisType === 'canvas'
 
   const {
     responsibles: responsiblesHeader,
@@ -85,7 +107,7 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysi
     programmeCodes: programmeCodesHeader,
     courseAnalysis: courseAnalysisHeader,
     alterationText: alterationTextHeader,
-    gradingDistribution: gradingDistributionHeader,
+    result: resultHeader,
     noAdded
   } = i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders
 
@@ -94,14 +116,14 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysi
       <h3>{analysisName}</h3>
       <AlterationTextBox
         header={alterationTextHeader.header}
-        htmlContent={isCanvasType ? alterationText : alterationTextHeader.noChanges}
+        htmlContent={isCanvasAnalysis(analysis) ? alterationText : alterationTextHeader.noChanges}
       />
       <Row>
         <Col md="9">
           <Row className="mb-4">
-            <GridCell header={responsiblesHeader.header} content={responsibles} />
-            <GridCell header={examinersHeader.header} content={examiners} />
-            <GridCell header={registeredStudentsHeader.header} content={registeredStudents} />
+            <GridCell header={responsiblesHeader.header} content={responsibles || <i>{noAdded}</i>} />
+            <GridCell header={examinersHeader.header} content={examiners || <i>{noAdded}</i>} />
+            <GridCell header={registeredStudentsHeader.header} content={registeredStudents || <i>{noAdded}</i>} />
           </Row>
           <Row className="mb-4">
             <GridCell header={syllabusHeader.header} content={<LinkToValidSyllabusPdf semester={semester} />} />
@@ -111,19 +133,21 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas }> = ({ analysi
             />
             <GridCell header={programmeCodesHeader.header} content={programmeCodes || <i>{noAdded}</i>} />
           </Row>
-          {!isCanvasType && (
+          {!isCanvasAnalysis(analysis) && (
             <Row className="mb-4">
               <GridCell header={courseAnalysisHeader.header} content="-" />
-              <GridCell header={alterationTextHeader.header} content={alterationText} md="8" />
+              <GridCell
+                header={alterationTextHeader.adminWeb.header}
+                content={alterationText || alterationTextHeader.adminWeb.noChanges}
+                md="8"
+              />
             </Row>
           )}
         </Col>
         <Col md="3">
           <ResultsSection
-            totalResults={totalReportedResults}
-            resultsPercentage={resultsPercentage}
-            gradingDistribution={gradingDistribution}
-            gradingDistributionHeader={gradingDistributionHeader}
+            header={resultHeader.header}
+            content={<ResultsSectionContent subHeader={resultHeader.total} analysis={analysis} />}
           />
         </Col>
       </Row>

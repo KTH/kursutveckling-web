@@ -42,8 +42,8 @@
     @include typography.font-heading-xs;
   }
 
-  .result {
-    flex-grow: 0;
+  .cell-content span {
+    display: block
   }
 }
 

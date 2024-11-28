@@ -53,11 +53,10 @@ async function sortedAnalysisDataFromAdminWeb(courseCode) {
       if (!isPublished) return null
 
       if (examinationGrade) {
-        analysis.examinationGrade = examinationGradeFromLadok ? `${examinationGrade} %` : `${examinationGrade} % *`
+        analysis.examinationGrade = examinationGradeFromLadok ? `${examinationGrade}%` : `${examinationGrade} %*`
       }
 
-      if (!registeredStudentsFromLadok)
-        analysis.registeredStudents = registeredStudents ? `${registeredStudents} *` : ''
+      if (!registeredStudentsFromLadok) analysis.registeredStudents = registeredStudents ? `${registeredStudents}*` : ''
 
       return analysis
     })

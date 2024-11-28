@@ -2,7 +2,7 @@ import React from 'react'
 
 const ActiveOrDisabledLink: React.FC<{
   ariaLabel: string
-  href: string
+  href?: string
   linkTitle: string
   className?: string
   disabled?: boolean

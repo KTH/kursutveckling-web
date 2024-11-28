@@ -58,23 +58,25 @@ const LinkToCourseMemo: React.FC<{ applicationCodes: string; semester: string }>
   const [uniquePdfMemos, uniqueWebMemos] = getUniqueMemos(thisSemesterMemos, roundsWithMemo)
 
   const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const { label_memo: memoLabel, no_added_doc: noMemoLabel } = translate.tableHeaders.link_memo
-  const { archiveTitles: memoTitles } = translate.messages
-  const { course_short_semester: semesterLabels } = memoTitles
+  const { label, noAddedDoc } = translate.tableHeaders.memoLink
+  const { courseShortSemester } = translate.messages
 
-  const semesterLabel = semesterLabels[semester.slice(-1)]
+  const semesterLabel = courseShortSemester[semester.slice(-1)]
   const year = semester.slice(0, 4)
   const offeringIds = applicationCodes.split(',').join('-')
   const courseOfferingName = `${semesterLabel} ${year}-${offeringIds}`
-  const memoNameWithCourseOfferings = `${memoLabel} ${courseCode} ${courseOfferingName}`
+  const memoNameWithCourseOfferings = `${label} ${courseCode} ${courseOfferingName}`
 
   return (
     <>
       {roundsWithoutMemo.map((applicationCode, index) => {
         return (
-          <span key={index} className={'disabled-link'}>
-            <i>{noMemoLabel}</i>
-          </span>
+          <ActiveOrDisabledLink
+            key={index}
+            ariaLabel={memoNameWithCourseOfferings}
+            linkTitle={noAddedDoc}
+            disabled={true}
+          />
         )
       })}
       {Object.keys(uniquePdfMemos).map((courseMemoFileName) => {
@@ -85,7 +87,6 @@ const LinkToCourseMemo: React.FC<{ applicationCodes: string; semester: string }>
             className="pdf-link"
             href={`${memoStorageUri}${courseMemoFileName}`}
             linkTitle={memoNameWithCourseOfferings}
-            disabled={false}
           />
         )
       })}

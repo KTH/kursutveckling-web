@@ -43,7 +43,10 @@ module.exports = {
     page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
     page_student: 'Student på KTH',
-
+    courseShortSemester: {
+      1: 'VT',
+      2: 'HT'
+    },
     archiveTitles: {
       archive: 'Arkiv',
       about_course: 'Om kursen',
@@ -99,7 +102,7 @@ module.exports = {
         noChanges: 'Inga förändirngar gjordes.'
       }
     },
-    gradingDistribution: {
+    result: {
       header: 'Resultat på kurs',
       total: 'Totalt',
       popoverText: ''
@@ -149,9 +152,10 @@ module.exports = {
       page_lang: 'sv'
     },
     header_more_info: 'Ytterligare data om kursanalysen',
-    link_analysis: { label_analysis: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
-    link_memo: { label_memo: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
-    no_course_analysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+    syllabusLink: { label: 'Kursplan', noNoAddedDoc: 'Ingen kursplan tillagd' },
+    analysisLink: { label: 'Course Kursanalys', noAddedDoc: 'No course analysis added' },
+    memoLink: { label: 'Kurs-PM', noAddedDoc: 'Inget kurs-PM tillagt' },
+    noCourseAnalysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
     no_pdf_document: 'inga är upphittade',
     course_short_semester: {
       1: 'VT ',

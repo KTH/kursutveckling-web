@@ -1,37 +1,12 @@
 import React from 'react'
-import Details from './Details'
-import DocumentLinksNav from './DocumentLinksNav'
-import TableWithCourseData from './TableWithCourseData'
 import AnalysisListItem from './AnalysisListItem'
+import i18n from '../../../../i18n'
+import { useWebContext } from '../context/WebContext'
 
-const AnalysesFromCanvas = ({ thisYearAnalyses, koppsData }) => {
-  return thisYearAnalyses?.map((thisOfferingAnalysis) => {
+const AnalysisList = ({ analysis }) => {
+  return analysis?.map((thisOfferingAnalysis) => {
     const { id } = thisOfferingAnalysis
-    return <AnalysisListItem key={id} analysis={thisOfferingAnalysis} koppsData={koppsData} />
-  })
-}
-
-const AnalysesFromAdminWeb = ({ thisYearAnalyses, koppsData, tableLabels, userLang }) => {
-  const { koppsDataLang } = koppsData
-  return thisYearAnalyses?.map((thisOfferingAnalysis) => {
-    const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
-    return (
-      <section
-        className="course-data-for-round"
-        aria-describedby={'h3' + courseAnalysDataId}
-        key={'section-for-analys-' + courseAnalysDataId}
-      >
-        <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
-        <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
-
-        <TableWithCourseData thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
-        <div className="float-right inline-flex" lang={userLang}>
-          <p className="icon-asterisk-black" />
-          <p>{tableLabels.info_manually_edited}</p>
-        </div>
-        <Details thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
-      </section>
-    )
+    return <AnalysisListItem key={id} analysis={thisOfferingAnalysis} />
   })
 }
 
@@ -39,67 +14,50 @@ const sortBySemester = (analyses) => {
   return analyses?.sort((a, b) => (b.semester > a.semester ? 1 : a.semester > b.semester ? -1 : 0))
 }
 
-const SectionPerYear = ({
-  thisYearAnalysesCanvas,
-  thisYearAnalysesAdminWeb,
-  koppsData,
-  year,
-  tableLabels,
-  userLang
-}) => {
-  const headerId = 'header-year' + year
+const SectionPerYear = ({ year, thisYearAnalysesCanvas, thisYearAnalysesAdminWeb, noCourseAnalysisText }) => {
+  const headerId = `header-year-${year}`
   // Sort analyses, so fall semester courses come before spring semester courses
   const sortedAnalysesCanvas = sortBySemester(thisYearAnalysesCanvas)
   const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
 
-  const yearHasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
+  const hasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
 
-  return yearHasNoAnalyses ? (
+  return (
     <section aria-describedby={headerId}>
       <h2 id={headerId}>{year}</h2>
-      <p>
-        <i>{tableLabels.no_course_analysis}</i>
-      </p>
+      {hasNoAnalyses ? (
+        <p>
+          <i>{noCourseAnalysisText}</i>
+        </p>
+      ) : (
+        <>
+          <AnalysisList analysis={sortedAnalysesCanvas} />
+          <AnalysisList analysis={sortedAnalysesAdminWeb} />
+        </>
+      )}
     </section>
-  ) : (
-    <>
-      <h2 id={headerId}>{year}</h2>
-      <AnalysesFromCanvas thisYearAnalyses={thisYearAnalysesCanvas} koppsData={koppsData} />
-      <AnalysesFromAdminWeb
-        thisYearAnalyses={thisYearAnalysesAdminWeb}
-        koppsData={koppsData}
-        tableLabels={tableLabels}
-        userLang={userLang}
-      />
-    </>
   )
 }
 
-const ListYears = ({
-  allYearsAnalysisDataObjCanvas,
-  allYearsAnalysisDataObjAdminWeb,
-  koppsData,
-  pageTitles,
-  tableHeaders,
-  userLang
-}) => {
+const ListYears = ({ allYearsAnalysisDataObjCanvas, allYearsAnalysisDataObjAdminWeb }) => {
   const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas ?? {})
   const yearsAdminWeb = Object.keys(allYearsAnalysisDataObjAdminWeb ?? {})
   const allYearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas]))
     .sort((a, b) => a - b)
     .reverse()
+
+  const [{ userLang }] = useWebContext()
+  const { noCourseAnalysis } = i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders
+
   return (
     <div className="list-section-per-year">
       {allYearsDescending.map((year) => (
         <SectionPerYear
           key={year}
+          year={year}
           thisYearAnalysesCanvas={allYearsAnalysisDataObjCanvas[year]}
           thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
-          koppsData={koppsData}
-          year={year}
-          pageLabels={pageTitles}
-          tableLabels={tableHeaders}
-          userLang={userLang}
+          noCourseAnalysisText={noCourseAnalysis}
         />
       ))}
     </div>

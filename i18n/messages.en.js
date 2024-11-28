@@ -45,7 +45,10 @@ module.exports = {
     page_about_course: 'About course',
     page_course_programme: 'Course and programme directory',
     page_student: 'Student at KTH',
-
+    courseShortSemester: {
+      1: 'Spring',
+      2: 'Autumn'
+    },
     archiveTitles: {
       archive: 'Archive',
       about_course: 'About course',
@@ -93,19 +96,19 @@ module.exports = {
         'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before course selection.'
     },
     alterationText: {
-      header: 'Changes introduced before the next course offering',
+      header: 'Changes planned for the next course offering',
       popoverText: '',
       noChanges: 'No changes planned.',
       adminWeb: {
-        header: 'Changes of the course before this course offering',
+        header: 'Changes introduced for this course offering',
         popoverText:
           'Summarized changes made to the course before this particular course offering. The purpose of publishing changes made to the course is to show the improvements of the course over time. All changes documented to the course offerings gives an overview of the improvement steps of the course.',
         noChanges: 'No changes were made.'
       }
     },
-    gradingDistribution: {
-      header: 'Result on courses',
-      total: 'In total',
+    result: {
+      header: 'Results on course',
+      total: 'Total',
       popoverText: ''
     },
     examinationGrade: {
@@ -143,6 +146,8 @@ module.exports = {
       popoverText:
         'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
     },
+    noCourseAnalysis:
+      'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
     extra_dates_and_comments: {
       noAdded: 'No information inserted',
       publishedDate: 'Published first time',
@@ -152,10 +157,9 @@ module.exports = {
       page_lang: 'en'
     },
     header_more_info: 'Additional data about the course analysis',
-    link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
-    link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
-    no_course_analysis:
-      'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
+    syllabusLink: { label: 'Course syllabus', noNoAddedDoc: 'No course syllabus added' },
+    analysisLink: { label: 'Course analysis', noAddedDoc: 'No course analysis added' },
+    memoLink: { label: 'Course memo', noAddedDoc: 'No course memo added' },
     course_short_semester: {
       1: 'Spring ',
       2: 'Autumn '
