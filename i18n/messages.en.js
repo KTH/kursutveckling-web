@@ -160,8 +160,8 @@ module.exports = {
     analysisLink: { label: 'Course analysis', noAddedDoc: 'No course analysis added' },
     memoLink: { label: 'Course memo', noAddedDoc: 'No course memo added' },
     courseShortSemester: {
-      1: 'Spring ',
-      2: 'Autumn '
+      1: 'Spring',
+      2: 'Autumn'
     }
   },
   pageTitles: {

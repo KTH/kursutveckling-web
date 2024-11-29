@@ -156,8 +156,8 @@ module.exports = {
     memoLink: { label: 'Kurs-PM', noAddedDoc: 'Inget kurs-PM tillagt' },
     noCourseAnalysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
     courseShortSemester: {
-      1: 'VT ',
-      2: 'HT '
+      1: 'VT',
+      2: 'HT'
     }
   },
   pageTitles: {

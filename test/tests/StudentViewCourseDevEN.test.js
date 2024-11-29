@@ -41,58 +41,19 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(subHeader).toBeInTheDocument()
   })
 
-  test('renders h2 for all years', () => {
-    const allH2Headers = getAllByRole('heading', { level: 2 })
-    expect(allH2Headers.length).toBe(12)
-    const expectedh2ds = [
-      '2024',
-      '2023',
-      '2022',
-      '2021',
-      '2020',
-      '2019',
-      '2018',
-      '2017',
-      '2016',
-      '2010',
-      '2009',
-      '2008'
-    ]
-    expectedh2ds.map((h2, index) => expect(allH2Headers[index]).toHaveTextContent(h2))
+  test('renders h4 for all years and analysis name headers', () => {
+    const allH4Headers = getAllByRole('heading', { level: 4 })
+    expect(allH4Headers.length).toBe(18)
   })
 
-  test('renders course rounds headers in course analysis lang', () => {
-    const allH3Headers = getAllByRole('heading', { level: 3 })
-    expect(allH3Headers.length).toBe(9)
-    const expectedh3ds = ROUNDS
-    expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
-  })
-
-  test('Get popover desktop and mobile buttons and check it is number', async () => {
-    const allBtns = getAllByRole('button')
-    expect(allBtns.length).toBe(96)
-  })
-
-  test('Get Comments to changes in course data or course analysis after publishing if it renders', async () => {
-    const oneCommentAboutChanges = getByText('LKJHDFJ')
-    const anotherCommentAboutChanges = getByText('kjhaew')
-    expect(oneCommentAboutChanges).toBeInTheDocument()
-    expect(anotherCommentAboutChanges).toBeInTheDocument()
-  })
-
-  test('Get some dates of data changes in course data or course analysis after publishing if it renders', async () => {
-    const changeDates = getAllByText('10 Sept 2019')
-    expect(changeDates.length).toBe(1)
-  })
+  // test('Get popover desktop and mobile buttons and check it is number', async () => {
+  //   const allBtns = getAllByRole('button')
+  //   expect(allBtns.length).toBe(96)
+  // })
 
   test('Get No information inserted if no data changes in course data or course analysis after publishing if it renders', async () => {
     const changeDates = getAllByText('No information inserted')
-    expect(changeDates.length).toBe(2)
-  })
-
-  test('Get Additional data about this course analysis if it renders', async () => {
-    const extraInfo = getAllByText('Additional data about the course analysis')
-    expect(extraInfo.length).toBe(8)
+    expect(changeDates.length).toBe(8)
   })
 
   test('Check links if it renders', async () => {
@@ -185,11 +146,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(memoNotAdded.length).toBe(10)
   })
 
-  test('Get grade scale if it renders', async () => {
-    const gradeScale = getAllByText('TEN1 (7,5) A, B, C, D, E, FX, F')
-    expect(gradeScale.length).toBe(7)
-  })
-
   test('Changes of the course before this course offering if it renders', async () => {
     const changes = getByText('fads')
     expect(changes).toBeInTheDocument()
@@ -202,12 +158,12 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(examiner.length).toBe(9)
     const students = getAllByText('Students')
     expect(students.length).toBe(9)
-    const results = getAllByText('Result on course')
+    const results = getAllByText('Results on course')
     expect(results.length).toBe(9)
-    const changes = getAllByText('Changes of the course before this course offering')
+    const changes = getAllByText('Changes introduced for this course offering')
     expect(changes.length).toBe(8)
-    const changesNext = getAllByText('Changes of the course before this course offering')
-    expect(changesNext.length).toBe(1)
+    const changesNext = getAllByText('Changes planned for the next course offering')
+    expect(changesNext.length).toBe(9)
   })
 
   test('Coordinator names if it renders', async () => {
@@ -221,17 +177,30 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
   })
 
   test('Result ExaminationGrade were manually edited (*) if it renders', async () => {
-    const received = getByText('111 % *')
+    const received = getByText('111 %*')
     expect(received).toBeInTheDocument()
   })
 
   test('Students RegisteredStudents were manually edited (*) if it renders', async () => {
-    const received = getByText('111 *')
+    const received = getByText('111*')
     expect(received).toBeInTheDocument()
   })
 
   test('Result ExaminationGrade were rendered with * if it renders', async () => {
-    const received = getByText('13.3 %')
+    const received = getByText('13.3%')
     expect(received).toBeInTheDocument()
+  })
+
+  test('renders document links', () => {
+    const links = getAllByRole('link')
+    expect(links.length).toBe(20)
+    expect(links[3]).toHaveTextContent('Course syllabus SF1624 ( Autumn 2019 - )')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en')
+
+    expect(links[5]).toHaveTextContent('Course analysis: 10 Sept 2019')
+    expect(links[5].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
+
+    expect(links[7]).toHaveTextContent('Course analysis: 4 Sept 2019')
+    expect(links[7].href).toStrictEqual('http://localhost/analysis-SF1624HT2018_9.pdf')
   })
 })

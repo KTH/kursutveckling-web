@@ -16,12 +16,13 @@ const LinkToCourseAnalysis: React.FC<{
   const label = translate?.tableHeaders?.analysisLink?.label
 
   const validFrom = getDateFormat(pdfAnalysisDate, userLang)
+  const ariaLabel = `PDF ${label} ${analysisName}${validFrom ? `: ${validFrom}` : ''}`
   const linkTitle = `${label}${validFrom ? `: ${validFrom}` : ''}`
   const href = `${storageUri}${analysisFileName}`
 
   return (
     <ActiveOrDisabledLink
-      ariaLabel={`PDF ${label} ${analysisName}`}
+      ariaLabel={ariaLabel}
       href={href}
       className="pdf-link"
       linkTitle={linkTitle}

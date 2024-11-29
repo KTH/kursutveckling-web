@@ -19,10 +19,10 @@ const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): str
   return null
 }
 
-const formatSemesterName = (semester: string, courseShortSemester: Record<string, string>): string => {
+const formatSemesterName = (semester: string | number, courseShortSemester: Record<string, string>): string => {
   if (!semester) return ''
-  const year = semester.substring(0, 4)
-  const semesterCode = semester.substring(4, 5)
+  const year = semester.toString().substring(0, 4)
+  const semesterCode = semester.toString().substring(4, 5)
   const semesterName = courseShortSemester[semesterCode] || ''
   return `${semesterName} ${year}`
 }
@@ -49,8 +49,8 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
   const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
-  const endTermName = formatSemesterName(`${syllabusPeriod.endDate} ` || '', courseShortSemester)
-  const syllabusLabel = `${label} ${courseCode} ( ${startTermName} - ${endTermName})`
+  const endTermName = formatSemesterName(syllabusPeriod.endDate || '', courseShortSemester)
+  const syllabusLabel = `${label} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (
     <a

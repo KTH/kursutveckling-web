@@ -5,13 +5,13 @@ const transformedKoppsData = {
     sortedSyllabusStart: ['', 20192, 20102, 20092, 20082],
     syllabusPeriods: {
       20082: {
-        endDate: '20091'
+        endDate: 20091
       },
       20092: {
-        endDate: '20101'
+        endDate: 20101
       },
       20102: {
-        endDate: '20191'
+        endDate: 20191
       },
       20192: {
         endDate: ''
@@ -27,13 +27,13 @@ const transformedKoppsData = {
     sortedSyllabusStart: ['', 20192, 20102, 20092, 20082],
     syllabusPeriods: {
       20082: {
-        endDate: '20091'
+        endDate: 20091
       },
       20092: {
-        endDate: '20101'
+        endDate: 20101
       },
       20102: {
-        endDate: '20191'
+        endDate: 20191
       },
       20192: {
         endDate: ''
