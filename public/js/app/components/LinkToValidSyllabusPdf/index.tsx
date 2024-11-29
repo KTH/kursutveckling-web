@@ -19,11 +19,18 @@ const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): str
   return null
 }
 
+const formatSemesterName = (semester: string, courseShortSemester: Record<string, string>): string => {
+  if (!semester) return ''
+  const year = semester.substring(0, 4)
+  const semesterCode = semester.substring(4, 5)
+  const semesterName = courseShortSemester[semesterCode] || ''
+  return `${semesterName} ${year}`
+}
+
 const LinkToValidSyllabusPdf: React.FC<{
   semester: string
 }> = ({ semester }) => {
   const [{ courseKoppsData, userLang }] = useWebContext()
-
   const { courseCode, syllabusPeriods } = courseKoppsData
 
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
@@ -39,12 +46,11 @@ const LinkToValidSyllabusPdf: React.FC<{
       syllabusPeriods
     )
   }
-  const syllabusPeriod = syllabusPeriods[syllabusPeriodStart] || { endDate: '' }
-  const endDate = syllabusPeriod.endDate?.toString() || ''
 
-  const startTermName = `${courseShortSemester[syllabusPeriodStart.substring(4, 5)]} ${syllabusPeriodStart.substring(0, 4)}`
-  const endTermName = `${courseShortSemester[endDate.substring(4, 5)] || ''}${endDate.substring(0, 4)}`
-  const syllabusLabel = `${label} ${courseCode} ( ${startTermName} - ${endTermName} )`
+  const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
+  const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
+  const endTermName = formatSemesterName(syllabusPeriod.endDate || '', courseShortSemester)
+  const syllabusLabel = `${label} ${courseCode} (${startTermName} - ${endTermName})`
 
   return (
     <a

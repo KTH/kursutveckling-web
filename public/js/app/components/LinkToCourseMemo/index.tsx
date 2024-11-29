@@ -5,57 +5,56 @@ import i18n from '../../../../../i18n'
 import ActiveOrDisabledLink from '../ActiveOrDisabledLink'
 
 function isCourseMemoPdf(memo: CourseMemoPdf | CourseMemoWeb): memo is CourseMemoPdf {
-  return (memo as CourseMemoPdf).isPdf === true
+  return memo.isPdf === true
 }
 
 function groupApplicationCodesByMemoStatus(
-  thisSemesterMemos: Record<string, CourseMemoPdf | CourseMemoWeb>,
+  memos: Record<string, CourseMemoPdf | CourseMemoWeb>,
   applicationCodes: string
 ): [string[], string[]] {
   const applicationCodesArray = applicationCodes.split(',')
-  const roundsWithoutMemo: string[] = []
-  const roundsWithMemo: string[] = []
+  const withMemo: string[] = []
+  const withoutMemo: string[] = []
 
-  applicationCodesArray.forEach((applicationCode) => {
-    if (thisSemesterMemos[applicationCode]) roundsWithMemo.push(applicationCode)
-    else roundsWithoutMemo.push(applicationCode)
+  applicationCodesArray.forEach((code) => {
+    if (memos[code]) withMemo.push(code)
+    else withoutMemo.push(code)
   })
 
-  return [roundsWithoutMemo, roundsWithMemo]
+  return [withoutMemo, withMemo]
 }
 
 function getUniqueMemos(
-  thisSemesterMemos: Record<string, CourseMemoPdf | CourseMemoWeb>,
+  memos: Record<string, CourseMemoPdf | CourseMemoWeb>,
   applicationCodes: string[]
 ): [Record<string, CourseMemoPdf>, Record<string, CourseMemoWeb>] {
-  const uniquePdfMemos: Record<string, CourseMemoPdf> = {}
-  const uniqueWebMemos: Record<string, CourseMemoWeb> = {}
+  const pdfMemos: Record<string, CourseMemoPdf> = {}
+  const webMemos: Record<string, CourseMemoWeb> = {}
 
   applicationCodes.forEach((applicationCode) => {
-    const courseMemo = thisSemesterMemos[applicationCode]
-
-    if (isCourseMemoPdf(courseMemo)) {
-      const { courseMemoFileName } = courseMemo
-      if (!uniquePdfMemos[courseMemoFileName]) uniquePdfMemos[courseMemoFileName] = courseMemo
-      else uniquePdfMemos[courseMemoFileName].applicationCodes.push(applicationCode)
+    const memo = memos[applicationCode]
+    if (isCourseMemoPdf(memo)) {
+      if (!pdfMemos[memo.courseMemoFileName]) pdfMemos[memo.courseMemoFileName] = memo
+      else pdfMemos[memo.courseMemoFileName].applicationCodes.push(applicationCode)
     } else {
-      const { memoEndPoint } = courseMemo
-      if (!uniqueWebMemos[memoEndPoint]) uniqueWebMemos[memoEndPoint] = courseMemo
-      else uniqueWebMemos[memoEndPoint].applicationCodes.push(applicationCode)
+      if (!webMemos[memo.memoEndPoint]) webMemos[memo.memoEndPoint] = memo
+      else webMemos[memo.memoEndPoint].applicationCodes.push(applicationCode)
     }
   })
-  return [uniquePdfMemos, uniqueWebMemos]
+
+  return [pdfMemos, webMemos]
 }
 
-const LinkToCourseMemo: React.FC<{ applicationCodes: string; semester: string }> = ({ applicationCodes, semester }) => {
+const LinkToCourseMemo: React.FC<{
+  applicationCodes: string
+  semester: string
+}> = ({ applicationCodes, semester }) => {
   const [{ miniMemosPdfAndWeb, browserConfig, userLang, courseCode }] = useWebContext()
-  const thisSemesterMemos = miniMemosPdfAndWeb[semester] || []
-
   const { memoStorageUri, hostUrl } = browserConfig
-  const cleanHostUrl = hostUrl.endsWith('/') ? hostUrl.slice(0, -1) : hostUrl
 
-  const [roundsWithoutMemo, roundsWithMemo] = groupApplicationCodesByMemoStatus(thisSemesterMemos, applicationCodes)
-  const [uniquePdfMemos, uniqueWebMemos] = getUniqueMemos(thisSemesterMemos, roundsWithMemo)
+  const memos = miniMemosPdfAndWeb[semester] || {}
+  const [roundsWithoutMemo, roundsWithMemo] = groupApplicationCodesByMemoStatus(memos, applicationCodes)
+  const [pdfMemos, webMemos] = getUniqueMemos(memos, roundsWithMemo)
 
   const translate = i18n.messages[userLang === 'en' ? 0 : 1]
   const { memoLink, courseShortSemester } = translate.tableHeaders
@@ -65,41 +64,31 @@ const LinkToCourseMemo: React.FC<{ applicationCodes: string; semester: string }>
   const year = semester.slice(0, 4)
   const offeringIds = applicationCodes.split(',').join('-')
   const courseOfferingName = `${semesterLabel} ${year}-${offeringIds}`
-  const memoNameWithCourseOfferings = `${label} ${courseCode} ${courseOfferingName}`
+  const memoTitle = `${label} ${courseCode} ${courseOfferingName}`
+  const cleanHostUrl = hostUrl.endsWith('/') ? hostUrl.slice(0, -1) : hostUrl
 
   return (
     <>
-      {roundsWithoutMemo.map((applicationCode, index) => {
-        return (
-          <ActiveOrDisabledLink
-            key={index}
-            ariaLabel={memoNameWithCourseOfferings}
-            linkTitle={noAddedDoc}
-            disabled={true}
-          />
-        )
-      })}
-      {Object.keys(uniquePdfMemos).map((courseMemoFileName) => {
-        return (
-          <ActiveOrDisabledLink
-            key={courseMemoFileName}
-            ariaLabel={`PDF ${memoNameWithCourseOfferings}`}
-            className="pdf-link"
-            href={`${memoStorageUri}${courseMemoFileName}`}
-            linkTitle={memoNameWithCourseOfferings}
-          />
-        )
-      })}
-      {Object.keys(uniqueWebMemos).map((memoEndPoint) => {
-        return (
-          <ActiveOrDisabledLink
-            key={memoEndPoint}
-            ariaLabel={memoNameWithCourseOfferings}
-            href={`${cleanHostUrl}/kurs-pm/${courseCode}/${memoEndPoint}`}
-            linkTitle={memoNameWithCourseOfferings}
-          />
-        )
-      })}
+      {roundsWithoutMemo.map((applicationCode, index) => (
+        <ActiveOrDisabledLink key={index} ariaLabel={memoTitle} linkTitle={noAddedDoc} disabled />
+      ))}
+      {Object.entries(pdfMemos).map(([fileName]) => (
+        <ActiveOrDisabledLink
+          key={fileName}
+          ariaLabel={`PDF ${memoTitle}`}
+          className="pdf-link"
+          href={`${memoStorageUri}${fileName}`}
+          linkTitle={memoTitle}
+        />
+      ))}
+      {Object.entries(webMemos).map(([endPoint]) => (
+        <ActiveOrDisabledLink
+          key={endPoint}
+          ariaLabel={memoTitle}
+          href={`${cleanHostUrl}/kurs-pm/${courseCode}/${endPoint}`}
+          linkTitle={memoTitle}
+        />
+      ))}
     </>
   )
 }
