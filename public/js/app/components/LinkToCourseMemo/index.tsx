@@ -58,8 +58,8 @@ const LinkToCourseMemo: React.FC<{ applicationCodes: string; semester: string }>
   const [uniquePdfMemos, uniqueWebMemos] = getUniqueMemos(thisSemesterMemos, roundsWithMemo)
 
   const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const { label, noAddedDoc } = translate.tableHeaders.memoLink
-  const { courseShortSemester } = translate.messages
+  const { memoLink, courseShortSemester } = translate.tableHeaders
+  const { label, noAddedDoc } = memoLink
 
   const semesterLabel = courseShortSemester[semester.slice(-1)]
   const year = semester.slice(0, 4)

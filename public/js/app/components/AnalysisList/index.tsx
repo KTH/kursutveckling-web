@@ -6,6 +6,7 @@ import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
 import LinkToCourseMemo from '../LinkToCourseMemo'
 import { useWebContext } from '../../context/WebContext'
 import i18n from '../../../../../i18n'
+import LinkToCourseAnalysis from '../LinkToCourseAnalysis'
 
 const isCanvasAnalysis = (analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb): analysis is RoundAnalysisCanvas => {
   return (analysis as RoundAnalysisCanvas).analysisType === 'canvas'
@@ -86,6 +87,7 @@ const ResultsSectionContent: React.FC<{
 }
 
 const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb }> = ({ analysis }) => {
+  const [{ userLang }] = useWebContext()
   const {
     analysisName,
     alterationText,
@@ -96,7 +98,6 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
     semester,
     applicationCodes
   } = analysis
-  const [{ userLang }] = useWebContext()
 
   const {
     responsibles: responsiblesHeader,
@@ -108,7 +109,8 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
     courseAnalysis: courseAnalysisHeader,
     alterationText: alterationTextHeader,
     result: resultHeader,
-    noAdded
+    noAdded,
+    infoManuallyEdited
   } = i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders
 
   return (
@@ -134,14 +136,31 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
             <GridCell header={programmeCodesHeader.header} content={programmeCodes || <i>{noAdded}</i>} />
           </Row>
           {!isCanvasAnalysis(analysis) && (
-            <Row className="mb-4">
-              <GridCell header={courseAnalysisHeader.header} content="-" />
-              <GridCell
-                header={alterationTextHeader.adminWeb.header}
-                content={alterationText || alterationTextHeader.adminWeb.noChanges}
-                md="8"
-              />
-            </Row>
+            <>
+              <Row className="mb-4">
+                <GridCell
+                  header={courseAnalysisHeader.header}
+                  content={
+                    <LinkToCourseAnalysis
+                      analysisName={analysisName}
+                      analysisFileName={analysis.analysisFileName}
+                      pdfAnalysisDate={analysis.pdfAnalysisDate}
+                    />
+                  }
+                />
+                <GridCell
+                  header={alterationTextHeader.adminWeb.header}
+                  content={alterationText || <i>{noAdded}</i>}
+                  md="8"
+                />
+              </Row>
+              {(!analysis.registeredStudentsFromLadok || !analysis.examinationGradeFromLadok) && (
+                <div className="inline-flex" lang={userLang}>
+                  <p className="icon-asterisk-black" />
+                  <p>{infoManuallyEdited}</p>
+                </div>
+              )}
+            </>
           )}
         </Col>
         <Col md="3">
@@ -155,4 +174,11 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
   )
 }
 
-export default AnalysisListItem
+const AnalysisList: React.FC<{ analyses: RoundAnalysisCanvas[] | RoundAnalysisAdminWeb[] }> = ({ analyses }) => {
+  return analyses?.map((analysis) => {
+    const { id } = analysis
+    return <AnalysisListItem key={id} analysis={analysis} />
+  })
+}
+
+export default AnalysisList

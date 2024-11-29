@@ -78,7 +78,7 @@ module.exports = {
     }
   },
   tableHeaders: {
-    info_manually_edited: 'Kursdata har registrerats manuellt',
+    infoManuallyEdited: 'Kursdata har registrerats manuellt',
     header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
     aria_label_close_icon: 'Stäng',
     aria_label_info_icon: 'Mer information',
@@ -151,13 +151,11 @@ module.exports = {
       no_date_last_changed: 'ej ändrad efter publicering',
       page_lang: 'sv'
     },
-    header_more_info: 'Ytterligare data om kursanalysen',
-    syllabusLink: { label: 'Kursplan', noNoAddedDoc: 'Ingen kursplan tillagd' },
-    analysisLink: { label: 'Course Kursanalys', noAddedDoc: 'No course analysis added' },
+    syllabusLink: { label: 'Kursplan', noAddedDoc: 'Ingen kursplan tillagd' },
+    analysisLink: { label: 'Kursanalys', noAddedDoc: 'Ingen kursanalys tillagd' },
     memoLink: { label: 'Kurs-PM', noAddedDoc: 'Inget kurs-PM tillagt' },
     noCourseAnalysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
-    no_pdf_document: 'inga är upphittade',
-    course_short_semester: {
+    courseShortSemester: {
       1: 'VT ',
       2: 'HT '
     }

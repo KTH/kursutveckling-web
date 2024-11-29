@@ -1,14 +1,7 @@
 import React from 'react'
-import AnalysisListItem from './AnalysisListItem'
+import AnalysisList from './AnalysisList'
 import i18n from '../../../../i18n'
 import { useWebContext } from '../context/WebContext'
-
-const AnalysisList = ({ analysis }) => {
-  return analysis?.map((thisOfferingAnalysis) => {
-    const { id } = thisOfferingAnalysis
-    return <AnalysisListItem key={id} analysis={thisOfferingAnalysis} />
-  })
-}
 
 const sortBySemester = (analyses) => {
   return analyses?.sort((a, b) => (b.semester > a.semester ? 1 : a.semester > b.semester ? -1 : 0))
@@ -22,6 +15,8 @@ const SectionPerYear = ({ year, thisYearAnalysesCanvas, thisYearAnalysesAdminWeb
 
   const hasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
 
+  console.log('sortedAnalysesCanvas', sortedAnalysesCanvas)
+  console.log('sortedAnalysesAdminWeb', sortedAnalysesAdminWeb)
   return (
     <section aria-describedby={headerId}>
       <h2 id={headerId}>{year}</h2>
@@ -31,8 +26,8 @@ const SectionPerYear = ({ year, thisYearAnalysesCanvas, thisYearAnalysesAdminWeb
         </p>
       ) : (
         <>
-          <AnalysisList analysis={sortedAnalysesCanvas} />
-          <AnalysisList analysis={sortedAnalysesAdminWeb} />
+          <AnalysisList analyses={sortedAnalysesCanvas} />
+          <AnalysisList analyses={sortedAnalysesAdminWeb} />
         </>
       )}
     </section>

@@ -29,8 +29,8 @@ const LinkToValidSyllabusPdf: React.FC<{
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
 
   const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const { label } = translate.tableHeaders.syllabusLink
-  const { courseShortSemester } = translate.messages
+  const { syllabusLink, courseShortSemester } = translate.tableHeaders
+  const { label } = syllabusLink
 
   if (!syllabusPeriods[syllabusPeriodStart]) {
     console.log(

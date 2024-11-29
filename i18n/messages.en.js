@@ -80,7 +80,7 @@ module.exports = {
     }
   },
   tableHeaders: {
-    info_manually_edited: 'Course data has been registered manually',
+    infoManuallyEdited: 'Course data has been registered manually',
     header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
     aria_label_close_icon: 'Close',
     aria_label_info_icon: 'More information',
@@ -156,11 +156,10 @@ module.exports = {
       no_date_last_changed: 'No changes since first published.',
       page_lang: 'en'
     },
-    header_more_info: 'Additional data about the course analysis',
     syllabusLink: { label: 'Course syllabus', noNoAddedDoc: 'No course syllabus added' },
     analysisLink: { label: 'Course analysis', noAddedDoc: 'No course analysis added' },
     memoLink: { label: 'Course memo', noAddedDoc: 'No course memo added' },
-    course_short_semester: {
+    courseShortSemester: {
       1: 'Spring ',
       2: 'Autumn '
     }

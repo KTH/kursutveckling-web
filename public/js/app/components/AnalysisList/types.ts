@@ -1,4 +1,5 @@
 export interface RoundAnalysis {
+  id: string
   alterationText: string
   courseCode: string
   analysisName: string
@@ -17,6 +18,9 @@ export interface RoundAnalysisCanvas extends RoundAnalysis {
 }
 
 export interface RoundAnalysisAdminWeb extends RoundAnalysis {
-  examinationGrade: string,
+  examinationGrade: string
+  analysisFileName: string
+  pdfAnalysisDate: string
+  registeredStudentsFromLadok: boolean
+  examinationGradeFromLadok: boolean
 }
-
