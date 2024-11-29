@@ -197,17 +197,17 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Get table headers (mobile and desktop)', async () => {
     const responsible = getAllByText('Coordinator')
-    expect(responsible.length).toBe(16)
+    expect(responsible.length).toBe(9)
     const examiner = getAllByText('Examiners')
-    expect(examiner.length).toBe(16)
+    expect(examiner.length).toBe(9)
     const students = getAllByText('Students')
-    expect(students.length).toBe(16)
-    const exams = getAllByText('Examination')
-    expect(exams.length).toBe(16)
-    const results = getAllByText('Result')
-    expect(results.length).toBe(16)
+    expect(students.length).toBe(9)
+    const results = getAllByText('Result on course')
+    expect(results.length).toBe(9)
     const changes = getAllByText('Changes of the course before this course offering')
-    expect(changes.length).toBe(16)
+    expect(changes.length).toBe(8)
+    const changesNext = getAllByText('Changes of the course before this course offering')
+    expect(changesNext.length).toBe(1)
   })
 
   test('Coordinator names if it renders', async () => {

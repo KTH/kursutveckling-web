@@ -27,7 +27,20 @@
 
 @import 'shared';
 
+.list-section-per-year section:has(.round-analysis) {
+  .year-header {
+    margin-bottom: space.$space-8 !important;
+  }
+}
+
 .round-analysis {
+  margin-bottom: space.$space-64;
+
+  .analysis-name {
+    margin-top: 0;
+    margin-bottom: space.$space-16;
+  }
+
   .grid-cell {
     display: flex;
     flex-direction: column;
@@ -38,7 +51,8 @@
   }
   
   .cell-header {
-    margin-bottom: space.$space-8;
+    margin: space.$space-8;
+    margin-left: 0 !important;
     @include typography.font-heading-xs;
   }
 
@@ -108,36 +122,6 @@
       flex-direction: row;
       justify-content: flex-end;
       align-items: end;
-    }
-  }
-}
-
-//Collapsible "Additional information"
-.extra-info {
-  div {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0.5em;
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
-  @media (min-width: 768px) {
-    span.extra-kopps-info-from-kutv-api {
-      align-self: flex-start;
-      flex-basis: 60%;
-      span {
-        margin: 0;
-      }
-    }
-    span:last-of-type {
-      align-self: flex-start;
-      height: 100%;
-      margin-left: 3em;
-      span {
-        margin: 0;
-        padding: 0;
-      }
     }
   }
 }

@@ -15,11 +15,11 @@ const SectionPerYear = ({ year, thisYearAnalysesCanvas, thisYearAnalysesAdminWeb
 
   const hasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
 
-  console.log('sortedAnalysesCanvas', sortedAnalysesCanvas)
-  console.log('sortedAnalysesAdminWeb', sortedAnalysesAdminWeb)
   return (
     <section aria-describedby={headerId}>
-      <h2 id={headerId}>{year}</h2>
+      <h2 className="year-header" id={headerId}>
+        {year}
+      </h2>
       {hasNoAnalyses ? (
         <p>
           <i>{noCourseAnalysisText}</i>

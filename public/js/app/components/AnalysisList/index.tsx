@@ -115,7 +115,7 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
 
   return (
     <div className="round-analysis">
-      <h3>{analysisName}</h3>
+      <h4 className="analysis-name">{analysisName}</h4>
       <AlterationTextBox
         header={alterationTextHeader.header}
         htmlContent={isCanvasAnalysis(analysis) ? alterationText : alterationTextHeader.noChanges}

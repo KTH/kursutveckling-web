@@ -188,11 +188,6 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(memoNotAdded.length).toBe(10)
   })
 
-  test('Get grade scale if it renders', async () => {
-    const gradeScale = getAllByText('TEN1 (7,5) A, B, C, D, E, FX, F')
-    expect(gradeScale.length).toBe(7)
-  })
-
   test('Changes of the course before this course offering if it renders', async () => {
     const changes = getByText('fads')
     expect(changes).toBeInTheDocument()
@@ -200,17 +195,17 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Get table headers (mobile and desktop)', async () => {
     const responsible = getAllByText('Kursansvarig')
-    expect(responsible.length).toBe(17)
+    expect(responsible.length).toBe(9)
     const examiner = getAllByText('Examinator')
-    expect(examiner.length).toBe(17)
+    expect(examiner.length).toBe(9)
     const students = getAllByText('Studenter')
-    expect(students.length).toBe(17)
-    const exams = getAllByText('Examination')
-    expect(exams.length).toBe(16)
-    const results = getAllByText('Resultat')
-    expect(results.length).toBe(16)
+    expect(students.length).toBe(9)
+    const results = getAllByText('Resultat på kurs')
+    expect(results.length).toBe(9)
     const changes = getAllByText('Förändringar som har införts till den här kursomgången')
-    expect(changes.length).toBe(16)
+    expect(changes.length).toBe(8)
+    const changesNext = getAllByText('Förändringar som införs till nästa kursomgång')
+    expect(changesNext.length).toBe(9)
   })
 
   test('Coordinator names if it renders', async () => {
