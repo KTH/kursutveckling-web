@@ -3,6 +3,7 @@ import { SYLLABUS_URL } from '../../util/constants'
 import i18n from '../../../../../i18n'
 import { useWebContext } from '../../context/WebContext'
 import { SyllabusPeriods } from './types'
+import ActiveOrDisabledLink from '../ActiveOrDisabledLink'
 
 const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): string | null => {
   const semesterAsNumber = Number(semester)
@@ -53,15 +54,12 @@ const LinkToValidSyllabusPdf: React.FC<{
   const syllabusLabel = `${label} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (
-    <a
-      aria-label={`PDF ${syllabusLabel}`}
+    <ActiveOrDisabledLink
+      ariaLabel={`PDF ${syllabusLabel}`}
       href={`${SYLLABUS_URL}${courseCode}-${syllabusPeriodStart}.pdf?lang=${userLang}`}
-      target="_blank"
-      rel="noreferrer"
+      linkTitle={syllabusLabel}
       className="pdf-link"
-    >
-      {syllabusLabel}
-    </a>
+    />
   )
 }
 

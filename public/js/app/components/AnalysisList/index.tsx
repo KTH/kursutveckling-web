@@ -3,7 +3,7 @@ import { Col, Row } from 'reactstrap'
 import HtmlWrapper from '../HtmlWrapper'
 import { RoundAnalysisAdminWeb, RoundAnalysisCanvas } from './types'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
-import LinkToCourseMemo from '../LinkToCourseMemo'
+import LinksToCourseMemos from '../LinksToCourseMemos'
 import { useWebContext } from '../../context/WebContext'
 import i18n from '../../../../../i18n'
 import LinkToCourseAnalysis from '../LinkToCourseAnalysis'
@@ -19,24 +19,15 @@ const AlterationTextBox: React.FC<{ header: string; htmlContent: string }> = ({ 
   </div>
 )
 
-const GridCell: React.FC<{ header: string; content: React.ReactNode; md?: string }> = ({
+const GridCell: React.FC<{ header: string; content: React.ReactNode; popoverText?: string; md?: string }> = ({
   header,
   content,
+  popoverText,
   md = '4'
 }) => (
   <Col md={md} className="grid-cell">
     <span className="cell-header">{header}</span>
     <span className="cell-content">{content}</span>
-  </Col>
-)
-
-const ResultsSection: React.FC<{
-  header: string
-  content: React.ReactNode
-}> = ({ header, content }) => (
-  <Col className="grid-cell">
-    <span className="cell-header">{header}</span>
-    {content}
   </Col>
 )
 
@@ -125,13 +116,17 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
           <Row className="mb-4">
             <GridCell header={responsiblesHeader.header} content={responsibles || <i>{noAdded}</i>} />
             <GridCell header={examinersHeader.header} content={examiners || <i>{noAdded}</i>} />
-            <GridCell header={registeredStudentsHeader.header} content={registeredStudents || <i>{noAdded}</i>} />
+            <GridCell
+              header={registeredStudentsHeader.header}
+              content={registeredStudents || <i>{noAdded}</i>}
+              popoverText={registeredStudentsHeader.popoverText}
+            />
           </Row>
           <Row className="mb-4">
             <GridCell header={syllabusHeader.header} content={<LinkToValidSyllabusPdf semester={semester} />} />
             <GridCell
               header={courseMemoHeader.header}
-              content={<LinkToCourseMemo semester={semester} applicationCodes={applicationCodes} />}
+              content={<LinksToCourseMemos semester={semester} applicationCodes={applicationCodes} />}
             />
             <GridCell header={programmeCodesHeader.header} content={programmeCodes || <i>{noAdded}</i>} />
           </Row>
@@ -164,9 +159,11 @@ const AnalysisListItem: React.FC<{ analysis: RoundAnalysisCanvas | RoundAnalysis
           )}
         </Col>
         <Col md="3">
-          <ResultsSection
+          <GridCell
             header={resultHeader.header}
             content={<ResultsSectionContent subHeader={resultHeader.total} analysis={analysis} />}
+            popoverText={resultHeader.popoverText}
+            md="12"
           />
         </Col>
       </Row>

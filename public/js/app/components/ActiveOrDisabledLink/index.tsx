@@ -7,7 +7,7 @@ const ActiveOrDisabledLink: React.FC<{
   className?: string
   disabled?: boolean
 }> = ({ ariaLabel, href, linkTitle, className = '', disabled = false }) => {
-  const linkClassName = `${className} ${disabled ? 'disabled-link' : ''}`.trim()
+  const linkClassName = `link ${className} ${disabled ? 'disabled-link' : ''}`.trim()
 
   return disabled ? (
     <span className={linkClassName} aria-label={ariaLabel}>

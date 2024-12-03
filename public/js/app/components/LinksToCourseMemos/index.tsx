@@ -45,7 +45,7 @@ function getUniqueMemos(
   return [pdfMemos, webMemos]
 }
 
-const LinkToCourseMemo: React.FC<{
+const LinksToCourseMemos: React.FC<{
   applicationCodes: string
   semester: string
 }> = ({ applicationCodes, semester }) => {
@@ -93,4 +93,4 @@ const LinkToCourseMemo: React.FC<{
   )
 }
 
-export default LinkToCourseMemo
+export default LinksToCourseMemos
