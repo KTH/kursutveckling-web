@@ -41,29 +41,35 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(subHeader).toBeInTheDocument()
   })
 
-  test('renders h4 for all years and analysis name headers', () => {
+  test('renders h4 for all years', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(18)
+    expect(allH4Headers.length).toBe(10)
   })
 
-  // test('Get popover desktop and mobile buttons and check it is number', async () => {
-  //   const allBtns = getAllByRole('button')
-  //   expect(allBtns.length).toBe(96)
-  // })
+  test('renders h3 for all analysis name headers', () => {
+    const allH4Headers = getAllByRole('heading', { level: 4 })
+    expect(allH4Headers.length).toBe(10)
+  })
+
+  test('renders popover buttons ', async () => {
+    const allBtns = getAllByRole('button')
+    expect(allBtns.length).toBe(10)
+  })
 
   test('Get No information inserted if no data changes in course data or course analysis after publishing if it renders', async () => {
     const changeDates = getAllByText('No information inserted')
-    expect(changeDates.length).toBe(8)
+    expect(changeDates.length).toBe(2)
   })
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(21)
     const expectedLinks = [
       'About course SF1624',
       'Administer About course',
       'Archive',
       // by each round
+      'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course analysis: 10 Sept 2019',
@@ -94,6 +100,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       // by each round
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
+      'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
       'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10 Sept 2019',
       'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
       'PDF Course analysis CMEDT1 ( Startdatum 2018-10-29, Svenska ): 4 Sept 2019',
@@ -115,11 +122,12 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(21)
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=en',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=en',
       'http://localhost/kursutveckling/SF1624/arkiv?l=en',
+      'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
@@ -143,7 +151,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('check how behave memo link when no memo is added', async () => {
     const memoNotAdded = screen.getAllByText('No course memo added')
-    expect(memoNotAdded.length).toBe(10)
+    expect(memoNotAdded.length).toBe(11)
   })
 
   test('Changes of the course before this course offering if it renders', async () => {
@@ -153,17 +161,17 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Get table headers (mobile and desktop)', async () => {
     const responsible = getAllByText('Coordinator')
-    expect(responsible.length).toBe(9)
+    expect(responsible.length).toBe(10)
     const examiner = getAllByText('Examiners')
-    expect(examiner.length).toBe(9)
+    expect(examiner.length).toBe(10)
     const students = getAllByText('Students')
-    expect(students.length).toBe(9)
+    expect(students.length).toBe(10)
     const results = getAllByText('Results on course')
-    expect(results.length).toBe(9)
+    expect(results.length).toBe(10)
     const changes = getAllByText('Changes introduced for this course offering')
     expect(changes.length).toBe(8)
     const changesNext = getAllByText('Changes planned for the next course offering')
-    expect(changesNext.length).toBe(9)
+    expect(changesNext.length).toBe(10)
   })
 
   test('Coordinator names if it renders', async () => {
@@ -193,14 +201,14 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('renders document links', () => {
     const links = getAllByRole('link')
-    expect(links.length).toBe(20)
+    expect(links.length).toBe(21)
     expect(links[3]).toHaveTextContent('Course syllabus SF1624 ( Autumn 2019 - )')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en')
 
-    expect(links[5]).toHaveTextContent('Course analysis: 10 Sept 2019')
-    expect(links[5].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
+    expect(links[6]).toHaveTextContent('Course analysis: 10 Sept 2019')
+    expect(links[6].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
 
-    expect(links[7]).toHaveTextContent('Course analysis: 4 Sept 2019')
-    expect(links[7].href).toStrictEqual('http://localhost/analysis-SF1624HT2018_9.pdf')
+    expect(links[7]).toHaveTextContent('Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )')
+    expect(links[7].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=en')
   })
 })

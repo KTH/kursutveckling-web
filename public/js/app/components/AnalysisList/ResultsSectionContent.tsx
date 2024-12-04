@@ -18,7 +18,6 @@ const ResultsSectionContent: React.FC<ResultsSectionContentProps> = ({ subHeader
 
     const resultsPercentage = sumNonFailedResults ? Math.round((sumNonFailedResults / totalReportedResults) * 100) : 0
 
-    console.log(gradingDistribution)
     return (
       <>
         <Row className="mb-3">

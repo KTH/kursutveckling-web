@@ -1,8 +1,6 @@
 const mockRawAnalysisDataFromCanvas = [
   {
-    _id: {
-      $oid: '6711178a1353f5e3af556077'
-    },
+    _id: '6711178a1353f5e3af556077',
     id: '39b5624f-7f0f-11ef-90b2-54c43689408b',
     alterationText: 'Hej hej!!!',
     analysisName: 'doktorand 2024-51460 ( Start date 28 Oct 2024, English )',
@@ -31,6 +29,28 @@ const mockRawAnalysisDataFromCanvas = [
     responsibles: 'Test Person Testovich',
     semester: '20242',
     startDate: '2024-10-28',
+    analysisType: 'canvas'
+  },
+  {
+    _id: '673ae58e7d5093b55e7dc88a',
+    id: '76f1fd19-dada-11ee-9343-2afccf5d48dc',
+    alterationText: 'Test alteration text',
+    courseCode: 'LD1008',
+    analysisName: 'HT 2023-10189 (Startdatum 2023-10-28, Svenska)',
+    programmeCodes: '1234, 5678, 8910',
+    examiners: 'A, B, C',
+    responsibles: 'X, Y, Z',
+    examinationRounds: ['LEXA;Löpande examination;4.0;credits;Grading scale;P, F'],
+    registeredStudents: 40,
+    gradingDistribution: {
+      P: 0,
+      F: 0
+    },
+    startDate: '2023-10-28',
+    endDate: '2024-01-13',
+    semester: '20232',
+    ladokUIDs: ['76f1fd19-dada-11ee-9343-2afccf5d48dc'],
+    applicationCodes: '10189',
     analysisType: 'canvas'
   }
 ]
