@@ -1,5 +1,5 @@
 export interface RoundAnalysis {
-  id: string
+  _id: string
   alterationText: string
   courseCode: string
   analysisName: string

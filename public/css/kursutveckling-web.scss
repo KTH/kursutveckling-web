@@ -27,13 +27,27 @@
 
 @import 'shared';
 
-.list-section-per-year section:has(.round-analysis) {
-  .year-header {
-    margin-bottom: space.$space-8 !important;
-  }
+h2 {
+  @include typography.font-heading-l;
 }
 
-.round-analysis {
+h3 {
+  @include typography.font-heading-m;
+}
+
+h4 {
+  @include typography.font-heading-s;
+}
+
+h5 {
+  @include typography.font-heading-xs;
+}
+
+span {
+  @include typography.font-default;
+}
+
+.analysis-list-item {
   margin-bottom: space.$space-64;
 
   .analysis-name {
@@ -41,20 +55,14 @@
     margin-bottom: space.$space-16;
   }
 
-  .grid-cell {
-    display: flex;
-    flex-direction: column;
-    
-    .horizontal {
-      flex-direction: row;
-      align-items: center;
+    .grid-cell {
+      display: flex;
+      flex-direction: column;
     }
-  }
 
   .cell-header {
-    margin: space.$space-8;
+    margin: space.$space-12;
     margin-left: 0 !important;
-    @include typography.font-heading-xs;
   }
 
   .link {
@@ -62,6 +70,46 @@
   }
 }
 
+
+.popover {
+  width: 30rem;
+  max-width: 97vw;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  border-color: var(--bs-border-color-translucent);
+
+  .popover-header {
+    font-weight: 600;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: colors.$color-white;
+    padding: space.$space-16;
+    border-bottom: 1px solid colors.$color-gray-dark;
+
+    .kth-icon-button.close::before {
+      background-color: colors.$color-black;
+    }
+  }
+
+  .popover-body {
+    @include typography.font-default;
+    padding: space.$space-16;
+  }
+
+  .popover-footer {
+    display: flex;
+    justify-content: right;
+
+    padding: space.$space-16;
+    border-top: 1px solid colors.$color-gray-dark;
+
+    .kth-button {
+      @include typography.font-default;
+    }
+  }
+}
 
 //****ICONS*****//
 
@@ -139,11 +187,6 @@ body.use-personal-menu {
   div.popover.show {
     top: -40px !important;
   }
-}
-
-button.desktop.btn-info-modal,
-button.mobile.btn-info-modal {
-  min-height: 0.75rem;
 }
 
 /*Table cells try to give it more stable width*/
@@ -270,27 +313,4 @@ and also iPads specifically.
   padding: 0;
   height: 1.75rem;
   color: colors.$color-gray-medium;
-}
-
-.popover {
-  --bs-popover-header-padding-y: 0;
-  --bs-popover-header-padding-x: 0.75rem;
-  --bs-popover-body-padding-y: 0.5rem;
-  --bs-popover-body-padding-x: 0.75rem;
-
-  .popover-header {
-    @include typography.font-heading-xs;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 0;
-
-    span {
-      padding: 0.5rem 0;
-    }
-    button {
-      flex-shrink: 0;
-    }
-  }
 }

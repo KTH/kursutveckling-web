@@ -47,6 +47,12 @@ module.exports = {
       1: 'VT',
       2: 'HT'
     },
+
+    popover: {
+      close: 'Stäng',
+      aria_label_info_icon: 'Mer information'
+    },
+
     archiveTitles: {
       archive: 'Arkiv',
       about_course: 'Om kursen',
@@ -99,13 +105,14 @@ module.exports = {
         header: 'Förändringar som har införts till den här kursomgången',
         popoverText:
           'Summerade förändringar som har införts till den här kursomgången. Syftet med att publicera förändringar som infördes till kursen innan kursomgångens start är att visa på hur kursen förbättras och utvecklas över tid. Kursomgångarnas alla dokumenterade förändringar visar på vilka utvecklingssteg kursen har genomgått.',
-        noChanges: 'Inga förändirngar gjordes.'
+        noChanges: 'Inga förändringar gjordes.'
       }
     },
     result: {
       header: 'Resultat på kurs',
       total: 'Totalt',
-      popoverText: ''
+      popoverText:
+        'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
     },
     examinationGrade: {
       header: 'Resultat',

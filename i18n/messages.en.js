@@ -49,6 +49,12 @@ module.exports = {
       1: 'Spring',
       2: 'Autumn'
     },
+
+    popover: {
+      close: 'Close',
+      aria_label_info_icon: 'More information'
+    },
+
     archiveTitles: {
       archive: 'Archive',
       about_course: 'About course',
