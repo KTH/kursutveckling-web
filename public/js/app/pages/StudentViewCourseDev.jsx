@@ -40,12 +40,11 @@ function StudentViewCourseDev() {
         />
         <div className="intro-text">
           <p>
+            {pageTitles.info_text[0]}
             {pageTitles.info_text[1]}
-            {pageTitles.info_text[2]}
             <a href={linkToArchive(courseCode, userLang)}>{archiveTitles.archive}.</a>
           </p>
-          <p>{pageTitles.info_text[0]}</p>
-          <p>{pageTitles.info_text[3]}</p>
+          <p>{pageTitles.info_text[2]}</p>
         </div>
 
         <ListYears
