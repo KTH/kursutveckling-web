@@ -29,7 +29,7 @@ const ResultsSection: React.FC<ResultsSectionContentProps> = ({ analysis }) => {
       <>
         <Row className="mb-3">
           <Col xs="3">
-            <b>{resultHeaderObj.subHeader}</b>
+            <b>{resultHeaderObj.total}</b>
           </Col>
           <Col xs="9">
             <span>{`${sumNonFailedResults} (${resultsPercentage}%)`}</span>
@@ -55,7 +55,7 @@ const ResultsSection: React.FC<ResultsSectionContentProps> = ({ analysis }) => {
     return (
       <Row className="mb-3">
         <Col xs="3">
-          <b>{resultHeaderObj.subHeader}</b>
+          <b>{resultHeaderObj.total}</b>
         </Col>
         <Col xs="9">
           <span>{examinationGrade}</span>
