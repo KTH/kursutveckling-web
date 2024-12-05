@@ -22,7 +22,7 @@ const transformedAnalysisDataFromAdminWeb = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: 'fads',
-      examinationGrade: '12 %*',
+      examinationGrade: '12%*',
       registeredStudents: '12*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
@@ -92,7 +92,7 @@ const transformedAnalysisDataFromAdminWeb = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '1 %*',
+      examinationGrade: '1%*',
       registeredStudents: '1*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
@@ -170,7 +170,7 @@ const transformedAnalysisDataFromAdminWeb = {
         'Based on recommendation from KTH’s coordinator for disabilities, the examiner will decide how to adapt an examination for students with documented disability. <br><br>The examiner may apply another examination format when re-examining individual students.',
       alterationText: 'Förändringar',
       endDate: '',
-      examinationGrade: '40 %*',
+      examinationGrade: '40%*',
       registeredStudents: '111',
       examinationRounds: [
         'TEN1;Examination;7.5;credits;Grading scale;A, B, C, D, E, FX, F              \n                         '
@@ -205,7 +205,7 @@ const transformedAnalysisDataFromAdminWeb = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '20 %*',
+      examinationGrade: '20%*',
       registeredStudents: '20*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
@@ -275,7 +275,7 @@ const transformedAnalysisDataFromAdminWeb = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.<p>Examinator beslutar, i samr&#229;d med KTH:s samordnare f&#246;r funktionsneds&#228;ttning (Funka), om eventuell anpassad examination f&#246;r studenter med dokumenterad, varaktig funktionsneds&#228;ttning.&#160;</p>',
       alterationText: '',
-      examinationGrade: '111 %*',
+      examinationGrade: '111%*',
       registeredStudents: '111*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
@@ -308,9 +308,10 @@ const transformedAnalysisDataFromCanvas = {
       responsibles: 'X, Y, Z',
       examinationRounds: ['LEXA;Löpande examination;4.0;credits;Grading scale;P, F'],
       registeredStudents: 40,
+      totalReportedResults: 3,
       gradingDistribution: {
-        P: 0,
-        F: 0
+        P: 2,
+        F: 1
       },
       startDate: '2023-10-28',
       endDate: '2024-01-13',
@@ -336,6 +337,7 @@ const transformedAnalysisDataFromCanvas = {
         'PRO1;Project;4.5;credits;Grading scale;A, B, C, D, E, FX, F'
       ],
       examiners: 'Test Person Testovich Von Test',
+      totalReportedResults: 0,
       gradingDistribution: {
         A: 0,
         B: 0,
