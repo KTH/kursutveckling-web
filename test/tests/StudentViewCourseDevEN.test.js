@@ -53,7 +53,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('renders popover buttons ', async () => {
     const allBtns = getAllByRole('button')
-    expect(allBtns.length).toBe(10)
+    expect(allBtns.length).toBe(20)
   })
 
   test('Get No information inserted if no data changes in course data or course analysis after publishing if it renders', async () => {
