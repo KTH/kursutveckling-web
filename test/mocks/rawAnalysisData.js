@@ -14,6 +14,7 @@ const mockRawAnalysisDataFromCanvas = [
       'PRO1;Project;4.5;credits;Grading scale;A, B, C, D, E, FX, F'
     ],
     examiners: 'Test Person Testovich Von Test',
+    totalReportedResults: 0,
     gradingDistribution: {
       A: 0,
       B: 0,
@@ -42,9 +43,10 @@ const mockRawAnalysisDataFromCanvas = [
     responsibles: 'X, Y, Z',
     examinationRounds: ['LEXA;Löpande examination;4.0;credits;Grading scale;P, F'],
     registeredStudents: 40,
+    totalReportedResults: 3,
     gradingDistribution: {
-      P: 0,
-      F: 0
+      P: 2,
+      F: 1
     },
     startDate: '2023-10-28',
     endDate: '2024-01-13',

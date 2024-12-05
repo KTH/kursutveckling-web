@@ -186,7 +186,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   })
 
   test('Result ExaminationGrade were manually edited (*) if it renders', async () => {
-    const received = getByText('111 %*')
+    const received = getByText('111%*')
     expect(received).toBeInTheDocument()
   })
 
