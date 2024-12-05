@@ -18,7 +18,7 @@ function StudentViewCourseDev() {
   const [context] = useWebContext()
 
   const { courseCode, courseKoppsData, analysisDataCanvas, analysisDataAdminWeb, userLang } = context
-  const { pageTitles, tableHeaders, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
+  const { pageTitles, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
   const { archiveTitles } = messages
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
   const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
@@ -50,12 +50,8 @@ function StudentViewCourseDev() {
 
         <ListYears
           key="list-of-course-data-for-several-years"
-          koppsData={courseKoppsData}
           allYearsAnalysisDataObjCanvas={analysisDataCanvas}
           allYearsAnalysisDataObjAdminWeb={analysisDataAdminWeb}
-          tableHeaders={tableHeaders}
-          pageTitles={pageTitles}
-          userLang={userLang}
         />
       </main>
     </Row>

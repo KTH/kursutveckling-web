@@ -61,7 +61,10 @@ span {
     }
 
   .cell-header {
-    margin: space.$space-12;
+    display: flex;
+    align-items: center;
+
+    margin: space.$space-8;
     margin-left: 0 !important;
   }
 

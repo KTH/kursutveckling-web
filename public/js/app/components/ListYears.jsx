@@ -42,7 +42,7 @@ const ListYears = ({ allYearsAnalysisDataObjCanvas, allYearsAnalysisDataObjAdmin
     .reverse()
 
   const [{ userLang }] = useWebContext()
-  const { noCourseAnalysis } = i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders
+  const { no_course_analysis } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
 
   return (
     <div className="list-section-per-year">
@@ -52,7 +52,7 @@ const ListYears = ({ allYearsAnalysisDataObjCanvas, allYearsAnalysisDataObjAdmin
           year={year}
           thisYearAnalysesCanvas={allYearsAnalysisDataObjCanvas[year]}
           thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
-          noCourseAnalysisText={noCourseAnalysis}
+          noCourseAnalysisText={no_course_analysis}
         />
       ))}
     </div>

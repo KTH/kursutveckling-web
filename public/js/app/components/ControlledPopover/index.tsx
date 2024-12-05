@@ -3,8 +3,8 @@ import { Button, Popover, PopoverBody, PopoverHeader } from 'reactstrap'
 import i18n from '../../../../../i18n'
 import { useWebContext } from '../../context/WebContext'
 
-const ControlledPopover: React.FC<{ cellId: string; header: string; popoverText: string }> = ({
-  cellId,
+const ControlledPopover: React.FC<{ id: string; header: string; popoverText: string }> = ({
+  id,
   header,
   popoverText
 }) => {
@@ -13,10 +13,10 @@ const ControlledPopover: React.FC<{ cellId: string; header: string; popoverText:
   const togglePopover = () => setPopoverOpen((prev) => !prev)
 
   const [{ userLang }] = useWebContext()
-  const { close: closeButtonLabel, aria_label_info_icon: ariaLabel } =
-    i18n.messages[userLang === 'en' ? 0 : 1]?.messages?.popover
+  const { close_button_label: closeButtonLabel, aria_label_info_icon: ariaLabel } =
+    i18n.messages[userLang === 'en' ? 0 : 1]?.analysisHeaders
 
-  const triggerId = `popover-${cellId}`
+  const triggerId = `popover-${id}`
 
   return (
     <>

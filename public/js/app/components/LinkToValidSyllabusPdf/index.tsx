@@ -36,9 +36,8 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
 
-  const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const { syllabusLink, courseShortSemester } = translate.tableHeaders
-  const { label } = syllabusLink
+  const { syllabusLink, courseShortSemester } = i18n.messages[userLang === 'en' ? 0 : 1]?.analysisHeaders
+  const { header } = syllabusLink
 
   if (!syllabusPeriods[syllabusPeriodStart]) {
     console.log(
@@ -51,7 +50,7 @@ const LinkToValidSyllabusPdf: React.FC<{
   const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
   const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
   const endTermName = formatSemesterName(syllabusPeriod.endDate || '', courseShortSemester)
-  const syllabusLabel = `${label} ${courseCode} ( ${startTermName} - ${endTermName} )`
+  const syllabusLabel = `${header} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (
     <ActiveOrDisabledLink

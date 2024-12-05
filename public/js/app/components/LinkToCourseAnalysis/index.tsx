@@ -12,22 +12,14 @@ const LinkToCourseAnalysis: React.FC<{
   const [{ browserConfig, userLang }] = useWebContext()
   const { storageUri } = browserConfig
 
-  const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const label = translate?.tableHeaders?.analysisLink?.label
+  const { header } = i18n.messages[userLang === 'en' ? 0 : 1]?.analysisHeaders?.analysisLink
 
   const validFrom = getDateFormat(pdfAnalysisDate, userLang)
-  const ariaLabel = `PDF ${label} ${analysisName}${validFrom ? `: ${validFrom}` : ''}`
-  const linkTitle = `${label}${validFrom ? `: ${validFrom}` : ''}`
+  const ariaLabel = `PDF ${header} ${analysisName}${validFrom ? `: ${validFrom}` : ''}`
+  const linkTitle = `${header}${validFrom ? `: ${validFrom}` : ''}`
   const href = `${storageUri}${analysisFileName}`
 
-  return (
-    <ActiveOrDisabledLink
-      ariaLabel={ariaLabel}
-      href={href}
-      className="pdf-link"
-      linkTitle={linkTitle}
-    />
-  )
+  return <ActiveOrDisabledLink ariaLabel={ariaLabel} href={href} className="pdf-link" linkTitle={linkTitle} />
 }
 
 export default LinkToCourseAnalysis

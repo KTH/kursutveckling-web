@@ -43,15 +43,6 @@ module.exports = {
     page_about_course: 'Om kursen',
     page_course_programme: 'Kurs- och programkatalogen',
     page_student: 'Student på KTH',
-    courseShortSemester: {
-      1: 'VT',
-      2: 'HT'
-    },
-
-    popover: {
-      close: 'Stäng',
-      aria_label_info_icon: 'Mer information'
-    },
 
     archiveTitles: {
       archive: 'Arkiv',
@@ -83,85 +74,53 @@ module.exports = {
       analysis_in_canvas: 'Se kursanalys i Canvas.'
     }
   },
-  tableHeaders: {
-    infoManuallyEdited: 'Kursdata har registrerats manuellt',
-    header_main_publish_new: 'Publicera ny kursanalys och kursdata (för kursansvarig)',
-    aria_label_close_icon: 'Stäng',
+  analysisHeaders: {
+    info_manually_edited: 'Kursdata har registrerats manuellt',
+
+    close_button_label: 'Stäng',
     aria_label_info_icon: 'Mer information',
+
     examiners: {
       header: 'Examinator',
-      popoverText: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
-    },
-    examRounds: {
-      header: 'Examination',
-      popoverText:
-        'Form av examination vid gällande kursomgång enligt format: examinationsmodul, högskolepoäng, betygsskala. Se detaljer om Examination på sidan Inför kursval.'
+      popover_text: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
     },
     alterationText: {
       header: 'Förändringar som införs till nästa kursomgång',
-      popoverText: '',
-      noChanges: 'Inga planerade förändringar.',
+      popover_text: '',
+      no_changes: 'Inga planerade förändringar.',
       adminWeb: {
         header: 'Förändringar som har införts till den här kursomgången',
-        popoverText:
-          'Summerade förändringar som har införts till den här kursomgången. Syftet med att publicera förändringar som infördes till kursen innan kursomgångens start är att visa på hur kursen förbättras och utvecklas över tid. Kursomgångarnas alla dokumenterade förändringar visar på vilka utvecklingssteg kursen har genomgått.',
-        noChanges: 'Inga förändringar gjordes.'
+        no_changes: 'Inga förändringar gjordes.'
       }
     },
     result: {
       header: 'Resultat på kurs',
       total: 'Totalt',
-      popoverText:
-        'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
-    },
-    examinationGrade: {
-      header: 'Resultat',
-      popoverText:
+      popover_text:
         'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
     },
     responsibles: {
-      header: 'Kursansvarig',
-      popoverText:
-        'Samtliga kursansvariga för de kurstillfällen som ingår i kursomgången. Kursansvariga administreras i Kopps.'
+      header: 'Kursansvarig'
     },
     registeredStudents: {
       header: 'Studenter',
-      popoverText:
+      popover_text:
         'Antal förstagångsregistrerade på de kurstillfällen som ingår i kursomgången. Studenter som antagits men som inte registrerats ska inte räknas in. Inte heller registrerade studenter som omregistrerats från ett annat kurstillfälle på samma kurs ska räknas in.'
     },
-    syllabus: {
-      header: 'Kursplan'
-    },
-    courseMemo: {
-      header: 'Kurs-PM'
-    },
-    courseAnalysis: {
-      header: 'Kursanalys'
-    },
-
-    noAdded: 'Ingen information tillagd',
-    commentExam: {
-      header: 'Kommentar till examination',
-      popoverText: 'Kommentar till form av examination vid gällande kursomgång.'
-    },
-    programmeCodes: { header: 'Obligatorisk inom program', popoverText: '' },
+    programmeCodes: { header: 'Obligatorisk inom program' },
     analysisName: {
       header: 'Kursanalysen gäller för följande kursomgångar',
-      popoverText:
+      popover_text:
         'Alla kurstillfällen som ingick i kursomgången. Studenter är antagna till ett kurstillfälle. Programstudenter, betalande studenter och fristående studenter antas till olika kurstillfällen men kan utbildas i samma kursomgång. Kurstillfällen ska alltså grupperas ihop till en kursomgång. Kursomgången är ett praktiskt genomförande av en kurs. Kursomgången har en gemensam starttidpunkt, gemensam kurstakt och normalt gemensam undervisning för en studentgrupp. Schemat läggs per kursomgång, kurs-PM utformas per kursomgång och kursanalys genomförs per kursomgång.'
     },
-    extra_dates_and_comments: {
-      noAdded: 'Ingen information tillagd',
-      publishedDate: 'Publicerad första gången',
-      changedAfterPublishedDate: 'Senaste ändrad',
-      commentChange: 'Kommentar till gjorda ändringar',
-      no_date_last_changed: 'ej ändrad efter publicering',
-      page_lang: 'sv'
-    },
-    syllabusLink: { label: 'Kursplan', noAddedDoc: 'Ingen kursplan tillagd' },
-    analysisLink: { label: 'Kursanalys', noAddedDoc: 'Ingen kursanalys tillagd' },
-    memoLink: { label: 'Kurs-PM', noAddedDoc: 'Inget kurs-PM tillagt' },
-    noCourseAnalysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+
+    no_course_analysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+    no_added: 'Ingen information tillagd',
+
+    syllabusLink: { header: 'Kursplan', no_added_doc: 'Ingen kursplan tillagd' },
+    analysisLink: { header: 'Kursanalys', no_added_doc: 'Ingen kursanalys tillagd' },
+    memoLink: { header: 'Kurs-PM', no_added_doc: 'Inget kurs-PM tillagt' },
+
     courseShortSemester: {
       1: 'VT',
       2: 'HT'

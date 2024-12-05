@@ -28,9 +28,7 @@ module.exports = {
       'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
 
     example_message_key: 'This is an english translation of a label',
-
     button_label_example: 'Click me to send data to server!',
-
     field_text_example: 'Data to be sent to API',
 
     field_label_get_example: 'My modelData(Response from api call GET): ',
@@ -45,15 +43,6 @@ module.exports = {
     page_about_course: 'About course',
     page_course_programme: 'Course and programme directory',
     page_student: 'Student at KTH',
-    courseShortSemester: {
-      1: 'Spring',
-      2: 'Autumn'
-    },
-
-    popover: {
-      close: 'Close',
-      aria_label_info_icon: 'More information'
-    },
 
     archiveTitles: {
       archive: 'Archive',
@@ -85,86 +74,54 @@ module.exports = {
       analysis_in_canvas: 'See course analysis in Canvas.'
     }
   },
-  tableHeaders: {
-    infoManuallyEdited: 'Course data has been registered manually',
-    header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
-    aria_label_close_icon: 'Close',
+  analysisHeaders: {
+    info_manually_edited: 'Course data has been registered manually',
+
+    close_button_label: 'Close',
     aria_label_info_icon: 'More information',
 
     examiners: {
       header: 'Examiners',
-      popoverText:
+      popover_text:
         'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
-    },
-    examRounds: {
-      header: 'Examination',
-      popoverText:
-        'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before course selection.'
     },
     alterationText: {
       header: 'Changes planned for the next course offering',
-      popoverText: '',
-      noChanges: 'No changes planned.',
+      no_changes: 'No changes planned.',
       adminWeb: {
         header: 'Changes introduced for this course offering',
-        popoverText:
-          'Summarized changes made to the course before this particular course offering. The purpose of publishing changes made to the course is to show the improvements of the course over time. All changes documented to the course offerings gives an overview of the improvement steps of the course.',
-        noChanges: 'No changes were made.'
+        no_changes: 'No changes were made.'
       }
     },
     result: {
       header: 'Results on course',
       total: 'Total',
-      popoverText: ''
-    },
-    examinationGrade: {
-      header: 'Result',
-      popoverText:
-        'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination. Graduation rate is calculated based on information fetched from Ladok.'
+      popover_text:
+        'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination.'
     },
     responsibles: {
-      header: 'Coordinator',
-      popoverText:
-        'All the course coordinators for the all the administrative course instances that are included in the course offering. Course coordinators are administrated in Kopps.'
+      header: 'Coordinator'
     },
     registeredStudents: {
       header: 'Students',
-      popoverText:
+      popover_text:
         'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering. Admitted students that have not been registered shall not be counted. Neither shall registered students that have been re-registered from a previous administrative course instance counted. Number of registered students is calculated based on information fetched from Ladok.'
     },
-    syllabus: {
-      header: 'Course syllabus'
-    },
-    courseMemo: {
-      header: 'Course memo'
-    },
-    courseAnalysis: {
-      header: 'Course analysis'
-    },
-    noAdded: 'No information inserted',
-    commentExam: {
-      header: 'Examination comments',
-      popoverText: 'Examination comments for the course offering examination.'
-    },
-    programmeCodes: { header: 'Compulsory within programme', popoverText: '' },
+    programmeCodes: { header: 'Compulsory within programme' },
     analysisName: {
       header: 'The course analysis applies to following course offerings',
-      popoverText:
+      popover_text:
         'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
     },
-    noCourseAnalysis:
+
+    no_course_analysis:
       'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
-    extra_dates_and_comments: {
-      noAdded: 'No information inserted',
-      publishedDate: 'Published first time',
-      changedAfterPublishedDate: 'Last time changed',
-      commentChange: 'Comments to changes in course data or course analysis after publishing',
-      no_date_last_changed: 'No changes since first published.',
-      page_lang: 'en'
-    },
-    syllabusLink: { label: 'Course syllabus', noNoAddedDoc: 'No course syllabus added' },
-    analysisLink: { label: 'Course analysis', noAddedDoc: 'No course analysis added' },
-    memoLink: { label: 'Course memo', noAddedDoc: 'No course memo added' },
+    no_added: 'No information inserted',
+
+    syllabusLink: { header: 'Course syllabus', no_added_doc: 'No course syllabus added' },
+    analysisLink: { header: 'Course analysis', no_added_doc: 'No course analysis added' },
+    memoLink: { header: 'Course memo', no_added_doc: 'No course memo added' },
+
     courseShortSemester: {
       1: 'Spring',
       2: 'Autumn'

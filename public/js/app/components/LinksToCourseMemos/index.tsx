@@ -56,15 +56,14 @@ const LinksToCourseMemos: React.FC<{
   const [roundsWithoutMemo, roundsWithMemo] = groupApplicationCodesByMemoStatus(memos, applicationCodes)
   const [pdfMemos, webMemos] = getUniqueMemos(memos, roundsWithMemo)
 
-  const translate = i18n.messages[userLang === 'en' ? 0 : 1]
-  const { memoLink, courseShortSemester } = translate.tableHeaders
-  const { label, noAddedDoc } = memoLink
+  const { memoLink, courseShortSemester } = i18n.messages[userLang === 'en' ? 0 : 1]?.analysisHeaders
+  const { header, no_added_doc: noAddedDoc } = memoLink
 
   const semesterLabel = courseShortSemester[semester.slice(-1)]
   const year = semester.slice(0, 4)
   const offeringIds = applicationCodes.split(',').join('-')
   const courseOfferingName = `${semesterLabel} ${year}-${offeringIds}`
-  const memoTitle = `${label} ${courseCode} ${courseOfferingName}`
+  const memoTitle = `${header} ${courseCode} ${courseOfferingName}`
   const cleanHostUrl = hostUrl.endsWith('/') ? hostUrl.slice(0, -1) : hostUrl
 
   return (

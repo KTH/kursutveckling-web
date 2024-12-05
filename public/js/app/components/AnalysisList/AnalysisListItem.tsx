@@ -30,50 +30,50 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
   } = analysis
 
   const {
-    responsibles: responsiblesHeader,
-    examiners: examinersHeader,
-    registeredStudents: registeredStudentsHeader,
-    syllabus: syllabusHeader,
-    courseMemo: courseMemoHeader,
-    programmeCodes: programmeCodesHeader,
-    courseAnalysis: courseAnalysisHeader,
-    alterationText: alterationTextHeader,
-    result: resultHeader,
-    noAdded,
-    infoManuallyEdited
-  } = i18n.messages[userLang === 'en' ? 0 : 1].tableHeaders
+    responsibles: responsiblesHeaderObj,
+    examiners: examinersHeaderObj,
+    registeredStudents: registeredStudentsHeaderObj,
+    syllabusLink: syllabusHeaderObj,
+    memoLink: memoLinkHeaderObj,
+    programmeCodes: programmeCodesHeaderObj,
+    analysisLink: analysisLinkHeaderObj,
+    alterationText: alterationTextHeaderObj,
+    result: resultHeaderObj,
+    no_added,
+    info_manually_edited
+  } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
 
   const RenderDetails = () => (
     <>
       <Row className="mb-4">
         <GridCell
-          cellId={`${_id}-responsibles`}
-          header={responsiblesHeader.header}
-          content={responsibles || <i>{noAdded}</i>}
+          id={`${_id}-responsibles`}
+          header={responsiblesHeaderObj.header}
+          content={responsibles || <i>{no_added}</i>}
         />
-        <GridCell cellId={`${_id}-examiners`} header={examinersHeader.header} content={examiners || <i>{noAdded}</i>} />
+        <GridCell id={`${_id}-examiners`} header={examinersHeaderObj.header} content={examiners || <i>{no_added}</i>} />
         <GridCell
-          cellId={`${_id}-registeredStudents`}
-          header={registeredStudentsHeader.header}
-          content={registeredStudents || <i>{noAdded}</i>}
-          popoverText={registeredStudentsHeader.popoverText}
+          id={`${_id}-registeredStudents`}
+          header={registeredStudentsHeaderObj.header}
+          content={registeredStudents || <i>{no_added}</i>}
+          popoverText={registeredStudentsHeaderObj.popover_text}
         />
       </Row>
       <Row className="mb-4">
         <GridCell
-          cellId={`${_id}-syllabus`}
-          header={syllabusHeader.header}
+          id={`${_id}-syllabusLink`}
+          header={syllabusHeaderObj.header}
           content={<LinkToValidSyllabusPdf semester={semester} />}
         />
         <GridCell
-          cellId={`${_id}-courseMemo`}
-          header={courseMemoHeader.header}
+          id={`${_id}-memoLink`}
+          header={memoLinkHeaderObj.header}
           content={<LinksToCourseMemos semester={semester} applicationCodes={applicationCodes} />}
         />
         <GridCell
-          cellId={`${_id}-programmeCodes`}
-          header={programmeCodesHeader.header}
-          content={programmeCodes || <i>{noAdded}</i>}
+          id={`${_id}-programmeCodes`}
+          header={programmeCodesHeaderObj.header}
+          content={programmeCodes || <i>{no_added}</i>}
         />
       </Row>
     </>
@@ -86,8 +86,8 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
       <>
         <Row className="mb-4">
           <GridCell
-            cellId={`${_id}-courseAnalysis`}
-            header={courseAnalysisHeader.header}
+            id={`${_id}-analysisLink`}
+            header={analysisLinkHeaderObj.header}
             content={
               <LinkToCourseAnalysis
                 analysisName={analysisName}
@@ -97,16 +97,16 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
             }
           />
           <GridCell
-            cellId={`${_id}-alterationText`}
-            header={alterationTextHeader.adminWeb.header}
-            content={alterationText || alterationTextHeader.adminWeb.noChanges}
+            id={`${_id}-alterationText`}
+            header={alterationTextHeaderObj.adminWeb.header}
+            content={alterationText || alterationTextHeaderObj.adminWeb.no_changes}
             md="8"
           />
         </Row>
         {(!analysis.registeredStudentsFromLadok || !analysis.examinationGradeFromLadok) && (
           <div className="inline-flex" lang={userLang}>
             <p className="icon-asterisk-black" />
-            <p>{infoManuallyEdited}</p>
+            <p>{info_manually_edited}</p>
           </div>
         )}
       </>
@@ -117,8 +117,8 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
     <div className="analysis-list-item">
       <h3 className="analysis-name">{analysisName}</h3>
       <AlterationTextBox
-        header={alterationTextHeader.header}
-        htmlContent={isCanvasAnalysis(analysis) ? alterationText : alterationTextHeader.noChanges}
+        header={alterationTextHeaderObj.header}
+        htmlContent={isCanvasAnalysis(analysis) ? alterationText : alterationTextHeaderObj.no_changes}
       />
       <Row>
         <Col md="9">
@@ -127,10 +127,10 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
         </Col>
         <Col md="3">
           <GridCell
-            cellId={`${_id}-result`}
-            header={resultHeader.header}
-            content={<ResultsSectionContent subHeader={resultHeader.total} analysis={analysis} />}
-            popoverText={resultHeader.popoverText}
+            id={`${_id}-result`}
+            header={resultHeaderObj.header}
+            content={<ResultsSectionContent subHeader={resultHeaderObj.total} analysis={analysis} />}
+            popoverText={resultHeaderObj.popover_text}
             md="12"
           />
         </Col>
