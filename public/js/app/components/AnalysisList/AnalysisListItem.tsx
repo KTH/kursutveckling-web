@@ -6,16 +6,14 @@ import LinkToCourseAnalysis from '../LinkToCourseAnalysis'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
 import AlterationTextBox from './AlterationTextBox'
 import GridCell from './GridCell'
-import ResultsSectionContent from './ResultsSectionContent'
+import ResultsSection from './ResultsSection'
 import { RoundAnalysisCanvas, RoundAnalysisAdminWeb } from './types'
 import { isCanvasAnalysis } from './utils'
 import i18n from '../../../../../i18n'
 
-interface AnalysisListItemProps {
+const AnalysisListItem: React.FC<{
   analysis: RoundAnalysisCanvas | RoundAnalysisAdminWeb
-}
-
-const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
+}> = ({ analysis }) => {
   const [{ userLang }] = useWebContext()
   const {
     _id,
@@ -43,7 +41,7 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
     info_manually_edited
   } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
 
-  const RenderDetails = () => (
+  const CourseDetailsSection = () => (
     <>
       <Row className="mb-4">
         <GridCell
@@ -79,7 +77,7 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
     </>
   )
 
-  const RenderNonCanvasDetails = () => {
+  const NonCanvasCourseDetailsSection = () => {
     if (isCanvasAnalysis(analysis)) return null
 
     return (
@@ -122,17 +120,11 @@ const AnalysisListItem: React.FC<AnalysisListItemProps> = ({ analysis }) => {
       />
       <Row>
         <Col md="9">
-          <RenderDetails />
-          <RenderNonCanvasDetails />
+          <CourseDetailsSection />
+          <NonCanvasCourseDetailsSection />
         </Col>
         <Col md="3">
-          <GridCell
-            id={`${_id}-result`}
-            header={resultHeaderObj.header}
-            content={<ResultsSectionContent subHeader={resultHeaderObj.total} analysis={analysis} />}
-            popoverText={resultHeaderObj.popover_text}
-            md="12"
-          />
+          <ResultsSection analysis={analysis} />
         </Col>
       </Row>
     </div>

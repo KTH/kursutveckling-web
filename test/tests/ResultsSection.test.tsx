@@ -1,20 +1,25 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import ResultsSectionContent from '../../public/js/app/components/AnalysisList/ResultsSectionContent'
+import ResultsSection from '../../public/js/app/components/AnalysisList/ResultsSection'
 import { isCanvasAnalysis } from '../../public/js/app/components/AnalysisList/utils'
 import { RoundAnalysisAdminWeb, RoundAnalysisCanvas } from '../../public/js/app/components/AnalysisList/types'
 import {
   transformedAnalysisDataFromCanvas,
   transformedAnalysisDataFromAdminWeb
 } from '../mocks/transformedAnalysisData'
+import { WebContextProvider } from '../../public/js/app/context/WebContext'
+import mockAdminStore from '../mocks/mockAdminStore'
 
 // Mock the isCanvasAnalysis utility
 jest.mock('../../public/js/app/components/AnalysisList/utils', () => ({
   isCanvasAnalysis: jest.fn()
 }))
 
-describe('ResultsSectionContent', () => {
+const contextSV = mockAdminStore('sv')
+const contextEN = mockAdminStore('en')
+
+describe('ResultsSection', () => {
   // Get the first mocked canvas analysis
   const mockCanvasAnalysis =
     (Object.values(transformedAnalysisDataFromCanvas).find(
@@ -30,9 +35,13 @@ describe('ResultsSectionContent', () => {
   it('renders grading distribution for Canvas analysis', () => {
     ;(isCanvasAnalysis as unknown as jest.Mock).mockReturnValue(true)
 
-    render(<ResultsSectionContent subHeader="Results" analysis={mockCanvasAnalysis} />)
+    render(
+      <WebContextProvider configIn={contextSV}>
+        <ResultsSection analysis={mockCanvasAnalysis} />
+      </WebContextProvider>
+    )
 
-    expect(screen.getByText('Results')).toBeInTheDocument()
+    expect(screen.getByText('Resultat på kurs')).toBeInTheDocument()
 
     expect(screen.getByText('2 (67%)')).toBeInTheDocument() // Sum of grades excluding F and FX
     expect(screen.getByText('P')).toBeInTheDocument()
@@ -44,10 +53,14 @@ describe('ResultsSectionContent', () => {
   it('renders examination grade for Admin Web analysis', () => {
     ;(isCanvasAnalysis as unknown as jest.Mock).mockReturnValue(false)
 
-    render(<ResultsSectionContent subHeader="Results" analysis={mockAdminWebAnalysis} />)
+    render(
+      <WebContextProvider configIn={contextEN}>
+        <ResultsSection analysis={mockAdminWebAnalysis} />
+      </WebContextProvider>
+    )
 
     // Verify sub-header
-    expect(screen.getByText('Results')).toBeInTheDocument()
+    expect(screen.getByText('Results on course')).toBeInTheDocument()
 
     // Verify examination grade
     expect(screen.getByText('12%*')).toBeInTheDocument()
