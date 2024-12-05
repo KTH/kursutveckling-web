@@ -47,6 +47,10 @@ span {
   @include typography.font-default;
 }
 
+.btn-info-modal {
+  cursor: pointer;
+}
+
 .analysis-list-item {
   margin-bottom: space.$space-64;
 
@@ -55,10 +59,10 @@ span {
     margin-bottom: space.$space-16;
   }
 
-    .grid-cell {
-      display: flex;
-      flex-direction: column;
-    }
+  .grid-cell {
+    display: flex;
+    flex-direction: column;
+  }
 
   .cell-header {
     display: flex;
@@ -174,9 +178,11 @@ span {
 .table-for-each-course-offering {
   &.table {
     margin-bottom: 6px;
+
     th {
       text-align: center;
     }
+
     //Table elements  visibility for desktop
     td {
       .mobile-header-popovers {
@@ -195,24 +201,29 @@ body.use-personal-menu {
 /*Table cells try to give it more stable width*/
 /* ['responsibles', 'examiners', 'registeredStudents', 'examRounds', 'examinationGrade', 'alterationText']*/
 @media (min-width: 768px) {
+
   .responsibles,
   .examiners {
     min-width: 9em;
     max-width: 9em;
   }
+
   .examRounds {
     min-width: 9em;
     max-width: 9em;
   }
+
   .registeredStudents {
     min-width: 8em;
     max-width: 8em;
   }
+
   .examinationGrade {
     min-width: 7em;
     max-width: 7em;
   }
 }
+
 .alterationText {
   word-wrap: break-word;
 }
@@ -224,8 +235,10 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 @media only screen and (max-width: 767px) {
+
   /* Force table to not be like tables anymore */
   .table-for-each-course-offering {
+
     &.table table,
     thead,
     tbody,
@@ -252,6 +265,7 @@ and also iPads specifically.
       border: none;
       border-bottom: 1px solid #fff;
       position: relative;
+
       span.mobile-header-popovers {
         background: old-kth-style-colors.$grey;
         color: #fff;
@@ -262,6 +276,7 @@ and also iPads specifically.
         margin: -0.7em -0.7em 0.3em -0.7em;
         padding: 0.5em;
         vertical-align: bottom;
+
         label {
           font-weight: 500;
           line-height: 1.2em;
@@ -269,6 +284,7 @@ and also iPads specifically.
           white-space: normal;
           width: 100%;
         }
+
         button {
           align-self: flex-start;
           padding-right: 1em;
@@ -292,11 +308,11 @@ and also iPads specifically.
 }
 
 .semester {
-    width: 25%;
+  width: 25%;
 }
 
 .heading {
-    width: 37.5%;
+  width: 37.5%;
 }
 
 .inline-information {
