@@ -1,4 +1,4 @@
-import transformedAnalysisData from './transformedAnalysisData'
+import { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromAdminWeb } from './transformedAnalysisData'
 import transformedKoppsData from './transformedKoppsData'
 
 const mockAdminStore = (lang = 'en') => {
@@ -6,7 +6,8 @@ const mockAdminStore = (lang = 'en') => {
     userLang: lang,
     courseCode: 'SF1624',
     courseKoppsData: transformedKoppsData[lang],
-    analysisData: transformedAnalysisData,
+    analysisDataAdminWeb: transformedAnalysisDataFromAdminWeb,
+    analysisDataCanvas: transformedAnalysisDataFromCanvas,
     browserConfig: { storageUri: '', hostUrl: '' },
     miniMemosPdfAndWeb: { courseCode: 'SF1624', miniMemos: {} }
   }

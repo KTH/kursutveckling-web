@@ -21,20 +21,105 @@
 @use '~@kth/style/scss/components/local-navigation.scss';
 @use '~@kth/style/scss/components/kpm.scss';
 
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+
 @use '~kth-style/public/sass/variables/_colors.scss' as old-kth-style-colors;
 
 @import 'shared';
 
+h2 {
+  @include typography.font-heading-l;
+}
+
+h3 {
+  @include typography.font-heading-m;
+}
+
+h4 {
+  @include typography.font-heading-s;
+}
+
+h5 {
+  @include typography.font-heading-xs;
+}
+
+span {
+  @include typography.font-default;
+}
+
+.btn-info-modal {
+  cursor: pointer;
+}
+
+.analysis-list-item {
+  margin-bottom: space.$space-64;
+
+  .analysis-name {
+    margin-top: 0;
+    margin-bottom: space.$space-16;
+  }
+
+  .grid-cell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cell-header {
+    display: flex;
+    align-items: center;
+
+    margin: space.$space-8;
+    margin-left: 0 !important;
+  }
+
+  .link {
+    display: block;
+  }
+}
+
+
+.popover {
+  width: 30rem;
+  max-width: 97vw;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  border-color: var(--bs-border-color-translucent);
+
+  .popover-header {
+    font-weight: 600;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: colors.$color-white;
+    padding: space.$space-16;
+    border-bottom: 1px solid colors.$color-gray-dark;
+
+    .kth-icon-button.close::before {
+      background-color: colors.$color-black;
+    }
+  }
+
+  .popover-body {
+    @include typography.font-default;
+    padding: space.$space-16;
+  }
+
+  .popover-footer {
+    display: flex;
+    justify-content: right;
+
+    padding: space.$space-16;
+    border-top: 1px solid colors.$color-gray-dark;
+
+    .kth-button {
+      @include typography.font-default;
+    }
+  }
+}
+
 //****ICONS*****//
 
-%icon-for-table-header {
-  background-image: url("data:image/svg+xml,%3c%3fxml version='1.0' encoding='UTF-8'%3f%3e%3csvg id='a' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath d='M10%2c0C4.48%2c0%2c0%2c4.48%2c0%2c10s4.48%2c10%2c10%2c10%2c10-4.48%2c10-10S15.52%2c0%2c10%2c0Z' style='fill:white%3b'/%3e%3crect x='9' y='9' width='2' height='6' style='fill:%2365656c%3b'/%3e%3crect x='9.03' y='5.03' width='2' height='2' style='fill:%2365656c%3b'/%3e%3c/svg%3e");
-  height: 1.2em;
-  width: 1.2em;
-  margin-left: 0;
-  vertical-align: middle;
-  visibility: visible;
-}
 
 .icon-asterisk-black {
   background-image: url('https://app.kth.se/style/static/kth-style/img/kth-style/icons/asterisk-black.svg');
@@ -89,43 +174,15 @@
   }
 }
 
-//Collapsible "Additional information"
-.extra-info {
-  div {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0.5em;
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
-  @media (min-width: 768px) {
-    span.extra-kopps-info-from-kutv-api {
-      align-self: flex-start;
-      flex-basis: 60%;
-      span {
-        margin: 0;
-      }
-    }
-    span:last-of-type {
-      align-self: flex-start;
-      height: 100%;
-      margin-left: 3em;
-      span {
-        margin: 0;
-        padding: 0;
-      }
-    }
-  }
-}
-
 //===TABLE===
 .table-for-each-course-offering {
   &.table {
     margin-bottom: 6px;
+
     th {
       text-align: center;
     }
+
     //Table elements  visibility for desktop
     td {
       .mobile-header-popovers {
@@ -141,33 +198,32 @@ body.use-personal-menu {
   }
 }
 
-button.desktop.btn-info-modal,
-button.mobile.btn-info-modal {
-  @extend %icon-for-table-header;
-  min-height: 0.75rem;
-}
-
 /*Table cells try to give it more stable width*/
 /* ['responsibles', 'examiners', 'registeredStudents', 'examRounds', 'examinationGrade', 'alterationText']*/
 @media (min-width: 768px) {
+
   .responsibles,
   .examiners {
     min-width: 9em;
     max-width: 9em;
   }
+
   .examRounds {
     min-width: 9em;
     max-width: 9em;
   }
+
   .registeredStudents {
     min-width: 8em;
     max-width: 8em;
   }
+
   .examinationGrade {
     min-width: 7em;
     max-width: 7em;
   }
 }
+
 .alterationText {
   word-wrap: break-word;
 }
@@ -179,8 +235,10 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 @media only screen and (max-width: 767px) {
+
   /* Force table to not be like tables anymore */
   .table-for-each-course-offering {
+
     &.table table,
     thead,
     tbody,
@@ -207,6 +265,7 @@ and also iPads specifically.
       border: none;
       border-bottom: 1px solid #fff;
       position: relative;
+
       span.mobile-header-popovers {
         background: old-kth-style-colors.$grey;
         color: #fff;
@@ -217,6 +276,7 @@ and also iPads specifically.
         margin: -0.7em -0.7em 0.3em -0.7em;
         padding: 0.5em;
         vertical-align: bottom;
+
         label {
           font-weight: 500;
           line-height: 1.2em;
@@ -224,6 +284,7 @@ and also iPads specifically.
           white-space: normal;
           width: 100%;
         }
+
         button {
           align-self: flex-start;
           padding-right: 1em;
@@ -247,11 +308,11 @@ and also iPads specifically.
 }
 
 .semester {
-    width: 25%;
+  width: 25%;
 }
 
 .heading {
-    width: 37.5%;
+  width: 37.5%;
 }
 
 .inline-information {
@@ -271,27 +332,4 @@ and also iPads specifically.
   padding: 0;
   height: 1.75rem;
   color: colors.$color-gray-medium;
-}
-
-.popover {
-  --bs-popover-header-padding-y: 0;
-  --bs-popover-header-padding-x: 0.75rem;
-  --bs-popover-body-padding-y: 0.5rem;
-  --bs-popover-body-padding-x: 0.75rem;
-
-  .popover-header {
-    @include typography.font-heading-xs;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 0;
-
-    span {
-      padding: 0.5rem 0;
-    }
-    button {
-      flex-shrink: 0;
-    }
-  }
 }
