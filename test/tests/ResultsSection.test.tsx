@@ -43,7 +43,7 @@ describe('ResultsSection', () => {
 
     expect(screen.getByText('Resultat på kurs')).toBeInTheDocument()
 
-    expect(screen.getByText('3')).toBeInTheDocument() // Sum of grades excluding F and FX
+    expect(screen.getByText('3')).toBeInTheDocument()
     expect(screen.getByText('P')).toBeInTheDocument()
     expect(screen.getByText('2')).toBeInTheDocument()
     expect(screen.getByText('F')).toBeInTheDocument()
