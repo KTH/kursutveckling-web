@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Button, Popover, PopoverBody, PopoverHeader } from 'reactstrap'
 import i18n from '../../../../../i18n'
 import { useWebContext } from '../../context/WebContext'
@@ -9,6 +9,7 @@ const ControlledPopover: React.FC<{ id: string; header: string; popoverText: str
   popoverText
 }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
+  const popoverRef = useRef<HTMLDivElement | null>(null)
 
   const togglePopover = () => setPopoverOpen((prev) => !prev)
 
@@ -18,10 +19,33 @@ const ControlledPopover: React.FC<{ id: string; header: string; popoverText: str
 
   const triggerId = `popover-${id}`
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (!popoverRef.current?.contains(target) && !document.getElementById(triggerId)?.contains(target)) {
+        setPopoverOpen(false);
+      }
+    };
+  
+    if (popoverOpen) document.addEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [popoverOpen, triggerId]);
+
   return (
     <>
-      <Button id={triggerId} className="btn-info-modal" onClick={togglePopover} aria-label={ariaLabel} />
-      <Popover placement="left" isOpen={popoverOpen} target={triggerId}>
+      <Button
+        id={triggerId}
+        className="btn-info-modal"
+        onClick={togglePopover}
+        aria-label={ariaLabel}
+      />
+      <Popover
+        placement="left"
+        isOpen={popoverOpen}
+        target={triggerId}
+        innerRef={popoverRef}
+      >
         <PopoverHeader>
           {header}
           <Button className="kth-icon-button close" onClick={togglePopover} />
