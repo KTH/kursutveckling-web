@@ -99,7 +99,8 @@ module.exports = {
     gradingDistribution: {
       header: 'Results on course',
       total: 'Total number',
-      popover_text: ''
+      popover_text:
+        'Total number of first-time registered students with reported results for the course offering, together with a distribution of grades among these students.'
     },
     responsibles: {
       header: 'Coordinator'
@@ -107,7 +108,7 @@ module.exports = {
     registeredStudents: {
       header: 'Students',
       popover_text:
-        'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering. Admitted students that have not been registered shall not be counted. Neither shall registered students that have been re-registered from a previous administrative course instance counted. Number of registered students is calculated based on information fetched from Ladok.'
+        'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering.'
     },
     programmeCodes: { header: 'Compulsory within programme' },
     analysisName: {

@@ -58,7 +58,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
 
   test('Get No information inserted if no data changes in course data or course analysis after publishing if it renders', async () => {
     const changeDates = getAllByText('No information inserted')
-    expect(changeDates.length).toBe(2)
+    expect(changeDates.length).toBe(16)
   })
 
   test('Check links if it renders', async () => {
@@ -166,8 +166,10 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(examiner.length).toBe(10)
     const students = getAllByText('Students')
     expect(students.length).toBe(10)
-    const results = getAllByText('Results on course')
-    expect(results.length).toBe(10)
+    const examinationGrade = getAllByText('Examination grade')
+    expect(examinationGrade.length).toBe(8)
+    const gradingDistribution = getAllByText('Results on course')
+    expect(gradingDistribution.length).toBe(2)
     const changes = getAllByText('Changes introduced for this course offering')
     expect(changes.length).toBe(8)
     const changesNext = getAllByText('Changes planned for the next course offering')

@@ -43,7 +43,7 @@ describe('ResultsSection', () => {
 
     expect(screen.getByText('Resultat på kurs')).toBeInTheDocument()
 
-    expect(screen.getByText('2 (67%)')).toBeInTheDocument() // Sum of grades excluding F and FX
+    expect(screen.getByText('3')).toBeInTheDocument() // Sum of grades excluding F and FX
     expect(screen.getByText('P')).toBeInTheDocument()
     expect(screen.getByText('2')).toBeInTheDocument()
     expect(screen.getByText('F')).toBeInTheDocument()
@@ -60,7 +60,7 @@ describe('ResultsSection', () => {
     )
 
     // Verify sub-header
-    expect(screen.getByText('Results on course')).toBeInTheDocument()
+    expect(screen.getByText('Examination grade')).toBeInTheDocument()
 
     // Verify examination grade
     expect(screen.getByText('12%*')).toBeInTheDocument()

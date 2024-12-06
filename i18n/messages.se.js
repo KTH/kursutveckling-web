@@ -96,7 +96,7 @@ module.exports = {
         'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
     },
     gradingDistribution: {
-      header: 'Resultat på kursen',
+      header: 'Resultat på kurs',
       total: 'Totalt antal',
       popover_text:
         'Totalt antal förstagångsregistrerade studenter med rapporterade resultat för kurstillfället, samt en fördelning av betyg bland dessa studenter.'
@@ -106,8 +106,7 @@ module.exports = {
     },
     registeredStudents: {
       header: 'Studenter',
-      popover_text:
-        'Antal förstagångsregistrerade på de kurstillfällen som ingår i kursomgången. Studenter som antagits men som inte registrerats ska inte räknas in. Inte heller registrerade studenter som omregistrerats från ett annat kurstillfälle på samma kurs ska räknas in.'
+      popover_text: 'Antal förstagångsregistrerade på de kurstillfällen som ingår i kursomgången.'
     },
     programmeCodes: { header: 'Obligatorisk inom program' },
     analysisName: {
