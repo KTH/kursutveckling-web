@@ -99,16 +99,14 @@ module.exports = {
     gradingDistribution: {
       header: 'Results on course',
       total: 'Total number',
-      popover_text:
-        'Total number of first-time registered students with reported results for the course offering, together with a distribution of grades among these students.'
+      popover_text: 'Number of students with reported results for the course together with grade distribution.'
     },
     responsibles: {
       header: 'Coordinator'
     },
     registeredStudents: {
       header: 'Students',
-      popover_text:
-        'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering.'
+      popover_text: 'Number of first-time registered students in this course offering.'
     },
     programmeCodes: { header: 'Compulsory within programme' },
     analysisName: {
