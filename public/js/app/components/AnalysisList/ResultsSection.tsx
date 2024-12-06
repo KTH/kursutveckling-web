@@ -14,69 +14,61 @@ const ResultsSection: React.FC<ResultsSectionContentProps> = ({ analysis }) => {
   const { _id } = analysis
 
   const [{ userLang }] = useWebContext()
-  const { result: resultHeaderObj } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
+  const { gradingDistribution: gradingDistributionHeaderObj, examinationGrade: examinationGradeHeaderObj } =
+    i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
 
   const renderGradingDistribution = (analysis: RoundAnalysisCanvas) => {
     const { totalReportedResults, gradingDistribution } = analysis
-
-    const sumNonFailedResults = Object.entries(gradingDistribution)
-      .filter(([key]) => key !== 'F' && key !== 'FX')
-      .reduce((total, [, value]) => total + value, 0)
-
-    const resultsPercentage = sumNonFailedResults ? Math.round((sumNonFailedResults / totalReportedResults) * 100) : 0
-
     return (
-      <>
-        <Row className="mb-3">
-          <Col xs="3">
-            <b>{resultHeaderObj.total}</b>
-          </Col>
-          <Col xs="9">
-            <span>{`${sumNonFailedResults} (${resultsPercentage}%)`}</span>
-          </Col>
-        </Row>
-        {Object.entries(gradingDistribution).map(([grade, count]) => (
-          <Row key={grade}>
-            <Col xs="3">
-              <b>{grade}</b>
-            </Col>
-            <Col xs="9">
-              <span>{count}</span>
-            </Col>
-          </Row>
-        ))}
-      </>
+      <GridCell
+        id={`${_id}-gradingDistribution`}
+        header={gradingDistributionHeaderObj.header}
+        content={
+          <>
+            <Row className="mb-3">
+              <Col xs="5">{gradingDistributionHeaderObj.total}</Col>
+              <Col xs="7">
+                <span>{totalReportedResults}</span>
+              </Col>
+            </Row>
+            {Object.entries(gradingDistribution).map(([grade, count]) => (
+              <Row key={grade}>
+                <Col xs="2">{grade}</Col>
+                <Col xs="8">
+                  <span>{count}</span>
+                </Col>
+              </Row>
+            ))}
+          </>
+        }
+        popoverText={gradingDistributionHeaderObj.popover_text}
+        md="12"
+      />
     )
   }
 
   const renderExaminationGrade = (analysis: RoundAnalysisAdminWeb) => {
     const { examinationGrade } = analysis
-
     return (
-      <Row className="mb-3">
-        <Col xs="3">
-          <b>{resultHeaderObj.total}</b>
-        </Col>
-        <Col xs="9">
-          <span>{examinationGrade}</span>
-        </Col>
-      </Row>
+      <GridCell
+        id={`${_id}-examinationGrade`}
+        header={examinationGradeHeaderObj.header}
+        content={
+          <Row className="mb-3">
+            <Col>
+              <span>{examinationGrade}</span>
+            </Col>
+          </Row>
+        }
+        popoverText={examinationGradeHeaderObj.popover_text}
+        md="12"
+      />
     )
   }
 
-  return (
-    <GridCell
-      id={`${_id}-result`}
-      header={resultHeaderObj.header}
-      content={
-        isCanvasAnalysis(analysis)
-          ? renderGradingDistribution(analysis as RoundAnalysisCanvas)
-          : renderExaminationGrade(analysis as RoundAnalysisAdminWeb)
-      }
-      popoverText={resultHeaderObj.popover_text}
-      md="12"
-    />
-  )
+  return isCanvasAnalysis(analysis)
+    ? renderGradingDistribution(analysis as RoundAnalysisCanvas)
+    : renderExaminationGrade(analysis as RoundAnalysisAdminWeb)
 }
 
 export default ResultsSection

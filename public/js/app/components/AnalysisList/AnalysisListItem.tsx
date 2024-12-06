@@ -36,7 +36,7 @@ const AnalysisListItem: React.FC<{
     programmeCodes: programmeCodesHeaderObj,
     analysisLink: analysisLinkHeaderObj,
     alterationText: alterationTextHeaderObj,
-    result: resultHeaderObj,
+    alterationTextAdminWeb: alterationTextAdminWebHeaderObj,
     no_added,
     info_manually_edited
   } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
@@ -80,6 +80,9 @@ const AnalysisListItem: React.FC<{
   const NonCanvasCourseDetailsSection = () => {
     if (isCanvasAnalysis(analysis)) return null
 
+    const {registeredStudentsFromLadok, examinationGradeFromLadok} = analysis
+    const hasManuallyEditedInfo = !registeredStudentsFromLadok || !examinationGradeFromLadok
+
     return (
       <>
         <Row className="mb-4">
@@ -95,13 +98,13 @@ const AnalysisListItem: React.FC<{
             }
           />
           <GridCell
-            id={`${_id}-alterationText`}
-            header={alterationTextHeaderObj.adminWeb.header}
-            content={alterationText || alterationTextHeaderObj.adminWeb.no_changes}
+            id={`${_id}-alterationTextAdminWeb`}
+            header={alterationTextAdminWebHeaderObj.header}
+            content={alterationText ||  <i>{no_added}</i>}
             md="8"
           />
         </Row>
-        {(!analysis.registeredStudentsFromLadok || !analysis.examinationGradeFromLadok) && (
+        {hasManuallyEditedInfo && (
           <div className="inline-flex" lang={userLang}>
             <p className="icon-asterisk-black" />
             <p>{info_manually_edited}</p>
@@ -116,7 +119,7 @@ const AnalysisListItem: React.FC<{
       <h3 className="analysis-name">{analysisName}</h3>
       <AlterationTextBox
         header={alterationTextHeaderObj.header}
-        htmlContent={isCanvasAnalysis(analysis) ? alterationText : alterationTextHeaderObj.no_changes}
+        htmlContent={isCanvasAnalysis(analysis) ? alterationText : `<i>${no_added}</i>`}
       />
       <Row>
         <Col md="9">

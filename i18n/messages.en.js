@@ -86,18 +86,20 @@ module.exports = {
         'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
     },
     alterationText: {
-      header: 'Changes planned for the next course offering',
-      no_changes: 'No changes planned.',
-      adminWeb: {
-        header: 'Changes introduced for this course offering',
-        no_changes: 'No changes were made.'
-      }
+      header: 'Changes planned for the next course offering'
     },
-    result: {
-      header: 'Results on course',
-      total: 'Total',
+    alterationTextAdminWeb: {
+      header: 'Changes introduced for this course offering'
+    },
+    examinationGrade: {
+      header: 'Examination grade',
       popover_text:
         'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination.'
+    },
+    gradingDistribution: {
+      header: 'Results on course',
+      total: 'Total number',
+      popover_text: ''
     },
     responsibles: {
       header: 'Coordinator'

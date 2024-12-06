@@ -85,19 +85,21 @@ module.exports = {
       popover_text: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
     },
     alterationText: {
-      header: 'Förändringar som införs till nästa kursomgång',
-      popover_text: '',
-      no_changes: 'Inga planerade förändringar.',
-      adminWeb: {
-        header: 'Förändringar som har införts till den här kursomgången',
-        no_changes: 'Inga förändringar gjordes.'
-      }
+      header: 'Förändringar som införs till nästa kursomgång'
     },
-    result: {
-      header: 'Resultat på kurs',
-      total: 'Totalt',
+    alterationTextAdminWeb: {
+      header: 'Förändringar som har införts till den här kursomgången'
+    },
+    examinationGrade: {
+      header: 'Examinationsgrad',
       popover_text:
         'Examinationsgrad är antal förstagångsregistrerade studenter som godkänts på hela kursomgången efter första examinationstillfället efter kursomgångensslut dividerat med antal förstagångsregistrerade på kursomgången. Examinationsgrad redovisas inte för respektive delmoment i examinationen. Examinationsgrad beräknas inte heller om efter efterföljande omtentor.'
+    },
+    gradingDistribution: {
+      header: 'Resultat på kursen',
+      total: 'Totalt antal',
+      popover_text:
+        'Totalt antal förstagångsregistrerade studenter med rapporterade resultat för kurstillfället, samt en fördelning av betyg bland dessa studenter.'
     },
     responsibles: {
       header: 'Kursansvarig'
