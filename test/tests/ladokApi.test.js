@@ -1,9 +1,9 @@
 const { getLadokCourseData } = require('../../server/apiCalls/ladokApi')
 const { mockRawLadokData } = require('../mocks/rawCourseData')
 import transformedLadokData from '../mocks/transformedLadokData'
-const { createApiClient } = require('om-kursen-ladok-client')
+const { createApiClient } = require('@kth/om-kursen-ladok-client')
 
-jest.mock('om-kursen-ladok-client')
+jest.mock('@kth/om-kursen-ladok-client')
 jest.mock('../../server/configuration', () => ({ server: {} }))
 
 describe('getLadokCourseData', () => {
