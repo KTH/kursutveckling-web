@@ -54,7 +54,6 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   return (
     <ActiveOrDisabledLink
-      ariaLabel={`PDF ${syllabusLabel}`}
       href={`${SYLLABUS_URL}${courseCode}-${syllabusPeriodStart}.pdf?lang=${userLang}`}
       linkTitle={syllabusLabel}
       className="pdf-link"

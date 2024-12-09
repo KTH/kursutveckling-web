@@ -92,34 +92,6 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
   })
 
-  test('Check if aria-label is correct for PDF links', async () => {
-    const links = screen.getAllByRole('link')
-    const linksWithAriaLabels = links.slice(3)
-
-    const expectedAriaLabels = [
-      // by each round
-      'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
-      'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
-      'PDF Course syllabus SF1624 ( Autumn 2019 -  )',
-      'PDF Course analysis CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 10 Sept 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis CMEDT1 ( Startdatum 2018-10-29, Svenska ): 4 Sept 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis CITEH1 ( Startdatum 2018-10-29, Svenska ): 11 Sept 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'PDF Course analysis TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 9 Oct 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'PDF Course analysis CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 8 Oct 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis CSAMH1 ( Startdatum 2009-01-12, Svenska ): 9 Sept 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis Med teknik ( Startdatum 2008-08-29, Svenska ): 3 Sept 2019',
-      'PDF Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'PDF Course analysis CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 8 Oct 2019'
-    ]
-    linksWithAriaLabels.forEach((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
-  })
-
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
     expect(links.length).toBe(21)

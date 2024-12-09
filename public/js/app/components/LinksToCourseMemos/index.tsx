@@ -69,12 +69,11 @@ const LinksToCourseMemos: React.FC<{
   return (
     <>
       {roundsWithoutMemo.map((applicationCode, index) => (
-        <ActiveOrDisabledLink key={index} ariaLabel={memoTitle} linkTitle={noAddedDoc} disabled />
+        <ActiveOrDisabledLink key={index} linkTitle={noAddedDoc} disabled />
       ))}
       {Object.entries(pdfMemos).map(([fileName]) => (
         <ActiveOrDisabledLink
           key={fileName}
-          ariaLabel={`PDF ${memoTitle}`}
           className="pdf-link"
           href={`${memoStorageUri}${fileName}`}
           linkTitle={memoTitle}
@@ -83,7 +82,6 @@ const LinksToCourseMemos: React.FC<{
       {Object.entries(webMemos).map(([endPoint]) => (
         <ActiveOrDisabledLink
           key={endPoint}
-          ariaLabel={memoTitle}
           href={`${cleanHostUrl}/kurs-pm/${courseCode}/${endPoint}`}
           linkTitle={memoTitle}
         />

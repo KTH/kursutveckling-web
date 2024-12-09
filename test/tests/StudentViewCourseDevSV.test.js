@@ -94,34 +94,6 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
   })
 
-  test('Check if aria-label is correct for PDF links', async () => {
-    const links = screen.getAllByRole('link')
-    const linksWithAriaLabels = links.slice(3)
-
-    const expectedAriaLabels = [
-      // by each round
-      'PDF Kursplan SF1624 ( HT 2019 -  )',
-      'PDF Kursplan SF1624 ( HT 2019 -  )',
-      'PDF Kursplan SF1624 ( HT 2019 -  )',
-      'PDF Kursanalys CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys CMEDT1 ( Startdatum 2018-10-29, Svenska ): 2019-09-04',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys CITEH1 ( Startdatum 2018-10-29, Svenska ): 2019-09-11',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 2019-10-09',
-      'PDF Kursplan SF1624 ( HT 2009 - VT 2010 )',
-      'PDF Kursanalys CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 2019-10-08',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys CSAMH1 ( Startdatum 2009-01-12, Svenska ): 2019-09-09',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys Med teknik ( Startdatum 2008-08-29, Svenska ): 2019-09-03',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 2019-10-08'
-    ]
-    linksWithAriaLabels.map((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
-  })
-
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
     const linkAddresses = [
