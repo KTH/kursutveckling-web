@@ -18,6 +18,9 @@ COPY ["server", "server"]
 COPY ["app.js", "app.js"]
 COPY ["build.sh", "build.sh"]
 COPY ["webpack.config.js", "webpack.config.js"]
+# Config for jest tester
+COPY ["babel.config.js", "babel.config.js"]
+COPY ["jest.config.js", "jest.config.js"]
 
 RUN chmod a+rx build.sh && \
     chown -R node:node /application

@@ -1,63 +1,58 @@
 import React from 'react'
-import Details from './Details'
-import DocumentLinksNav from './DocumentLinksNav'
-import TableWithCourseData from './TableWithCourseData'
+import AnalysisList from './AnalysisList'
+import i18n from '../../../../i18n'
+import { useWebContext } from '../context/WebContext'
 
-const SectionPerYear = ({ thisYearAnalyses, koppsData, year, tableLabels, userLang }) => {
-  const { koppsDataLang } = koppsData
-  const headerId = 'header-year' + year
+const sortBySemester = (analyses) => {
+  return analyses?.sort((a, b) => (b.semester > a.semester ? 1 : a.semester > b.semester ? -1 : 0))
+}
+
+const SectionPerYear = ({ year, thisYearAnalysesCanvas, thisYearAnalysesAdminWeb, noCourseAnalysisText }) => {
+  const headerId = `header-year-${year}`
   // Sort analyses, so fall semester courses come before spring semester courses
-  thisYearAnalyses.sort((firstEl, secondEl) =>
-    secondEl.semester > firstEl.semester ? 1 : firstEl.semester > secondEl.semester ? -1 : 0
-  )
-  return thisYearAnalyses.length === 0 ? (
-    <section aria-describedby={headerId}>
-      <h2 id={headerId}>{year}</h2>
-      <p>
-        <i>{tableLabels.no_course_analys}</i>
-      </p>
-    </section>
-  ) : (
-    thisYearAnalyses.map((thisOfferingAnalysis, index) => {
-      const { analysisName, _id: courseAnalysDataId } = thisOfferingAnalysis
-      return (
-        <section
-          className="course-data-for-round"
-          aria-describedby={'h3' + courseAnalysDataId}
-          key={'section-for-analys-' + courseAnalysDataId}
-        >
-          {index === 0 && <h2 id={headerId}>{year}</h2>}
-          <h3 id={'h3' + courseAnalysDataId}>{analysisName}</h3>
-          <DocumentLinksNav lang={koppsDataLang} translate={tableLabels} staticAnalysisInfo={thisOfferingAnalysis} />
+  const sortedAnalysesCanvas = sortBySemester(thisYearAnalysesCanvas)
+  const sortedAnalysesAdminWeb = sortBySemester(thisYearAnalysesAdminWeb)
 
-          <TableWithCourseData
-            thisAnalysisObj={thisOfferingAnalysis}
-            translate={tableLabels.table_headers_with_popup}
-          />
-          <div className="float-right inline-flex" lang={userLang}>
-            <p className="icon-asterisk-black" />
-            <p>{tableLabels.info_manually_edited}</p>
-          </div>
-          <Details thisAnalysisObj={thisOfferingAnalysis} translate={tableLabels} />
-        </section>
-      )
-    })
+  const hasNoAnalyses = sortedAnalysesAdminWeb?.length === 0 && sortedAnalysesCanvas?.length === 0
+
+  return (
+    <section aria-describedby={headerId}>
+      <h2 className="year-header" id={headerId}>
+        {year}
+      </h2>
+      {hasNoAnalyses ? (
+        <p>
+          <i>{noCourseAnalysisText}</i>
+        </p>
+      ) : (
+        <>
+          <AnalysisList analyses={sortedAnalysesCanvas} />
+          <AnalysisList analyses={sortedAnalysesAdminWeb} />
+        </>
+      )}
+    </section>
   )
 }
 
-const ListYears = ({ allYearsAnalysisDataObj, koppsData, pageTitles, tableHeaders, userLang }) => {
-  const yearsDescending = Object.keys(allYearsAnalysisDataObj).reverse()
+const ListYears = ({ allYearsAnalysisDataObjCanvas, allYearsAnalysisDataObjAdminWeb }) => {
+  const yearsCanvas = Object.keys(allYearsAnalysisDataObjCanvas ?? {})
+  const yearsAdminWeb = Object.keys(allYearsAnalysisDataObjAdminWeb ?? {})
+  const allYearsDescending = Array.from(new Set([...yearsAdminWeb, ...yearsCanvas]))
+    .sort((a, b) => a - b)
+    .reverse()
+
+  const [{ userLang }] = useWebContext()
+  const { no_course_analysis } = i18n.messages[userLang === 'en' ? 0 : 1].analysisHeaders
+
   return (
     <div className="list-section-per-year">
-      {yearsDescending.map((year, index) => (
+      {allYearsDescending.map((year) => (
         <SectionPerYear
-          key={index}
-          thisYearAnalyses={allYearsAnalysisDataObj[year]}
-          koppsData={koppsData}
+          key={year}
           year={year}
-          pageLabels={pageTitles}
-          tableLabels={tableHeaders}
-          userLang={userLang}
+          thisYearAnalysesCanvas={allYearsAnalysisDataObjCanvas[year]}
+          thisYearAnalysesAdminWeb={allYearsAnalysisDataObjAdminWeb[year]}
+          noCourseAnalysisText={no_course_analysis}
         />
       ))}
     </div>

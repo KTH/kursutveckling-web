@@ -10,6 +10,7 @@ const userLang = 'sv'
 const context = mockAdminStore(userLang)
 
 const ROUNDS = [
+  'doktorand 2024-51460 ( Start date 28 Oct 2024, English )',
   'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
   'CMEDT1 ( Startdatum 2018-10-29, Svenska )',
   'CITEH1 ( Startdatum 2018-10-29, Svenska )',
@@ -40,116 +41,30 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(subHeader).toBeInTheDocument()
   })
 
-  //
-
-  test('renders h2 for all years', () => {
-    const allH2Headers = getAllByRole('heading', { level: 2 })
-    expect(allH2Headers.length).toBe(9)
-    const expectedh2ds = ['2021', '2020', '2019', '2018', '2017', '2016', '2010', '2009', '2008']
-    expectedh2ds.map((h2, index) => expect(allH2Headers[index]).toHaveTextContent(h2))
-  })
-
-  test('renders course rounds headers in Kursanalys lang', () => {
-    const allH3Headers = getAllByRole('heading', { level: 3 })
-    expect(allH3Headers.length).toBe(8)
-    const expectedh3ds = ROUNDS
-    expectedh3ds.map((h3, index) => expect(allH3Headers[index]).toHaveTextContent(h3))
-  })
-
-  test('renders all h4 for Alert and each round Additional information headers,', () => {
+  test('renders h4 for all years', () => {
     const allH4Headers = getAllByRole('heading', { level: 4 })
-    expect(allH4Headers.length).toBe(37)
-    const expectedhds = [
-      // first round CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CMEDT1 ( Startdatum 2018-10-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CITEH1 ( Startdatum 2018-10-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round TCOMK1 ( Start date 17/01/2017, English ) , CINTE1 ( Start date 17/01/2017, Swedish )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar',
-      // next round CMETE CSAMH ( Startdatum 2010-01-11, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round CSAMH1 ( Startdatum 2009-01-12, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round Med teknik ( Startdatum 2008-08-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      // no 'Kommentar till gjorda ändringar',
-      // next round CINTE CMIEL ( Startdatum 2008-08-29, Svenska )
-      'Kursanalysen gäller för följande kursomgångar',
-      'Obligatorisk inom program',
-      'Publicerad första gången',
-      'Senaste ändrad',
-      'Kommentar till gjorda ändringar'
-    ]
-    expectedhds.map((h4, index) => expect(allH4Headers[index]).toHaveTextContent(h4))
+    expect(allH4Headers.length).toBe(10)
   })
 
-  test('Get popover desktop and mobile buttons and check it is number', async () => {
+  test('renders h3 for all analysis name headers', () => {
+    const allH4Headers = getAllByRole('heading', { level: 3 })
+    expect(allH4Headers.length).toBe(10)
+  })
+
+  test('renders popover buttons ', async () => {
     const allBtns = getAllByRole('button')
-    expect(allBtns.length).toBe(96)
-  })
-
-  test('Get Kommentar till gjorda ändringar if it renders', async () => {
-    const oneCommentAboutChanges = getByText('LKJHDFJ')
-    const anotherCommentAboutChanges = getByText('kjhaew')
-    expect(oneCommentAboutChanges).toBeInTheDocument()
-    expect(anotherCommentAboutChanges).toBeInTheDocument()
-  })
-
-  test('Get some dates of data changes in course data or Kursanalys after publishing if it renders', async () => {
-    const changeDates = getAllByText('2019-09-11')
-    expect(changeDates.length).toBe(3)
+    expect(allBtns.length).toBe(20)
   })
 
   test('Get No information inserted if no data changes in course data or Kursanalys after publishing if it renders', async () => {
     const changeDates = getAllByText('Ingen information tillagd')
-    expect(changeDates.length).toBe(2)
-  })
-
-  test('Get Additional data about this course analysis if it renders', async () => {
-    const extraInfo = getAllByText('Ytterligare data om kursanalysen')
-    expect(extraInfo.length).toBe(8)
-  })
-
-  test('Check if aria-label is correct for Additional data about this course analysis if it renders', async () => {
-    const rounds = ROUNDS
-    rounds.map((roundName) =>
-      expect(screen.getByLabelText(`Ytterligare data om kursanalysen: ${roundName}`)).toBeInTheDocument()
-    )
+    expect(changeDates.length).toBe(16)
   })
 
   test('Check links if it renders', async () => {
     const links = screen.getAllByRole('link')
 
-    expect(links.length).toBe(19)
+    expect(links.length).toBe(21)
     const expectedLinks = [
       'Om kursen SF1624',
       'Administrera Om kursen',
@@ -157,7 +72,8 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'Arkiv',
       // by each round
       'Kursplan SF1624 ( HT 2019 - )',
-      // 'Kurs-PM: 2019-09-10',
+      'Kursplan SF1624 ( HT 2019 - )',
+      'Kursplan SF1624 ( HT 2019 - )',
       'Kursanalys: 2019-09-10',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
       'Kursanalys: 2019-09-04',
@@ -178,42 +94,15 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
   })
 
-  test('Check if aria-label is correct for PDF links', async () => {
-    const links = screen.getAllByRole('link')
-    const linksWithAriaLabels = links.slice(3)
-
-    const expectedAriaLabels = [
-      // by each round
-      'PDF Kursplan SF1624 ( HT 2019 -  )',
-      // 'PDF Kurs-PM CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
-      'PDF Kursanalys CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska ): 2019-09-10',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys CMEDT1 ( Startdatum 2018-10-29, Svenska ): 2019-09-04',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys CITEH1 ( Startdatum 2018-10-29, Svenska ): 2019-09-11',
-      'PDF Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'PDF Kursanalys TCOMK1 ( Start date  17/01/2017, English ) ,  CINTE1 ( Start date  17/01/2017, Swedish ): 2019-10-09',
-      'PDF Kursplan SF1624 ( HT 2009 - VT 2010 )',
-      'PDF Kursanalys CMETE CSAMH ( Startdatum 2010-01-11, Svenska ): 2019-10-08',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys CSAMH1 ( Startdatum 2009-01-12, Svenska ): 2019-09-09',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys Med teknik ( Startdatum 2008-08-29, Svenska ): 2019-09-03',
-      'PDF Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'PDF Kursanalys CINTE CMIEL ( Startdatum 2008-08-29, Svenska ): 2019-10-08'
-    ]
-    linksWithAriaLabels.map((link, index) => expect(link).toHaveAttribute('aria-label', expectedAriaLabels[index]))
-  })
-
   test('Links have a correct href', async () => {
     const links = getAllByRole('link')
     const linkAddresses = [
       'http://localhost/student/kurser/kurs/SF1624?l=sv',
       'http://localhost/kursinfoadmin/kurser/kurs/SF1624?l=sv',
-      // 'https://intra.kth.se/styrning/styrdokument/regler/utbildning-overgripande-1.660834',
       'http://localhost/kursutveckling/SF1624/arkiv',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
-      // 'http://localhost/pm-SF1624HT2019_9.pdf',
+      'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
+      'http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv',
       'http://localhost/analysis-SF1624HT2019_9.pdf',
       'http://localhost/student/kurser/kurs/kursplan/SF1624-20102.pdf?lang=sv',
       'http://localhost/analysis-SF1624HT2018_9.pdf',
@@ -235,12 +124,7 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('check how behave memo link when no memo is added', async () => {
     const memoNotAdded = screen.getAllByText('Inget kurs-PM tillagt')
-    expect(memoNotAdded.length).toBe(9)
-  })
-
-  test('Get grade scale if it renders', async () => {
-    const gradeScale = getAllByText('TEN1 (7,5) A, B, C, D, E, FX, F')
-    expect(gradeScale.length).toBe(7)
+    expect(memoNotAdded.length).toBe(11)
   })
 
   test('Changes of the course before this course offering if it renders', async () => {
@@ -250,17 +134,19 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
 
   test('Get table headers (mobile and desktop)', async () => {
     const responsible = getAllByText('Kursansvarig')
-    expect(responsible.length).toBe(16)
+    expect(responsible.length).toBe(10)
     const examiner = getAllByText('Examinator')
-    expect(examiner.length).toBe(16)
+    expect(examiner.length).toBe(10)
     const students = getAllByText('Studenter')
-    expect(students.length).toBe(16)
-    const exams = getAllByText('Examination')
-    expect(exams.length).toBe(16)
-    const results = getAllByText('Resultat')
-    expect(results.length).toBe(16)
+    expect(students.length).toBe(10)
+    const examinationGrade = getAllByText('Examinationsgrad')
+    expect(examinationGrade.length).toBe(8)
+    const gradingDistribution = getAllByText('Resultat på kurs')
+    expect(gradingDistribution.length).toBe(2)
     const changes = getAllByText('Förändringar som har införts till den här kursomgången')
-    expect(changes.length).toBe(16)
+    expect(changes.length).toBe(8)
+    const changesNext = getAllByText('Förändringar som införs till nästa kursomgång')
+    expect(changesNext.length).toBe(10)
   })
 
   test('Coordinator names if it renders', async () => {
@@ -274,17 +160,30 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
   })
 
   test('Result ExaminationGrade were manually edited (*) if it renders', async () => {
-    const received = getByText('111 % *')
+    const received = getByText('111%*')
     expect(received).toBeInTheDocument()
   })
 
   test('Students RegisteredStudents were manually edited (*) if it renders', async () => {
-    const received = getByText('111 *')
+    const received = getByText('111*')
     expect(received).toBeInTheDocument()
   })
 
   test('Result ExaminationGrade were rendered with * if it renders', async () => {
-    const received = getByText('13.3 %')
+    const received = getByText('13.3%')
     expect(received).toBeInTheDocument()
+  })
+
+  test('renders document links', () => {
+    const links = getAllByRole('link')
+    expect(links.length).toBe(21)
+    expect(links[3]).toHaveTextContent('Kursplan SF1624 ( HT 2019 - )')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv')
+
+    expect(links[6]).toHaveTextContent('Kursanalys: 2019-09-10')
+    expect(links[6].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
+
+    expect(links[14]).toHaveTextContent('Kursanalys: 2019-10-08')
+    expect(links[14].href).toStrictEqual('http://localhost/analysis-SF1624VT2010_1.pdf')
   })
 })
