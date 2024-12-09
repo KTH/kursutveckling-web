@@ -91,7 +91,6 @@ const AnalysisListItem: React.FC<{
             header={analysisLinkHeaderObj.header}
             content={
               <LinkToCourseAnalysis
-                analysisName={analysisName}
                 analysisFileName={analysis.analysisFileName}
                 pdfAnalysisDate={analysis.pdfAnalysisDate}
               />
