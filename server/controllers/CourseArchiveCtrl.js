@@ -3,7 +3,7 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const filteredKoppsData = require('../apiCalls/koppsApi')
-const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
+const { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromAdminWeb } = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const paths = require('../server').getPaths()
@@ -41,7 +41,8 @@ async function _getContent(req, res, next) {
     webContext.courseCode = courseCode
     webContext.userLang = lang
     webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
-    webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    webContext.analysisDataAdminWeb = await sortedAnalysisDataFromAdminWeb(courseCode)
+    webContext.analysisDataCanvas = await sortedAnalysisDataFromCanvas(courseCode)
     webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
     webContext.subHeadline = getFormattedSubHeadline(webContext.courseKoppsData, lang)
 

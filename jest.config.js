@@ -5,7 +5,7 @@ module.exports = {
   clearMocks: true,
   notifyMode: 'failure-change',
   transformIgnorePatterns: ['node_modules/(?!(@kth|@babel|@jest|uuid)/)'],
-  moduleFileExtensions: ['js', 'jsx', 'json', 'node', 'tsx'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   setupFilesAfterEnv: ['jest-extended/all'],
   testEnvironment: 'jsdom',
   verbose: true

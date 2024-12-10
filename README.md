@@ -19,6 +19,11 @@ Displays:
 - Tables with course data and course analyses, as well as this course round syllabuss (and course-pm)
 - Navigation links per table to edit it in administrate tool **kursutveckling-admin-web**
 
+The two types of course analyses, Canvas analyses and Admin Web Tool analyses, differ in their origins and data sources:
+
+- Admin Web Tool analyses, from the discontinued `kursutveckling-admin-web` tool, include the field `examinationGrade` for describing course round results. The field `alterationText` refers to changes implemented before the **current** course round. The latest analysis of this kind will be published in March 2025.
+- Canvas-based analyses data is fetched and compiled in the integration `kursutveckling-integration-api`, including the field `gradingDistribution` for describing course round results. The field `alterationText` here refers to changes planned before the **next** course round.
+
 Application is fetching data from **KOPPS-API** for:
 
 1. Course title
@@ -40,6 +45,7 @@ Web pages is public for everyone.
 
 **Related projects**
 
+- [https://github.com/KTH/kursutveckling-integration-api](https://github.com/KTH/kursutveckling-integration-api)
 - [https://github.com/KTH/kursinfo-admin-web](https://github.com/KTH/kursinfo-admin-web)
 - [https://github.com/KTH/kursinfo-api](https://github.com/KTH/kursinfo-api)
 - [https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
