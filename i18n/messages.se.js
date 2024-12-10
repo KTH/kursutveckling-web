@@ -98,14 +98,15 @@ module.exports = {
     gradingDistribution: {
       header: 'Resultat på kurs',
       total: 'Totalt antal',
-      popover_text: 'Antal studenter med inrapporterat resultat på kurs samt betygsfördelning.'
+      popover_text:
+        'Antal registrerade studenter med inrapporterat resultat på kurs, samt betygsfördelning. Omregistrerade studenter räknas ej in.'
     },
     responsibles: {
       header: 'Kursansvarig'
     },
     registeredStudents: {
       header: 'Studenter',
-      popover_text: 'Antal förstagångsregistrerade studenter på kurstillfället.'
+      popover_text: 'Antal registererade studenter. Omregistrerade studenter räknas ej in.'
     },
     programmeCodes: { header: 'Obligatorisk inom program' },
     analysisName: {
