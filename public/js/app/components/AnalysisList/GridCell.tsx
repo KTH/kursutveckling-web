@@ -9,7 +9,7 @@ const GridCell: React.FC<{
   popoverText?: string
   md?: string
 }> = ({ id, header, content, popoverText, md = '4' }) => (
-  <Col md={md} className={`grid-cell`}>
+  <Col md={md} className={'grid-cell'}>
     <h5 className="cell-header">
       {header}
       {popoverText && <ControlledPopover id={id} header={header} popoverText={popoverText} />}

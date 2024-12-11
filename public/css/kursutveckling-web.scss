@@ -54,6 +54,10 @@ span {
 .analysis-list-item {
   margin-bottom: space.$space-64;
 
+  .row {
+    --bs-gutter-x: 2rem;
+  }
+
   .analysis-name {
     margin-top: 0;
     margin-bottom: space.$space-16;
