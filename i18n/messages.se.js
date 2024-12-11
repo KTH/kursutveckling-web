@@ -106,7 +106,7 @@ module.exports = {
     },
     registeredStudents: {
       header: 'Studenter',
-      popover_text: 'Antal registererade studenter. Omregistrerade studenter räknas ej in.'
+      popover_text: 'Antal registrerade studenter. Omregistrerade studenter räknas ej in.'
     },
     programmeCodes: { header: 'Obligatorisk inom program' },
     analysisName: {
