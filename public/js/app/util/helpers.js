@@ -1,14 +1,21 @@
 'use strict'
 
 export const getDateFormat = (date, language) => {
-  if (!date) return ''
+  const timestamp = Date.parse(date)
+  const parsedDate = new Date(timestamp)
 
-  const parsedDate = new Date(Date.parse(date))
-  const isSwedish = ['Svenska', 1, 'sv'].includes(language)
-
-  const options = isSwedish ? { dateStyle: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' }
-
-  return parsedDate.toLocaleString(isSwedish ? 'sv-SE' : 'en-US', options)
+  if (language === 'Svenska' || language === 1 || language === 'sv' || date.length === 0) {
+    const options = {
+      dateStyle: 'short'
+    }
+    return parsedDate.toLocaleString('sv-SE', options)
+  }
+  const options = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }
+  return parsedDate.toLocaleString('en-GB', options)
 }
 
 export const seasonStr = (semesterTranslations, semester = '') => {
