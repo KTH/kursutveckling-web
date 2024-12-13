@@ -1,36 +1,23 @@
 import React from 'react'
-
-import { SYLLABUS_URL } from '../util/constants'
 import Table from './Table'
+import LinkToValidSyllabus from '../components/LinkToValidSyllabusPdf'
 
-const createRow = (translation, courseCode, language, startDate, endDate) => {
-  const startTermLabel = `${translation.course_short_semester[startDate.substring(4, 5)]} ${startDate.substring(0, 4)}`
+const createRow = (translation, syllabusPeriodStart, endDate) => {
+  const startTermLabel = `${translation.course_short_semester[syllabusPeriodStart.substring(4, 5)]} ${syllabusPeriodStart.substring(0, 4)}`
   const endTermLabel = `${translation.course_short_semester[endDate.substring(4, 5)] || ''} ${endDate.substring(0, 4)}`
   const semestersLabel = `${startTermLabel} – ${endTermLabel.trim() || translation.ongoing_label}`
-  const courseSyllabusLabel = `${translation.label_syllabus} ${courseCode} (${startTermLabel} – ${endTermLabel})`
 
-  return [
-    semestersLabel,
-    <a
-      aria-label={`PDF ${courseSyllabusLabel}`}
-      href={`${SYLLABUS_URL}${courseCode}-${startDate}.pdf?lang=${language}`}
-      target="_blank"
-      rel="noreferrer"
-      className="pdf-link"
-    >
-      {courseSyllabusLabel}
-    </a>
-  ]
+  return [semestersLabel, <LinkToValidSyllabus semester={syllabusPeriodStart} />]
 }
 
 const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {} }) => {
-  const startDates = Object.keys(syllabusPeriods) || []
-  startDates.sort().reverse()
+  const syllabusPeriodStarts = Object.keys(syllabusPeriods) || []
+  syllabusPeriodStarts.sort().reverse()
 
-  const syllabusDataRows = startDates.map((startDate) => {
-    const { endDate: ed } = syllabusPeriods[startDate]
+  const syllabusDataRows = syllabusPeriodStarts.map((syllabusPeriodStart) => {
+    const { endDate: ed } = syllabusPeriods[syllabusPeriodStart]
     const endDate = ed.toString()
-    return createRow(translation, courseCode, language, startDate, endDate)
+    return createRow(translation, syllabusPeriodStart, endDate)
   })
   const headings = { labels: [translation.label_semester, translation.label_syllabus], classes: ['semester', ''] }
 
