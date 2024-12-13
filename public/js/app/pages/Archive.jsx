@@ -13,7 +13,7 @@ import AnalysisTable from '../components/AnalysisTable'
 
 const Archive = () => {
   const [context] = useWebContext()
-  const { courseCode, courseKoppsData, courseMemos, subHeadline, userLang } = context
+  const { courseCode, courseKoppsData, courseMemos, analysisDataAdminWeb, subHeadline, userLang } = context
   const translation = i18n.message('archiveTitles', userLang)
   return (
     <Row>
@@ -26,14 +26,9 @@ const Archive = () => {
           language={userLang}
         />
         <main>
-          <SyllabusTable
-            translation={translation}
-            courseCode={courseCode}
-            language={userLang}
-            syllabusPeriods={courseKoppsData.syllabusPeriods}
-          />
-          <MemoTable translation={translation} courseCode={courseCode} language={userLang} courseMemos={courseMemos} />
-          <AnalysisTable translation={translation} />
+          <SyllabusTable translation={translation} syllabusPeriods={courseKoppsData.syllabusPeriods} />
+          <MemoTable translation={translation} courseMemos={courseMemos} />
+          <AnalysisTable translation={translation} analyses={analysisDataAdminWeb} />
         </main>
       </Col>
     </Row>

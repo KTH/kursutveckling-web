@@ -10,7 +10,7 @@ const createRow = (translation, syllabusPeriodStart, endDate) => {
   return [semestersLabel, <LinkToValidSyllabus semester={syllabusPeriodStart} />]
 }
 
-const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {} }) => {
+const SyllabusTable = ({ translation, syllabusPeriods = {} }) => {
   const syllabusPeriodStarts = Object.keys(syllabusPeriods) || []
   syllabusPeriodStarts.sort().reverse()
 

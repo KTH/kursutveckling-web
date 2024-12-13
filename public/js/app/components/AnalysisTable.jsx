@@ -12,14 +12,11 @@ const createRowAdminWeb = (translation, { semester, analysisFileName, pdfAnalysi
   <LinkToCourseAnalysis key={analysisFileName} analysisFileName={analysisFileName} pdfAnalysisDate={pdfAnalysisDate} />
 ]
 
-const AnalysisTable = ({ translation }) => {
-  const [context] = useWebContext()
-  const { analysisDataAdminWeb } = context
-
-  const yearsDescending = Object.keys(analysisDataAdminWeb ?? {}).sort((a, b) => b - a)
+const AnalysisTable = ({ translation, analyses }) => {
+  const yearsDescending = Object.keys(analyses ?? {}).sort((a, b) => b - a)
 
   const sortedAnalysisDataRows = yearsDescending.flatMap((year) =>
-    (analysisDataAdminWeb[year] || []).map((analysisData) => createRowAdminWeb(translation, analysisData))
+    (analyses[year] || []).map((analysisData) => createRowAdminWeb(translation, analysisData))
   )
 
   const tableHeadings = {
