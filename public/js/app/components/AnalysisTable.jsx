@@ -32,7 +32,9 @@ const AnalysisTable = ({ translation }) => {
       <h2>{translation.label_course_analyses}</h2>
       <Alert type="info" header={translation.canvas_analysis_alert_heading}>
         <p>{translation.canvas_analysis_alert_p1}</p>
-        <a href={CANVAS_URL}>{translation.canvas_analysis_alert_link_label}</a>
+        <a href={CANVAS_URL} className="external-link">
+          {translation.canvas_analysis_alert_link_label}
+        </a>
         <p>{translation.canvas_analysis_alert_p2}</p>
       </Alert>
       {sortedAnalysisDataRows.length > 0 ? (
