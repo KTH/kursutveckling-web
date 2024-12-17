@@ -1,4 +1,4 @@
-const transformedAnalysisData = {
+const transformedAnalysisDataFromAdminWeb = {
   2008: [
     {
       _id: 'SF1624HT2008_5',
@@ -22,8 +22,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: 'fads',
-      examinationGrade: '12 % *',
-      registeredStudents: '12 *',
+      examinationGrade: '12%*',
+      registeredStudents: '12*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -57,8 +57,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '0 %',
-      registeredStudents: '6 *',
+      examinationGrade: '0%',
+      registeredStudents: '6*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -92,8 +92,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '1 % *',
-      registeredStudents: '1 *',
+      examinationGrade: '1%*',
+      registeredStudents: '1*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -129,8 +129,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '0 %',
-      registeredStudents: '6 *',
+      examinationGrade: '0%',
+      registeredStudents: '6*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -170,7 +170,7 @@ const transformedAnalysisData = {
         'Based on recommendation from KTH’s coordinator for disabilities, the examiner will decide how to adapt an examination for students with documented disability. <br><br>The examiner may apply another examination format when re-examining individual students.',
       alterationText: 'Förändringar',
       endDate: '',
-      examinationGrade: '40 % *',
+      examinationGrade: '40%*',
       registeredStudents: '111',
       examinationRounds: [
         'TEN1;Examination;7.5;credits;Grading scale;A, B, C, D, E, FX, F              \n                         '
@@ -205,8 +205,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '20 % *',
-      registeredStudents: '20 *',
+      examinationGrade: '20%*',
+      registeredStudents: '20*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -240,7 +240,7 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.',
       alterationText: '',
-      examinationGrade: '13.3 %',
+      examinationGrade: '13.3%',
       registeredStudents: '30',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
@@ -275,8 +275,8 @@ const transformedAnalysisData = {
       commentExam:
         'Examinator beslutar, baserat på rekommendation från KTH:s samordnare för funktionsnedsättning, om eventuell anpassad examination för studenter med dokumenterad, varaktig funktionsnedsättning. <br><br>Examinator får medge annan examinationsform vid omexamination av enstaka studenter.<p>Examinator beslutar, i samr&#229;d med KTH:s samordnare f&#246;r funktionsneds&#228;ttning (Funka), om eventuell anpassad examination f&#246;r studenter med dokumenterad, varaktig funktionsneds&#228;ttning.&#160;</p>',
       alterationText: '',
-      examinationGrade: '111 % *',
-      registeredStudents: '111 *',
+      examinationGrade: '111%*',
+      registeredStudents: '111*',
       examinationRounds: [
         'TEN1;Tentamen;7,5;hp;Betygsskala;A, B, C, D, E, FX, F              \n                         '
       ],
@@ -291,5 +291,71 @@ const transformedAnalysisData = {
   2021: []
 }
 
-export default transformedAnalysisData
-module.exports = transformedAnalysisData
+const transformedAnalysisDataFromCanvas = {
+  2019: [],
+  2020: [],
+  2021: [],
+  2022: [],
+  2023: [
+    {
+      _id: '673ae58e7d5093b55e7dc88a',
+      id: '76f1fd19-dada-11ee-9343-2afccf5d48dc',
+      alterationText: 'Test alteration text',
+      courseCode: 'LD1008',
+      analysisName: 'HT 2023-10189 (Startdatum 2023-10-28, Svenska)',
+      programmeCodes: '1234, 5678, 8910',
+      examiners: 'A, B, C',
+      responsibles: 'X, Y, Z',
+      examinationRounds: ['LEXA;Löpande examination;4.0;credits;Grading scale;P, F'],
+      registeredStudents: 40,
+      totalReportedResults: 3,
+      gradingDistribution: {
+        P: 2,
+        F: 1
+      },
+      startDate: '2023-10-28',
+      endDate: '2024-01-13',
+      semester: '20232',
+      ladokUIDs: ['76f1fd19-dada-11ee-9343-2afccf5d48dc'],
+      applicationCodes: '10189',
+      analysisType: 'canvas'
+    }
+  ],
+  2024: [
+    {
+      _id: '6711178a1353f5e3af556077',
+      id: '39b5624f-7f0f-11ef-90b2-54c43689408b',
+      alterationText: 'Hej hej!!!',
+      analysisName: 'doktorand 2024-51460 ( Start date 28 Oct 2024, English )',
+      applicationCodes: '51460',
+      courseCode: 'AI1527',
+      endDate: '2025-01-13',
+      examinationRounds: [
+        'LAB1;Laboratory;1.0;credits;Grading scale;P, F',
+        'LAB2;Laboratory;1.0;credits;Grading scale;P, F',
+        'LAB3;Laboratory;1.0;credits;Grading scale;P, F',
+        'PRO1;Project;4.5;credits;Grading scale;A, B, C, D, E, FX, F'
+      ],
+      examiners: 'Test Person Testovich Von Test',
+      totalReportedResults: 0,
+      gradingDistribution: {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0,
+        E: 0,
+        FX: 0,
+        F: 0
+      },
+      ladokUIDs: ['39b5624f-7f0f-11ef-90b2-54c43689408b'],
+      programmeCodes: '',
+      registeredStudents: 1,
+      responsibles: 'Test Person Testovich',
+      semester: '20242',
+      startDate: '2024-10-28',
+      analysisType: 'canvas'
+    }
+  ]
+}
+
+module.exports = { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromAdminWeb }
