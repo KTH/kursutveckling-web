@@ -69,10 +69,14 @@ module.exports = {
       label_latest_version: 'senaste versionen',
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
-      no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
+      no_analyses: 'Denna kurs har inga tidigare publicerade kursanalyser.',
       label_course_analyses: 'Kursanalyser',
       label_course_analysis: 'Kursanalys',
-      analysis_in_canvas: 'Se kursanalys i Canvas.'
+      canvas_analysis_alert_heading: 'Kursanalyserna har flyttat!',
+      canvas_analysis_alert_link_label: 'Lärplattform (Canvas)',
+      canvas_analysis_alert_p1:
+        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas för respektive kursomgång. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
+      canvas_analysis_alert_p2: 'Tidigare publicerade kursanalyser listas nedan.'
     }
   },
   analysisHeaders: {
