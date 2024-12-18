@@ -72,21 +72,21 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course syllabus SF1624 ( Autumn 2019 - )',
       'Course syllabus SF1624 ( Autumn 2019 - )',
-      'Course analysis: 10 Sept 2019',
+      'Course analysis SF1624: 10 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 4 Sept 2019',
+      'Course analysis SF1624: 4 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 11 Sept 2019',
+      'Course analysis SF1624: 11 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )',
-      'Course analysis: 9 Oct 2019',
+      'Course analysis SF1624: 9 Oct 2019',
       'Course syllabus SF1624 ( Autumn 2009 - Spring 2010 )',
-      'Course analysis: 8 Oct 2019',
+      'Course analysis SF1624: 8 Oct 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 9 Sept 2019',
+      'Course analysis SF1624: 9 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 3 Sept 2019',
+      'Course analysis SF1624: 3 Sept 2019',
       'Course syllabus SF1624 ( Autumn 2008 - Spring 2009 )',
-      'Course analysis: 8 Oct 2019'
+      'Course analysis SF1624: 8 Oct 2019'
     ]
 
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
@@ -179,7 +179,7 @@ describe('User language: English. Component <StudentViewCourseDev>', () => {
     expect(links[3]).toHaveTextContent('Course syllabus SF1624 ( Autumn 2019 - )')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=en')
 
-    expect(links[6]).toHaveTextContent('Course analysis: 10 Sept 2019')
+    expect(links[6]).toHaveTextContent('Course analysis SF1624: 10 Sept 2019')
     expect(links[6].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
 
     expect(links[7]).toHaveTextContent('Course syllabus SF1624 ( Autumn 2010 - Spring 2019 )')

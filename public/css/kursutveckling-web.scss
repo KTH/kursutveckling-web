@@ -5,6 +5,8 @@
 
 @use '~@kth/style/scss/tokens/typography.scss';
 @use '~@kth/style/scss/tokens/colors.scss';
+@use '~@kth/style/scss/tokens/icons.scss' as icons;
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
 
 @use '~@kth/style/scss/components/logotype.scss';
 @use '~@kth/style/scss/components/search.scss';
@@ -21,7 +23,6 @@
 @use '~@kth/style/scss/components/local-navigation.scss';
 @use '~@kth/style/scss/components/kpm.scss';
 
-@use '~@kth/style/scss/tokens/spacing.scss' as space;
 
 @use '~kth-style/public/sass/variables/_colors.scss' as old-kth-style-colors;
 
@@ -49,6 +50,40 @@ span {
 
 .btn-info-modal {
   cursor: pointer;
+}
+
+.kth-alert.info {
+  @include prose.prose;
+
+  h4 {
+    margin: 0;
+  }
+
+  div {
+    >p {
+      max-width: none;
+
+      &:first-of-type {
+        margin-block-start: 0;
+      }
+
+      &:last-of-type {
+        margin-block-end: 0;
+      }
+    }
+  }
+}
+
+.external-link::after {
+  @include icons.icon-new-window-500;
+  background-color: colors.$color-blue-lake;
+  margin-left: space.$space-4;
+}
+
+.pdf-link:before {
+  @include icons.icon-pdf;
+  background-color: colors.$color-blue-lake;
+  margin-right: space.$space-4;
 }
 
 .analysis-list-item {

@@ -44,6 +44,8 @@ module.exports = {
     page_course_programme: 'Kurs- och programkatalogen',
     page_student: 'Student på KTH',
 
+    admin_link_title: 'Administrera Om kursen',
+
     archiveTitles: {
       archive: 'Arkiv',
       about_course: 'Om kursen',
@@ -52,7 +54,6 @@ module.exports = {
       before_choosing_course: 'Inför kursval',
       prepare_course: 'Förbereda och gå kurs',
       course_development: 'Kursens utveckling',
-      administration: 'Administrera Om kursen',
       label_syllabus: 'Kursplan',
       label_syllabuses: 'Kursplaner',
       label_semester: 'Termin',
@@ -68,10 +69,14 @@ module.exports = {
       label_latest_version: 'senaste versionen',
       no_syllabuses: 'Denna kurs saknar godkänd kursplan.',
       no_memos: 'Denna kurs har inga publicerade kurs-PM.',
-      no_analyses: 'Denna kurs har inga publicerade kursanalyser.',
+      no_analyses: 'Denna kurs har inga tidigare publicerade kursanalyser.',
       label_course_analyses: 'Kursanalyser',
       label_course_analysis: 'Kursanalys',
-      analysis_in_canvas: 'Se kursanalys i Canvas.'
+      canvas_analysis_alert_heading: 'Kursanalyserna har flyttat!',
+      canvas_analysis_alert_link_label: 'Lärplattform (Canvas)',
+      canvas_analysis_alert_p1:
+        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas för respektive kursomgång. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
+      canvas_analysis_alert_p2: 'Tidigare publicerade kursanalyser listas nedan.'
     }
   },
   analysisHeaders: {
@@ -129,7 +134,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'Om kursen',
-    course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling',
     course_info_title: 'Kursinformation',
     regulated_link: '”Riktlinje om kursvärdering och kursanalys”. ',

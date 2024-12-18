@@ -27,7 +27,7 @@ describe(`User language: ${userLang}. Component <Archive>`, () => {
     expect(allH1Headers.length).toBe(1)
     expect(allH1Headers[0]).toHaveTextContent(translation.archive)
 
-    const allSubHeaders = getAllByLabelText(context.subHeaderText)
+    const allSubHeaders = getAllByLabelText('SF1624 Algebra and Geometry 7.5 credits')
     expect(allSubHeaders.length).toBe(1)
 
     const mainContent = screen.getByRole('main')

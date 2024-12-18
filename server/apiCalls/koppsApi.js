@@ -1,11 +1,7 @@
 'use strict'
 
 const log = require('@kth/log')
-const rawKoppsCourseData = require('./getRawKoppsData')
-
-function parseOrSetEmpty(value) {
-  return value ? value : ' '
-}
+const getRawKoppsData = require('./getRawKoppsData')
 
 function getListOfValidFromSyllabusTerms(terms = []) {
   const startYears = []
@@ -41,20 +37,13 @@ const combineStartEndDates = async (syllabusStartDates) => {
   return periods
 }
 
-const filteredKoppsData = async (courseCode, lang, testCourse = null) => {
+const filteredKoppsData = async (courseCode, lang) => {
   try {
-    const { course = {}, publicSyllabusVersions } = testCourse || (await rawKoppsCourseData(courseCode, lang))
-    const { credits = null, title = null } = course
-    const sortedSyllabusStartDates = await getListOfValidFromSyllabusTerms(publicSyllabusVersions)
+    const { publicSyllabusVersions } = await getRawKoppsData(courseCode, lang)
+    const sortedSyllabusStartDates = getListOfValidFromSyllabusTerms(publicSyllabusVersions)
     const syllabusPeriods = await combineStartEndDates(sortedSyllabusStartDates)
     return {
-      courseCode: courseCode.toUpperCase(),
-      courseTitle: parseOrSetEmpty(title),
-      sortedSyllabusStart: sortedSyllabusStartDates,
-      syllabusPeriods,
-      courseCredits: parseOrSetEmpty(credits),
-      koppsDataLang: lang,
-      koppsLangIndex: lang === 'en' ? 0 : 1
+      syllabusPeriods
     }
   } catch (error) {
     log.error('Error in filteredKoppsData while trying to filter data from KOPPS', { error })

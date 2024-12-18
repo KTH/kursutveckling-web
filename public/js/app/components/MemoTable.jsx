@@ -2,7 +2,7 @@ import React from 'react'
 import { seasonStr } from '../util/helpers'
 import Table from './Table'
 
-const createRow = (translation, courseCode, language, courseMemo) => {
+const createRow = (translation, courseMemo) => {
   const { semester, courseOffering, isPdf, memoName, memoVersionsAndUrls } = courseMemo
   return [
     seasonStr(translation.course_short_semester, semester),
@@ -27,8 +27,8 @@ const createRow = (translation, courseCode, language, courseMemo) => {
   ]
 }
 
-const MemoTable = ({ translation, courseCode, language, courseMemos = [] }) => {
-  const memoDataRows = courseMemos.map((courseMemo) => createRow(translation, courseCode, language, courseMemo))
+const MemoTable = ({ translation, courseMemos = [] }) => {
+  const memoDataRows = courseMemos.map((courseMemo) => createRow(translation, courseMemo))
   const headings = {
     labels: [translation.label_semester, translation.label_course_offering, translation.label_memo],
     classes: ['semester', 'heading', 'heading']

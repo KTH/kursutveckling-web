@@ -3,7 +3,6 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 const { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromAdminWeb } = require('../apiCalls/kursutvecklingApi')
-const filteredKoppsData = require('../apiCalls/koppsApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
@@ -13,6 +12,7 @@ const paths = require('../server').getPaths()
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
+const { createCourseData } = require('./helperFunctions')
 
 async function getCourseDevInfo(req, res, next) {
   const { courseCode } = req.params
@@ -36,7 +36,7 @@ async function getCourseDevInfo(req, res, next) {
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
-    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.courseData = await createCourseData(courseCode, lang)
     webContext.analysisDataAdminWeb = await sortedAnalysisDataFromAdminWeb(courseCode)
     webContext.analysisDataCanvas = await sortedAnalysisDataFromCanvas(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)

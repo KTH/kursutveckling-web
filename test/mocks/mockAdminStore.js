@@ -1,11 +1,11 @@
 import { transformedAnalysisDataFromCanvas, transformedAnalysisDataFromAdminWeb } from './transformedAnalysisData'
-import transformedKoppsData from './transformedKoppsData'
+import transformedCourseData from './transformedCourseData'
 
 const mockAdminStore = (lang = 'en') => {
   const context = {
     userLang: lang,
     courseCode: 'SF1624',
-    courseKoppsData: transformedKoppsData[lang],
+    courseData: transformedCourseData[lang],
     analysisDataAdminWeb: transformedAnalysisDataFromAdminWeb,
     analysisDataCanvas: transformedAnalysisDataFromCanvas,
     browserConfig: { storageUri: '', hostUrl: '' },

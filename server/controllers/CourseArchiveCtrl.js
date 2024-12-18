@@ -2,7 +2,6 @@
 
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const filteredKoppsData = require('../apiCalls/koppsApi')
 const { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromAdminWeb } = require('../apiCalls/kursutvecklingApi')
 const i18n = require('../../i18n')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
@@ -11,21 +10,7 @@ const { getCourseMemosVersions } = require('../apiCalls/kursPmDataApi')
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { createServerSideContext } = require('../ssr-context/createServerSideContext')
-
-function getFormattedSubHeadline(courseKoppsData, lang) {
-  const unit = {
-    en: 'credits',
-    sv: 'hp'
-  }
-  const { courseCredits } = courseKoppsData
-  const credits = lang === 'sv' ? courseCredits.toString().replace('.', ',') : courseCredits
-  const formattedCredits = `${credits} ${unit[lang]}`
-
-  const { courseCode, courseTitle } = courseKoppsData
-  const subHeadline = `${courseCode} ${courseTitle}, ${formattedCredits}`
-
-  return subHeadline
-}
+const { createCourseData } = require('./helperFunctions')
 
 async function _getContent(req, res, next) {
   try {
@@ -40,11 +25,10 @@ async function _getContent(req, res, next) {
     webContext.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
     webContext.courseCode = courseCode
     webContext.userLang = lang
-    webContext.courseKoppsData = await filteredKoppsData(courseCode, lang)
+    webContext.courseData = await createCourseData(courseCode, lang)
     webContext.analysisDataAdminWeb = await sortedAnalysisDataFromAdminWeb(courseCode)
     webContext.analysisDataCanvas = await sortedAnalysisDataFromCanvas(courseCode)
     webContext.courseMemos = await getCourseMemosVersions(courseCode, lang)
-    webContext.subHeadline = getFormattedSubHeadline(webContext.courseKoppsData, lang)
 
     const compressedData = getCompressedData(webContext)
 
