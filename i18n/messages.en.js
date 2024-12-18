@@ -75,7 +75,7 @@ module.exports = {
       canvas_analysis_alert_heading: 'The course analyses have moved!',
       canvas_analysis_alert_link_label: 'Learning Platform (Canvas)',
       canvas_analysis_alert_p1:
-        'From study period 3 in Spring 2025, course analyses will be published in the Canvas course room for each course session. Users with access to the course room can find the course analysis under the "Course evaluation" tab.',
+        'From study period 3 in Spring 2025, course analyses will be published in the Canvas course room for each course round. Users with access to the course room can find the course analysis under the "Course evaluation" tab.',
       canvas_analysis_alert_p2: 'Previously published course analyses are listed below.'
     }
   },
