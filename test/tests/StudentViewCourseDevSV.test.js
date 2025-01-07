@@ -74,21 +74,21 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
       'Kursplan SF1624 ( HT 2019 - )',
       'Kursplan SF1624 ( HT 2019 - )',
       'Kursplan SF1624 ( HT 2019 - )',
-      'Kursanalys: 2019-09-10',
+      'Kursanalys SF1624: 2019-09-10',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'Kursanalys: 2019-09-04',
+      'Kursanalys SF1624: 2019-09-04',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'Kursanalys: 2019-09-11',
+      'Kursanalys SF1624: 2019-09-11',
       'Kursplan SF1624 ( HT 2010 - VT 2019 )',
-      'Kursanalys: 2019-10-09',
+      'Kursanalys SF1624: 2019-10-09',
       'Kursplan SF1624 ( HT 2009 - VT 2010 )',
-      'Kursanalys: 2019-10-08',
+      'Kursanalys SF1624: 2019-10-08',
       'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'Kursanalys: 2019-09-09',
+      'Kursanalys SF1624: 2019-09-09',
       'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'Kursanalys: 2019-09-03',
+      'Kursanalys SF1624: 2019-09-03',
       'Kursplan SF1624 ( HT 2008 - VT 2009 )',
-      'Kursanalys: 2019-10-08'
+      'Kursanalys SF1624: 2019-10-08'
     ]
 
     links.map((l, index) => expect(l).toHaveTextContent(expectedLinks[index]))
@@ -180,10 +180,10 @@ describe('User language: Swedish. Component <StudentViewCourseDev>', () => {
     expect(links[3]).toHaveTextContent('Kursplan SF1624 ( HT 2019 - )')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/kursplan/SF1624-20192.pdf?lang=sv')
 
-    expect(links[6]).toHaveTextContent('Kursanalys: 2019-09-10')
+    expect(links[6]).toHaveTextContent('Kursanalys SF1624: 2019-09-10')
     expect(links[6].href).toStrictEqual('http://localhost/analysis-SF1624HT2019_9.pdf')
 
-    expect(links[14]).toHaveTextContent('Kursanalys: 2019-10-08')
+    expect(links[14]).toHaveTextContent('Kursanalys SF1624: 2019-10-08')
     expect(links[14].href).toStrictEqual('http://localhost/analysis-SF1624VT2010_1.pdf')
   })
 })
