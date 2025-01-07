@@ -2,7 +2,7 @@
 
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
-const sortedKursutveckligApiInfo = require('../apiCalls/kursutvecklingApi')
+const { sortedAnalysisDataFromCanvas, sortedAnalysisDataFromAdminWeb } = require('../apiCalls/kursutvecklingApi')
 const { getSortedAndPrioritizedMiniMemosWebOrPdf } = require('../apiCalls/kursPmDataApi')
 
 const i18n = require('../../i18n')
@@ -37,7 +37,8 @@ async function getCourseDevInfo(req, res, next) {
     webContext.courseCode = courseCode
     webContext.userLang = lang
     webContext.courseData = await createCourseData(courseCode, lang)
-    webContext.analysisData = await sortedKursutveckligApiInfo(courseCode)
+    webContext.analysisDataAdminWeb = await sortedAnalysisDataFromAdminWeb(courseCode)
+    webContext.analysisDataCanvas = await sortedAnalysisDataFromCanvas(courseCode)
     webContext.miniMemosPdfAndWeb = await getSortedAndPrioritizedMiniMemosWebOrPdf(courseCode)
 
     const compressedData = getCompressedData(webContext)

@@ -48,7 +48,7 @@ function composeEntriesFromGlob(pattern) {
   // eslint-disable-next-line no-undef
   const matches = FastGlob.sync(pattern, { onlyFiles: true, cwd: __dirname, objectMode: true })
   const result = {}
-  matches.forEach(item => {
+  matches.forEach((item) => {
     result[item.name.split('.')[0]] = item.path
   })
   return result
@@ -58,13 +58,13 @@ function composePublicPathString(...subDirParts) {
   const allParts = [
     ENV_IS_DEV ? `http://localhost:3000` : '',
     PROXY_PREFIX_URI,
-    ...subDirParts.filter(text => typeof text === 'string' && text !== ''),
+    ...subDirParts.filter((text) => typeof text === 'string' && text !== '')
   ]
-  return allParts.map(text => text.replace(/^\/|\/$/g, '')).join('/') + '/'
+  return allParts.map((text) => text.replace(/^\/|\/$/g, '')).join('/') + '/'
 }
 
 function getTransformationRules({ contextIsNode, subDir = null }) {
-  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json']
+  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json', '.tsx', '.ts']
   const ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS = { sourceType: 'unambiguous' }
 
   // @ts-ignore
@@ -74,7 +74,7 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
   return {
     plugins: [...AVOID_EMPTY_JS_FILES_ON_SCSS_ENTRYPOINTS, new MiniCssExtractPlugin()],
     resolve: {
-      extensions: MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT,
+      extensions: MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT
     },
     target: contextIsNode ? 'node' : 'browserslist:> 0.25%, not dead',
     module: {
@@ -84,8 +84,8 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-            options: { ...BabelConfig, ...ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS },
-          },
+            options: { ...BabelConfig, ...ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS }
+          }
         },
         {
           test: /\.s[ac]ss$/i,
@@ -96,11 +96,11 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
                 {
                   loader: 'css-loader',
                   options: {
-                    esModule: false,
-                  },
+                    esModule: false
+                  }
                 },
-                'sass-loader',
-              ],
+                'sass-loader'
+              ]
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/i,
@@ -111,13 +111,21 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
                   loader: 'file-loader',
                   options: {
                     publicPath: composePublicPathString('static', subDir),
-                    name: '[name].[hash:8].[ext]',
-                  },
-                },
-              ],
+                    name: '[name].[hash:8].[ext]'
+                  }
+                }
+              ]
         },
-      ],
-    },
+
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'ts-loader'
+          }
+        }
+      ]
+    }
   }
 }
 
@@ -154,15 +162,15 @@ function getOutputOptions({ contextIsNode, subDir = null }) {
     optimization: ENV_IS_DEV
       ? undefined
       : {
-          minimizer: [new TerserPlugin({ extractComments: OUTPUT_LICENSE_FILES })],
+          minimizer: [new TerserPlugin({ extractComments: OUTPUT_LICENSE_FILES })]
         },
     output: {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist', subDir || ''),
       publicPath: composePublicPathString('static', subDir),
-      ...BUNDLES_CAN_BE_IMPORTED_ON_SERVER_SIDE,
+      ...BUNDLES_CAN_BE_IMPORTED_ON_SERVER_SIDE
     },
-    devtool: ENV_IS_DEV ? DEV_SOURCE_MAP_TYPE : undefined,
+    devtool: ENV_IS_DEV ? DEV_SOURCE_MAP_TYPE : undefined
   }
 }
 
@@ -172,18 +180,18 @@ function getWatchOptions() {
         watch: true,
         watchOptions: {
           aggregateTimeout: 3000,
-          ignored: /\bnode_modules\b/,
-        },
+          ignored: /\bnode_modules\b/
+        }
       }
     : {
-        watch: false,
+        watch: false
       }
 }
 
 function getConsoleLogOptions({ contextIsNode }) {
   return {
     performance: {
-      hints: contextIsNode || ENV_IS_DEV ? false : 'warning',
+      hints: contextIsNode || ENV_IS_DEV ? false : 'warning'
     },
     stats: {
       all: false,
@@ -198,8 +206,8 @@ function getConsoleLogOptions({ contextIsNode }) {
 
       builtAt: true,
       version: true,
-      timings: true,
-    },
+      timings: true
+    }
   }
 }
 
@@ -211,8 +219,8 @@ function getCacheOptions({ contextIsNode }) {
         cache: {
           name: contextIsNode ? 'node' : 'browser',
           type: 'filesystem',
-          buildDependencies: { ...IGNORE_CACHE_ON_CHANGED_WEBPACK_CONFIG },
-        },
+          buildDependencies: { ...IGNORE_CACHE_ON_CHANGED_WEBPACK_CONFIG }
+        }
       }
     : null
 }
@@ -220,7 +228,7 @@ function getCacheOptions({ contextIsNode }) {
 module.exports = [
   {
     entry: {
-      'ssr-app': './public/js/app/ssr-app.js',
+      'ssr-app': './public/js/app/ssr-app.js'
     },
 
     mode: ENV_IS_DEV ? 'development' : 'production',
@@ -229,12 +237,12 @@ module.exports = [
 
     ...getWatchOptions(),
     ...getConsoleLogOptions({ contextIsNode: true }),
-    ...getCacheOptions({ contextIsNode: true }),
+    ...getCacheOptions({ contextIsNode: true })
   },
   {
     entry: {
       vendor: './public/js/vendor.js',
-      app: './public/js/app/app.jsx',
+      app: './public/js/app/app.jsx'
     },
 
     mode: ENV_IS_DEV ? 'development' : 'production',
@@ -243,6 +251,6 @@ module.exports = [
 
     ...getWatchOptions(),
     ...getConsoleLogOptions({ contextIsNode: false }),
-    ...getCacheOptions({ contextIsNode: false }),
-  },
+    ...getCacheOptions({ contextIsNode: false })
+  }
 ]

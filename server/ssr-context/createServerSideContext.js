@@ -16,7 +16,8 @@ function createServerSideContext() {
       courseFormattedCredits: '',
       courseDataLang: 'sv'
     },
-    analysisData: undefined, // kursutveckling-api
+    analysisDataAdminWeb: undefined, // kursutveckling-api
+    analysisDataCanvas: undefined, // kursutveckling-api
     miniMemosPdfAndWeb: [], // kurs-pm-data-api
     courseMemos: [],
     setBrowserConfig

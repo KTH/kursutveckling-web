@@ -28,9 +28,7 @@ module.exports = {
       'On this page course analysis and course data are published by course coordinators. Prospective, current and previous students can use the information for selecting courses or follow up on previous course evaluations. Teachers, course coordinators, examiners etc. can use the page as a tool for course development.',
 
     example_message_key: 'This is an english translation of a label',
-
     button_label_example: 'Click me to send data to server!',
-
     field_text_example: 'Data to be sent to API',
 
     field_label_get_example: 'My modelData(Response from api call GET): ',
@@ -71,77 +69,69 @@ module.exports = {
       label_latest_version: 'latest version',
       no_syllabuses: 'This course doesn´t have an approved course syllabus.',
       no_memos: 'This course has no published course memos.',
-      no_analyses: 'This course has no published Course Analyses.',
+      no_analyses: 'This course has no previously published course analyses.',
       label_course_analyses: 'Course Analyses',
-      label_course_analysis: 'Course Analysis'
+      label_course_analysis: 'Course Analysis',
+      canvas_analysis_alert_heading: 'The course analyses have moved!',
+      canvas_analysis_alert_link_label: 'Learning Platform (Canvas)',
+      canvas_analysis_alert_p1:
+        'From study period 3 in Spring 2025, course analyses will be published in the Canvas course room for each course round. Users with access to the course room can find the course analysis under the "Course evaluation" tab.',
+      canvas_analysis_alert_p2: 'Previously published course analyses are listed below.'
     }
   },
-  tableHeaders: {
+  analysisHeaders: {
     info_manually_edited: 'Course data has been registered manually',
-    header_main_publish_new: 'Publish new course analysis with course data (for course coordinator)',
-    aria_label_close_icon: 'Close',
+
+    close_button_label: 'Close',
     aria_label_info_icon: 'More information',
-    table_headers_with_popup: {
-      examiners: {
-        header: 'Examiners',
-        popoverText:
-          'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
-      },
-      examRounds: {
-        header: 'Examination',
-        popoverText:
-          'Form of examinataion for the course offering in the format: examination module, credits, grading scale. View details about Examination on the page Before course selection.'
-      },
-      alterationText: {
-        header: 'Changes of the course before this course offering',
-        popoverText:
-          'Summarized changes made to the course before this particular course offering. The purpose of publishing changes made to the course is to show the improvements of the course over time. All changes documented to the course offerings gives an overview of the improvement steps of the course.'
-      },
-      examinationGrade: {
-        header: 'Result',
-        popoverText:
-          'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination. Graduation rate is calculated based on information fetched from Ladok.'
-      },
-      responsibles: {
-        header: 'Coordinator',
-        popoverText:
-          'All the course coordinators for the all the administrative course instances that are included in the course offering. Course coordinators are administrated in Kopps.'
-      },
-      registeredStudents: {
-        header: 'Students',
-        popoverText:
-          'Number of registered students are defined as the number of first registration students on all the administrative course instances that are included in the course offering. Admitted students that have not been registered shall not be counted. Neither shall registered students that have been re-registered from a previous administrative course instance counted. Number of registered students is calculated based on information fetched from Ladok.'
-      }
+
+    examiners: {
+      header: 'Examiners',
+      popover_text:
+        'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
     },
-    extra_kopps_info: {
-      no_added: 'No information inserted',
-      commentExam: {
-        header: 'Examination comments',
-        popoverText: 'Examination comments for the course offering examination.'
-      },
-      programmeCodes: { header: 'Compulsory within programme', popoverText: '' },
-      analysisName: {
-        header: 'The course analysis applies to following course offerings',
-        popoverText:
-          'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
-      }
+    alterationText: {
+      header: 'Changes planned for the next course offering'
     },
-    extra_dates_and_comments: {
-      no_added: 'No information inserted',
-      publishedDate: 'Published first time',
-      changedAfterPublishedDate: 'Last time changed',
-      commentChange: 'Comments to changes in course data or course analysis after publishing',
-      no_date_last_changed: 'No changes since first published.',
-      page_lang: 'en'
+    alterationTextAdminWeb: {
+      header: 'Changes introduced for this course offering'
     },
-    header_more_info: 'Additional data about the course analysis',
-    link_analysis: { label_analysis: 'Course analysis', no_added_doc: 'No course analysis added' },
-    link_memo: { label_memo: 'Course memo', no_added_doc: 'No course memo added' },
-    no_course_analys:
+    examinationGrade: {
+      header: 'Examination grade',
+      popover_text:
+        'Graduation rate is defined as the number of passed first registration students on the whole course divided by the number of registered student (as defined above) after the first ordinary examination after the end date of the course offering. Graduation rate is not calculated for each examination session in the course examination set. Neither is it recalculated after each following re-examination.'
+    },
+    gradingDistribution: {
+      header: 'Results on course',
+      total: 'Total number',
+      popover_text:
+        'Number of registered students with reported results in the course, together with grade distribution. Re-registered students are not included.'
+    },
+    responsibles: {
+      header: 'Coordinator'
+    },
+    registeredStudents: {
+      header: 'Students',
+      popover_text: 'Number of registered students. Re-registered students are not included.'
+    },
+    programmeCodes: { header: 'Compulsory within programme' },
+    analysisName: {
+      header: 'The course analysis applies to following course offerings',
+      popover_text:
+        'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
+    },
+
+    no_course_analysis:
       'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
-    course_short_semester: {
-      1: 'Spring ',
-      2: 'Autumn '
+    no_added: 'No information inserted',
+
+    syllabusLink: { header: 'Course syllabus', no_added_doc: 'No course syllabus added' },
+    analysisLink: { header: 'Course analysis', no_added_doc: 'No course analysis added' },
+    memoLink: { header: 'Course memo', no_added_doc: 'No course memo added' },
+
+    courseShortSemester: {
+      1: 'Spring',
+      2: 'Autumn'
     }
   },
   pageTitles: {
@@ -150,10 +140,9 @@ module.exports = {
     course_info_title: 'Course information',
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',
     info_text: {
-      0: '',
-      1: 'On this page, the course coordinator or examiner will publish course analyses with course data for a course offering. ',
-      2: 'When the course analysis has been published, the course data, the course memo, and the course syllabus are displayed. All course syllabuses and course memos are shown on the page ',
-      3: 'The information can help prospective, current, and former students with course selection, or to follow up on their own participation. Teachers, course coordinators, examiners, etc. can use the page as support in course development.'
+      0: 'On this page, you can see how the course has developed over time. For each course offering, course data is displayed (number of registered students and course results, along with planned changes for the next session). ',
+      1: 'All course syllabuses and course memos are shown on the page ',
+      2: 'The information can help prospective, current, and former students with course selection, or to follow up on their own participation. Teachers, course coordinators, examiners, program directors, and others can use the page as a resource for course development.'
     },
     label_syllabus_link: 'Course syllabus',
     course_short_semester: {

@@ -17,8 +17,8 @@ function linkToArchive(courseCode, language) {
 function StudentViewCourseDev() {
   const [context] = useWebContext()
 
-  const { courseCode, courseData, analysisData, userLang } = context
-  const { pageTitles, tableHeaders, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
+  const { courseCode, courseData, analysisDataCanvas, analysisDataAdminWeb, userLang } = context
+  const { pageTitles, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
   const { archiveTitles } = messages
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
   const labelAboutCoursePage = `${pageTitles.about_course} ${courseCode}`
@@ -35,21 +35,17 @@ function StudentViewCourseDev() {
         <PageTitle courseData={courseData} pageTitle={pageTitles.course_dev_title} />
         <div className="intro-text">
           <p>
+            {pageTitles.info_text[0]}
             {pageTitles.info_text[1]}
-            {pageTitles.info_text[2]}
             <a href={linkToArchive(courseCode, userLang)}>{archiveTitles.archive}.</a>
           </p>
-          <p>{pageTitles.info_text[0]}</p>
-          <p>{pageTitles.info_text[3]}</p>
+          <p>{pageTitles.info_text[2]}</p>
         </div>
 
         <ListYears
           key="list-of-course-data-for-several-years"
-          courseData={courseData}
-          allYearsAnalysisDataObj={analysisData}
-          tableHeaders={tableHeaders}
-          pageTitles={pageTitles}
-          userLang={userLang}
+          allYearsAnalysisDataObjCanvas={analysisDataCanvas}
+          allYearsAnalysisDataObjAdminWeb={analysisDataAdminWeb}
         />
       </main>
     </Row>
