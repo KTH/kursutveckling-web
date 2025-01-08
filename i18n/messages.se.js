@@ -74,7 +74,7 @@ module.exports = {
       canvas_analysis_alert_heading: 'Kursanalyserna har flyttat!',
       canvas_analysis_alert_link_label: 'Lärplattform (Canvas)',
       canvas_analysis_alert_p1:
-        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas för respektive kursomgång. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
+        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
       canvas_analysis_alert_p2: 'Tidigare publicerade kursanalyser listas nedan.'
     }
   },
