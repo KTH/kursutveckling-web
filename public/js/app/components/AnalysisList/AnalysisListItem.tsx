@@ -118,7 +118,7 @@ const AnalysisListItem: React.FC<{
       <h3 className="analysis-name">{analysisName}</h3>
       <AlterationTextBox
         header={alterationTextHeaderObj.header}
-        htmlContent={isCanvasAnalysis(analysis) ? alterationText : `<i>${no_added}</i>`}
+        htmlContent={isCanvasAnalysis(analysis) && alterationText ? alterationText : `<i>${no_added}</i>`}
       />
       <Row>
         <Col md="9">
