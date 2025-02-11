@@ -1,76 +1,48 @@
 const log = require('@kth/log')
 const { rawAnalysisDataFromCanvas, rawAnalysisDataFromAdminWeb } = require('./getRawAnalysisData')
 
-// Helper function to initialize sorted data structure for the last 5 years
-const initializeYearlyDataObject = (currentYear) =>
-  Array.from({ length: 6 }, (_, i) => currentYear - i).reduce((acc, year) => {
-    acc[year] = []
+const sortAnalysesByYear = (data, transformAnalysis = (x) => x) => {
+  return data.reduce((acc, analysis) => {
+    const year = analysis.semester.slice(0, 4)
+    acc[year] = acc[year] || []
+    const transformedAnalysis = transformAnalysis(analysis)
+    if (transformedAnalysis) acc[year].push(transformedAnalysis)
     return acc
   }, {})
-
-const sortAnalysesByYear = (data, sortedByYear, transformAnalysis = (x) => x) => {
-  data.forEach((analysis) => {
-    const year = analysis.semester.slice(0, 4)
-    if (sortedByYear[year]) {
-      sortedByYear[year].push(transformAnalysis(analysis))
-    } else {
-      sortedByYear[year] = [transformAnalysis(analysis)]
-    }
-  })
 }
 
 async function sortedAnalysisDataFromCanvas(courseCode) {
   try {
     const unsortedData = await rawAnalysisDataFromCanvas(courseCode)
-    const currentYear = new Date().getFullYear()
-    const sortedByYear = initializeYearlyDataObject(currentYear)
-
-    sortAnalysesByYear(unsortedData, sortedByYear)
-
-    return sortedByYear
+    return sortAnalysesByYear(unsortedData)
   } catch (error) {
-    const apiError = new Error('sortedAnalysisDataFromCanvas är inte tillgänglig för nu, försök senare')
     log.error('Error in sortedAnalysisDataFromCanvas', { error })
-    throw apiError
+    throw new Error('sortedAnalysisDataFromCanvas is currently unavailable. Please try again later.')
   }
 }
 
 async function sortedAnalysisDataFromAdminWeb(courseCode) {
   try {
     const unsortedData = await rawAnalysisDataFromAdminWeb(courseCode)
-    const currentYear = new Date().getFullYear()
-    const sortedByYear = initializeYearlyDataObject(currentYear)
 
-    sortAnalysesByYear(unsortedData, sortedByYear, (analysis) => {
-      const {
-        isPublished,
-        examinationGrade,
-        examinationGradeFromLadok,
-        registeredStudentsFromLadok,
-        registeredStudents
-      } = analysis
+    const sortedByYear = sortAnalysesByYear(unsortedData, (analysis) => {
+      if (!analysis.isPublished) return null
 
-      if (!isPublished) return null
-
-      if (examinationGrade) {
-        analysis.examinationGrade = examinationGradeFromLadok ? `${examinationGrade}%` : `${examinationGrade}%*`
+      return {
+        ...analysis,
+        examinationGrade: analysis.examinationGradeFromLadok
+          ? `${analysis.examinationGrade}%`
+          : `${analysis.examinationGrade}%*`,
+        registeredStudents: analysis.registeredStudentsFromLadok
+          ? analysis.registeredStudents
+          : `${analysis.registeredStudents}*`
       }
-
-      if (!registeredStudentsFromLadok) analysis.registeredStudents = registeredStudents ? `${registeredStudents}*` : ''
-
-      return analysis
-    })
-
-    // Remove null entries (non-published analyses)
-    Object.keys(sortedByYear).forEach((year) => {
-      sortedByYear[year] = sortedByYear[year].filter(Boolean)
     })
 
     return sortedByYear
   } catch (error) {
-    const apiError = new Error('sortedAnalysisDataFromAdminWeb är inte tillgänglig för nu, försök senare')
     log.error('Error in sortedAnalysisDataFromAdminWeb', { error })
-    throw apiError
+    throw new Error('sortedAnalysisDataFromAdminWeb is currently unavailable. Please try again later.')
   }
 }
 
