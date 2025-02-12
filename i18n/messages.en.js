@@ -120,8 +120,7 @@ module.exports = {
         'All the administrative course instances that was included in the course offering. Students are admitted to an administrative course instance. Degree program students and non-programme students are admitted to different administrative course instances but may be educated in the same course offering. A course offering is thereby the practical realisation of the course with a common start date, common pace, common timetable etc. for all students. Several administrative course instances are grouped to one course offering'
     },
 
-    no_course_analysis:
-      'When the course analysis has been published, the course data, course memo and course syllabus are displayed.',
+    no_course_analysis: 'Course analysis not published',
     no_added: 'No information inserted',
 
     syllabusLink: { header: 'Course syllabus', no_added_doc: 'No course syllabus added' },
@@ -140,7 +139,7 @@ module.exports = {
     course_info_title: 'Course information',
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',
     info_text: {
-      0: 'On this page, you can see how the course has developed over time. For each course offering, course data is displayed (number of registered students and course results, along with planned changes for the next session). ',
+      0: "On this page, you can track the course's development over time. Once the course analysis is published, data for each course offering is displayed, including the number of registered students, course results, and planned improvements for the next session. ",
       1: 'All course syllabuses and course memos are shown on the page ',
       2: 'The information can help prospective, current, and former students with course selection, or to follow up on their own participation. Teachers, course coordinators, examiners, program directors, and others can use the page as a resource for course development.'
     },
