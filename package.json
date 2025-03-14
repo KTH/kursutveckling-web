@@ -27,6 +27,7 @@
   "dependencies": {
     "@kth/api-call": "^4.1.0",
     "@kth/appinsights": "^0.3.1",
+    "@kth/cortina-block": "^7.0.0",
     "@kth/kth-node-response": "^1.0.7",
     "@kth/kth-node-web-common": "^9.3.0",
     "@kth/kth-reactstrap": "^0.4.66",
@@ -56,7 +57,7 @@
     "react-icons": "^4.12.0",
     "react-router": "^6.22.2",
     "react-router-dom": "^6.22.2",
-    "reactstrap": "^8.10.1",
+    "reactstrap": "^9.2.3",
     "safe-utils": "^1.0.1"
   },
   "devDependencies": {
