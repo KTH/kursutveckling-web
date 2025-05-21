@@ -10,9 +10,9 @@ const getSyllabusPeriodStart = (periods: SyllabusPeriods, semester: string): str
 
   for (const [key, value] of Object.entries(periods)) {
     const keyAsNumber = parseInt(key, 10)
-    const endDate = value.endDate ? Number(value.endDate) : Infinity
+    const endPeriod = value.endPeriod ? Number(value.endPeriod) : Infinity
 
-    if (semesterAsNumber >= keyAsNumber && semesterAsNumber <= endDate) {
+    if (semesterAsNumber >= keyAsNumber && semesterAsNumber <= endPeriod) {
       return key
     }
   }
@@ -49,7 +49,7 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
   const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
-  const endTermName = formatSemesterName(syllabusPeriod?.endDate || '', courseShortSemester)
+  const endTermName = formatSemesterName(syllabusPeriod?.endPeriod || '', courseShortSemester)
   const syllabusLabel = `${header} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (

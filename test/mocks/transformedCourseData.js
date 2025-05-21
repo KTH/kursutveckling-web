@@ -1,17 +1,18 @@
-import transformedKoppsData from './transformedKoppsData'
 import transformedLadokData from './transformedLadokData'
+import transformedCourseSyllabusData from './transformedCourseSyllabusData'
+
 const transformedCourseData = {
   sv: {
     courseCode: 'SF1624',
     courseDataLang: 'sv',
-    ...transformedKoppsData.sv,
-    ...transformedLadokData.sv
+    ...transformedLadokData.sv,
+    ...transformedCourseSyllabusData.sv
   },
   en: {
     courseCode: 'SF1624',
     courseDataLang: 'en',
-    ...transformedKoppsData.en,
-    ...transformedLadokData.en
+    ...transformedLadokData.en,
+    ...transformedCourseSyllabusData.en
   }
 }
 module.exports = transformedCourseData
