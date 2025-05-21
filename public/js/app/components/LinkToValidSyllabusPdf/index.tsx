@@ -31,8 +31,8 @@ const formatSemesterName = (semester: string | number, courseShortSemester: Reco
 const LinkToValidSyllabusPdf: React.FC<{
   semester: string
 }> = ({ semester }) => {
-  const [{ courseKoppsData, userLang }] = useWebContext()
-  const { courseCode, syllabusPeriods } = courseKoppsData
+  const [{ courseData, userLang }] = useWebContext()
+  const { courseCode, syllabusPeriods } = courseData
 
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
 
