@@ -49,7 +49,7 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
   const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
-  const endTermName = formatSemesterName(syllabusPeriod.endDate || '', courseShortSemester)
+  const endTermName = formatSemesterName(syllabusPeriod?.endDate || '', courseShortSemester)
   const syllabusLabel = `${header} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (

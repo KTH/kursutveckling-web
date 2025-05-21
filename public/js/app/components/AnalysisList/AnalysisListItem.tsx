@@ -4,7 +4,7 @@ import { useWebContext } from '../../context/WebContext'
 import LinksToCourseMemos from '../LinksToCourseMemos'
 import LinkToCourseAnalysis from '../LinkToCourseAnalysis'
 import LinkToValidSyllabusPdf from '../LinkToValidSyllabusPdf'
-import AlterationTextBox from './AlterationTextBox'
+import AlterationTextBox from './AlterationTextBox' 
 import GridCell from './GridCell'
 import ResultsSection from './ResultsSection'
 import { RoundAnalysisCanvas, RoundAnalysisAdminWeb } from './types'
@@ -118,7 +118,7 @@ const AnalysisListItem: React.FC<{
       <h3 className="analysis-name">{analysisName}</h3>
       <AlterationTextBox
         header={alterationTextHeaderObj.header}
-        htmlContent={isCanvasAnalysis(analysis) ? alterationText : `<i>${no_added}</i>`}
+        htmlContent={isCanvasAnalysis(analysis) && alterationText ? alterationText : `<i>${no_added}</i>`}
       />
       <Row>
         <Col md="9">
