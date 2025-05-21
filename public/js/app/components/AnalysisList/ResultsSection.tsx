@@ -33,7 +33,9 @@ const ResultsSection: React.FC<ResultsSectionContentProps> = ({ analysis }) => {
             </Row>
             {Object.entries(gradingDistribution).map(([grade, count]) => (
               <Row key={grade}>
-                <Col xs="2">{grade}</Col>
+                <Col xs="2" className="grade-col">
+                  {grade}
+                </Col>
                 <Col xs="8">
                   <span>{count}</span>
                 </Col>

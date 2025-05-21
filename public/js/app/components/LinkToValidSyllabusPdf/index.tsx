@@ -31,8 +31,8 @@ const formatSemesterName = (semester: string | number, courseShortSemester: Reco
 const LinkToValidSyllabusPdf: React.FC<{
   semester: string
 }> = ({ semester }) => {
-  const [{ courseData, userLang }] = useWebContext()
-  const { courseCode, syllabusPeriods } = courseData
+  const [{ courseKoppsData, userLang }] = useWebContext()
+  const { courseCode, syllabusPeriods } = courseKoppsData
 
   const syllabusPeriodStart = getSyllabusPeriodStart(syllabusPeriods, semester)
 
@@ -49,7 +49,7 @@ const LinkToValidSyllabusPdf: React.FC<{
 
   const syllabusPeriod = syllabusPeriods[syllabusPeriodStart]
   const startTermName = formatSemesterName(syllabusPeriodStart, courseShortSemester)
-  const endTermName = formatSemesterName(syllabusPeriod.endDate || '', courseShortSemester)
+  const endTermName = formatSemesterName(syllabusPeriod?.endDate || '', courseShortSemester)
   const syllabusLabel = `${header} ${courseCode} ( ${startTermName} - ${endTermName} )`
 
   return (

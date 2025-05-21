@@ -141,7 +141,6 @@ const transformedAnalysisDataFromAdminWeb = {
       __v: 0
     }
   ],
-  2016: [],
   2017: [
     {
       _id: 'SF1624VT2017_1_2',
@@ -286,16 +285,10 @@ const transformedAnalysisDataFromAdminWeb = {
       analysisName: 'CMATD1 m.fl. ( Startdatum 2019-10-28, Svenska )',
       __v: 0
     }
-  ],
-  2020: [],
-  2021: []
+  ]
 }
 
 const transformedAnalysisDataFromCanvas = {
-  2019: [],
-  2020: [],
-  2021: [],
-  2022: [],
   2023: [
     {
       _id: '673ae58e7d5093b55e7dc88a',

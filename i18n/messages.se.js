@@ -75,7 +75,7 @@ module.exports = {
       canvas_analysis_alert_heading: 'Kursanalyserna har flyttat!',
       canvas_analysis_alert_link_label: 'Lärplattform (Canvas)',
       canvas_analysis_alert_p1:
-        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas för respektive kursomgång. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
+        'Från läsperiod 3 i VT25 publiceras kursanalyser i kursrummet i Canvas. Användare med behörighet till kursrummet hittar kursanalysen under fliken “Course evaluation”.',
       canvas_analysis_alert_p2: 'Tidigare publicerade kursanalyser listas nedan.'
     }
   },
@@ -120,7 +120,7 @@ module.exports = {
         'Alla kurstillfällen som ingick i kursomgången. Studenter är antagna till ett kurstillfälle. Programstudenter, betalande studenter och fristående studenter antas till olika kurstillfällen men kan utbildas i samma kursomgång. Kurstillfällen ska alltså grupperas ihop till en kursomgång. Kursomgången är ett praktiskt genomförande av en kurs. Kursomgången har en gemensam starttidpunkt, gemensam kurstakt och normalt gemensam undervisning för en studentgrupp. Schemat läggs per kursomgång, kurs-PM utformas per kursomgång och kursanalys genomförs per kursomgång.'
     },
 
-    no_course_analysis: 'När kursanalysen är publicerad visas kursdata, kurs-PM och kursplan.',
+    no_course_analysis: 'Kursanalys ej publicerad',
     no_added: 'Ingen information tillagd',
 
     syllabusLink: { header: 'Kursplan', no_added_doc: 'Ingen kursplan tillagd' },
@@ -138,7 +138,7 @@ module.exports = {
     course_info_title: 'Kursinformation',
     regulated_link: '”Riktlinje om kursvärdering och kursanalys”. ',
     info_text: {
-      0: 'På denna sida kan du se hur kursen utvecklats över tid. För varje kurstillfälle visas kursdata (examination, antal registrerade studenter och resultat på kurs tillsammans med planerade förändringar till nästa kurstillfälle). ',
+      0: 'På denna sida kan du följa hur kursen har utvecklats över tid. När kursanalysen har publicerats visas kursdata för varje kurstillfälle, inklusive examination, antal registrerade studenter, kursresultat samt planerade förändringar inför nästa kurstillfälle. ',
       1: 'Alla kursplaner och publicerade kurs-PM visas på sidan ',
       2: 'Presumtiva, nuvarande, och tidigare studenter kan ta del av informationen som hjälp vid kursval, eller för att följa upp sitt eget deltagande. Lärare, kursansvariga, examinatorer, programansvariga m.fl. kan använda sidan som ett stöd vid kursutveckling.'
     },
