@@ -87,7 +87,7 @@ module.exports = {
 
     examiners: {
       header: 'Examinator',
-      popover_text: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
+      popover_text: 'Examinator för kurs vid gällande kursomgång'
     },
     alterationText: {
       header: 'Förändringar som införs till nästa kursomgång'

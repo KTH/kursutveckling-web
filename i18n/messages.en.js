@@ -87,8 +87,7 @@ module.exports = {
 
     examiners: {
       header: 'Examiners',
-      popover_text:
-        'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
+      popover_text: 'The examiners of the course at the time for the course offering'
     },
     alterationText: {
       header: 'Changes planned for the next course offering'
