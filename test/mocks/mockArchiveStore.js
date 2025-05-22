@@ -9,7 +9,7 @@ const mockArchiveStore = (lang) => {
       courseTitle: lang === 'sv' ? 'Algebra och geometri' : 'Algebra and Geometry',
       courseFormattedCredits: lang === 'sv' ? '7,5 hp' : '7.5 credits',
       courseDataLang: lang,
-      syllabusPeriods: { 19701: { endDate: 20372 } }
+      syllabusPeriods: { 19701: { endPeriod: 20372 } }
     },
     miniMemosPdfAndWeb: [],
     courseMemos: [

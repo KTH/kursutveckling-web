@@ -2,22 +2,21 @@ import React from 'react'
 import Table from './Table'
 import LinkToValidSyllabus from '../components/LinkToValidSyllabusPdf'
 
-const createRow = (translation, syllabusPeriodStart, endDate) => {
+const createRow = (translation, syllabusPeriodStart, endPeriod) => {
   const startTermLabel = `${translation.course_short_semester[syllabusPeriodStart.substring(4, 5)]} ${syllabusPeriodStart.substring(0, 4)}`
-  const endTermLabel = `${translation.course_short_semester[endDate.substring(4, 5)] || ''} ${endDate.substring(0, 4)}`
+  const endTermLabel = `${translation.course_short_semester[endPeriod.substring(4, 5)] || ''} ${endPeriod.substring(0, 4)}`
   const semestersLabel = `${startTermLabel} – ${endTermLabel.trim() || translation.ongoing_label}`
 
   return [semestersLabel, <LinkToValidSyllabus semester={syllabusPeriodStart} />]
 }
 
 const SyllabusTable = ({ translation, syllabusPeriods = {} }) => {
-  const syllabusPeriodStarts = Object.keys(syllabusPeriods) || []
-  syllabusPeriodStarts.sort().reverse()
+  const syllabusStartPeriod = Object.keys(syllabusPeriods || [])
+  syllabusStartPeriod.sort().reverse()
 
-  const syllabusDataRows = syllabusPeriodStarts.map((syllabusPeriodStart) => {
-    const { endDate: ed } = syllabusPeriods[syllabusPeriodStart]
-    const endDate = ed.toString()
-    return createRow(translation, syllabusPeriodStart, endDate)
+  const syllabusDataRows = syllabusStartPeriod.map((syllabusPeriodStart) => {
+    const { endPeriod } = syllabusPeriods[syllabusPeriodStart]
+    return createRow(translation, syllabusPeriodStart, String(endPeriod))
   })
   const headings = { labels: [translation.label_semester, translation.label_syllabus], classes: ['semester', ''] }
 

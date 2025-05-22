@@ -8,10 +8,10 @@ const mockWebContext = (lang = 'en') => {
       courseCode: 'EI1220',
       courseTitle: lang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',
       syllabusPeriods: {
-        20082: { endDate: 20091 },
-        20092: { endDate: 20101 },
-        20102: { endDate: 20191 },
-        20192: { endDate: '' }
+        20082: { endPeriod: 20091 },
+        20092: { endPeriod: 20101 },
+        20102: { endPeriod: 20191 },
+        20192: { endPeriod: '' }
       },
       courseDataLang: lang
     },

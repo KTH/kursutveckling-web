@@ -7,13 +7,7 @@
  * *************************************************
  *
  */
-const {
-  getEnv,
-  devDefaults,
-  unpackKOPPSConfig,
-  unpackRedisConfig,
-  unpackNodeApiConfig
-} = require('kth-node-configuration')
+const { getEnv, devDefaults, unpackRedisConfig, unpackNodeApiConfig } = require('kth-node-configuration')
 const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
@@ -21,7 +15,6 @@ const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
 const devKursutvecklingApi = devDefaults('https://api-r.referens.sys.kth.se/api/kursutveckling?defaultTimeout=10000') // required=true&
-const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000') // required=true&
 const devKursPmDataApi = devDefaults('https://api-r.referens.sys.kth.se/api/kurs-pm-data?defaultTimeout=10000')
 const devSessionKey = devDefaults('kursutveckling-web.sid')
 const devSessionUseRedis = devDefaults(true)
@@ -61,7 +54,6 @@ module.exports = {
     baseUrl: getEnv('LADOK_BASE_URL', devDefaults('https://ladok-mellanlagring-lab.azure-api.net')),
     ocpApimSubscriptionKey: getEnv('LADOK_OCP_APIM_SUBSCRIPTION_KEY', null)
   },
-  koppsApi: unpackKOPPSConfig('KOPPS_URI', devKoppsApi),
 
   // Cortina
   blockApi: {
@@ -89,10 +81,6 @@ module.exports = {
     cortinaBlock: {
       redis: unpackRedisConfig('REDIS_URI', devRedis),
       redisKey: 'CortinaBlock_kursutveckling-web_'
-    },
-    koppsApi: {
-      redis: unpackRedisConfig('REDIS_URI', devRedis),
-      expireTime: getEnv('KOPPS_API_CACHE_EXPIRE_TIME', 60 * 60) // 60 minuteS
     },
     kursutvecklingApi: {
       redis: unpackRedisConfig('REDIS_URI', devRedis),

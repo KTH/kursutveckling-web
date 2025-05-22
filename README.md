@@ -24,10 +24,10 @@ The two types of course analyses, Canvas analyses and Admin Web Tool analyses, d
 - Admin Web Tool analyses, from the discontinued `kursutveckling-admin-web` tool, include the field `examinationGrade` for describing course round results. The field `alterationText` refers to changes implemented before the **current** course round. The latest analysis of this kind will be published in March 2025.
 - Canvas-based analyses data is fetched and compiled in the integration `kursutveckling-integration-api`, including the field `gradingDistribution` for describing course round results. The field `alterationText` here refers to changes planned before the **next** course round.
 
-Application is fetching data from **KOPPS-API** for:
+Application is fetching data from **LADOK-API** for:
 
 1. Course title
-2. For a list of course syllabusses for all available years in kopps
+2. For a list of course syllabusses for all available years in Ladok
 
 Application is fetching data from **Kursutveckling api** to show:
 
