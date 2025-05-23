@@ -4,7 +4,7 @@ module.exports = {
   },
   clearMocks: true,
   notifyMode: 'failure-change',
-  transformIgnorePatterns: ['node_modules/(?!(@kth|@babel|@jest|uuid)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(@kth(?!/om-kursen-ladok-client)|@babel|@jest|uuid)/)'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   setupFilesAfterEnv: ['jest-extended/all'],
   testEnvironment: 'jsdom',
