@@ -17,7 +17,7 @@ function linkToArchive(courseCode, language) {
 function StudentViewCourseDev() {
   const [context] = useWebContext()
 
-  const { courseCode, courseKoppsData, analysisDataCanvas, analysisDataAdminWeb, userLang } = context
+  const { courseCode, courseData, analysisDataCanvas, analysisDataAdminWeb, userLang } = context
   const { pageTitles, messages } = i18n.messages[userLang === 'en' ? 0 : 1]
   const { archiveTitles } = messages
   const linkToAboutCourse = `${COURSE_INFO_URL}${courseCode}?l=${userLang}`
@@ -32,12 +32,7 @@ function StudentViewCourseDev() {
             {labelAboutCoursePage}
           </a>
         </nav>
-        <PageTitle
-          key="title"
-          courseKoppsData={courseKoppsData}
-          pageTitle={pageTitles.course_dev_title}
-          translate={pageTitles}
-        />
+        <PageTitle courseData={courseData} pageTitle={pageTitles.course_dev_title} />
         <div className="intro-text">
           <p>
             {pageTitles.info_text[0]}

@@ -44,6 +44,8 @@ module.exports = {
     page_course_programme: 'Kurs- och programkatalogen',
     page_student: 'Student på KTH',
 
+    admin_link_title: 'Administrera Om kursen',
+
     archiveTitles: {
       archive: 'Arkiv',
       about_course: 'Om kursen',
@@ -52,7 +54,6 @@ module.exports = {
       before_choosing_course: 'Inför kursval',
       prepare_course: 'Förbereda och gå kurs',
       course_development: 'Kursens utveckling',
-      administration: 'Administrera Om kursen',
       label_syllabus: 'Kursplan',
       label_syllabuses: 'Kursplaner',
       label_semester: 'Termin',
@@ -86,7 +87,7 @@ module.exports = {
 
     examiners: {
       header: 'Examinator',
-      popover_text: 'Examinator för kurs vid gällande kursomgång. Examinatorer administreras i Kopps.'
+      popover_text: 'Examinator för kurs vid gällande kursomgång'
     },
     alterationText: {
       header: 'Förändringar som införs till nästa kursomgång'
@@ -133,7 +134,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'Om kursen',
-    course_admin_title: 'Administrera Om kursen',
     course_dev_title: 'Kursens utveckling',
     course_info_title: 'Kursinformation',
     regulated_link: '”Riktlinje om kursvärdering och kursanalys”. ',

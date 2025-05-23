@@ -4,21 +4,16 @@ const mockWebContext = (lang = 'en') => {
   const context = {
     userLang: lang,
     courseCode: 'EI1220',
-    courseKoppsData: {
+    courseData: {
       courseCode: 'EI1220',
-      gradeScale: { PF: 'P, F' },
       courseTitle: lang === 'en' ? 'Algebra and Geometry' : 'Algebra och geometri',
-      sortedSyllabusStart: ['', 20192, 20102, 20092, 20082],
       syllabusPeriods: {
-        20082: { endDate: 20091 },
-        20092: { endDate: 20101 },
-        20102: { endDate: 20191 },
-        20192: { endDate: '' }
+        20082: { endPeriod: 20091 },
+        20092: { endPeriod: 20101 },
+        20102: { endPeriod: 20191 },
+        20192: { endPeriod: '' }
       },
-      courseCredits: 7.5,
-      koppsDataLang: lang,
-      koppsLangIndex: 0,
-      semesterObjectList: {}
+      courseDataLang: lang
     },
     browserConfig: {
       env: 'dev',

@@ -44,6 +44,8 @@ module.exports = {
     page_course_programme: 'Course and programme directory',
     page_student: 'Student at KTH',
 
+    admin_link_title: 'Administer About course', //Administrate
+
     archiveTitles: {
       archive: 'Archive',
       about_course: 'About course',
@@ -52,7 +54,6 @@ module.exports = {
       before_choosing_course: 'Before course selection',
       prepare_course: 'Prepare and take course',
       course_development: 'Course development',
-      administration: 'Administer About course',
       label_syllabus: 'Course Syllabus',
       label_syllabuses: 'Course Syllabuses',
       label_semester: 'Semester',
@@ -74,7 +75,7 @@ module.exports = {
       canvas_analysis_alert_heading: 'The course analyses have moved!',
       canvas_analysis_alert_link_label: 'Learning Platform (Canvas)',
       canvas_analysis_alert_p1:
-        'From study period 3 in Spring 2025, course analyses will be published in the Canvas course room. Users with access to the course room can find the course analysis under the "Course evaluation" tab.',
+        'From study period 3 in Spring 2025, course analyses will be published in the Canvas course room for each course round. Users with access to the course room can find the course analysis under the "Course evaluation" tab.',
       canvas_analysis_alert_p2: 'Previously published course analyses are listed below.'
     }
   },
@@ -86,8 +87,7 @@ module.exports = {
 
     examiners: {
       header: 'Examiners',
-      popover_text:
-        'The examiners of the course at the time for the course offering. Examiners are administrated in Kopps.'
+      popover_text: 'The examiners of the course at the time for the course offering'
     },
     alterationText: {
       header: 'Changes planned for the next course offering'
@@ -134,7 +134,6 @@ module.exports = {
   },
   pageTitles: {
     about_course: 'About course',
-    course_admin_title: 'Administer About course', //Administrate
     course_dev_title: 'Course development',
     course_info_title: 'Course information',
     regulated_link: '“Guidelines on course evaluation and course analysis”. ',
