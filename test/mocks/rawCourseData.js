@@ -15,6 +15,9 @@ const mockRawLadokData = {
   }
 }
 
+const mockLadokCourseSyllabuses = [{ kursplan: { giltigfrom: 'VT2022' } }, { kursplan: { giltigfrom: 'HT2022' } }]
+
 module.exports = {
-  mockRawLadokData
+  mockRawLadokData,
+  mockLadokCourseSyllabuses
 }

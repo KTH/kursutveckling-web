@@ -1,14 +1,14 @@
-const {
-  getLadokCourseData,
-  getLadokCourseSyllabusPeriodsData,
-  transformPeriodInDigits,
-  createSyllabusPeriods
-} = require('../../server/apiCalls/ladokApi')
+const { getLadokCourseData, getLadokCourseSyllabusPeriodsData } = require('../../server/apiCalls/ladokApi')
 const { mockRawLadokData, mockLadokCourseSyllabuses } = require('../mocks/rawCourseData')
 import transformedLadokData from '../mocks/transformedLadokData'
-const { createApiClient } = require('@kth/om-kursen-ladok-client')
 
-jest.mock('@kth/om-kursen-ladok-client')
+jest.mock('@kth/om-kursen-ladok-client', () => ({
+  createApiClient: () => ({
+    getCourseSyllabuses: () => mockLadokCourseSyllabuses,
+    getLatestCourseVersionIncludingCancelled: () => mockRawLadokData.en
+  })
+}))
+
 jest.mock('../../server/configuration', () => ({ server: {} }))
 
 describe('transformPeriodInDigits', () => {
@@ -45,12 +45,6 @@ describe('createSyllabusPeriods', () => {
 
 describe('getLadokCourseSyllabusPeriodsData', () => {
   test('should transform and sort periods correctly', async () => {
-    const mockLadokCourseSyllabuses = [{ kursplan: { giltigfrom: 'VT2022' } }, { kursplan: { giltigfrom: 'HT2022' } }]
-
-    createApiClient.mockReturnValue({
-      getCourseSyllabuses: jest.fn().mockResolvedValue(mockLadokCourseSyllabuses)
-    })
-
     const result = await getLadokCourseSyllabusPeriodsData('SF1624', 'en')
 
     expect(result).toEqual({
@@ -64,9 +58,6 @@ describe('getLadokCourseSyllabusPeriodsData', () => {
 
 describe('getLadokCourseData', () => {
   test('should transform data', async () => {
-    createApiClient.mockReturnValue({
-      getLatestCourseVersionIncludingCancelled: jest.fn().mockResolvedValue(mockRawLadokData.en)
-    })
     const courseData = await getLadokCourseData('SF1624', 'en')
     expect(courseData).toStrictEqual(transformedLadokData.en)
   })
