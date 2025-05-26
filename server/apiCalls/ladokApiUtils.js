@@ -1,5 +1,3 @@
-jest.mock('../../server/configuration', () => ({ server: {} }))
-
 function createSyllabusPeriods(periods) {
   const result = {}
 
