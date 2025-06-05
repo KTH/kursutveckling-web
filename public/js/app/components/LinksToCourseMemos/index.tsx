@@ -72,12 +72,7 @@ const LinksToCourseMemos: React.FC<{
         <ActiveOrDisabledLink key={index} linkTitle={noAddedDoc} disabled />
       ))}
       {Object.entries(pdfMemos).map(([fileName]) => (
-        <ActiveOrDisabledLink
-          key={fileName}
-          className="pdf-link"
-          href={`${memoStorageUri}${fileName}`}
-          linkTitle={memoTitle}
-        />
+        <ActiveOrDisabledLink key={fileName} href={`${memoStorageUri}${fileName}`} linkTitle={memoTitle} isPdf />
       ))}
       {Object.entries(webMemos).map(([endPoint]) => (
         <ActiveOrDisabledLink

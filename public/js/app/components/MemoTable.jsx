@@ -1,6 +1,7 @@
 import React from 'react'
 import { seasonStr } from '../util/helpers'
 import Table from './Table'
+import ActiveOrDisabledLink from './ActiveOrDisabledLink'
 
 const createRow = (translation, courseMemo) => {
   const { semester, courseOffering, isPdf, memoName, memoVersionsAndUrls } = courseMemo
@@ -11,15 +12,12 @@ const createRow = (translation, courseMemo) => {
       {memoName && <li key={memoName}>{memoName + ':'}</li>}
       {memoVersionsAndUrls.map((memoEntry, index) => (
         <li key={index}>
-          <a
-            aria-label={`${isPdf ? 'PDF ' : ''}${memoEntry.ariaLabel}`}
+          <ActiveOrDisabledLink
+            linkTitle={memoEntry.name}
+            isPdf={isPdf}
             href={memoEntry.url}
-            target={isPdf ? '_blank' : null}
-            rel={isPdf ? 'noreferrer' : null}
-            className={isPdf ? 'pdf-link' : null}
-          >
-            {memoEntry.name}
-          </a>
+            ariaLabel={memoEntry.ariaLabel}
+          />
           {memoEntry.latest ? ` (${translation.label_latest_version})` : ''}
         </li>
       ))}
