@@ -16,7 +16,7 @@ async function getLadokCourseData(courseCode, lang) {
 
 async function getLadokCourseSyllabusPeriodsData(courseCode, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
-  const courseSyllabuses = await client.getCourseSyllabuses(courseCode, lang)
+  const courseSyllabuses = await client.getAllValidCourseSyllabuses(courseCode, lang)
   const periods = courseSyllabuses.map((x) => x.kursplan.giltigfrom)
   const uniquePeriods = [...new Set(periods)]
   const sortedPeriodsInDigits = uniquePeriods.map((x) => transformPeriodInDigits(x)).sort()
