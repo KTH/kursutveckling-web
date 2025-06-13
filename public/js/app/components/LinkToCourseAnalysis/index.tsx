@@ -17,7 +17,7 @@ const LinkToCourseAnalysis: React.FC<{
   const linkTitle = `${header} ${courseCode}${validFrom ? `: ${validFrom}` : ''}`
   const href = `${storageUri}${analysisFileName}`
 
-  return <ActiveOrDisabledLink href={href} className="pdf-link" linkTitle={linkTitle} />
+  return <ActiveOrDisabledLink href={href} linkTitle={linkTitle} isPdf />
 }
 
 export default LinkToCourseAnalysis
