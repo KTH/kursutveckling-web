@@ -1,4 +1,4 @@
-const { transformPeriodInDigits, createSyllabusPeriods } = require('../../server/apiCalls/ladokApiUtils')
+const { transformPeriodInDigits, createSyllabusPeriods } = require('../../server/utils/ladokApiUtils')
 
 describe('transformPeriodInDigits', () => {
   test.each([

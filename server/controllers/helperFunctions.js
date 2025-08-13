@@ -1,12 +1,17 @@
 const { getLadokCourseData, getLadokCourseSyllabusPeriodsData } = require('../apiCalls/ladokApi')
 
-const createCourseData = async (courseCode, lang) => ({
-  courseCode: courseCode.toUpperCase(),
-  courseDataLang: lang,
-  ...(await getLadokCourseData(courseCode, lang)),
-  ...(await getLadokCourseSyllabusPeriodsData(courseCode, lang))
-})
+async function createCourseData(courseCode, lang) {
+  const [courseData, syllabusData] = await Promise.all([
+    getLadokCourseData(courseCode, lang),
+    getLadokCourseSyllabusPeriodsData(courseCode, lang)
+  ])
 
-module.exports = {
-  createCourseData
+  return {
+    courseCode: courseCode.toUpperCase(),
+    courseDataLang: lang,
+    ...courseData,
+    ...syllabusData
+  }
 }
+
+module.exports = { createCourseData }

@@ -1,13 +1,8 @@
 function createSyllabusPeriods(periods) {
-  const result = {}
-
-  for (let i = 0; i < periods.length; i++) {
-    const current = String(periods[i])
-    const next = periods[i + 1]
-
+  return periods.reduce((acc, cur, index) => {
+    const next = periods[index + 1]
     let endPeriod = ''
-
-    if (next !== undefined) {
+    if (next) {
       const year = parseInt(String(next).slice(0, 4), 10)
       const semester = parseInt(String(next).slice(4), 10)
 
@@ -16,11 +11,9 @@ function createSyllabusPeriods(periods) {
 
       endPeriod = `${prevYear}${prevSemester}`
     }
-
-    result[current] = { endPeriod }
-  }
-
-  return result
+    acc[String(cur)] = { endPeriod }
+    return acc
+  }, {})
 }
 
 function transformPeriodInDigits(period) {
