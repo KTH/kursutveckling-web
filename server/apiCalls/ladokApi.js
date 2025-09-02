@@ -9,7 +9,7 @@ const client = createApiClient(serverConfig.ladokMellanlagerApi)
 async function getLadokCourseData(courseCode, lang) {
   const course = await client.getLatestCourseVersionIncludingCancelled(courseCode, lang)
   return {
-    courseTitle: course?.benamning ?? '',
+    courseTitle: course?.benamning.name ?? '',
     courseFormattedCredits: course?.omfattning?.formattedWithUnit ?? ''
   }
 }
