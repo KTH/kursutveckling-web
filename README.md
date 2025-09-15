@@ -47,7 +47,6 @@ Web pages is public for everyone.
 
 - [https://github.com/KTH/kursutveckling-integration-api](https://github.com/KTH/kursutveckling-integration-api)
 - [https://github.com/KTH/kursinfo-admin-web](https://github.com/KTH/kursinfo-admin-web)
-- [https://github.com/KTH/kursinfo-api](https://github.com/KTH/kursinfo-api)
 - [https://github.com/KTH/kursinfo-web](https://github.com/KTH/kursinfo-web)
 
 ### Secrets for Development
