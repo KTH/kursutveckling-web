@@ -11,7 +11,7 @@ const { getEnv, devDefaults, unpackRedisConfig, unpackNodeApiConfig } = require(
 const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
-const devPort = devDefaults(3003)
+const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
 const devKursutvecklingApi = devDefaults('https://api-r.referens.sys.kth.se/api/kursutveckling?defaultTimeout=10000') // required=true&
