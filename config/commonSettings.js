@@ -10,7 +10,7 @@
 const { getEnv, devDefaults } = require('kth-node-configuration')
 const { safeGet } = require('safe-utils')
 
-const devPort = 3000
+const devPort = 3003
 const devUrl = 'http://localhost:' + devPort
 const devSsl = false
 const devPrefixPath = devDefaults('/kursutveckling')
